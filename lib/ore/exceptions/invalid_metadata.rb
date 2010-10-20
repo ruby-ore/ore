@@ -1,4 +1,6 @@
+require 'ore/exceptions/exception'
+
 module Ore
-  class InvalidMetadata < RuntimeError
+  class InvalidMetadata < Exception
   end
 end

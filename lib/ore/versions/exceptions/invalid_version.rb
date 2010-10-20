@@ -1,6 +1,8 @@
+require 'ore/exceptions/exception'
+
 module Ore
   module Versions
-    class InvalidVersion < RuntimeError
+    class InvalidVersion < Exception
     end
   end
 end
