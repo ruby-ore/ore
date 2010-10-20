@@ -67,7 +67,7 @@ module Ore
               elsif line =~ /(PATCH|Patch)\s*=\s*/
                 patch ||= extract_number(line)
               elsif line =~ /(BUILD|Build)\s*=\s*/
-                build ||= extract_number(line)
+                build ||= extract_string(line)
               end
 
               break if (major && minor && patch && build)
@@ -91,6 +91,21 @@ module Ore
       #
       def self.extract_version(line)
         if (match = line.match(/=\s*['"](\d+\.\d+\.\d+)['"]/))
+          match[1]
+        end
+      end
+
+      #
+      # Extracts a number from a `BUILD` constant declaration.
+      #
+      # @param [String] line
+      #   The line of Ruby code where the constant was defined.
+      #
+      # @return [String, nil]
+      #   The extracted string.
+      #
+      def self.extract_string(line)
+        if (match = line.match(/=\s*['"]?(\w+)['"]?/))
           match[1]
         end
       end
