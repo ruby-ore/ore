@@ -51,11 +51,13 @@ module Ore
     #   A file path.
     #
     def check_file(path)
-      check_readable(path) do |file|
-        if File.file?(file)
-          yield file
-        else
-          warn "#{file} is not a file!"
+      if @project_files.include?(path)
+        check_readable(path) do |file|
+          if File.file?(file)
+            yield file
+          else
+            warn "#{file} is not a file!"
+          end
         end
       end
     end
