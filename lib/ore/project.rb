@@ -416,7 +416,7 @@ module Ore
     #   The path to the testing-file, relative to the project.
     #
     def add_test_file(path)
-      check_file(path) { |file| @test_files << test_file }
+      check_file(path) { |file| @test_files << file }
     end
 
   end
