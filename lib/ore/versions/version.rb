@@ -11,9 +11,6 @@ module Ore
     #
     class Version < Gem::Version
 
-      # The version string
-      attr_reader :version
-
       # Major version number
       attr_reader :major
 
