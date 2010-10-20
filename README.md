@@ -1,7 +1,7 @@
 # Ore
 
-* [Source](http://github.com/postmodern/ore)
-* [Issues](http://github.com/postmodern/ore/issues)
+* [github.com/postmodern/ore](http://github.com/postmodern/ore)
+* [github.com/postmodern/ore/issues](http://github.com/postmodern/ore/issues)
 * Postmodern (postmodern.mod3 at gmail.com)
 
 ## Description
@@ -29,6 +29,20 @@ the developer to keep all of the project information in a single YAML file.
 ## Install
 
     $ gem install ore
+
+## Example gem.yml files
+
+Here is the `gem.yml` file ofr Ore:
+
+    name: ore
+    summary: Cut raw RubyGems from YAML.
+    description: Ore is a simple RubyGem building solution. Ore handles the
+      creation of Gem::Specification objects as well as building '.gem'
+      files. Ore allows the developer to keep all of the project information
+      in a single YAML file.
+    authors: Postmodern
+    email: postmodern.mod3@gmail.com
+    homepage: http://github.com/postmodern/ore
 
 ## Synopsis
 
