@@ -315,15 +315,15 @@ module Ore
       gemspec.test_files += @test_files.to_a
 
       @dependencies.each do |name,version|
-        gemspec.add_dependencey(name,version)
+        gemspec.add_dependency(name,version)
       end
 
       @runtime_dependencies.each do |name,version|
-        gemspec.add_runtime_dependencey(name,version)
+        gemspec.add_runtime_dependency(name,version)
       end
 
       @development_dependencies.each do |name,version|
-        gemspec.add_development_dependencey(name,version)
+        gemspec.add_development_dependency(name,version)
       end
 
       yield gemspec if block_given?
