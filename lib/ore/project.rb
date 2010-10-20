@@ -423,6 +423,23 @@ module Ore
     end
 
     #
+    # Splits a version string.
+    #
+    # @param [String, nil] versions 
+    #   The version string.
+    #
+    # @return [Array<String>]
+    #   An Array containing the dependencey versions.
+    #
+    def split_versions(versions)
+      if version.kind_of?(String)
+        versions.strip.split(/,\s*/)
+      else
+        []
+      end
+    end
+
+    #
     # Splits a dependencey string.
     #
     # @param [String] dep
@@ -433,11 +450,7 @@ module Ore
     #
     def split_dependencey(dep)
       name, versions = dep.strip.split(/\s+/,2)
-      versions = if versions
-                   versions.strip.split(/,\s*/)
-                 else
-                   []
-                 end
+      versions = split_versions(versions)
 
       return [name, versions]
     end

@@ -176,8 +176,8 @@ module Ore
     def set_dependencies!(dependencies)
       case dependencies
       when Hash
-        dependencies.each do |name,version|
-          @dependencies[name] = version
+        dependencies.each do |name,versions|
+          @dependencies[name] = split_versions(versions)
         end
       when Array
         dependencies.each do |dep|
@@ -203,8 +203,8 @@ module Ore
     def set_runtime_dependencies!(dependencies)
       case dependencies
       when Hash
-        dependencies.each do |name,version|
-          @runtime_dependencies[name] = version
+        dependencies.each do |name,versions|
+          @runtime_dependencies[name] = split_versions(versions)
         end
       when Array
         dependencies.each do |dep|
@@ -230,8 +230,8 @@ module Ore
     def set_development_dependencies!(dependencies)
       case dependencies
       when Hash
-        dependencies.each do |name,version|
-          @development_dependencies[name] = version
+        dependencies.each do |name,versions|
+          @development_dependencies[name] = split_versions(versions)
         end
       when Array
         dependencies.each do |dep|
