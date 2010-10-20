@@ -4,6 +4,11 @@ require 'rubygems/version'
 
 module Ore
   module Versions
+    #
+    # Represents a standard three-number version.
+    #
+    # @see http://semver.org/
+    #
     class Version < Gem::Version
 
       # The version string
@@ -18,6 +23,21 @@ module Ore
       # Patch version number
       attr_reader :patch
 
+      #
+      # Creates a new version.
+      #
+      # @param [Integer, nil] major
+      #   The major version number.
+      #
+      # @param [Integer, nil] minor
+      #   The minor version number.
+      #
+      # @param [Integer, nil] patch
+      #   The patch version number.
+      #
+      # @param [Integer, nil] build (nil)
+      #   The build version number.
+      #
       def initialize(major,minor,patch,build=nil)
         @major = (major || 0)
         @minor = (minor || 0)
@@ -30,6 +50,15 @@ module Ore
         super(numbers.join('.'))
       end
 
+      #
+      # Parses a version string.
+      #
+      # @param [String] string
+      #   The version string.
+      #
+      # @return [Version]
+      #   The parsed version.
+      #
       def self.parse(string)
         major, minor, patch, build = string.split('.',4)
 
