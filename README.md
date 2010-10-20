@@ -24,7 +24,9 @@ the developer to keep all of the project information in a single YAML file.
 
       require 'ore/specification'
       
-      Ore::Specification.new
+      Ore::Specification.new do |gemspec|
+        # custom logic here
+      end
 
 ## Install
 
