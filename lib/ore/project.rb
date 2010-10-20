@@ -1,5 +1,6 @@
 require 'ore/exceptions/project_not_found'
 require 'ore/exceptions/invalid_metadata'
+require 'ore/document_file'
 require 'ore/defaults'
 require 'ore/settings'
 require 'ore/versions'
@@ -37,6 +38,8 @@ module Ore
     attr_reader :email
 
     attr_reader :date
+
+    attr_reader :document
 
     attr_reader :require_paths
 
@@ -104,6 +107,12 @@ module Ore
         set_date! metadata['date']
       else
         default_date!
+      end
+
+      document_path = @root.join(DocumentFile::NAME)
+
+      if document_path.file?
+        @document = DocumentFile.new(document_path)
       end
 
       @require_paths = Set[]

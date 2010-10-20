@@ -47,7 +47,11 @@ module Ore
     end
 
     def default_extra_files!
-      # TODO: filter out test_files, executables, *.rb and lib/*
+      if @document
+        @document.extra_files.each do |path|
+          check_readable(path) { |file| @extra_files << file }
+        end
+      end
     end
 
     def default_files!
