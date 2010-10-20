@@ -32,7 +32,7 @@ the developer to keep all of the project information in a single YAML file.
 
 ## Example gem.yml files
 
-The `gem.yml` file ofr Ore:
+The `gem.yml` file used to build Ore:
 
     name: ore
     summary: Cut raw RubyGems from YAML.
