@@ -69,6 +69,11 @@ module Ore
       end
     end
 
+    def set_executable!(path)
+      @executable = metadata['executable']
+      @executables << @executable
+    end
+
     def set_extra_files!(paths)
       if paths.kind_of?(Array)
         paths.each { |path| add_extra_file(path) }

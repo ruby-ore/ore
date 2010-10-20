@@ -45,6 +45,8 @@ module Ore
 
     attr_reader :executables
 
+    attr_reader :executable
+
     attr_reader :extra_files
 
     attr_reader :files
@@ -131,6 +133,14 @@ module Ore
         default_executables!
       end
 
+      @executable = nil
+
+      if metadata['executable']
+        set_executable! metadata['executable']
+      else
+        default_executable!
+      end
+
       @extra_files = Set[]
 
       if metadata['extra_files']
@@ -209,7 +219,7 @@ module Ore
       end
 
       gemspec.executables += @executables.to_a
-      gemspec.default_executable = gemspec.executables.first
+      gemspec.default_executable = @executable
       gemspec.extra_rdoc_files += @extra_files.to_a
       gemspec.files += @files.to_a
       gemspec.test_files += @test_files.to_a

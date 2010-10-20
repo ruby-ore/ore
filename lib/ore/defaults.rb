@@ -46,6 +46,14 @@ module Ore
       end
     end
 
+    def default_executable!
+      @executable = if @executables.include?(@name)
+                      @name
+                    else
+                      @executables.first
+                    end
+    end
+
     def default_extra_files!
       if @document
         @document.extra_files.each { |path| add_file(path) }
