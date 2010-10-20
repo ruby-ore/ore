@@ -1,7 +1,6 @@
 require 'ore/exceptions/invalid_metadata'
+require 'ore/versions/version'
 require 'ore/dependency'
-
-require 'rubygems/version'
 
 module Ore
   module Settings
@@ -39,18 +38,14 @@ module Ore
     def set_version!(version)
       case version
       when Hash
-        numbers = [
-          (version['major'] || 0),
-          (version['minor'] || 0),
-          (version['patch'] || 0),
-          version['build']
-        ]
+        major = version['major']
+        minor = version['minor']
+        patch = version['patch']
+        build = version['build']
 
-        numbers << version['build'] if version['build']
-
-        @version = Gem::Version.new(numbers.join('.'))
+        @version = Versions::Version.new(major,minor,patch,build)
       when String
-        @version = version
+        @version = Versions::Version.parse(version)
       else
         raise(InvalidMetadata,"version must be a Hash or a String")
       end
