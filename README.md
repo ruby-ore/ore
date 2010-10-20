@@ -22,9 +22,9 @@ the developer to keep all of the project information in a single YAML file.
   * `VERSION` constants or `Version` modules defined in a `version.rb` file.
 * **Can** be used in traditional `.gemspec` files:
 
-        require 'ore/specification'
-        
-        Ore::Specification.new
+      require 'ore/specification'
+      
+      Ore::Specification.new
 
 ## Install
 
