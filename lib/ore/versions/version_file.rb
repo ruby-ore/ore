@@ -11,31 +11,27 @@ module Ore
       def self.find(root)
         FILES.each do |name|
           path = File.join(root,name)
-          return self.new(path) if File.file?(path)
+          return self.load(path) if File.file?(path)
         end
 
         return nil
       end
 
-      protected
-
-      def load!
-        data = YAML.load_file(@path)
+      def self.load(path)
+        data = YAML.load_file(path)
 
         case data
         when Hash
-          @major = (data[:major] || data['major'])
-          @minor = (data[:minor] || data['minor'])
-          @patch = (data[:patch] || data['patch'])
-
-          build_version!
+          self.new(
+            (data[:major] || data['major']),
+            (data[:minor] || data['minor']),
+            (data[:patch] || data['patch']),
+            (data[:build] || data['build'])
+          )
         when String
-          @version = data
-
-          split_version!
+          self.parse(data)
         else
           file = File.basename(@path)
-
           raise(InvalidVersion,"invalid version data in #{file.dump}")
         end
       end

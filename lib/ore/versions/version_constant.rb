@@ -11,66 +11,57 @@ module Ore
 
         # check lib/project_name/version.rb
         path = File.join(root,'lib',project_name,FILE_NAME)
-        return self.new(path) if File.file?(path)
+        return self.load(path) if File.file?(path)
 
         # split project_name by '-', check recursively
         names = project_name.split('-')
 
         (1..names.length).each do |n|
           path = File.join(root,'lib',*names[0..n],FILE_NAME)
-          return self.new(path) if File.file?(path)
+          return self.load(path) if File.file?(path)
         end
 
         return nil
       end
 
-      protected
+      def self.load(path)
+        major = nil
+        minor = nil
+        patch = nil
+        build = nil
 
-      def extract_version!(line)
-        if (match = line.match(/=\s*['"](\d+\.\d+\.\d+)['"]/))
-          @version ||= match[1]
-        end
-      end
-
-      def extract_num(line)
-        if (match = line.match(/=\s*['"]?(\d+)['"]?/))
-          match[1].to_i
-        end
-      end
-
-      def extract_major!(line)
-        @major ||= extract_num(line)
-      end
-
-      def extract_minor!(line)
-        @minor ||= extract_num(line)
-      end
-
-      def extract_patch!(line)
-        @patch ||= extract_num(line)
-      end
-
-      def load!
-        File.open(@path) do |file|
+        File.open(path) do |file|
           file.each_line do |line|
             if line =~ /(VERSION|Version)\s*=\s*/
-              extract_version!(line)
-
-              split_version!
-              break
+              return self.parse(extract_string(line))
             elsif line =~ /(MAJOR|Major)\s*=\s*/
-              extract_major!(line)
+              major ||= extract_number(line)
             elsif line =~ /(MINOR|Minor)\s*=\s*/
-              extract_minor!(line)
+              minor ||= extract_number(line)
             elsif line =~ /(PATCH|Patch)\s*=\s*/
-              extract_patch!(line)
+              patch ||= extract_number(line)
+            elsif line =~ /(BUILD|Build)\s*=\s*/
+              build ||= extract_number(line)
             end
 
-            if (@major && @minor && @patch)
-              build_version!
-              break
-            end
+            break if (major && minor && patch && build)
           end
+        end
+
+        return self.new(major,minor,patch,build)
+      end
+
+      protected
+
+      def self.extract_string(line)
+        if (match = line.match(/=\s*['"](\d+\.\d+\.\d+)['"]/))
+          match[1]
+        end
+      end
+
+      def self.extract_number(line)
+        if (match = line.match(/=\s*['"]?(\d+)['"]?/))
+          match[1].to_i
         end
       end
 

@@ -1,8 +1,10 @@
 require 'ore/versions/exceptions/invalid_version'
 
+require 'rubygems/version'
+
 module Ore
   module Versions
-    class Version
+    class Version < Gem::Version
 
       # The version string
       attr_reader :version
@@ -16,33 +18,27 @@ module Ore
       # Patch version number
       attr_reader :patch
 
-      def initialize(path)
-        @path = File.expand_path(path)
-        @version = nil
+      def initialize(major,minor,patch,build=nil)
+        @major = (major || 0)
+        @minor = (minor || 0)
+        @patch = (patch || 0)
+        @build = build
 
-        load!
+        numbers = [@major,@minor,@patch]
+        numbers << @build if  @build
+
+        super(numbers.join('.'))
       end
 
-      def self.find(root)
-      end
+      def self.parse(string)
+        major, minor, patch, build = string.split('.',4)
 
-      def to_s
-        @version.to_s
-      end
-
-      alias inspect to_s
-
-      protected
-
-      def load!
-      end
-
-      def split_version!
-        @major, @minor, @patch = version.split('.',3).map { |s| s.to_i }
-      end
-
-      def build_version!
-        @version = "#{@major}.#{@minor}.#{@patch}"
+        return self.new(
+          major || 0,
+          minor || 0,
+          patch || 0,
+          build
+        )
       end
 
     end
