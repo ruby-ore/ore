@@ -1,5 +1,5 @@
 name: ore
-summary: Mine raw RubyGems from YAML.
+summary: Cut raw RubyGems from YAML.
 description: A simple approach to building RubyGems, storing all RubyGem metadata in a single YAML file.
 authors: Postmodern
 email: postmodern.mod3@gmail.com
