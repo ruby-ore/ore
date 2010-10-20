@@ -1,14 +1,28 @@
 require 'set'
 
 module Ore
+  #
+  # Parses the contents of a  `.document`.
+  #
   class DocumentFile
 
     NAME = '.document'
 
+    # The path to the `.document` file.
+    attr_reader :path
+
+    # The glob-patterns to find all code-files.
     attr_reader :code_file_globs
 
-    attr_reader :data_file_globs
+    # The glob-patterns to find all extra-files.
+    attr_reader :extra_file_globs
 
+    #
+    # Creates a new {DocumentFile}.
+    #
+    # @param [String] path
+    #   The path of the `.document` file.
+    #
     def initialize(path)
       @path = File.expand_path(path)
 
@@ -21,6 +35,12 @@ module Ore
       parse!
     end
 
+    #
+    # All code-files described in the `.document` file.
+    #
+    # @return [Set<String>]
+    #   Every path that matched {@code_file_globs}.
+    #
     def code_files
       unless @code_files
         @code_files = Set[]
@@ -33,6 +53,12 @@ module Ore
       return @code_files
     end
 
+    #
+    # All extra-files described in the `.document` file.
+    #
+    # @return [Set<String>]
+    #   Every path that matched {@extra_file_globs}.
+    #
     def extra_files
       unless @extra_files
         @extra_files = Set[]
@@ -47,6 +73,9 @@ module Ore
 
     protected
 
+    #
+    # Parses the contents of a `.document` file.
+    #
     def parse!
       separator = false
 
