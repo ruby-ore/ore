@@ -59,7 +59,7 @@ module Ore
           file.each_line do |line|
             unless line =~ /^\s*#/ # skip commented lines
               if line =~ /(VERSION|Version)\s*=\s*/
-                return self.parse(extract_string(line))
+                return self.parse(extract_version(line))
               elsif line =~ /(MAJOR|Major)\s*=\s*/
                 major ||= extract_number(line)
               elsif line =~ /(MINOR|Minor)\s*=\s*/
@@ -89,7 +89,7 @@ module Ore
       # @return [String, nil]
       #   The extracted version string.
       #
-      def self.extract_string(line)
+      def self.extract_version(line)
         if (match = line.match(/=\s*['"](\d+\.\d+\.\d+)['"]/))
           match[1]
         end
