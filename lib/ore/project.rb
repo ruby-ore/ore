@@ -194,19 +194,19 @@ module Ore
         default_test_files!
       end
 
-      @dependencies = {}
+      @dependencies = Set[]
 
       if metadata['dependencies']
         set_dependencies! metadata['dependencies']
       end
 
-      @runtime_dependencies = {}
+      @runtime_dependencies = Set[]
 
       if metadata['runtime_dependencies']
         set_runtime_dependencies! metadata['runtime_dependencies']
       end
 
-      @development_dependencies = {}
+      @development_dependencies = Set[]
 
       if metadata['development_dependencies']
         set_development_dependencies! metadata['development_dependencies']
@@ -311,16 +311,16 @@ module Ore
       gemspec.files += @files.to_a
       gemspec.test_files += @test_files.to_a
 
-      @dependencies.each do |name,versions|
-        gemspec.add_dependency(name,*versions)
+      @dependencies.each do |dep|
+        gemspec.add_dependency(dep.name,*dep.versions)
       end
 
-      @runtime_dependencies.each do |name,versions|
-        gemspec.add_runtime_dependency(name,*versions)
+      @runtime_dependencies.each do |dep|
+        gemspec.add_runtime_dependency(dep.name,*dep.versions)
       end
 
-      @development_dependencies.each do |name,versions|
-        gemspec.add_development_dependency(name,*versions)
+      @development_dependencies.each do |dep|
+        gemspec.add_development_dependency(dep.name,*dep.versions)
       end
 
       yield gemspec if block_given?
