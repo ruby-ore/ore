@@ -4,7 +4,17 @@ require 'rubygems'
 
 unless ARGV.empty?
 else
-  require 'ore/project'
+  begin
+    require 'ore/project'
+  rescue LoadError => e
+    STDERR.puts 'Could not load "ore/project"'
+    exit -1
+  end
 
-  Ore::Project.find.build!
+  begin
+    Ore::Project.find.build!
+  rescue Ore::Exception => e
+    STDERR.puts e.message
+    exit -1
+  end
 end
