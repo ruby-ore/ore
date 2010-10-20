@@ -1,9 +1,14 @@
+require 'ore/exceptions/invalid_metadata'
+
 require 'rubygems/version'
 
 module Ore
   module Settings
     protected
 
+    #
+    # Sets the project files.
+    #
     def set_project_files!
       @project_files = Set[]
 
@@ -21,6 +26,15 @@ module Ore
       end
     end
 
+    #
+    # Sets the version of the project.
+    #
+    # @param [Hash<Integer>, String] version
+    #   The version from the metadata file.
+    #
+    # @raise [InvalidVersion]
+    #   The version must either be a `String` or a `Hash`.
+    #
     def set_version!(version)
       case version
       when Hash
@@ -41,6 +55,12 @@ module Ore
       end
     end
 
+    #
+    # Sets the authors of the project.
+    #
+    # @param [Array<String>, String] authors
+    #   The authors listed in the metadata file.
+    #
     def set_authors!(authors)
       if authors.kind_of?(Array)
         @authors += authors
@@ -49,10 +69,22 @@ module Ore
       end
     end
 
+    #
+    # Sets the release date of the project.
+    #
+    # @param [String] date
+    #   The release date from the metadata file.
+    #
     def set_date!(date)
       @date = Date.parse(date)
     end
 
+    #
+    # Sets the require-paths of the project.
+    #
+    # @param [Array<String>, String] paths
+    #   The require-paths or the glob-pattern listed in the metadata file.
+    #
     def set_require_paths!(paths)
       if paths.kind_of?(Array)
         paths.each { |path| add_require_path(path) }
@@ -61,6 +93,13 @@ module Ore
       end
     end
 
+    #
+    # Sets the executables of the project.
+    #
+    # @param [Array<String>, String]
+    #   The executable names or the glob-pattern listed in the metadata
+    #   file.
+    #   
     def set_executables!(paths)
       if paths.kind_of?(Array)
         paths.each { |path| add_executable(path) }
@@ -69,11 +108,23 @@ module Ore
       end
     end
 
-    def set_executable!(path)
-      @executable = metadata['executable']
+    #
+    # Sets the primary executable of the project.
+    #
+    # @param [String] name
+    #   The primary executable name listed in the metadata file.
+    #
+    def set_executable!(name)
+      @executable = name
       @executables << @executable
     end
 
+    #
+    # Sets the extra-files of the project.
+    #
+    # @param [Array<String>, String] paths
+    #   The extra-files or the glob-pattern listed in the metadata file.
+    #
     def set_extra_files!(paths)
       if paths.kind_of?(Array)
         paths.each { |path| add_extra_file(path) }
@@ -82,6 +133,12 @@ module Ore
       end
     end
 
+    #
+    # Sets the files of the project.
+    #
+    # @param [Array<String>, String] paths
+    #   The files or the glob-pattern listed in the metadata file.
+    #
     def set_files!(paths)
       if paths.kind_of?(Array)
         paths.each { |path| add_file(path) }
@@ -90,6 +147,12 @@ module Ore
       end
     end
 
+    #
+    # Sets the test-files of the project.
+    #
+    # @param [Array<String>, String] paths
+    #   The test-files of the glob-pattern listed in the metadata file.
+    #
     def set_test_files!(paths)
       if paths.kind_of?(Array)
         paths.each { |path| add_test_file(path) }
@@ -98,6 +161,15 @@ module Ore
       end
     end
 
+    #
+    # Sets the dependencies of the project.
+    #
+    # @param [Hash{String => String}, Array<String>] dependencies
+    #   The dependencey names and versions listed in the metadata file.
+    #
+    # @raise [InvalidMetadata]
+    #   The dependencies must either be a `Hash` or an `Array`.
+    #
     def set_dependencies!(dependencies)
       case dependencies
       when Hash
@@ -115,6 +187,16 @@ module Ore
       end
     end
 
+    #
+    # Sets the runtime-dependencies of the project.
+    #
+    # @param [Hash{String => String}, Array<String>] dependencies
+    #   The runtime-dependencey names and versions listed in the metadata
+    #   file.
+    #
+    # @raise [InvalidMetadata]
+    #   The runtime-dependencies must either be a `Hash` or an `Array`.
+    #
     def set_runtime_dependencies!(dependencies)
       case dependencies
       when Hash
@@ -132,6 +214,16 @@ module Ore
       end
     end
 
+    #
+    # Sets the development-dependencies of the project.
+    #
+    # @param [Hash{String => String}, Array<String>] dependencies
+    #   The development-dependencey names and versions listed in the
+    #   metadata file.
+    #
+    # @raise [InvalidMetadata]
+    #   The development-dependencies must either be a `Hash` or an `Array`.
+    #
     def set_development_dependencies!(dependencies)
       case dependencies
       when Hash
@@ -148,6 +240,5 @@ module Ore
         raise(InvalidMetadata,"development_dependencies must be a Hash or Array")
       end
     end
-
   end
 end
