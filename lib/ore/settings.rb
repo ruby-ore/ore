@@ -1,3 +1,5 @@
+require 'rubygems/version'
+
 module Ore
   module Settings
     protected
@@ -22,17 +24,16 @@ module Ore
     def set_version!(version)
       case version
       when Hash
-        major = (version['major'] || 0)
-        minor = (version['minor'] || 0)
-        patch = (version['patch'] || 0)
+        numbers = [
+          (version['major'] || 0),
+          (version['minor'] || 0),
+          (version['patch'] || 0),
+          version['build']
+        ]
 
-        ver = "#{major}.#{minor}.#{patch}"
+        numbers << version['build'] if version['build']
 
-        if (build = version['build'])
-          ver << ".#{build}"
-        end
-
-        @version = ver 
+        @version = Gem::Version.new(numbers.join('.'))
       when String
         @version = version
       else
