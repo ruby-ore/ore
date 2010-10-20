@@ -11,6 +11,7 @@ require 'yaml'
 require 'set'
 require 'date'
 require 'rubygems'
+require 'fileutils'
 
 module Ore
   class Project
@@ -194,8 +195,14 @@ module Ore
       raise(ProjectNotFound,"could not find #{METADATA_FILE}")
     end
 
-    def within(&block)
-      Dir.chdir(@root,&block)
+    def within(sub_dir=nil,&block)
+      dir = if sub_dir
+              @root.join(sub_dir)
+            else
+              @root
+            end
+
+      Dir.chdir(dir,&block)
     end
 
     def glob(pattern,&block)
@@ -243,7 +250,14 @@ module Ore
     end
 
     def build!
-      Gem::Builder.new(self.to_gemspec).build
+      pkg_dir = @root.join('pkg')
+      FileUtils.mkdir_p(pkg_dir)
+
+      gem_file = Gem::Builder.new(self.to_gemspec).build
+      pkg_file = pkg_dir.join(gem_file)
+
+      FileUtils.mv(gem_file,pkg_file)
+      return pkg_file
     end
 
     protected
