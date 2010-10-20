@@ -70,14 +70,14 @@ module Ore
     end
 
     #
-    # sets the primary executable of the project.
+    # sets the default executable of the project.
     #
     def default_executable!
-      @executable = if @executables.include?(@name)
-                      @name
-                    else
-                      @executables.first
-                    end
+      @default_executable = if @executables.include?(@name)
+                              @name
+                            else
+                              @executables.first
+                            end
     end
 
     #

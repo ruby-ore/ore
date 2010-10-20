@@ -114,9 +114,9 @@ module Ore
     # @param [String] name
     #   The primary executable name listed in the metadata file.
     #
-    def set_executable!(name)
-      @executable = name
-      @executables << @executable
+    def set_default_executable!(name)
+      @default_executable = name
+      @executables << @default_executable
     end
 
     #

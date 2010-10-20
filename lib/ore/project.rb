@@ -64,8 +64,8 @@ module Ore
     # The names of the executable scripts
     attr_reader :executables
 
-    # The primary executable
-    attr_reader :executable
+    # The default executable
+    attr_reader :default_executable
 
     # Any extra files to include in the project documentation
     attr_reader :extra_files
@@ -165,10 +165,10 @@ module Ore
         default_executables!
       end
 
-      @executable = nil
+      @default_executable = nil
 
-      if metadata['executable']
-        set_executable! metadata['executable']
+      if metadata['default_executable']
+        set_default_executable! metadata['default_executable']
       else
         default_executable!
       end
@@ -309,7 +309,7 @@ module Ore
       end
 
       gemspec.executables += @executables.to_a
-      gemspec.default_executable = @executable
+      gemspec.default_executable = @default_executable
       gemspec.extra_rdoc_files += @extra_files.to_a
       gemspec.files += @files.to_a
       gemspec.test_files += @test_files.to_a
