@@ -1,13 +1,27 @@
+require 'ore/versions/exceptions/invalid_version'
 require 'ore/versions/version'
 
 require 'yaml'
 
 module Ore
   module Versions
+    #
+    # Represents a version loaded from a `VERSION` file.
+    #
     class VersionFile < Version
 
+      # Common `VERSION` file-names.
       FILES = %w[VERSION VERSION.yml]
 
+      #
+      # Finds the `VERSION` file.
+      #
+      # @param [String] root
+      #   The root directory of the project.
+      #
+      # @return [VersionFile, nil]
+      #   The version file of the project.
+      #
       def self.find(root)
         FILES.each do |name|
           path = File.join(root,name)
@@ -17,6 +31,18 @@ module Ore
         return nil
       end
 
+      #
+      # Loads the version file of the project.
+      #
+      # @param [String] path
+      #   The path to the version file.
+      #
+      # @return [VersionFile]
+      #   The loaded version file.
+      #
+      # @raise [InvalidVersion]
+      #   The `VERSION` file must contain either a `Hash` or a `String`.
+      #
       def self.load(path)
         data = YAML.load_file(path)
 
