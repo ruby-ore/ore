@@ -90,7 +90,7 @@ module Ore
       #   The extracted version string.
       #
       def self.extract_version(line)
-        if (match = line.match(/=\s*['"](\d+\.\d+\.\d+)['"]/))
+        if (match = line.match(/=\s*['"](\d+\.\d+\.\d+(\.\w+)?)['"]/))
           match[1]
         end
       end
