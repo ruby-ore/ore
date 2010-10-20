@@ -314,16 +314,16 @@ module Ore
       gemspec.files += @files.to_a
       gemspec.test_files += @test_files.to_a
 
-      @dependencies.each do |name,version|
-        gemspec.add_dependency(name,version)
+      @dependencies.each do |name,versions|
+        gemspec.add_dependency(name,*versions)
       end
 
-      @runtime_dependencies.each do |name,version|
-        gemspec.add_runtime_dependency(name,version)
+      @runtime_dependencies.each do |name,versions|
+        gemspec.add_runtime_dependency(name,*versions)
       end
 
-      @development_dependencies.each do |name,version|
-        gemspec.add_development_dependency(name,version)
+      @development_dependencies.each do |name,versions|
+        gemspec.add_development_dependency(name,*versions)
       end
 
       yield gemspec if block_given?
@@ -432,7 +432,14 @@ module Ore
     #   An Array containing the dependencey name and version.
     #
     def split_dependencey(dep)
-      dep.split(' ',2)
+      name, versions = dep.strip.split(/\s+/,2)
+      versions = if versions
+                   versions.strip.split(/,\s*/)
+                 else
+                   []
+                 end
+
+      return [name, versions]
     end
 
   end
