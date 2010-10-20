@@ -1,4 +1,5 @@
 require 'ore/directories'
+require 'ore/versions'
 
 require 'date'
 
