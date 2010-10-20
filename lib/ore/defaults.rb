@@ -1,5 +1,7 @@
 require 'ore/directories'
 
+require 'date'
+
 module Ore
   module Defaults
     include Directories

@@ -1,4 +1,5 @@
 require 'ore/exceptions/invalid_metadata'
+require 'ore/dependency'
 
 require 'rubygems/version'
 
@@ -177,13 +178,11 @@ module Ore
       case dependencies
       when Hash
         dependencies.each do |name,versions|
-          @dependencies[name] = split_versions(versions)
+          @dependencies << Dependency.parse_versions(name,versions)
         end
       when Array
         dependencies.each do |dep|
-          name, version = split_dependencey(dep)
-
-          @dependencies[name] = version
+          @dependencies << Dependency.parse(dep)
         end
       else
         raise(InvalidMetadata,"dependencies must be a Hash or Array")
@@ -204,13 +203,11 @@ module Ore
       case dependencies
       when Hash
         dependencies.each do |name,versions|
-          @runtime_dependencies[name] = split_versions(versions)
+          @runtime_dependencies << Dependency.parse_versions(name,versions)
         end
       when Array
         dependencies.each do |dep|
-          name, version = split_dependencey(dep)
-
-          @runtime_dependencies[name] = version
+          @runtime_dependencies << Dependency.parse(dep)
         end
       else
         raise(InvalidMetadata,"runtime_dependencies must be a Hash or Array")
@@ -231,13 +228,11 @@ module Ore
       case dependencies
       when Hash
         dependencies.each do |name,versions|
-          @development_dependencies[name] = split_versions(versions)
+          @development_dependencies << Dependency.parse_versions(name,versions)
         end
       when Array
         dependencies.each do |dep|
-          name, version = split_dependencey(dep)
-
-          @development_dependencies[name] = version
+          @development_dependencies << Dependency.parse(dep)
         end
       else
         raise(InvalidMetadata,"development_dependencies must be a Hash or Array")

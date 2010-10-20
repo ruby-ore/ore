@@ -5,13 +5,10 @@ require 'ore/document_file'
 require 'ore/checks'
 require 'ore/defaults'
 require 'ore/settings'
-require 'ore/versions'
 
 require 'pathname'
 require 'yaml'
 require 'set'
-require 'date'
-require 'rubygems'
 require 'fileutils'
 
 module Ore
@@ -420,39 +417,6 @@ module Ore
     #
     def add_test_file(path)
       check_file(path) { |file| @test_files << test_file }
-    end
-
-    #
-    # Splits a version string.
-    #
-    # @param [String, nil] versions 
-    #   The version string.
-    #
-    # @return [Array<String>]
-    #   An Array containing the dependencey versions.
-    #
-    def split_versions(versions)
-      if version.kind_of?(String)
-        versions.strip.split(/,\s*/)
-      else
-        []
-      end
-    end
-
-    #
-    # Splits a dependencey string.
-    #
-    # @param [String] dep
-    #   The dependencey string.
-    #
-    # @return [Array<String>]
-    #   An Array containing the dependencey name and version.
-    #
-    def split_dependencey(dep)
-      name, versions = dep.strip.split(/\s+/,2)
-      versions = split_versions(versions)
-
-      return [name, versions]
     end
 
   end
