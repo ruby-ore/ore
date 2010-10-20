@@ -42,15 +42,13 @@ module Ore
 
     def default_executables!
       glob(DEFAULT_EXECUTABLES) do |path|
-        check_executable(path) { |exe| @executables << exe }
+        check_executable(path) { |exe| @executables << File.basename(exe) }
       end
     end
 
     def default_extra_files!
       if @document
-        @document.extra_files.each do |path|
-          check_readable(path) { |file| @extra_files << file }
-        end
+        @document.extra_files.each { |path| add_file(path) }
       end
     end
 

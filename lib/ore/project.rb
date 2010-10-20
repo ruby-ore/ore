@@ -131,6 +131,14 @@ module Ore
         default_executables!
       end
 
+      @extra_files = Set[]
+
+      if metadata['extra_files']
+        set_extra_files! metadata['extra_files']
+      else
+        default_extra_files!
+      end
+
       @files = Set[]
 
       if metadata['files']
@@ -286,15 +294,15 @@ module Ore
     end
 
     def add_extra_file(path)
-      check_readable(path) { |file| @extra_files << file }
+      check_file(path) { |file| @extra_files << file }
     end
 
     def add_file(path)
-      check_readable(path) { |file| @files << file }
+      check_file(path) { |file| @files << file }
     end
 
     def add_test_file(path)
-      check_readable(path) { |file| @test_files << test_file }
+      check_file(path) { |file| @test_files << test_file }
     end
 
     def split_dependencey(dep)

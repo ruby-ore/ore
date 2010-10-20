@@ -5,15 +5,15 @@ module Ore
 
     NAME = '.document'
 
-    attr_reader :code_globs
+    attr_reader :code_file_globs
 
-    attr_reader :data_globs
+    attr_reader :data_file_globs
 
     def initialize(path)
       @path = File.expand_path(path)
 
-      @code_globs = Set[]
-      @data_globs = Set[]
+      @code_file_globs = Set[]
+      @extra_file_globs = Set[]
 
       @code_files = nil
       @extra_files = nil
@@ -25,7 +25,7 @@ module Ore
       unless @code_files
         @code_files = Set[]
 
-        @code_globs.each do |pattern|
+        @code_file_globs.each do |pattern|
           Dir.glob(pattern) { |path| @code_files << path }
         end
       end
@@ -37,7 +37,7 @@ module Ore
       unless @extra_files
         @extra_files = Set[]
 
-        @extra_globs.each do |pattern|
+        @extra_file_globs.each do |pattern|
           Dir.glob(pattern) { |path| @extra_files << path }
         end
       end
@@ -60,10 +60,10 @@ module Ore
             if line == '-'
               separator = true
             else
-              @code_globs << line
+              @code_file_globs << line
             end
           else
-            @extra_globs << line
+            @extra_file_globs << line
           end
         end
       end
