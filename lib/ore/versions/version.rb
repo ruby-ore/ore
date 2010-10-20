@@ -63,9 +63,9 @@ module Ore
         major, minor, patch, build = string.split('.',4)
 
         return self.new(
-          major || 0,
-          minor || 0,
-          patch || 0,
+          (major || 0).to_i,
+          (minor || 0).to_i,
+          (patch || 0).to_i,
           build
         )
       end
