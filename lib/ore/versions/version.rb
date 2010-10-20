@@ -23,6 +23,9 @@ module Ore
       # Patch version number
       attr_reader :patch
 
+      # The build string
+      attr_reader :build
+
       #
       # Creates a new version.
       #
