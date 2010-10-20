@@ -1,6 +1,7 @@
 require 'ore/exceptions/project_not_found'
 require 'ore/exceptions/invalid_metadata'
 require 'ore/document_file'
+require 'ore/checks'
 require 'ore/defaults'
 require 'ore/settings'
 require 'ore/versions'
@@ -14,6 +15,7 @@ require 'rubygems'
 module Ore
   class Project
 
+    include Checks
     include Defaults
     include Settings
 
@@ -248,44 +250,6 @@ module Ore
 
     def warn(*messages)
       messages.each { |mesg| STDERR.puts("WARNING: #{mesg}") }
-    end
-
-    def check_readable(path)
-      if File.readable?(path)
-        yield path
-      else
-        warn "#{path} is not readable!"
-      end
-    end
-
-    def check_directory(path)
-      check_readable(path) do |dir|
-        if File.directory?(dir)
-          yield dir
-        else
-          warn "#{dir} is not a directory!"
-        end
-      end
-    end
-
-    def check_file(path)
-      check_readable(path) do |file|
-        if File.file?(file)
-          yield file
-        else
-          warn "#{file} is not a file!"
-        end
-      end
-    end
-
-    def check_executable(path)
-      check_file(path) do |file|
-        if File.executable?(file)
-          yield file
-        else
-          warn "#{file} is not executable!"
-        end
-      end
     end
 
     def infer_scm!
