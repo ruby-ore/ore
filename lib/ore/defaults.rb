@@ -1,15 +1,19 @@
+require 'ore/directories'
+
 module Ore
   module Defaults
+    include Directories
+
     # The default require-paths
-    DEFAULT_REQUIRE_PATHS = %w[lib ext]
+    DEFAULT_REQUIRE_PATHS = [LIB_DIR, EXT_DIR]
 
     # The glob to find default executables
-    DEFAULT_EXECUTABLES = 'bin/*'
+    DEFAULT_EXECUTABLES = "#{BIN_DIR}/*"
 
     # The globs to find all testing-files
-    DEFAULT_TEST_FILES = %w[
-      test/{**/}*_test.rb
-      spec/{**/}*_spec.rb}
+    DEFAULT_TEST_FILES = [
+      "#{TEST_DIR}/{**/}*_test.rb",
+      "#{SPEC_DIR}/{**/}*_spec.rb"
     ]
 
     # The files to always exclude

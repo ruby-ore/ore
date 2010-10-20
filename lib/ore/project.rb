@@ -1,5 +1,6 @@
 require 'ore/exceptions/project_not_found'
 require 'ore/exceptions/invalid_metadata'
+require 'ore/directories'
 require 'ore/document_file'
 require 'ore/checks'
 require 'ore/defaults'
@@ -16,6 +17,7 @@ require 'fileutils'
 module Ore
   class Project
 
+    include Directories
     include Checks
     include Defaults
     include Settings
@@ -335,7 +337,7 @@ module Ore
     #   The path to the built gem file within the `pkg/` directory.
     #
     def build!
-      pkg_dir = @root.join('pkg')
+      pkg_dir = @root.join(PKG_DIR)
       FileUtils.mkdir_p(pkg_dir)
 
       gem_file = Gem::Builder.new(self.to_gemspec).build
@@ -385,7 +387,7 @@ module Ore
     #   The name of the executable.
     #
     def add_executable(name)
-      path = File.join('bin',name)
+      path = File.join(BIN_DIR,name)
 
       check_executable(path) { |exe| @executables << exe }
     end
