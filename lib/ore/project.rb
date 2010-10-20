@@ -247,7 +247,7 @@ module Ore
     protected
 
     def warn(*messages)
-      STDERR.puts(*messages)
+      messages.each { |mesg| STDERR.puts("WARNING: #{mesg}") }
     end
 
     def check_readable(path)
