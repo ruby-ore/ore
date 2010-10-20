@@ -34,7 +34,7 @@ module Ore
     #   The parsed dependency.
     #
     def self.parse_versions(name,versions)
-      versions = if version.kind_of?(String)
+      versions = if versions.kind_of?(String)
                    versions.strip.split(/,\s*/)
                  else
                    []
@@ -53,7 +53,7 @@ module Ore
     #   The parsed dependency.
     #
     def self.parse(dependency)
-      name, versions = dep.strip.split(/\s+/,2)
+      name, versions = dependency.strip.split(/\s+/,2)
 
       return parse_versions(name,versions)
     end
