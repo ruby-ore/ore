@@ -40,9 +40,14 @@ Here is the `gem.yml` file ofr Ore:
       creation of Gem::Specification objects as well as building '.gem'
       files. Ore allows the developer to keep all of the project information
       in a single YAML file.
+    
     authors: Postmodern
     email: postmodern.mod3@gmail.com
     homepage: http://github.com/postmodern/ore
+    
+    development_dependencies:
+      yard: ~> 0.6.1
+      rspec: ~> 2.0.0
 
 ## Synopsis
 
