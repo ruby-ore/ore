@@ -56,7 +56,7 @@ module Ore
 
     def default_extra_files!
       if @document
-        @document.extra_files.each { |path| add_file(path) }
+        @document.extra_files.each { |path| add_extra_file(path) }
       end
     end
 
