@@ -57,19 +57,21 @@ module Ore
 
         File.open(path) do |file|
           file.each_line do |line|
-            if line =~ /(VERSION|Version)\s*=\s*/
-              return self.parse(extract_string(line))
-            elsif line =~ /(MAJOR|Major)\s*=\s*/
-              major ||= extract_number(line)
-            elsif line =~ /(MINOR|Minor)\s*=\s*/
-              minor ||= extract_number(line)
-            elsif line =~ /(PATCH|Patch)\s*=\s*/
-              patch ||= extract_number(line)
-            elsif line =~ /(BUILD|Build)\s*=\s*/
-              build ||= extract_number(line)
-            end
+            unless line =~ /^\s*#/ # skip commented lines
+              if line =~ /(VERSION|Version)\s*=\s*/
+                return self.parse(extract_string(line))
+              elsif line =~ /(MAJOR|Major)\s*=\s*/
+                major ||= extract_number(line)
+              elsif line =~ /(MINOR|Minor)\s*=\s*/
+                minor ||= extract_number(line)
+              elsif line =~ /(PATCH|Patch)\s*=\s*/
+                patch ||= extract_number(line)
+              elsif line =~ /(BUILD|Build)\s*=\s*/
+                build ||= extract_number(line)
+              end
 
-            break if (major && minor && patch && build)
+              break if (major && minor && patch && build)
+            end
           end
         end
 
