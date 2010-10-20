@@ -55,6 +55,8 @@ module Ore
     end
 
     def default_extra_files!
+      glob('README.*') { |path| add_extra_file(path) }
+
       if @document
         @document.extra_files.each { |path| add_extra_file(path) }
       end
