@@ -87,7 +87,7 @@ module Ore
       glob('README.*') { |path| add_extra_file(path) }
 
       if @document
-        @document.extra_files.each { |path| add_extra_file(path) }
+        @document.each_extra_file { |path| add_extra_file(path) }
       end
     end
 

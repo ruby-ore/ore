@@ -29,46 +29,49 @@ module Ore
       @file_globs = Set[]
       @extra_file_globs = Set[]
 
-      @files = nil
-      @extra_files = nil
-
       parse!
     end
 
     #
-    # All code-files described in the `.document` file.
+    # All files described in the `.document` file.
     #
-    # @return [Set<String>]
-    #   Every path that matched {#file_globs}.
+    # @yield [path]
+    #   The given block will be passed every path that matches the file
+    #   globs in the `.document` file.
     #
-    def files
-      unless @files
-        @files = Set[]
+    # @yieldparam [String] path
+    #   A match that matches the `.document` file patterns.
+    #
+    # @return [Enumerator]
+    #   If no block was given, an enumerator object will be returned.
+    #
+    def each_file(&block)
+      return enum_for(:each_file) unless block
 
-        @file_globs.each do |pattern|
-          Dir.glob(pattern) { |path| @files << path }
-        end
+      @file_globs.each do |pattern|
+        Dir.glob(pattern,&block)
       end
-
-      return @files
     end
 
     #
     # All extra-files described in the `.document` file.
     #
-    # @return [Set<String>]
-    #   Every path that matched {#extra_file_globs}.
+    # @yield [path]
+    #   The given block will be passed every path that matches the
+    #   extra-file globs in the `.document` file.
     #
-    def extra_files
-      unless @extra_files
-        @extra_files = Set[]
+    # @yieldparam [String] path
+    #   A match that matches the `.document` extra-file patterns.
+    #
+    # @return [Enumerator]
+    #   If no block was given, an enumerator object will be returned.
+    #
+    def each_extra_file(&block)
+      return enum_for(:each_extra_file) unless block
 
-        @extra_file_globs.each do |pattern|
-          Dir.glob(pattern) { |path| @extra_files << path }
-        end
+      @extra_file_globs.each do |pattern|
+        Dir.glob(pattern,&block)
       end
-
-      return @extra_files
     end
 
     protected
