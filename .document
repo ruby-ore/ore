@@ -1,0 +1,6 @@
+lib/ore.rb
+lib/ore/*.rb
+lib/ore/**/*.rb
+-
+ChangeLog.md
+LICENSE.txt
