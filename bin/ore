@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+
+unless ARGV.empty?
+else
+  require 'ore/project'
+
+  Ore::Project.find.build!
+end
