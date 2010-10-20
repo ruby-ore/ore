@@ -12,7 +12,7 @@ module Ore
     attr_reader :path
 
     # The glob-patterns to find all code-files.
-    attr_reader :code_file_globs
+    attr_reader :file_globs
 
     # The glob-patterns to find all extra-files.
     attr_reader :extra_file_globs
@@ -26,10 +26,10 @@ module Ore
     def initialize(path)
       @path = File.expand_path(path)
 
-      @code_file_globs = Set[]
+      @file_globs = Set[]
       @extra_file_globs = Set[]
 
-      @code_files = nil
+      @files = nil
       @extra_files = nil
 
       parse!
@@ -39,18 +39,18 @@ module Ore
     # All code-files described in the `.document` file.
     #
     # @return [Set<String>]
-    #   Every path that matched {#code_file_globs}.
+    #   Every path that matched {#file_globs}.
     #
-    def code_files
-      unless @code_files
-        @code_files = Set[]
+    def files
+      unless @files
+        @files = Set[]
 
-        @code_file_globs.each do |pattern|
-          Dir.glob(pattern) { |path| @code_files << path }
+        @file_globs.each do |pattern|
+          Dir.glob(pattern) { |path| @files << path }
         end
       end
 
-      return @code_files
+      return @files
     end
 
     #
@@ -89,7 +89,7 @@ module Ore
             if line == '-'
               separator = true
             else
-              @code_file_globs << line
+              @file_globs << line
             end
           else
             @extra_file_globs << line
