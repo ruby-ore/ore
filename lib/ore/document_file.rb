@@ -39,7 +39,7 @@ module Ore
     # All code-files described in the `.document` file.
     #
     # @return [Set<String>]
-    #   Every path that matched {@code_file_globs}.
+    #   Every path that matched {#code_file_globs}.
     #
     def code_files
       unless @code_files
@@ -57,7 +57,7 @@ module Ore
     # All extra-files described in the `.document` file.
     #
     # @return [Set<String>]
-    #   Every path that matched {@extra_file_globs}.
+    #   Every path that matched {#extra_file_globs}.
     #
     def extra_files
       unless @extra_files
