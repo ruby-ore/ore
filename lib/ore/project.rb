@@ -209,6 +209,7 @@ module Ore
       end
 
       gemspec.executables += @executables.to_a
+      gemspec.default_executable = gemspec.executables.first
       gemspec.extra_rdoc_files += @extra_files.to_a
       gemspec.files += @files.to_a
       gemspec.test_files += @test_files.to_a
