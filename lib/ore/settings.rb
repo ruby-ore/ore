@@ -109,14 +109,17 @@ module Ore
     end
 
     #
-    # Sets the primary executable of the project.
+    # Sets the default executable of the project.
     #
     # @param [String] name
-    #   The primary executable name listed in the metadata file.
+    #   The default executable name listed in the metadata file.
     #
     def set_default_executable!(name)
-      @default_executable = name
-      @executables << @default_executable
+      if @executables.include?(name)
+        @default_executable = name
+      else
+        warn "#{name} is not in the executables list"
+      end
     end
 
     #
