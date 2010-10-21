@@ -18,17 +18,24 @@ module Ore
       #
       # Finds the `version.rb` file.
       #
-      # @param [String] root
-      #   The root directory of the project.
+      # @param [Project] project
+      #   The project.
       #
       # @return [VersionConstant, nil]
       #   The loaded version constant.
       #
-      def self.find(root)
-        version_paths = Dir[File.join(root,LIB_DIR,'**','version.rb')]
-        path = version_paths.sort.first
+      def self.find(project)
+        search_dirs = [
+          project.name,
+          File.join(project.name.split('-'))
+        ]
 
-        return self.load(path) if File.file?(path)
+        search_dirs.each do |dir|
+          path = File.join(dir,FILE_NAME)
+          return load(project.lib_path(path)) if project.lib_file?(path)
+        end
+
+        return nil
       end
 
       #

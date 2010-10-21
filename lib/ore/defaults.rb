@@ -38,8 +38,8 @@ module Ore
     #
     def default_version!
       @version = (
-        Versions::VersionFile.find(@root) ||
-        Versions::VersionConstant.find(@root)
+        Versions::VersionFile.find(self) ||
+        Versions::VersionConstant.find(self)
       )
 
       unless @version

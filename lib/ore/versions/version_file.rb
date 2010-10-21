@@ -16,16 +16,15 @@ module Ore
       #
       # Finds the `VERSION` file.
       #
-      # @param [String] root
-      #   The root directory of the project.
+      # @param [Project] project
+      #   The Ore project.
       #
       # @return [VersionFile, nil]
       #   The version file of the project.
       #
-      def self.find(root)
+      def self.find(project)
         FILES.each do |name|
-          path = File.join(root,name)
-          return self.load(path) if File.file?(path)
+          return load(project.path(name)) if project.file?(name)
         end
 
         return nil
