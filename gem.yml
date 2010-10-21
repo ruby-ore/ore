@@ -9,6 +9,9 @@ authors: Postmodern
 email: postmodern.mod3@gmail.com
 homepage: http://github.com/postmodern/ore
 
+dependencies:
+  thor: ~> 0.14.3
+
 development_dependencies:
   yard: ~> 0.6.1
   rspec: ~> 2.0.0
