@@ -268,8 +268,14 @@ module Ore
     # @yieldparam [String] path
     #   A path relative to the root directory of the project.
     #
-    def glob(pattern,&block)
-      within { Dir.glob(pattern,&block) }
+    def glob(pattern)
+      within do
+        Dir.glob(pattern) do |path|
+          if (@project_files.include?(path) || File.directory?(path))
+            yield path
+          end
+        end
+      end
     end
 
     #
