@@ -1,4 +1,5 @@
 require 'ore/versions/version'
+require 'ore/directories'
 
 module Ore
   module Versions
@@ -7,6 +8,8 @@ module Ore
     # `Version` module.
     #
     class VersionConstant < Version
+
+      include Directories
 
       # Common file-name that the `VERSION` constant or `Version` module
       # is defined within.
@@ -22,21 +25,10 @@ module Ore
       #   The loaded version constant.
       #
       def self.find(root)
-        project_name = File.basename(root)
+        version_paths = Dir[File.join(root,LIB_DIR,'**','version.rb')]
+        path = version_paths.sort.first
 
-        # check lib/project_name/version.rb
-        path = File.join(root,'lib',project_name,FILE_NAME)
         return self.load(path) if File.file?(path)
-
-        # split project_name by '-', check recursively
-        names = project_name.split('-')
-
-        (1..names.length).each do |n|
-          path = File.join(root,'lib',*names[0..n],FILE_NAME)
-          return self.load(path) if File.file?(path)
-        end
-
-        return nil
       end
 
       #
