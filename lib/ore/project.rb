@@ -270,6 +270,19 @@ module Ore
     end
 
     #
+    # Builds a path relative to the `lib/` directory.
+    #
+    # @param [Array] names
+    #   The directory names of the path.
+    #
+    # @return [Pathname]
+    #   The new path.
+    #
+    def lib_path(*names)
+      path(LIB_DIR,*names)
+    end
+
+    #
     # Determines if a directory exists within the project.
     #
     # @param [String] path
