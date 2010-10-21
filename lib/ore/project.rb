@@ -8,7 +8,6 @@ require 'ore/settings'
 
 require 'pathname'
 require 'yaml'
-require 'set'
 require 'fileutils'
 
 module Ore
@@ -125,7 +124,7 @@ module Ore
       @summary = (metadata['summary'] || metadata['description'])
       @description = (metadata['description'] || metadata['summary'])
 
-      @authors = Set[]
+      @authors = []
 
       if metadata['authors']
         set_authors! metadata['authors']
@@ -146,7 +145,7 @@ module Ore
         @document = DocumentFile.new(document_path)
       end
 
-      @require_paths = Set[]
+      @require_paths = []
 
       if metadata['require_paths']
         set_require_paths! metadata['require_paths']
@@ -154,7 +153,7 @@ module Ore
         default_require_paths!
       end
 
-      @executables = Set[]
+      @executables = []
 
       if metadata['executables']
         set_executables! metadata['executables']
@@ -170,7 +169,7 @@ module Ore
         default_executable!
       end
 
-      @extra_files = Set[]
+      @extra_files = []
 
       if metadata['extra_files']
         set_extra_files! metadata['extra_files']
@@ -178,7 +177,7 @@ module Ore
         default_extra_files!
       end
 
-      @files = Set[]
+      @files = []
 
       if metadata['files']
         set_files! metadata['files']
@@ -186,7 +185,7 @@ module Ore
         default_files!
       end
 
-      @test_files = Set[]
+      @test_files = []
 
       if metadata['test_files']
         set_test_files! metadata['test_files']
@@ -194,19 +193,19 @@ module Ore
         default_test_files!
       end
 
-      @dependencies = Set[]
+      @dependencies = []
 
       if metadata['dependencies']
         set_dependencies! metadata['dependencies']
       end
 
-      @runtime_dependencies = Set[]
+      @runtime_dependencies = []
 
       if metadata['runtime_dependencies']
         set_runtime_dependencies! metadata['runtime_dependencies']
       end
 
-      @development_dependencies = Set[]
+      @development_dependencies = []
 
       if metadata['development_dependencies']
         set_development_dependencies! metadata['development_dependencies']
@@ -362,7 +361,7 @@ module Ore
       gemspec.version = @version.to_s
       gemspec.summary = @summary.to_s
       gemspec.description = @description.to_s
-      gemspec.authors += @authors.to_a
+      gemspec.authors = @authors.to_a
       gemspec.homepage = @homepage
       gemspec.email = @email
       gemspec.date = @date
@@ -373,11 +372,11 @@ module Ore
         end
       end
 
-      gemspec.executables += @executables.to_a
+      gemspec.executables = @executables.to_a
       gemspec.default_executable = @default_executable
-      gemspec.extra_rdoc_files += @extra_files.to_a
-      gemspec.files += @files.to_a
-      gemspec.test_files += @test_files.to_a
+      gemspec.extra_rdoc_files = @extra_files.to_a
+      gemspec.files = @files.to_a
+      gemspec.test_files = @test_files.to_a
 
       @dependencies.each do |dep|
         gemspec.add_dependency(dep.name,*dep.versions)
