@@ -257,6 +257,32 @@ module Ore
     end
 
     #
+    # Determines if a directory exists within the project.
+    #
+    # @param [String] path
+    #   The path of the directory, relative to the project.
+    #
+    # @return [Boolean]
+    #   Specifies whether the directory exists in the project.
+    #
+    def directory?(path)
+      @root.join(path).directory?
+    end
+
+    #
+    # Determines if a file exists within the project.
+    #
+    # @param [String] path
+    #   The path of the file, relative to the project.
+    #
+    # @return [Boolean]
+    #   Specifies whether the file exists in the project.
+    #
+    def file?(path)
+      @project_files.include?(path)
+    end
+
+    #
     # Finds paths within the project that match a glob pattern.
     #
     # @param [String] pattern
