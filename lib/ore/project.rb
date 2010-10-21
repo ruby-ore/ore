@@ -309,6 +309,16 @@ module Ore
     end
 
     #
+    # Determines if a file exists in the `lib/` directory of the project.
+    #
+    # @return [Boolean]
+    #   Specifies that a file exists in the `lib/` directory.
+    #
+    def lib_file?(path)
+      file?(File.join(LIB_DIR,path))
+    end
+
+    #
     # Finds paths within the project that match a glob pattern.
     #
     # @param [String] pattern
