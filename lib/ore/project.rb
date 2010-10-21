@@ -257,6 +257,19 @@ module Ore
     end
 
     #
+    # Builds a path relative to the project.
+    #
+    # @param [Array] names
+    #   The directory names of the path.
+    #
+    # @return [Pathname]
+    #   The new path.
+    #
+    def path(*names)
+      @root.join(*names)
+    end
+
+    #
     # Determines if a directory exists within the project.
     #
     # @param [String] path
