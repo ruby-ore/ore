@@ -94,7 +94,7 @@ module Ore
     # Enables templates.
     #
     def enable_templates!
-      @enabled_templates = Set[BASE_TEMPLATE]
+      @enabled_templates = [BASE_TEMPLATE]
 
       @enabled_templates << :bundler if options.bundler?
       
@@ -111,7 +111,11 @@ module Ore
       end
 
       options.templates.each do |name|
-        @enabled_templates << name.to_sym
+        name = name.to_sym
+
+        unless @enabled_templates.include?(name)
+          @enabled_templates << name
+        end
       end
     end
 
