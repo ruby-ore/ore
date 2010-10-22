@@ -13,7 +13,7 @@ module Ore
     include Interpolations
 
     # The base template for all RubyGems
-    BASE_TEMPLATE = 'base'
+    BASE_TEMPLATE = :base
 
     #
     # The templates registered with the generator.
@@ -36,7 +36,8 @@ module Ore
         raise(StandardError,"#{path.dump} is must be a directory")
       end
 
-      Generator.templates[File.basename(path)] = path
+      name = File.basename(path).to_sym
+      Generator.templates[name] = path
     end
 
     Config.each_template { |path| Generator.register_template(path) }
@@ -58,6 +59,8 @@ module Ore
     class_option :license, :default => 'MIT', :aliases => '-L'
     class_option :rdoc, :type => :boolean, :default => true
     class_option :yard, :type => :boolean, :default => false
+    class_option :test_unit, :type => :boolean, :default => false
+    class_option :rspec, :type => :boolean, :default => true
     class_option :bundler, :type => :boolean, :default => false
     class_option :git, :type => :boolean, :default => true
     argument :path, :required => true
@@ -65,8 +68,7 @@ module Ore
     def generate
       self.destination_root = path
 
-      @enabled_templates = [BASE_TEMPLATE] + options.templates
-
+      enable_templates!
       load_templates!
       initialize_variables!
 
@@ -85,6 +87,31 @@ module Ore
     end
 
     protected
+
+    #
+    # Enables templates.
+    #
+    def enable_templates!
+      @enabled_templates = [BASE_TEMPLATE]
+
+      if options.rdoc?
+        @enabled_templates << :rdoc
+      elsif options.yard?
+        @enabled_templates << :yard
+      end
+
+      if options.test_unit?
+        @enabled_templates << :test_unit
+      elsif options.rspec?
+        @enabled_templates << :rspec
+      end
+
+      @enabled_templates << :bundler if options.bundler?
+      
+      options.templates.each do |name|
+        @enabled_templates << name.to_sym
+      end
+    end
 
     #
     # Loads the given templates.
@@ -219,6 +246,16 @@ module Ore
     end
 
     #
+    # Determines if a template was enabled.
+    #
+    # @return [Boolean]
+    #   Specifies whether the template was enabled.
+    #
+    def enabled?(name)
+      @enabled_templates.include?(name.to_sym)
+    end
+
+    #
     # Determines if the project will contain RDoc documented.
     #
     # @return [Boolean]
@@ -235,17 +272,37 @@ module Ore
     #   Specifies whether the project will contain YARD documentation.
     #
     def yard?
-      options.yard?
+      enabled?(:yard)
     end
 
     #
-    # Determines whether the project will use Bundler.
+    # Determines if the project is using test-unit.
     #
     # @return [Boolean]
-    #   Specifies whether the project will use Bundler.
+    #   Specifies whether the project is using test-unit.
+    #
+    def test_unit?
+      enabled?(:test_unit)
+    end
+
+    #
+    # Determines if the project is using RSpec.
+    #
+    # @return [Boolean]
+    #   Specifies whether the project is using RSpec.
+    #
+    def rspec?
+      enabled?(:rspec)
+    end
+
+    #
+    # Determines if the project is using Bundler.
+    #
+    # @return [Boolean]
+    #   Specifies whether the project is using Bundler.
     #
     def bundler?
-      options.bundler?
+      enabled?(:bundler)
     end
 
   end
