@@ -8,9 +8,9 @@ module Ore
 
     # The known markup languages and file extensions
     MARKUPS = {
-      'markdown' => %w[.md .markdown],
-      'texttile' => %w[.tt .texttile],
-      'rdoc' => %w[.rdoc]
+      :markdown => %w[.md .markdown],
+      :textile => %w[.tt .textile],
+      :rdoc => %w[.rdoc]
     }
 
     # The path of the template directory
@@ -61,7 +61,7 @@ module Ore
     #
     # Enumerates through every file in the template directory.
     #
-    # @param [String] markup
+    # @param [Symbol] markup
     #   The markup to look for.
     #
     # @yield [path]
@@ -81,7 +81,7 @@ module Ore
     #
     # Enumerates over every template within the template directory.
     #
-    # @param [String] markup
+    # @param [Symbol] markup
     #   The markup to look for.
     #
     # @yield [path]
@@ -163,7 +163,7 @@ module Ore
     # @param [String] path
     #   The path to the file.
     #
-    # @param [String] markup
+    # @param [Symbol] markup
     #   The specified type of markup.
     #
     # @return [Boolean]

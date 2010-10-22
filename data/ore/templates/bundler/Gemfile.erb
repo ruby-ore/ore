@@ -10,9 +10,9 @@ end
 <%- if yard? -%>
 group :doc do
 <%-   case @markup
-      when 'markdown' -%>
+      when :markdown -%>
   gem 'bluecloth',  '~> 2.0.0'
-<%-   when 'texttile' -%>
+<%-   when :textile -%>
   gem 'RedCloth',   '~> 4.2.3'
 <%-   end -%>
   gem 'yard',       '~> 0.6.0'

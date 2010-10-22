@@ -42,7 +42,8 @@ module Ore
 
     Config.each_template { |path| Generator.register_template(path) }
 
-    class_option :markup, :default => 'rdoc'
+    class_option :markdown, :type => :boolean, :default => false
+    class_option :textile, :type => :boolean, :default => false
     class_option :templates, :type => :array,
                              :default => [],
                              :aliases => '-T'
@@ -154,10 +155,16 @@ module Ore
       @author = options.authors.first
       @license = options.license
 
-      @markup = if options.rdoc?
-                  'rdoc'
+      @markup = if options.yard?
+                  if options.markdown?
+                    :markdown
+                  elsif options.text_tile?
+                    :textile
+                  else
+                    :rdoc
+                  end
                 else
-                  options.markup
+                  :rdoc
                 end
 
       @date = Date.today
