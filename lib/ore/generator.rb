@@ -241,7 +241,7 @@ module Ore
     # @return [String]
     #   The combined result of the rendered include files.
     #
-    def includes(name)
+    def includes(name,separator=$/)
       name = name.to_sym
       output_buffer = []
 
@@ -260,7 +260,7 @@ module Ore
         end
       end
 
-      return output_buffer.join($/)
+      return output_buffer.join(separator)
     end
 
     #
