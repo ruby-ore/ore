@@ -43,6 +43,8 @@ module Ore
     Config.builtin_templates { |path| Generator.register_template(path) }
     Config.installed_templates { |path| Generator.register_template(path) }
 
+    namespace ''
+
     class_option :markdown, :type => :boolean, :default => false
     class_option :textile, :type => :boolean, :default => false
     class_option :templates, :type => :array,
