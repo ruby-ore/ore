@@ -14,6 +14,9 @@ module Ore
     # Custom Ore Templates directory
     TEMPLATES_DIR = PATH.join('templates')
 
+    # The `data/` directory for Ore
+    DATA_DIR = File.expand_path(File.join('..','..','data'),File.dirname(__FILE__))
+
     #
     # The installed templates.
     #
