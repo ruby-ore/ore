@@ -13,5 +13,15 @@ module Ore
 
     # Custom Ore Templates directory
     TEMPLATES_DIR = PATH.join('templates')
+
+    #
+    # The installed templates.
+    #
+    # @return [Array<Pathname>]
+    #   The paths of the installed Ore templates.
+    #
+    def Config.templates
+      TEMPLATES_DIR.entries.select { |path| path.directory? }
+    end
   end
 end
