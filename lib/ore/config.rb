@@ -3,16 +3,16 @@ require 'pathname'
 module Ore
   module Config
     # The users home directory
-    HOME = Pathname.new(ENV['HOME'] || ENV['HOMEPATH'])
+    HOME = File.expand_path(ENV['HOME'] || ENV['HOMEPATH'])
 
     # Ore config directory
-    PATH = HOME.join('.ore')
+    PATH = File.join(HOME,'.ore')
 
     # Default `ore` options file.
-    OPTIONS_FILE = PATH.join('default.opts')
+    OPTIONS_FILE = File.join(PATH,'default.opts')
 
     # Custom Ore Templates directory
-    TEMPLATES_DIR = PATH.join('templates')
+    TEMPLATES_DIR = File.join(PATH,'templates')
 
     # The `data/` directory for Ore
     DATA_DIR = File.expand_path(File.join('..','..','data'),File.dirname(__FILE__))
