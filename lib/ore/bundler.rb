@@ -5,8 +5,8 @@ require 'bundler/dsl'
 module Bundler
   class Dsl
 
-    def ore
-      ore = Ore::Project.find
+    def gemspec_yml
+      ore = Ore::Project.find(Bundler.default_gemfile.dirname)
 
       ore.dependencies.each do |dep|
         gem(dep.name, *dep.versions)
