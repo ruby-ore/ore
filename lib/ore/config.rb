@@ -18,23 +18,23 @@ module Ore
     DATA_DIR = File.expand_path(File.join('..','..','data'),File.dirname(__FILE__))
 
     #
-    # The builtin templates used by Ore.
+    # The available templates.
     #
-    # @return [Array<String>]
-    #   The paths of the builtin Ore templates.
+    # @yield [path]
+    #   The given block will be passed every template directory.
     #
-    def Config.builtin_templates
-      Dir["#{DATA_DIR}/ore/templates/*"]
-    end
+    # @yieldparam [String] path
+    #   The path of a Ore template directory.
+    #
+    def Config.each_template(&block)
+      each_dir = lambda { |path|
+        if File.directory?(path)
+          Dir.glob("#{path}/*",&block)
+        end
+      }
 
-    #
-    # The installed templates.
-    #
-    # @return [Array<Pathname>]
-    #   The paths of the installed Ore templates.
-    #
-    def Config.templates
-      TEMPLATES_DIR.entries.select { |path| path.directory? }
+      each_dir.call(File.join(DATA_DIR,'ore','templates'))
+      each_dir.call(TEMPLATES_DIR)
     end
   end
 end
