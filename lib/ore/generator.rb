@@ -1,6 +1,7 @@
 require 'ore/config'
 require 'ore/template_dir'
 require 'ore/interpolations'
+require 'ore/version'
 
 require 'thor/group'
 require 'date'
