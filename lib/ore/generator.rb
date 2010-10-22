@@ -52,8 +52,10 @@ module Ore
     class_option :version, :type => :string,
                             :default => '0.1.0',
                             :aliases => '-V'
-    class_option :summary, :default => 'TODO: Summary', :aliases => '-s'
-    class_option :description, :default => 'TODO: Summary', :aliases => '-D'
+    class_option :summary, :default => 'TODO: Summary',
+                           :aliases => '-s'
+    class_option :description, :default => 'TODO: Description',
+                               :aliases => '-D'
     class_option :homepage, :type => :string, :aliases => '-U'
     class_option :email, :type => :string, :aliases => '-e'
     class_option :authors, :type => :array,
@@ -155,6 +157,8 @@ module Ore
       @namespace_dir = File.join(@name.split('-'))
 
       @version = options.version
+      @summary = options.summary
+      @description = options.description
       @email = options.email
       @safe_email = @email.sub('@',' at ') if @email
       @homepage = (options.homepage || "http://rubygems.org/gems/#{@name}")
