@@ -13,6 +13,7 @@ authors: <%= @authors.first %>
 email: <%= @email %>
 <%- end -%>
 homepage: <%= @homepage %>
+<%= includes :gem -%>
 
 development_dependencies:
-<%= includes :dependencies %>
+<%= includes :dependencies -%>
