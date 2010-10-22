@@ -1,12 +1,16 @@
 <%- if bundler? -%>
+require 'ore/specification'
 require 'jeweler'
-Jeweler::Tasks.new
+Jeweler::Tasks.new(Ore::Specification.new)
 <%- else -%>
 begin
+  gem 'ore', '~> <%= Ore::VERSION %>'
   gem 'jeweler', '~> 1.4'
+
+  require 'ore/specification'
   require 'jeweler'
 
-  Jeweler::Tasks.new
+  Jeweler::Tasks.new(Ore::Specification.new)
 rescue LoadError
   STDERR.puts 'Jeweler (or a dependency) not available. Install it with: gem install jeweler'
 end
