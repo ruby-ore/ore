@@ -3,6 +3,7 @@ require 'ore/template_dir'
 require 'ore/interpolations'
 
 require 'thor/group'
+require 'date'
 require 'set'
 
 module Ore
@@ -107,6 +108,11 @@ module Ore
       @license = options.license
 
       @markup = options.markup
+
+      @date = Date.today
+      @year = @date.year
+      @month = @date.month
+      @day = @date.day
     end
 
     #
