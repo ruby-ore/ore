@@ -114,6 +114,8 @@ module Ore
         words.split('_').map { |word| word.capitalize }.join
       end
 
+      @module_depth = @modules.length
+
       @namespace = @modules.join('::')
       @namespace_dir = File.join(@name.split('-'))
 
