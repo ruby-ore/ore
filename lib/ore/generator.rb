@@ -65,6 +65,7 @@ module Ore
     class_option :yard, :type => :boolean, :default => false
     class_option :test_unit, :type => :boolean, :default => false
     class_option :rspec, :type => :boolean, :default => true
+    class_option :gemspec, :type => :boolean, :default => false
     class_option :bundler, :type => :boolean, :default => false
     class_option :jeweler, :type => :boolean, :default => false
     class_option :git, :type => :boolean, :default => true
@@ -99,6 +100,7 @@ module Ore
     def enable_templates!
       @enabled_templates = [BASE_TEMPLATE]
 
+      @enabled_templates << :gemspec if options.gemspec?
       @enabled_templates << :bundler if options.bundler?
       @enabled_templates << :jeweler if options.jeweler?
       
@@ -311,6 +313,16 @@ module Ore
     #
     def rspec?
       enabled?(:rspec)
+    end
+
+    #
+    # Determines if the project has a traditional `.gemspec` file.
+    #
+    # @return [Boolean]
+    #   Specifies whether the project has a traditional `.gemspec` file.
+    #
+    def gemspec?
+      enabled?(:gemspec)
     end
 
     #
