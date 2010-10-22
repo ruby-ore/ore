@@ -19,7 +19,7 @@ module Ore
     include Settings
 
     # The project metadata file
-    METADATA_FILE = 'gem.yml'
+    METADATA_FILE = 'gemspec.yml'
 
     # The SCM which the project is currently under
     attr_reader :scm

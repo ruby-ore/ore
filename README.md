@@ -12,7 +12,7 @@ the developer to keep all of the project information in a single YAML file.
 
 ## Features
 
-* Stores project information in **one YAML file** (`gem.yml`).
+* Stores project information in **one YAML file** (`gemspec.yml`).
 * Has only **one** dependency ([thor](http://github.com/wycats/thor)).
 * **Does not** add additional dependencies to your project.
 * **Does not** impose a development workflow onto the developer. One could
@@ -36,9 +36,9 @@ the developer to keep all of the project information in a single YAML file.
 
     $ gem install ore
 
-## Example gem.yml files
+## Example gemspec.yml files
 
-The `gem.yml` file used to build Ore:
+The `gemspec.yml` file used to build Ore:
 
     name: ore
     summary: Cut raw RubyGems from YAML.
