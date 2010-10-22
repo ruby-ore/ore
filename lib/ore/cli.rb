@@ -1,6 +1,8 @@
 require 'ore/config'
 
 require 'thor'
+require 'fileutils'
+require 'uri'
 
 module Ore
   class CLI < Thor
@@ -27,7 +29,27 @@ module Ore
 
     desc 'install URI', 'Installs an Ore template'
 
+    #
+    # Installs a template into `~/.ore/templates`.
+    #
+    # @param [String] uri
+    #   The Git URI to install the template from.
+    #
     def install(uri)
+      url = URI(uri)
+
+      name = File.basename(url.path)
+      name.gsub!(/\.git$/,'')
+
+      path = File.join(Config::TEMPLATES_DIR,name)
+
+      if File.directory?(path)
+        say "Template #{name} already installed.", :red
+        exit -1
+      end
+
+      FileUtils.mkdir_p(path)
+      system('git','clone',uri,path)
     end
 
     desc 'remove NAME', 'Removes an Ore template'
