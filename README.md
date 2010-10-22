@@ -28,6 +28,13 @@ the developer to keep all of the project information in a single YAML file.
         # custom logic here
       end
 
+* **Can** be used with Bundler:
+
+      require 'ore/bundler'
+
+      source :rubygems
+      gemspec_yml
+
 ## Requirements
 
 * [thor](http://github.com/wycats/thor) ~> 0.14.3
