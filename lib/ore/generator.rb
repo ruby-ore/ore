@@ -107,7 +107,11 @@ module Ore
       @author = options.authors.first
       @license = options.license
 
-      @markup = options.markup
+      @markup = if options.rdoc?
+                  'rdoc'
+                else
+                  options.markup
+                end
 
       @date = Date.today
       @year = @date.year
