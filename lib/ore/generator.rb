@@ -92,7 +92,15 @@ module Ore
     # Enables templates.
     #
     def enable_templates!
-      @enabled_templates = [BASE_TEMPLATE]
+      @enabled_templates = Set[BASE_TEMPLATE]
+
+      @enabled_templates << :bundler if options.bundler?
+      
+      if options.test_unit?
+        @enabled_templates << :test_unit
+      elsif options.rspec?
+        @enabled_templates << :rspec
+      end
 
       if options.rdoc?
         @enabled_templates << :rdoc
@@ -100,14 +108,6 @@ module Ore
         @enabled_templates << :yard
       end
 
-      if options.test_unit?
-        @enabled_templates << :test_unit
-      elsif options.rspec?
-        @enabled_templates << :rspec
-      end
-
-      @enabled_templates << :bundler if options.bundler?
-      
       options.templates.each do |name|
         @enabled_templates << name.to_sym
       end
@@ -225,7 +225,7 @@ module Ore
     #
     def includes(name)
       name = name.to_sym
-      output_buffer = ''
+      output_buffer = []
 
       if @current_template_dir
         context = instance_eval('binding')
@@ -242,7 +242,7 @@ module Ore
         end
       end
 
-      return output_buffer
+      return output_buffer.join($/)
     end
 
     #
