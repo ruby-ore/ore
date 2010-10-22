@@ -42,7 +42,8 @@ The `gem.yml` file used to build Ore:
 
     name: ore
     summary: Cut raw RubyGems from YAML.
-    description: Ore is a simple RubyGem building solution. Ore handles the
+    description:
+      Ore is a simple RubyGem building solution. Ore handles the
       creation of Gem::Specification objects as well as building '.gem'
       files. Ore allows the developer to keep all of the project information
       in a single YAML file.
