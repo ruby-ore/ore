@@ -2,7 +2,7 @@ require 'ore/config'
 require 'ore/template_dir'
 require 'ore/interpolations'
 
-require 'thor'
+require 'thor/group'
 require 'set'
 
 module Ore
@@ -29,7 +29,7 @@ module Ore
       Generator.templates[File.basename(path)] = path
     end
 
-    Config.templates.each { |path| Generate.register_template(path) }
+    Config.templates.each { |path| Generator.register_template(path) }
 
     class_option :markup, :default => 'rdoc'
     class_option :templates, :type => :array, :aliases => '-T'
