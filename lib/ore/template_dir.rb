@@ -107,6 +107,8 @@ module Ore
     def scan!
       Dir.chdir(@path) do
         Find.find('.') do |file|
+          next if file == '.'
+
           # ignore the ./
           file = file[2..-1]
           name = File.basename(file)

@@ -12,6 +12,9 @@ module Ore
     include Thor::Actions
     include Interpolations
 
+    # The base template for all RubyGems
+    BASE_TEMPLATE = 'base'
+
     #
     # The templates registered with the generator.
     #
@@ -39,7 +42,9 @@ module Ore
     Config.each_template { |path| Generator.register_template(path) }
 
     class_option :markup, :default => 'rdoc'
-    class_option :templates, :type => :array, :aliases => '-T'
+    class_option :templates, :type => :array,
+                             :default => [],
+                             :aliases => '-T'
     class_option :name, :type => :string, :aliases => '-n'
     class_option :version, :type => :string,
                             :default => '0.1.0',
@@ -56,10 +61,12 @@ module Ore
     argument :path, :required => true
 
     def generate
-      self.destination_root = path
+      @enabled_templates = [BASE_TEMPLATE] + options.templates
 
       load_templates!
       initialize_variables!
+
+      self.destination_root = path
 
       generate_directories!
       generate_files!
@@ -73,14 +80,14 @@ module Ore
     def load_templates!
       @templates = []
       
-      options.templates.each do |name|
-        unless (template_dir = Generate.templates[name])
+      @enabled_templates.each do |name|
+        unless (template_dir = Generator.templates[name])
           say "Unknown template #{name.dump}", :red
           exit -1
         end
 
-        source_root template_dir
-        @templates << Template.new(template_dir)
+        self.source_paths << template_dir
+        @templates << TemplateDir.new(template_dir)
       end
     end
 
@@ -91,10 +98,8 @@ module Ore
       @project_dir = File.basename(destination_root)
       @name = (options.name || @project_dir)
 
-      @modules = @name.split('-').map do |modules|
-        modules.split('_').map { |words|
-          words.map { |word| word.capitalize }.join
-        }
+      @modules = @name.split('-').map do |words|
+        words.split('_').map { |word| word.capitalize }.join
       end
 
       @namespace = @modules.join('::')
@@ -146,7 +151,7 @@ module Ore
       @templates.reverse_each do |template|
         template.each_file(@markup) do |dest,file|
           unless generated.include?(dest)
-            path = interoplate(dest)
+            path = interpolate(dest)
             copy_file file, path
 
             generated << dest
