@@ -1,0 +1,38 @@
+# <%= @name %>
+
+<%- if @homepage -%>
+* [Homepage](<%= @homepage %>)
+<%- end -%>
+<%- if @safe_email -%>
+* [Email](<%= @safe_email %>)
+<%- end -%>
+
+## Description
+
+## Features
+
+## Examples
+
+## Install
+
+    $ gem install <%= @name %>
+
+<%- if @bin -%>
+## Synopsis
+
+    $ <%= @name %>
+
+<%- end -%>
+## Copyright
+
+<%- if @author -%>
+Copyright (c) <%= @year %> <%= @author %>
+<%- else -%>
+Copyright (c) <%= @year %>
+<%- end -%>
+
+<%- if yard? -%>
+See {file:LICENSE.txt} for details.
+<%- else -%>
+See LICENSE.txt for details.
+<%- end -%>

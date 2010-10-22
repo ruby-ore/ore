@@ -1,0 +1,24 @@
+source :rubygems
+
+gemspec
+
+group :development do
+  gem 'rake',     '~> 0.8.7'
+  gem 'bundler',  '~> 1.0.0'
+end
+
+<%- if yard? -%>
+group :doc do
+<%-   case @markup
+      when 'markdown' -%>
+  gem 'bluecloth',  '~> 2.0.0'
+<%-   when 'texttile' -%>
+  gem 'RedCloth',   '~> 4.2.3'
+<%-   end -%>
+  gem 'yard',       '~> 0.6.0'
+end
+<%- end -%>
+
+<%- if enabled?(:rspec) -%>
+gem 'rspec',    '~> 2.0.0', :group => [:development, :test]
+<%- end -%>

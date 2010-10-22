@@ -1,0 +1,13 @@
+<%- if bundler? -%>
+require 'yard'
+YARD::Rake::YardocTask.new  
+<%- else -%>
+begin
+  require 'yard'
+  YARD::Rake::YardocTask.new  
+rescue LoadError => e
+  task :yard do
+    abort 'Please run `gem install yard` to install YARD.'
+  end
+end
+<%- end -%>

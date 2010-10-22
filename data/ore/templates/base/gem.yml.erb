@@ -1,0 +1,15 @@
+name: <%= @name %>
+summary: <%= @summary %>
+description: <%= @description %>
+<%- if @authors.length > 1 -%>
+authors:
+<%-   @authors.each do |name| -%>
+ - <%= name %>
+<%-   end -%>
+<%- else -%>
+authors: <%= @authors.first %>
+<%- end -%>
+<%- if @email -%>
+email: <%= @email %>
+<%- end -%>
+homepage: <%= @homepage %>
