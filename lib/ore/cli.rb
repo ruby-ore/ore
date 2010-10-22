@@ -32,7 +32,22 @@ module Ore
 
     desc 'remove NAME', 'Removes an Ore template'
 
+    #
+    # Removes a previously installed template.
+    #
+    # @param [String] name
+    #   The name of the template to remove.
+    #
     def remove(name)
+      name = File.basename(name)
+      path = File.join(Config::TEMPLATES_DIR,name)
+
+      unless File.exists?(path)
+        say "Unknown template: #{name}", :red
+        exit -1
+      end
+
+      File.rm_rf(path)
     end
 
     desc 'cut', 'Cuts a new RubyGem'
