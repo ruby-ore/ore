@@ -59,6 +59,7 @@ module Ore
     class_option :rdoc, :type => :boolean, :default => true
     class_option :yard, :type => :boolean, :default => false
     class_option :bundler, :type => :boolean, :default => false
+    class_option :git, :type => :boolean, :default => true
     argument :path, :required => true
 
     def generate
@@ -71,6 +72,16 @@ module Ore
 
       generate_directories!
       generate_files!
+
+      if options.git?
+        in_root do
+          unless File.directory?('.git')
+            run 'git init'
+            run 'git add .'
+            run 'git commit -m "Initial commit."'
+          end
+        end
+      end
     end
 
     protected
