@@ -80,6 +80,8 @@ module Ore
       load_templates!
       initialize_variables!
 
+      say "Generating #{self.destination_root}", :green
+
       generate_directories!
       generate_files!
 
