@@ -10,6 +10,8 @@ module Ore
     default_task :cut
 
     map '-l' => :list
+    map '-r' => :remove
+
     desc 'list', 'List installed Ore templates'
 
     #
