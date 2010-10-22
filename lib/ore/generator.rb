@@ -62,12 +62,12 @@ module Ore
     argument :path, :required => true
 
     def generate
+      self.destination_root = path
+
       @enabled_templates = [BASE_TEMPLATE] + options.templates
 
       load_templates!
       initialize_variables!
-
-      self.destination_root = path
 
       generate_directories!
       generate_files!
@@ -106,6 +106,7 @@ module Ore
       @namespace = @modules.join('::')
       @namespace_dir = File.join(@name.split('-'))
 
+      @version = options.version
       @email = options.email
       @safe_email = @email.sub('@',' at ') if @email
       @homepage = (options.homepage || "http://rubygems.org/gems/#{@name}")
