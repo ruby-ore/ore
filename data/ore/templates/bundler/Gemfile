@@ -2,7 +2,7 @@ require 'ore/bundler'
 
 source :rubygems
 
-ore
+gemspec_yml
 
 group :development do
   gem 'rake',     '~> 0.8.7'
