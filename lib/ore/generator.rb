@@ -40,7 +40,8 @@ module Ore
       Generator.templates[name] = path
     end
 
-    Config.each_template { |path| Generator.register_template(path) }
+    Config.builtin_templates { |path| Generator.register_template(path) }
+    Config.installed_templates { |path| Generator.register_template(path) }
 
     class_option :markdown, :type => :boolean, :default => false
     class_option :textile, :type => :boolean, :default => false
