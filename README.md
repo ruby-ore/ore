@@ -58,6 +58,30 @@ The `gemspec.yml` file used to build Ore:
 
 ## Synopsis
 
+Install a custom template:
+
+    $ ore install http://github.com/user/awesometest.git
+
+List installed templates:
+
+    $ ore list
+
+Remove a previously installed template:
+
+    $ ore remove awesometest
+
+Generate a new project:
+
+    $ mine myproj
+
+Generate a new customized project:
+
+    $ mine myproj --bundler --rspec --yard
+
+Generate a new project using previously installed templates:
+
+    $ mine myproj --bundler --rspec --yard -T awesometest
+
 Builds a `.gem` file in the `pkg/` directory of a project:
 
     $ ore
