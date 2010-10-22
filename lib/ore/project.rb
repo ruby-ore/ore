@@ -63,6 +63,9 @@ module Ore
     # The default executable
     attr_reader :default_executable
 
+    # The documentation of the project
+    attr_reader :documentation
+
     # Any extra files to include in the project documentation
     attr_reader :extra_files
 
@@ -167,6 +170,16 @@ module Ore
         set_default_executable! metadata['default_executable']
       else
         default_executable!
+      end
+
+      if metadata['has_yard']
+        @documentation = :yard
+      elsif metadata.has_key?('has_rdoc')
+        @documentation = if metadata['has_rdoc']
+                           :rdoc
+                         end
+      else
+        default_documentation!
       end
 
       @extra_files = []
@@ -340,6 +353,26 @@ module Ore
     end
 
     #
+    # Determines if the project contains RDoc documentation.
+    #
+    # @return [Boolean]
+    #   Specifies whether the project has RDoc documentation.
+    #
+    def has_rdoc
+      @documentation == :rdoc
+    end
+
+    #
+    # Determines if the project contains YARD documentation.
+    #
+    # @return [Boolean]
+    #   Specifies whether the project has YARD documentation.
+    #
+    def has_yard
+      @documentation == :yard
+    end
+
+    #
     # Populates a Gem Specification using the metadata of the project.
     #
     # @yield [gemspec]
@@ -374,6 +407,13 @@ module Ore
 
       gemspec.executables = @executables.to_a
       gemspec.default_executable = @default_executable
+
+      gemspec.has_rdoc = if has_yard
+                           'yard'
+                         elsif has_rdoc
+                           true
+                         end
+
       gemspec.extra_rdoc_files = @extra_files.to_a
       gemspec.files = @files.to_a
       gemspec.test_files = @test_files.to_a

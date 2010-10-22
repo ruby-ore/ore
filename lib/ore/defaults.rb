@@ -84,6 +84,17 @@ module Ore
     end
 
     #
+    # Sets the default documentation of the project.
+    #
+    def default_documentation!
+      if file?('.yardopts')
+        @documentation = :yard
+      else
+        @documentation = :rdoc
+      end
+    end
+
+    #
     # Sets the extra-files of the project.
     #
     def default_extra_files!
