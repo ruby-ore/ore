@@ -1,0 +1,13 @@
+<%- if bundler? -%>
+require 'jeweler'
+Jeweler::Tasks.new
+<%- else -%>
+begin
+  gem 'jeweler', '~> 1.4'
+  require 'jeweler'
+
+  Jeweler::Tasks.new
+rescue LoadError
+  STDERR.puts 'Jeweler (or a dependency) not available. Install it with: gem install jeweler'
+end
+<%- end -%>
