@@ -24,12 +24,18 @@ module Ore
     # @param [String] path
     #   The path to the template.
     #
+    # @raise [StandardError]
+    #   The given path was not a directory.
+    #
     def Generator.register_template(path)
-      path = File.expand_path(path)
+      unless File.directory?(path)
+        raise(StandardError,"#{path.dump} is must be a directory")
+      end
+
       Generator.templates[File.basename(path)] = path
     end
 
-    Config.templates.each { |path| Generator.register_template(path) }
+    Config.each_template { |path| Generator.register_template(path) }
 
     class_option :markup, :default => 'rdoc'
     class_option :templates, :type => :array, :aliases => '-T'
