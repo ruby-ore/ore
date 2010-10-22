@@ -12,7 +12,7 @@ module Ore
       dirs = path.split(File::SEPARATOR)
 
       dirs.each do |dir|
-        dir.gsub!(/(:[a-z]+:)/) do |keyword|
+        dir.gsub!(/(:[a-z_]+:)/) do |keyword|
           if KEYWORDS.include?(keyword)
             instance_variable_get("@#{keyword}")
           else
