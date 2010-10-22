@@ -1,17 +1,27 @@
 require 'ore/project'
 
-ore = Ore::Project.find
+require 'bundler/dsl'
 
-ore.dependencies.each do |dep|
-  gem(dep.name, *dep.versions)
-end
+module Bundler
+  class Dsl
 
-ore.runtime_dependencies.each do |dep|
-  gem(dep.name, *dep.versions)
-end
+    def ore
+      ore = Ore::Project.find
 
-group :development do
-  ore.development_dependencies.each do |dep|
-    gem(dep.name, *dep.versions)
+      ore.dependencies.each do |dep|
+        gem(dep.name, *dep.versions)
+      end
+
+      ore.runtime_dependencies.each do |dep|
+        gem(dep.name, *dep.versions)
+      end
+
+      group :development do
+        ore.development_dependencies.each do |dep|
+          gem(dep.name, *dep.versions)
+        end
+      end
+    end
+
   end
 end
