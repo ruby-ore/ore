@@ -13,7 +13,7 @@ the developer to keep all of the project information in a single YAML file.
 ## Features
 
 * Stores project information in **one YAML file** (`gem.yml`).
-* **Does not** have additional dependencies.
+* Has only **one** dependency ([thor](http://github.com/wycats/thor)).
 * **Does not** add additional dependencies to your project.
 * **Does not** impose a development workflow onto the developer. One could
   even use Ore with `Jeweler::Tasks`.
@@ -27,6 +27,10 @@ the developer to keep all of the project information in a single YAML file.
       Ore::Specification.new do |gemspec|
         # custom logic here
       end
+
+## Requirements
+
+* [thor](http://github.com/wycats/thor) ~> 0.14.3
 
 ## Install
 
