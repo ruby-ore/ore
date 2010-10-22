@@ -14,7 +14,6 @@ the developer to keep all of the project information in a single YAML file.
 
 * Stores project information in **one YAML file** (`gemspec.yml`).
 * Has only **one** dependency ([thor](http://github.com/wycats/thor)).
-* **Does not** add additional dependencies to your project.
 * **Does not** impose a development workflow onto the developer. One could
   even use Ore with `Jeweler::Tasks`.
 * **Can** load the project version from:
@@ -34,6 +33,9 @@ the developer to keep all of the project information in a single YAML file.
 
       source :rubygems
       gemspec_yml
+
+* Provides an **extendable** library generator that can use user-installed
+  templates.
 
 ## Requirements
 
