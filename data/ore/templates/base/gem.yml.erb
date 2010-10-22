@@ -1,6 +1,6 @@
 name: <%= @name %>
-summary: <%= @summary %>
-description: <%= @description %>
+summary: <%= yaml_escape @summary %>
+description: <%= yaml_escape @description %>
 <%- if @authors.length > 1 -%>
 authors:
 <%-   @authors.each do |name| -%>

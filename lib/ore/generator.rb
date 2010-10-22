@@ -323,5 +323,51 @@ module Ore
       enabled?(:bundler)
     end
 
+    #
+    # Creates an indentation string.
+    #
+    # @param [Integer] n
+    #   The number of times to indent.
+    #
+    # @param [Integer] spaces
+    #   The number of spaces to indent by.
+    #
+    # @return [String]
+    #   The indentation string.
+    #
+    def indent(n,spaces=2)
+      (' ' * spaces) * n
+    end
+
+    #
+    # Escapes data for YAML encoding.
+    #
+    # @param [String] data
+    #   The data to escape.
+    #
+    # @return [String]
+    #   The YAML safe data.
+    #
+    def yaml_escape(data)
+      case data
+      when String
+        if data =~ /:\s/
+          data.dump
+        elsif data.include?($/)
+          lines = ['']
+
+          data.each_line do |line|
+            lines << "  #{line.strip}"
+          end
+
+          lines.join($/)
+        else
+          data
+        end
+      else
+        data.to_s
+      end
+    end
+
   end
 end
