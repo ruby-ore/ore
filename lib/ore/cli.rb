@@ -10,6 +10,7 @@ module Ore
     default_task :cut
 
     map '-l' => :list
+    map '-u' => :update
     map '-r' => :remove
 
     desc 'list', 'List installed Ore templates'
@@ -52,6 +53,19 @@ module Ore
 
       FileUtils.mkdir_p(path)
       system('git','clone',uri,path)
+    end
+
+    desc 'update', 'Updates all installed templates'
+
+    #
+    # Updates all previously installed templates.
+    #
+    def update
+      Config.installed_templates do |path|
+        say "Updating #{File.basename(path)} ...", :green
+
+        Dir.chdir(path) { system('git','pull','-q') }
+      end
     end
 
     desc 'remove NAME', 'Removes an Ore template'
