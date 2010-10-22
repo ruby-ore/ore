@@ -102,16 +102,16 @@ module Ore
       @enabled_templates << :bundler if options.bundler?
       @enabled_templates << :jeweler if options.jeweler?
       
-      if options.test_unit?
-        @enabled_templates << :test_unit
-      elsif options.rspec?
+      if options.rspec?
         @enabled_templates << :rspec
+      elsif options.test_unit?
+        @enabled_templates << :test_unit
       end
 
-      if options.rdoc?
-        @enabled_templates << :rdoc
-      elsif options.yard?
+      if options.yard?
         @enabled_templates << :yard
+      elsif options.rdoc?
+        @enabled_templates << :rdoc
       end
 
       options.templates.each do |name|
