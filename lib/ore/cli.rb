@@ -88,7 +88,15 @@ module Ore
       File.rm_rf(path)
     end
 
-    desc 'spec', 'Dumps the gemspec for the project'
+    desc 'gemspec', 'Dumps a Ruby gemspec for the project'
+
+    def gemspec
+      require 'ore/project'
+
+      print Project.find.to_gemspec.to_ruby
+    end
+
+    desc 'spec', 'Dumps a YAML gemspec for the project'
 
     def spec
       require 'ore/project'
