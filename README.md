@@ -27,13 +27,6 @@ the developer to keep all of the project information in a single YAML file.
         # custom logic here
       end
 
-* **Can** be used with [Bundler](http://gembundler.com/):
-
-      require 'ore/bundler'
-
-      source :rubygems
-      gemspec_yml
-
 * Provides an **extendable** project **generator** that can use
   user-installed templates.
 
