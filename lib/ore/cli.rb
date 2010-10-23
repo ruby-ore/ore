@@ -88,6 +88,14 @@ module Ore
       File.rm_rf(path)
     end
 
+    desc 'spec', 'Dumps the gemspec for the project'
+
+    def spec
+      require 'ore/project'
+
+      print YAML.dump(Project.find.to_gemspec)
+    end
+
     desc 'cut', 'Cuts a new RubyGem'
 
     def cut
