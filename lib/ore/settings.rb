@@ -163,74 +163,59 @@ module Ore
     #
     # Sets the dependencies of the project.
     #
-    # @param [Hash{String => String}, Array<String>] dependencies
+    # @param [Hash{String => String}] dependencies
     #   The dependencey names and versions listed in the metadata file.
     #
     # @raise [InvalidMetadata]
-    #   The dependencies must either be a `Hash` or an `Array`.
+    #   The dependencies must be a `Hash`.
     #
     def set_dependencies!(dependencies)
-      case dependencies
-      when Hash
-        dependencies.each do |name,versions|
-          @dependencies << Dependency.parse_versions(name,versions)
-        end
-      when Array
-        dependencies.each do |dep|
-          @dependencies << Dependency.parse(dep)
-        end
-      else
-        raise(InvalidMetadata,"dependencies must be a Hash or Array")
+      unless dependencies.kind_of?(Hash)
+        raise(InvalidMetadata,"dependencies must be a Hash")
+      end
+
+      dependencies.each do |name,versions|
+        @dependencies << Dependency.parse_versions(name,versions)
       end
     end
 
     #
     # Sets the runtime-dependencies of the project.
     #
-    # @param [Hash{String => String}, Array<String>] dependencies
+    # @param [Hash{String => String}] dependencies
     #   The runtime-dependencey names and versions listed in the metadata
     #   file.
     #
     # @raise [InvalidMetadata]
-    #   The runtime-dependencies must either be a `Hash` or an `Array`.
+    #   The runtime-dependencies must be a `Hash`.
     #
     def set_runtime_dependencies!(dependencies)
-      case dependencies
-      when Hash
-        dependencies.each do |name,versions|
-          @runtime_dependencies << Dependency.parse_versions(name,versions)
-        end
-      when Array
-        dependencies.each do |dep|
-          @runtime_dependencies << Dependency.parse(dep)
-        end
-      else
-        raise(InvalidMetadata,"runtime_dependencies must be a Hash or Array")
+      unless dependencies.kind_of?(Hash)
+        raise(InvalidMetadata,"runtime_dependencies must be a Hash")
+      end
+
+      dependencies.each do |name,versions|
+        @runtime_dependencies << Dependency.parse_versions(name,versions)
       end
     end
 
     #
     # Sets the development-dependencies of the project.
     #
-    # @param [Hash{String => String}, Array<String>] dependencies
+    # @param [Hash{String => String}] dependencies
     #   The development-dependencey names and versions listed in the
     #   metadata file.
     #
     # @raise [InvalidMetadata]
-    #   The development-dependencies must either be a `Hash` or an `Array`.
+    #   The development-dependencies must be a `Hash`.
     #
     def set_development_dependencies!(dependencies)
-      case dependencies
-      when Hash
-        dependencies.each do |name,versions|
-          @development_dependencies << Dependency.parse_versions(name,versions)
-        end
-      when Array
-        dependencies.each do |dep|
-          @development_dependencies << Dependency.parse(dep)
-        end
-      else
-        raise(InvalidMetadata,"development_dependencies must be a Hash or Array")
+      unless dependencies.kind_of?(Hash)
+        raise(InvalidMetadata,"development_dependencies must be a Hash")
+      end
+
+      dependencies.each do |name,versions|
+        @development_dependencies << Dependency.parse_versions(name,versions)
       end
     end
   end
