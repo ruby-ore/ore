@@ -53,6 +53,10 @@ The `gemspec.yml` file used to build Ore:
     authors: Postmodern
     email: postmodern.mod3@gmail.com
     homepage: http://github.com/postmodern/ore
+    has_yard: true
+    
+    dependencies:
+      thor: ~> 0.14.3
     
     development_dependencies:
       yard: ~> 0.6.1
