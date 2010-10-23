@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 require 'ore/specification'
 
 Ore::Specification.new do |gemspec|
