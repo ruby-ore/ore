@@ -1,6 +1,6 @@
+require 'ore/template/directory'
+require 'ore/template/interpolations'
 require 'ore/config'
-require 'ore/template_dir'
-require 'ore/interpolations'
 require 'ore/version'
 
 require 'thor/group'
@@ -11,7 +11,7 @@ module Ore
   class Generator < Thor::Group
 
     include Thor::Actions
-    include Interpolations
+    include Template::Interpolations
 
     # The base template for all RubyGems
     BASE_TEMPLATE = :base
@@ -141,7 +141,7 @@ module Ore
         end
 
         self.source_paths << template_dir
-        @templates << TemplateDir.new(template_dir)
+        @templates << Template::Directory.new(template_dir)
       end
     end
 
