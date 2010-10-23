@@ -1,8 +1,6 @@
-require 'ore/bundler'
-
 source :rubygems
 
-gemspec_yml
+gemspec
 
 group :development do
   gem 'rake',     '~> 0.8.7'
