@@ -8,6 +8,10 @@ describe Naming do
     obj
   end
 
+  it "should underscore camel case names" do
+    subject.underscore('FooBar').should == 'foo_bar'
+  end
+
   it "should guess the module names from a project name" do
     subject.modules_of('foo-bar').should == ['Foo', 'Bar']
   end

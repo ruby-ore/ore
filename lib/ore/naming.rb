@@ -58,6 +58,21 @@ module Ore
     end
 
     #
+    # Converts a camel-case name to an underscored file name.
+    #
+    # @param [String] name
+    #   The name to underscore.
+    #
+    # @return [String]
+    #   The underscored version of the name.
+    #
+    def underscore(name)
+      name.gsub(/[^A-Z][A-Z][^A-Z]/) { |cap|
+        cap[0,1] + '_' + cap[1..-1]
+      }.downcase
+    end
+
+    #
     # Guesses the namespace directory within `lib/` for a project.
     #
     # @return [String]
