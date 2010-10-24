@@ -1,0 +1,7 @@
+name: dm-plugin
+summary: DataMapper Plugin
+description: A plugin for DataMapper
+authors: Dan Kubb
+
+dependencies:
+  dm-core: ~> 1.0.0

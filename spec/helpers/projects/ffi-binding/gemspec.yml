@@ -1,0 +1,7 @@
+name: ffi-binding
+summary: FFI Binding
+description: FFI Binding for some C library
+authors: Wayne Meissner
+
+dependencies:
+  ffi: ~> 0.6.0
