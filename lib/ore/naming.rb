@@ -73,13 +73,23 @@ module Ore
     end
 
     #
+    # Guesses the namespace directories within `lib/` for a project.
+    #
+    # @return [Array<String>]
+    #   The namespace directories for the project.
+    #
+    def namespace_dirs_of(name)
+      name.split('-').map { |word| underscore(word) }
+    end
+
+    #
     # Guesses the namespace directory within `lib/` for a project.
     #
     # @return [String]
     #   The namespace directory for the project.
     #
     def namespace_dir_of(name)
-      File.join(name.split('-'))
+      File.join(namespace_dirs_of(name))
     end
   end
 end

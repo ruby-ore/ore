@@ -24,6 +24,10 @@ describe Naming do
     subject.namespace_of('foo-bar').should == 'Foo::Bar'
   end
 
+  it "should guess the namespace directories from a project name" do
+    subject.namespace_dirs_of('foo-bar').should == ['foo', 'bar']
+  end
+
   it "should guess the namespace directory from a project name" do
     subject.namespace_dir_of('foo-bar').should == 'foo/bar'
   end
