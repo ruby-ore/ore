@@ -246,6 +246,36 @@ module Ore
     end
 
     #
+    # Guesses the namespace modules for the project.
+    #
+    # @return [Array<String>]
+    #   The guessed module names.
+    #
+    def namespace_modules
+      modules_of(@name)
+    end
+
+    #
+    # Guesses the fully-qualified namesapce of the project.
+    #
+    # @return [String]
+    #   The guessed module namespace of the project.
+    #
+    def namespace
+      namespace_of(@name)
+    end
+
+    #
+    # Guesses the namespace directory of the project.
+    #
+    # @return [String]
+    #   The guessed directory of the project code.
+    #
+    def namespace_dir
+      namespace_dir_of(@name)
+    end
+
+    #
     # Executes code within the project.
     #
     # @param [String] sub_dir
