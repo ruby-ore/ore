@@ -1,4 +1,10 @@
 module Ore
+  #
+  # Provides methods for guessing the namespaces and directories
+  # of projects. {Naming} uses the naming conventions of project names
+  # defined by the
+  # [Ruby Packaging Standard (RPS)](http://chneukirchen.github.com/rps/).
+  #
   module Naming
     # The directory which contains executables for a project
     BIN_DIR = 'bin'
