@@ -76,6 +76,8 @@ The publish date of the current version can be listed like so:
 Ore will use [Date.parse](http://rubydoc.info/docs/ruby-stdlib/1.9.2/Date.parse)
 to parse the `date` value.
 
+If the `date` is not listed, Ore will default it to the current date.
+
 ## require_paths
 
 The require_paths of a project can be listed like so:
