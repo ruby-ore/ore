@@ -67,7 +67,7 @@ module Ore
     attr_reader :documentation
 
     # Any extra files to include in the project documentation
-    attr_reader :extra_files
+    attr_reader :extra_doc_files
 
     # The files of the project
     attr_reader :files
@@ -182,12 +182,12 @@ module Ore
         default_documentation!
       end
 
-      @extra_files = []
+      @extra_doc_files = []
 
-      if metadata['extra_files']
-        set_extra_files! metadata['extra_files']
+      if metadata['extra_doc_files']
+        set_extra_doc_files! metadata['extra_doc_files']
       else
-        default_extra_files!
+        default_extra_doc_files!
       end
 
       @files = []
@@ -414,7 +414,7 @@ module Ore
                            true
                          end
 
-      gemspec.extra_rdoc_files = @extra_files.to_a
+      gemspec.extra_rdoc_files = @extra_doc_files.to_a
       gemspec.files = @files.to_a
       gemspec.test_files = @test_files.to_a
 
@@ -497,13 +497,13 @@ module Ore
     end
 
     #
-    # Adds an extra-file to the project.
+    # Adds an extra documentation file to the project.
     #
     # @param [String] path
     #   The path to the file, relative to the project.
     #
-    def add_extra_file(path)
-      check_file(path) { |file| @extra_files << file }
+    def add_extra_doc_file(path)
+      check_file(path) { |file| @extra_doc_files << file }
     end
 
     #

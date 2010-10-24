@@ -95,13 +95,13 @@ module Ore
     end
 
     #
-    # Sets the extra-files of the project.
+    # Sets the extra documentation files of the project.
     #
-    def default_extra_files!
-      glob('README.*') { |path| add_extra_file(path) }
+    def default_extra_doc_files!
+      glob('README.*') { |path| add_extra_doc_file(path) }
 
       if @document
-        @document.each_extra_file { |path| add_extra_file(path) }
+        @document.each_extra_file { |path| add_extra_doc_file(path) }
       end
     end
 

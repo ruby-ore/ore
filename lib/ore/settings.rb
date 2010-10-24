@@ -119,16 +119,16 @@ module Ore
     end
 
     #
-    # Sets the extra-files of the project.
+    # Sets the extra documentation files of the project.
     #
     # @param [Array<String>, String] paths
-    #   The extra-files or the glob-pattern listed in the metadata file.
+    #   The file paths or the glob-pattern listed in the metadata file.
     #
-    def set_extra_files!(paths)
+    def set_extra_doc_files!(paths)
       if paths.kind_of?(Array)
-        paths.each { |path| add_extra_file(path) }
+        paths.each { |path| add_extra_doc_file(path) }
       else
-        glob(paths) { |path| add_extra_file(path) }
+        glob(paths) { |path| add_extra_doc_file(path) }
       end
     end
 

@@ -130,16 +130,16 @@ If neither `has_yard` or `has_rdoc` are listed, Ore will set `has_yard`
 if the `.yardopts` file exists in the root directory of the project.
 Otherwise, Ore will default `has_rdoc` to true.
 
-## extra_files
+## extra_doc_files
 
-The extra-files that should also be scanned for documentation can be listed
+The extra files that should also be scanned for documentation can be listed
 like so:
 
-    extra_files:
+    extra_doc_files:
      - ChangeLog.md
      - LICENSE.txt
 
-If `extra_files` is not listed, Ore will use the extra-files listed in
+If `extra_doc_files` is not listed, Ore will use the extra-files listed in
 the `.document` file.
 
 ## files
