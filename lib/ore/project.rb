@@ -252,7 +252,7 @@ module Ore
     #   The guessed module names.
     #
     def namespace_modules
-      modules_of(@name)
+      @namespace_modules ||= modules_of(@name)
     end
 
     #
@@ -262,7 +262,7 @@ module Ore
     #   The guessed module namespace of the project.
     #
     def namespace
-      namespace_of(@name)
+      @namespace ||= namespace_of(@name)
     end
 
     #
@@ -272,7 +272,7 @@ module Ore
     #   The guessed directory of the project code.
     #
     def namespace_dir
-      namespace_dir_of(@name)
+      @namespace_dir ||= namespace_dir_of(@name)
     end
 
     #
