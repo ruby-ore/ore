@@ -52,7 +52,9 @@ module Ore
           file.each_line do |line|
             unless line =~ /^\s*#/ # skip commented lines
               if line =~ /(VERSION|Version)\s*=\s*/
-                return self.parse(extract_version(line))
+                version = extract_version(line)
+
+                return self.parse(version) if version
               elsif line =~ /(MAJOR|Major)\s*=\s*/
                 major ||= extract_number(line)
               elsif line =~ /(MINOR|Minor)\s*=\s*/
