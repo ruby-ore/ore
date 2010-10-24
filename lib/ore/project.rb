@@ -353,6 +353,26 @@ module Ore
     end
 
     #
+    # Determines whether the project uses Bundler.
+    #
+    # @return [Boolean]
+    #   Specifies whether the project uses Bundler.
+    #
+    def bundler?
+      file?('Gemfile')
+    end
+
+    #
+    # Determines whether the project has been bundled using Bundler.
+    #
+    # @return [Boolean]
+    #   Specifies whether the project has been bundled.
+    #
+    def bundled?
+      file?('Gemfile.lock')
+    end
+
+    #
     # Determines if the project contains RDoc documentation.
     #
     # @return [Boolean]
