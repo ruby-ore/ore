@@ -20,5 +20,37 @@ module Ore
 
     # The directory which contains built packages
     PKG_DIR = 'pkg'
+
+    #
+    # Guesses the module names from a project name.
+    #
+    # @return [Array<String>]
+    #   The module names for a project.
+    #
+    def modules_of(name)
+      name.split('-').map do |words|
+        words.split('_').map { |word| word.capitalize }.join
+      end
+    end
+
+    #
+    # Guesses the full namespace for a project.
+    #
+    # @return [String]
+    #   The full module namespace for a project.
+    #
+    def namespace_of(name)
+      modules_of(name).join('::')
+    end
+
+    #
+    # Guesses the namespace directory within `lib/` for a project.
+    #
+    # @return [String]
+    #   The namespace directory for the project.
+    #
+    def namespace_dir_of(name)
+      File.join(name.split('-'))
+    end
   end
 end
