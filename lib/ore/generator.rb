@@ -1,6 +1,7 @@
 require 'ore/template/directory'
 require 'ore/template/interpolations'
 require 'ore/template/helpers'
+require 'ore/naming'
 require 'ore/config'
 require 'ore/version'
 
@@ -12,6 +13,7 @@ module Ore
   class Generator < Thor::Group
 
     include Thor::Actions
+    include Naming
     include Template::Interpolations
     include Template::Helpers
 
