@@ -8,6 +8,7 @@ require 'ore/settings'
 
 require 'pathname'
 require 'yaml'
+require 'find'
 require 'fileutils'
 
 module Ore
@@ -107,7 +108,7 @@ module Ore
       end
 
       infer_scm!
-      set_project_files!
+      infer_project_files!
 
       metadata_file = @root.join(METADATA_FILE)
 
@@ -514,6 +515,26 @@ module Ore
         @scm = :git
       else
         @scm = nil
+      end
+    end
+
+    #
+    # Infers the project files.
+    #
+    def infer_project_files!
+      @project_files = Set[]
+
+      filter_path = lambda { |path|
+        check_readable(path) { |file| @project_files << file }
+      }
+
+      within do
+        case @scm
+        when :git
+          `git ls-files -z`.split("\0").each(&filter_path)
+        else
+          within { Dir.glob('{**/}*',&filter_path) }
+        end
       end
     end
 

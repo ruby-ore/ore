@@ -7,26 +7,6 @@ module Ore
     protected
 
     #
-    # Sets the project files.
-    #
-    def set_project_files!
-      @project_files = Set[]
-
-      filter_path = lambda { |path|
-        check_readable(path) { |file| @project_files << file }
-      }
-
-      within do
-        case @scm
-        when :git
-          `git ls-files -z`.split("\0").each(&filter_path)
-        else
-          glob('{**/}*',&filter_path)
-        end
-      end
-    end
-
-    #
     # Sets the version of the project.
     #
     # @param [Hash<Integer>, String] version
