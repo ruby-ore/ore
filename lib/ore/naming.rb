@@ -67,7 +67,7 @@ module Ore
     #   The underscored version of the name.
     #
     def underscore(name)
-      name.gsub(/[^A-Z][A-Z][^A-Z]/) { |cap|
+      name.gsub(/[^A-Z_][A-Z][^A-Z_]/) { |cap|
         cap[0,1] + '_' + cap[1..-1]
       }.downcase
     end
