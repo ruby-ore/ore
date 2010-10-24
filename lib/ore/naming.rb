@@ -1,5 +1,5 @@
 module Ore
-  module Directories
+  module Naming
     # The directory which contains executables for a project
     BIN_DIR = 'bin'
 

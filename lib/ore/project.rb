@@ -1,6 +1,6 @@
 require 'ore/exceptions/project_not_found'
 require 'ore/exceptions/invalid_metadata'
-require 'ore/directories'
+require 'ore/naming'
 require 'ore/document_file'
 require 'ore/checks'
 require 'ore/defaults'
@@ -13,7 +13,7 @@ require 'fileutils'
 module Ore
   class Project
 
-    include Directories
+    include Naming
     include Checks
     include Defaults
     include Settings

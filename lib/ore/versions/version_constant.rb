@@ -1,5 +1,5 @@
 require 'ore/versions/version'
-require 'ore/directories'
+require 'ore/naming'
 
 module Ore
   module Versions
@@ -9,7 +9,7 @@ module Ore
     #
     class VersionConstant < Version
 
-      include Directories
+      include Naming
 
       # Common file-name that the `VERSION` constant or `Version` module
       # is defined within.

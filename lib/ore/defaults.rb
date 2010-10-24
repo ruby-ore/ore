@@ -1,11 +1,11 @@
-require 'ore/directories'
+require 'ore/naming'
 require 'ore/versions'
 
 require 'date'
 
 module Ore
   module Defaults
-    include Directories
+    include Naming
 
     # The default require-paths
     DEFAULT_REQUIRE_PATHS = [LIB_DIR, EXT_DIR]
