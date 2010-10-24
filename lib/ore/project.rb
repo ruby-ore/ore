@@ -408,50 +408,49 @@ module Ore
     # @see http://rubygems.rubyforge.org/rdoc/Gem/Specification.html
     #
     def to_gemspec
-      gemspec = Gem::Specification.new()
+      Gem::Specification.new do |gemspec|
+        gemspec.name = @name.to_s
+        gemspec.version = @version.to_s
+        gemspec.summary = @summary.to_s
+        gemspec.description = @description.to_s
+        gemspec.authors = @authors.to_a
+        gemspec.homepage = @homepage
+        gemspec.email = @email
+        gemspec.date = @date
 
-      gemspec.name = @name.to_s
-      gemspec.version = @version.to_s
-      gemspec.summary = @summary.to_s
-      gemspec.description = @description.to_s
-      gemspec.authors = @authors.to_a
-      gemspec.homepage = @homepage
-      gemspec.email = @email
-      gemspec.date = @date
-
-      @require_paths.each do |path|
-        unless gemspec.require_paths.include?(path)
-          gemspec.require_paths << path
+        @require_paths.each do |path|
+          unless gemspec.require_paths.include?(path)
+            gemspec.require_paths << path
+          end
         end
+
+        gemspec.executables = @executables.to_a
+        gemspec.default_executable = @default_executable
+
+        gemspec.has_rdoc = if has_yard
+                             'yard'
+                           elsif has_rdoc
+                             true
+                           end
+
+        gemspec.extra_rdoc_files = @extra_doc_files.to_a
+        gemspec.files = @files.to_a
+        gemspec.test_files = @test_files.to_a
+
+        @dependencies.each do |dep|
+          gemspec.add_dependency(dep.name,*dep.versions)
+        end
+
+        @runtime_dependencies.each do |dep|
+          gemspec.add_runtime_dependency(dep.name,*dep.versions)
+        end
+
+        @development_dependencies.each do |dep|
+          gemspec.add_development_dependency(dep.name,*dep.versions)
+        end
+
+        yield gemspec if block_given?
       end
-
-      gemspec.executables = @executables.to_a
-      gemspec.default_executable = @default_executable
-
-      gemspec.has_rdoc = if has_yard
-                           'yard'
-                         elsif has_rdoc
-                           true
-                         end
-
-      gemspec.extra_rdoc_files = @extra_doc_files.to_a
-      gemspec.files = @files.to_a
-      gemspec.test_files = @test_files.to_a
-
-      @dependencies.each do |dep|
-        gemspec.add_dependency(dep.name,*dep.versions)
-      end
-
-      @runtime_dependencies.each do |dep|
-        gemspec.add_runtime_dependency(dep.name,*dep.versions)
-      end
-
-      @development_dependencies.each do |dep|
-        gemspec.add_development_dependency(dep.name,*dep.versions)
-      end
-
-      yield gemspec if block_given?
-      return gemspec
     end
 
     #
