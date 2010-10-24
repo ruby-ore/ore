@@ -27,6 +27,12 @@ module Ore
     # The directory which contains built packages
     PKG_DIR = 'pkg'
 
+    # Common project prefixes and namespaces
+    COMMON_NAMESPACES = {
+      'ffi' => 'FFI',
+      'dm' => 'DataMapper'
+    }
+
     #
     # Guesses the module names from a project name.
     #
@@ -35,7 +41,9 @@ module Ore
     #
     def modules_of(name)
       name.split('-').map do |words|
-        words.split('_').map { |word| word.capitalize }.join
+        words.split('_').map { |word|
+          COMMON_NAMESPACES[word] || word.capitalize
+        }.join
       end
     end
 
