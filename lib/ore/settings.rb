@@ -21,7 +21,7 @@ module Ore
         when :git
           `git ls-files -z`.split("\0").each(&filter_path)
         else
-          glob(&filter_path)
+          glob('{**/}*',&filter_path)
         end
       end
     end
