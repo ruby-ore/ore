@@ -63,7 +63,7 @@ The `gemspec.yml` file used to build Ore:
       rspec: ~> 2.0.0
 
 For a complete refrence to the `gemspec.yml` file, please see
-{file:GemspecYML.html}.
+{file:GemspecYML.md}.
 
 ## Synopsis
 
