@@ -43,7 +43,7 @@ module Ore
       )
 
       unless @version
-        raise(InvalidMetadata,"no version file or constant in #{@root}")
+        #raise(InvalidMetadata,"no version file or constant in #{@root}")
       end
     end
 

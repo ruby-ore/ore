@@ -26,9 +26,9 @@ module Ore
       #
       def self.find(project)
         if project.namespace_dir
-          path = project.lib_path(project.namespace_dir,FILE_NAME)
+          path = File.join(project.namespace_dir,FILE_NAME)
 
-          self.load(path) if project.lib_file?(path)
+          self.load(project.lib_path(path)) if project.lib_file?(path)
         end
       end
 
