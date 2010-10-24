@@ -25,17 +25,9 @@ module Ore
       #   The loaded version constant.
       #
       def self.find(project)
-        search_dirs = [
-          project.name,
-          File.join(project.name.split('-'))
-        ]
+        path = project.lib_path(project.namespace_dir,FILE_NAME)
 
-        search_dirs.each do |dir|
-          path = File.join(dir,FILE_NAME)
-          return load(project.lib_path(path)) if project.lib_file?(path)
-        end
-
-        return nil
+        return self.load(path) if project.lib_file?(path)
       end
 
       #
