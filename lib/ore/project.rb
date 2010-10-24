@@ -295,6 +295,36 @@ module Ore
     end
 
     #
+    # The `bin/` directory of the project.
+    #
+    # @return [Pathname]
+    #   The path to the `bin/` directory.
+    #
+    def bin_dir
+      @root.join(LIB_DIR)
+    end
+
+    #
+    # The `lib/` directory of the project.
+    #
+    # @return [Pathname]
+    #   The path to the `lib/` directory.
+    #
+    def lib_dir
+      @root.join(LIB_DIR)
+    end
+
+    #
+    # The `pkg/` directory of the project.
+    #
+    # @return [Pathname]
+    #   The path to the `pkg/` directory.
+    #
+    def pkg_dir
+      @root.join(PKG_DIR)
+    end
+
+    #
     # Builds a path relative to the `lib/` directory.
     #
     # @param [Array] names
