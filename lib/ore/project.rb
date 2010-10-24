@@ -338,6 +338,16 @@ module Ore
     end
 
     #
+    # Builds a relative path into the `pkg/` directory for the `.gem` file.
+    #
+    # @return [String]
+    #   The path of a `.gem` file for the project.
+    #
+    def pkg_file
+      File.join(PKG_DIR,"#{@name}-#{@version}.gem")
+    end
+
+    #
     # Determines if a directory exists within the project.
     #
     # @param [String] path
@@ -519,10 +529,10 @@ module Ore
       FileUtils.mkdir_p(pkg_dir)
 
       gem_file = Gem::Builder.new(self.to_gemspec).build
-      pkg_file = pkg_dir.join(gem_file)
+      pkg_path = @root.join(pkg_file)
 
-      FileUtils.mv(gem_file,pkg_file)
-      return pkg_file
+      FileUtils.mv(gem_file,pkg_path)
+      return pkg_path
     end
 
     protected
