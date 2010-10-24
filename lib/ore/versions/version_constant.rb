@@ -25,9 +25,11 @@ module Ore
       #   The loaded version constant.
       #
       def self.find(project)
-        path = project.lib_path(project.namespace_dir,FILE_NAME)
+        if project.namespace_dir
+          path = project.lib_path(project.namespace_dir,FILE_NAME)
 
-        return self.load(path) if project.lib_file?(path)
+          self.load(path) if project.lib_file?(path)
+        end
       end
 
       #
