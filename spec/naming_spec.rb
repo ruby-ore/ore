@@ -8,12 +8,22 @@ describe Naming do
     obj
   end
 
-  it "should underscore CamelCase names" do
-    subject.underscore('FooBar').should == 'foo_bar'
-  end
+  describe "underscore" do
+    it "should underscore CamelCase names" do
+      subject.underscore('FooBar').should == 'foo_bar'
+    end
 
-  it "should not over underscore snake_case names" do
-    subject.underscore('Foo_Bar').should == 'foo_bar'
+    it "should not add leading underscores to Capitalized names" do
+      subject.underscore('Foo').should == 'foo'
+    end
+
+    it "should not add tailing underscores to CamelCase names" do
+      subject.underscore('FooX').should == 'foox'
+    end
+
+    it "should not add underscores when they already exist" do
+      subject.underscore('Foo_Bar').should == 'foo_bar'
+    end
   end
 
   it "should guess the module names from a project name" do
