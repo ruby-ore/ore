@@ -154,14 +154,11 @@ module Ore
       @project_dir = File.basename(destination_root)
       @name = (options.name || @project_dir)
 
-      @modules = @name.split('-').map do |words|
-        words.split('_').map { |word| word.capitalize }.join
-      end
-
+      @modules = modules_of(@name)
       @module_depth = @modules.length
 
-      @namespace = @modules.join('::')
-      @namespace_dir = File.join(@name.split('-'))
+      @namespace = namespace_of(@name)
+      @namespace_dir = namespace_dir_of(@name)
 
       @version = options.version
       @summary = options.summary
