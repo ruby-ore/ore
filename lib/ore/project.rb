@@ -27,6 +27,15 @@ module Ore
     # The files of the project
     attr_reader :project_files
 
+    # The fully-qualified namespace of the project
+    attr_reader :namespace
+
+    # The infered namespace modules of the project
+    attr_reader :namespace_modules
+
+    # The directory contain the project code.
+    attr_reader :namespace_dir
+
     # The name of the project
     attr_reader :name
 
@@ -117,6 +126,9 @@ module Ore
       else
         default_name!
       end
+
+      # infer the namespace from the project name
+      infer_namespace!
 
       if metadata['version']
         set_version! metadata['version']
@@ -246,36 +258,6 @@ module Ore
     end
 
     #
-    # Guesses the namespace modules for the project.
-    #
-    # @return [Array<String>]
-    #   The guessed module names.
-    #
-    def namespace_modules
-      @namespace_modules ||= modules_of(@name)
-    end
-
-    #
-    # Guesses the fully-qualified namesapce of the project.
-    #
-    # @return [String]
-    #   The guessed module namespace of the project.
-    #
-    def namespace
-      @namespace ||= namespace_of(@name)
-    end
-
-    #
-    # Guesses the namespace directory of the project.
-    #
-    # @return [String]
-    #   The guessed directory of the project code.
-    #
-    def namespace_dir
-      @namespace_dir ||= namespace_dir_of(@name)
-    end
-
-    #
     # Executes code within the project.
     #
     # @param [String] sub_dir
@@ -351,10 +333,22 @@ module Ore
     end
 
     #
-    # Determines if a file exists in the `lib/` directory of the project.
+    # Determines if a directory exists within the `lib/` directory of the
+    # project.
     #
     # @return [Boolean]
-    #   Specifies that a file exists in the `lib/` directory.
+    #   Specifies that the directory exists within the `lib/` directory.
+    #
+    def lib_directory?(path)
+      directory?(File.join(LIB_DIR,path))
+    end
+
+    #
+    # Determines if a file exists within the `lib/` directory of the
+    # project.
+    #
+    # @return [Boolean]
+    #   Specifies that the file exists within the `lib/` directory.
     #
     def lib_file?(path)
       file?(File.join(LIB_DIR,path))
@@ -521,6 +515,22 @@ module Ore
       else
         @scm = nil
       end
+    end
+
+    #
+    # Infers the namespace of the project based on the project name.
+    #
+    def infer_namespace!
+      @namespace_modules = modules_of(@name)
+      @namespace = namespace_of(@name)
+
+      dir = namespace_dir_of(@name)
+
+      @namespace_dir = if lib_directory?(dir)
+                         dir
+                       elsif lib_directory?(@name)
+                         @name
+                       end
     end
 
     #
