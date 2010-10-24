@@ -18,4 +18,8 @@ describe "DataMapper Plugin project" do
   it "should have a namespace directory" do
     @project.namespace_dir.should == 'dm-plugin'
   end
+
+  it "should use Bundler" do
+    @project.should be_bundler
+  end
 end
