@@ -524,13 +524,13 @@ module Ore
       @namespace_modules = modules_of(@name)
       @namespace = namespace_of(@name)
 
-      dir = namespace_dir_of(@name)
+      dir = namespace_path_of(@name)
 
       @namespace_dir = if lib_directory?(dir)
-                         dir
-                       elsif lib_directory?(@name)
-                         @name
-                       end
+                          dir
+                        elsif lib_directory?(@name)
+                          @name
+                        end
     end
 
     #

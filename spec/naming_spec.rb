@@ -33,6 +33,6 @@ describe Naming do
   end
 
   it "should guess the namespace directory from a project name" do
-    subject.namespace_dir_of('foo-bar').should == 'foo/bar'
+    subject.namespace_path_of('foo-bar').should == 'foo/bar'
   end
 end

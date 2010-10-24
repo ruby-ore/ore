@@ -88,7 +88,7 @@ module Ore
     # @return [String]
     #   The namespace directory for the project.
     #
-    def namespace_dir_of(name)
+    def namespace_path_of(name)
       File.join(namespace_dirs_of(name))
     end
   end
