@@ -156,8 +156,10 @@ module Ore
 
       @modules = modules_of(@name)
       @module_depth = @modules.length
+      @module = @modules.last
 
       @namespace = namespace_of(@name)
+      @namespace_dirs = namespace_dirs_of(@name)
       @namespace_dir = namespace_dir_of(@name)
 
       @version = options.version
