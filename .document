@@ -3,4 +3,5 @@ lib/ore/*.rb
 lib/ore/**/*.rb
 -
 ChangeLog.md
+GemspecYML.md
 LICENSE.txt

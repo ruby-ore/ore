@@ -62,6 +62,9 @@ The `gemspec.yml` file used to build Ore:
       yard: ~> 0.6.1
       rspec: ~> 2.0.0
 
+For a complete refrence to the `gemspec.yml` file, please see
+{file:GemspecYML.html}.
+
 ## Synopsis
 
 Install a custom template:
