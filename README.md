@@ -1,7 +1,8 @@
 # Ore
 
-* [github.com/postmodern/ore](http://github.com/postmodern/ore)
-* [github.com/postmodern/ore/issues](http://github.com/postmodern/ore/issues)
+* [Source](http://github.com/postmodern/ore)
+* [Issues](http://github.com/postmodern/ore/issues)
+* IRC: irc.freenode.net #ruby-ore
 * Postmodern (postmodern.mod3 at gmail.com)
 
 ## Description
