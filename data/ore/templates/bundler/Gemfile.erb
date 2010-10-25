@@ -11,7 +11,7 @@ group :development do
   when 'java'
     gem 'maruku'
   else
-    gem 'bluecloth', '~> 2.0'
+    gem 'bluecloth', '>= 2.0.0'
   end
 <%-   when :textile -%>
   gem 'RedCloth'
