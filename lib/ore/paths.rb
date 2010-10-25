@@ -1,5 +1,9 @@
+require 'ore/naming'
+
 module Ore
   module Paths
+    include Naming
+
     #
     # Builds a path relative to the project.
     #
