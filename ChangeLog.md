@@ -15,7 +15,7 @@
   * Added {Ore::Specification}.
   * Added {Ore::Template}:
     * Added {Ore::Template::Directory}.
-    * Added {Ore::Template::Interpolation}.
+    * Added {Ore::Template::Interpolations}.
     * Added {Ore::Template::Helpers}.
   * Added {Ore::Generator}.
 
