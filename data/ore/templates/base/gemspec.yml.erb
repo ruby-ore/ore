@@ -1,6 +1,9 @@
 name: <%= @name %>
 summary: <%= yaml_escape @summary %>
 description: <%= yaml_escape @description %>
+<%- if @license -%>
+license: <%= @license %>
+<%- end -%>
 <%- if @authors.length > 1 -%>
 authors:
 <%-   @authors.each do |name| -%>

@@ -63,11 +63,11 @@ module Ore
                            :aliases => '-s'
     class_option :description, :default => 'TODO: Description',
                                :aliases => '-D'
+    class_option :license, :default => 'MIT', :aliases => '-L'
     class_option :homepage, :type => :string, :aliases => '-U'
     class_option :email, :type => :string, :aliases => '-e'
     class_option :authors, :type => :array,
                            :default => [ENV['USER']], :aliases => '-a'
-    class_option :license, :default => 'MIT', :aliases => '-L'
     class_option :rdoc, :type => :boolean, :default => true
     class_option :yard, :type => :boolean, :default => false
     class_option :test_unit, :type => :boolean, :default => false
@@ -169,12 +169,12 @@ module Ore
       @version = options.version
       @summary = options.summary
       @description = options.description
+      @license = options.license
       @email = options.email
       @safe_email = @email.sub('@',' at ') if @email
       @homepage = (options.homepage || "http://rubygems.org/gems/#{@name}")
       @authors = options.authors
       @author = options.authors.first
-      @license = options.license
 
       @markup = if options.yard?
                   if options.markdown?
