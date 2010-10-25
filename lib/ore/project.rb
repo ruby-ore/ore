@@ -1,10 +1,11 @@
 require 'ore/exceptions/project_not_found'
 require 'ore/exceptions/invalid_metadata'
 require 'ore/naming'
-require 'ore/document_file'
+require 'ore/paths'
 require 'ore/checks'
 require 'ore/defaults'
 require 'ore/settings'
+require 'ore/document_file'
 
 require 'pathname'
 require 'yaml'
@@ -15,6 +16,7 @@ module Ore
   class Project
 
     include Naming
+    include Paths
     include Checks
     include Defaults
     include Settings
@@ -295,142 +297,6 @@ module Ore
             end
 
       Dir.chdir(dir,&block)
-    end
-
-    #
-    # Builds a path relative to the project.
-    #
-    # @param [Array] names
-    #   The directory names of the path.
-    #
-    # @return [Pathname]
-    #   The new path.
-    #
-    def path(*names)
-      @root.join(*names)
-    end
-
-    #
-    # The `bin/` directory of the project.
-    #
-    # @return [Pathname]
-    #   The path to the `bin/` directory.
-    #
-    def bin_dir
-      @root.join(LIB_DIR)
-    end
-
-    #
-    # The `lib/` directory of the project.
-    #
-    # @return [Pathname]
-    #   The path to the `lib/` directory.
-    #
-    def lib_dir
-      @root.join(LIB_DIR)
-    end
-
-    #
-    # The `pkg/` directory of the project.
-    #
-    # @return [Pathname]
-    #   The path to the `pkg/` directory.
-    #
-    def pkg_dir
-      @root.join(PKG_DIR)
-    end
-
-    #
-    # Builds a path relative to the `lib/` directory.
-    #
-    # @param [Array] names
-    #   The directory names of the path.
-    #
-    # @return [Pathname]
-    #   The new path.
-    #
-    def lib_path(*names)
-      path(LIB_DIR,*names)
-    end
-
-    #
-    # Builds a relative path into the `pkg/` directory for the `.gem` file.
-    #
-    # @return [String]
-    #   The path of a `.gem` file for the project.
-    #
-    def pkg_file
-      File.join(PKG_DIR,"#{@name}-#{@version}.gem")
-    end
-
-    #
-    # Determines if a directory exists within the project.
-    #
-    # @param [String] path
-    #   The path of the directory, relative to the project.
-    #
-    # @return [Boolean]
-    #   Specifies whether the directory exists in the project.
-    #
-    def directory?(path)
-      @root.join(path).directory?
-    end
-
-    #
-    # Determines if a file exists within the project.
-    #
-    # @param [String] path
-    #   The path of the file, relative to the project.
-    #
-    # @return [Boolean]
-    #   Specifies whether the file exists in the project.
-    #
-    def file?(path)
-      @project_files.include?(path)
-    end
-
-    #
-    # Determines if a directory exists within the `lib/` directory of the
-    # project.
-    #
-    # @return [Boolean]
-    #   Specifies that the directory exists within the `lib/` directory.
-    #
-    def lib_directory?(path)
-      directory?(File.join(LIB_DIR,path))
-    end
-
-    #
-    # Determines if a file exists within the `lib/` directory of the
-    # project.
-    #
-    # @return [Boolean]
-    #   Specifies that the file exists within the `lib/` directory.
-    #
-    def lib_file?(path)
-      file?(File.join(LIB_DIR,path))
-    end
-
-    #
-    # Finds paths within the project that match a glob pattern.
-    #
-    # @param [String] pattern
-    #   The glob pattern.
-    #
-    # @yield [path]
-    #   The given block will be passed matching paths.
-    #
-    # @yieldparam [String] path
-    #   A path relative to the root directory of the project.
-    #
-    def glob(pattern)
-      within do
-        Dir.glob(pattern) do |path|
-          if (@project_files.include?(path) || File.directory?(path))
-            yield path
-          end
-        end
-      end
     end
 
     #
