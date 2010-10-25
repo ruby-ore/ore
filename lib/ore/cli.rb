@@ -89,19 +89,21 @@ module Ore
     end
 
     desc 'gemspec', 'Dumps a Ruby gemspec for the project'
+    method_option :ruby, :type => :boolean,
+                         :default => true,
+                         :aliases => '-R'
+    method_option :yaml, :type => :boolean, :aliases => '-Y'
 
     def gemspec
       require 'ore/project'
 
-      print Project.find.to_gemspec.to_ruby
-    end
-
-    desc 'spec', 'Dumps a YAML gemspec for the project'
-
-    def spec
-      require 'ore/project'
-
-      print YAML.dump(Project.find.to_gemspec)
+      gemspec = Project.find.to_gemspec
+      
+      if options.yaml?
+        print YAML.dump(gemspec)
+      else
+        print gemspec.to_ruby
+      end
     end
 
     desc 'cut', 'Cuts a new RubyGem'
