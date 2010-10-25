@@ -14,4 +14,12 @@ describe "Explicit project" do
   it "should have a namespace directory" do
     @project.namespace_dir.should == 'explicit'
   end
+
+  it "should have a required Ruby version" do
+    @project.required_ruby_version.should == '>= 1.8.7'
+  end
+
+  it "should have a required RubyGems version" do
+    @project.required_rubygems_version.should == '>= 1.3.7'
+  end
 end
