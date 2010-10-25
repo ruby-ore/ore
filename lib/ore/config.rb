@@ -3,19 +3,19 @@ require 'pathname'
 module Ore
   module Config
     # The users home directory
-    HOME = File.expand_path(ENV['HOME'] || ENV['HOMEPATH'])
+    @@home = File.expand_path(ENV['HOME'] || ENV['HOMEPATH'])
 
     # Ore config directory
-    PATH = File.join(HOME,'.ore')
+    @@path = File.join(@@home,'.ore')
 
     # Default `ore` options file.
-    OPTIONS_FILE = File.join(PATH,'default.opts')
+    @@options_file = File.join(@@path,'default.opts')
 
     # Custom Ore Templates directory
-    TEMPLATES_DIR = File.join(PATH,'templates')
+    @@templates_dir = File.join(@@path,'templates')
 
     # The `data/` directory for Ore
-    DATA_DIR = File.expand_path(File.join('..','..','data'),File.dirname(__FILE__))
+    @@data_dir = File.expand_path(File.join('..','..','data'),File.dirname(__FILE__))
 
     #
     # The builtin templates.
@@ -27,7 +27,7 @@ module Ore
     #   The path of a Ore template directory.
     #
     def Config.builtin_templates(&block)
-      path = File.join(DATA_DIR,'ore','templates')
+      path = File.join(@@data_dir,'ore','templates')
 
       if File.directory?(path)
         Dir.glob("#{path}/*",&block)
@@ -44,8 +44,8 @@ module Ore
     #   The path of a Ore template directory.
     #
     def Config.installed_templates(&block)
-      if File.directory?(TEMPLATES_DIR)
-        Dir.glob("#{TEMPLATES_DIR}/*",&block)
+      if File.directory?(@@templates_dir)
+        Dir.glob("#{@@templates_dir}/*",&block)
       end
     end
   end

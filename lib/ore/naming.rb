@@ -7,28 +7,28 @@ module Ore
   #
   module Naming
     # The directory which contains executables for a project
-    BIN_DIR = 'bin'
+    @@bin_dir = 'bin'
 
     # The directory which contains the code for a project
-    LIB_DIR = 'lib'
+    @@lib_dir = 'lib'
 
     # The directory which contains C extension code for a project
-    EXT_DIR = 'ext'
+    @@ext_dir = 'ext'
 
     # The directory which contains data files for a project
-    DATA_DIR = 'data'
+    @@data_dir = 'data'
 
     # The directory which contains unit-tests for a project
-    TEST_DIR = 'test'
+    @@test_dir = 'test'
 
     # The directory which contains spec-tests for a project
-    SPEC_DIR = 'spec'
+    @@spec_dir = 'spec'
 
     # The directory which contains built packages
-    PKG_DIR = 'pkg'
+    @@pkg_dir = 'pkg'
 
     # Common project prefixes and namespaces
-    COMMON_NAMESPACES = {
+    @@common_namespaces = {
       'ffi' => 'FFI',
       'dm' => 'DataMapper'
     }
@@ -42,7 +42,7 @@ module Ore
     def modules_of(name)
       name.split('-').map do |words|
         words.split('_').map { |word|
-          COMMON_NAMESPACES[word] || word.capitalize
+          @@common_namespaces[word] || word.capitalize
         }.join
       end
     end

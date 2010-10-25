@@ -13,7 +13,7 @@ module Ore
 
       # Common file-name that the `VERSION` constant or `Version` module
       # is defined within.
-      FILE_NAME = 'version.rb'
+      @@file_name = 'version.rb'
 
       #
       # Finds the `version.rb` file.
@@ -26,7 +26,7 @@ module Ore
       #
       def self.find(project)
         if project.namespace_dir
-          path = File.join(project.namespace_dir,FILE_NAME)
+          path = File.join(project.namespace_dir,@@file_name)
 
           self.load(project.lib_path(path)) if project.lib_file?(path)
         end

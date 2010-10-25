@@ -8,19 +8,19 @@ module Ore
     include Naming
 
     # The default require-paths
-    DEFAULT_REQUIRE_PATHS = [LIB_DIR, EXT_DIR]
+    @@require_paths = [@@lib_dir, @@ext_dir]
 
     # The glob to find default executables
-    DEFAULT_EXECUTABLES = "#{BIN_DIR}/*"
+    @@executables = "#{@@bin_dir}/*"
 
     # The globs to find all testing-files
-    DEFAULT_TEST_FILES = [
-      "#{TEST_DIR}/{**/}*_test.rb",
-      "#{SPEC_DIR}/{**/}*_spec.rb"
+    @@test_files = [
+      "#{@@test_dir}/{**/}*_test.rb",
+      "#{@@spec_dir}/{**/}*_spec.rb"
     ]
 
     # The files to always exclude
-    DEFAULT_EXCLUDE_FILES = %w[
+    @@exclude_files = %w[
       .gitignore
     ]
 
@@ -58,7 +58,7 @@ module Ore
     # Sets the require-paths of the project.
     #
     def default_require_paths!
-      DEFAULT_REQUIRE_PATHS.each do |name|
+      @@require_paths.each do |name|
         @require_paths << name if @root.join(name).directory?
       end
     end
@@ -67,7 +67,7 @@ module Ore
     # Sets the executables of the project.
     #
     def default_executables!
-      glob(DEFAULT_EXECUTABLES) do |path|
+      glob(@@executables) do |path|
         check_executable(path) { |exe| @executables << File.basename(exe) }
       end
     end
@@ -110,7 +110,7 @@ module Ore
     #
     def default_files!
       @project_files.each do |file|
-        @files << file unless DEFAULT_EXCLUDE_FILES.include?(file)
+        @files << file unless @@exclude_files.include?(file)
       end
     end
 
@@ -118,7 +118,7 @@ module Ore
     # Sets the test-files of the project.
     #
     def default_test_files!
-      DEFAULT_TEST_FILES.each do |pattern|
+      @@test_files.each do |pattern|
         glob(pattern) { |path| add_test_file(path) }
       end
     end

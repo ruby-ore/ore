@@ -18,7 +18,7 @@ module Ore
     include Template::Helpers
 
     # The base template for all RubyGems
-    BASE_TEMPLATE = :base
+    @@base_template = :base
 
     #
     # The templates registered with the generator.
@@ -107,7 +107,7 @@ module Ore
     # Enables templates.
     #
     def enable_templates!
-      @enabled_templates = [BASE_TEMPLATE]
+      @enabled_templates = [@@base_template]
 
       @enabled_templates << :bundler if options.bundler?
       @enabled_templates << :jeweler if options.jeweler?

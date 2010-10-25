@@ -22,7 +22,7 @@ module Ore
     include Settings
 
     # The project metadata file
-    METADATA_FILE = 'gemspec.yml'
+    @@metadata_file = 'gemspec.yml'
 
     # The SCM which the project is currently under
     attr_reader :scm
@@ -121,10 +121,10 @@ module Ore
       infer_scm!
       infer_project_files!
 
-      metadata_file = @root.join(METADATA_FILE)
+      metadata_file = @root.join(@@metadata_file)
 
       unless metadata_file.file?
-        raise(ProjectNotFound,"#{@root} does not contain #{METADATA_FILE}")
+        raise(ProjectNotFound,"#{@root} does not contain #{@@metadata_file}")
       end
 
       metadata = YAML.load_file(metadata_file)
@@ -172,11 +172,7 @@ module Ore
         default_date!
       end
 
-      document_path = @root.join(DocumentFile::NAME)
-
-      if document_path.file?
-        @document = DocumentFile.new(document_path)
-      end
+      @document = DocumentFile.find(self)
 
       @require_paths = []
 
@@ -279,10 +275,10 @@ module Ore
     #
     def self.find(dir=Dir.pwd)
       Pathname.new(dir).ascend do |root|
-        return self.new(root) if root.join(METADATA_FILE).file?
+        return self.new(root) if root.join(@@metadata_file).file?
       end
 
-      raise(ProjectNotFound,"could not find #{METADATA_FILE}")
+      raise(ProjectNotFound,"could not find #{@@metadata_file}")
     end
 
     #
@@ -533,7 +529,7 @@ module Ore
     #   The name of the executable.
     #
     def add_executable(name)
-      path = File.join(BIN_DIR,name)
+      path = File.join(@@bin_dir,name)
 
       check_executable(path) { |exe| @executables << exe }
     end

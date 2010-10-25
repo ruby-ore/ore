@@ -1,7 +1,7 @@
 module Ore
   module Template
     module Interpolations
-      KEYWORDS = %w[
+      @@keywords = %w[
         name
         project_dir
         namespace_dir
@@ -16,7 +16,7 @@ module Ore
           dir.gsub!(/(:[a-z_]+:)/) do |capture|
             keyword = capture[1..-2]
 
-            if KEYWORDS.include?(keyword)
+            if @@keywords.include?(keyword)
               instance_variable_get("@#{keyword}")
             else
               capture

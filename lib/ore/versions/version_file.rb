@@ -11,7 +11,7 @@ module Ore
     class VersionFile < Version
 
       # Common `VERSION` file-names.
-      FILES = %w[VERSION VERSION.yml]
+      @@files = %w[VERSION VERSION.yml]
 
       #
       # Finds the `VERSION` file.
@@ -23,7 +23,7 @@ module Ore
       #   The version file of the project.
       #
       def self.find(project)
-        FILES.each do |name|
+        @@files.each do |name|
           return load(project.path(name)) if project.file?(name)
         end
 

@@ -24,7 +24,7 @@ module Ore
     #   The path to the `bin/` directory.
     #
     def bin_dir
-      @root.join(LIB_DIR)
+      @root.join(@@lib_dir)
     end
 
     #
@@ -34,7 +34,7 @@ module Ore
     #   The path to the `lib/` directory.
     #
     def lib_dir
-      @root.join(LIB_DIR)
+      @root.join(@@lib_dir)
     end
 
     #
@@ -44,7 +44,7 @@ module Ore
     #   The path to the `pkg/` directory.
     #
     def pkg_dir
-      @root.join(PKG_DIR)
+      @root.join(@@pkg_dir)
     end
 
     #
@@ -57,7 +57,7 @@ module Ore
     #   The new path.
     #
     def lib_path(*names)
-      path(LIB_DIR,*names)
+      path(@@lib_dir,*names)
     end
 
     #
@@ -104,7 +104,7 @@ module Ore
     #   Specifies that the directory exists within the `lib/` directory.
     #
     def lib_directory?(path)
-      directory?(File.join(LIB_DIR,path))
+      directory?(File.join(@@lib_dir,path))
     end
 
     #
@@ -115,7 +115,7 @@ module Ore
     #   Specifies that the file exists within the `lib/` directory.
     #
     def lib_file?(path)
-      file?(File.join(LIB_DIR,path))
+      file?(File.join(@@lib_dir,path))
     end
 
     #

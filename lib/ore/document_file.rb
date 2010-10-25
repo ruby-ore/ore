@@ -6,8 +6,6 @@ module Ore
   #
   class DocumentFile
 
-    NAME = '.document'
-
     # The path to the `.document` file.
     attr_reader :path
 
@@ -30,6 +28,21 @@ module Ore
       @extra_file_globs = Set[]
 
       parse!
+    end
+
+    @@file = '.document'
+
+    #
+    # Finds the document file in a project.
+    #
+    # @param [Project] project
+    #   The project to search within.
+    #
+    # @return [DocumentFile, nil]
+    #   The found document file.
+    #
+    def self.find(project)
+      self.new(project.path(@@file)) if project.file?(@@file)
     end
 
     #

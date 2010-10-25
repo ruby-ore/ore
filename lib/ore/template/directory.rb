@@ -5,10 +5,10 @@ module Ore
     class Directory
 
       # Files or directory names to ignore
-      IGNORE = %w[.git]
+      @@ignore = %w[.git]
 
       # The known markup languages and file extensions
-      MARKUPS = {
+      @@markups = {
         :markdown => %w[.md .markdown],
         :textile => %w[.tt .textile],
         :rdoc => %w[.rdoc]
@@ -115,7 +115,7 @@ module Ore
             name = File.basename(file)
 
             # ignore certain files/directories
-            Find.prune if IGNORE.include?(name)
+            Find.prune if @@ignore.include?(name)
 
             if File.directory?(file)
               @directories << file
@@ -155,7 +155,7 @@ module Ore
       #   Specifies whether the file is formatting.
       #
       def formatted?(path)
-        MARKUPS.values.any? { |exts| exts.include?(File.extname(path)) }
+        @@markups.values.any? { |exts| exts.include?(File.extname(path)) }
       end
 
       #
@@ -171,7 +171,7 @@ module Ore
       #   Specifies whether the file has the sepcified formatting.
       #
       def formatted_like?(path,markup)
-        MARKUPS[markup].include?(File.extname(path))
+        @@markups[markup].include?(File.extname(path))
       end
 
     end
