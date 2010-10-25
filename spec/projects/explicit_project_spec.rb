@@ -15,6 +15,14 @@ describe "Explicit project" do
     @project.namespace_dir.should == 'explicit'
   end
 
+  it "should have a license" do
+    @project.license.should == 'MIT'
+  end
+
+  it "should have a licenses" do
+    @project.licenses.should == ['MIT']
+  end
+
   it "should have a required Ruby version" do
     @project.required_ruby_version.should == '>= 1.8.7'
   end

@@ -1,6 +1,7 @@
 name: Explicit
 summary: An explicit library
 description: This is a library written by strict developers.
+license: MIT
 authors:
   - Senior Software Engineer
   - Junior Software Engineer
