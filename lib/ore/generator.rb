@@ -179,7 +179,7 @@ module Ore
       @markup = if options.yard?
                   if options.markdown?
                     :markdown
-                  elsif options.text_tile?
+                  elsif options.textile?
                     :textile
                   else
                     :rdoc
