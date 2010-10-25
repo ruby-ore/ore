@@ -48,6 +48,18 @@ The description of the project can be listed in a variety of ways:
 
 If the description is not listed, it will default to the `summary`.
 
+## license
+
+The license of the project can be listed like so:
+
+    license: MIT
+
+Multiple licenses can also be listed:
+
+    license:
+     - LGPL-2.1
+     - GPL-2
+
 ## authors
 
 The authors of the project can be listed like so:

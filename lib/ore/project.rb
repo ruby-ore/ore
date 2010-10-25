@@ -51,6 +51,9 @@ module Ore
     # The project description
     attr_reader :description
 
+    # The licenses of the project
+    attr_reader :licenses
+
     # The authors of the project
     attr_reader :authors
 
@@ -147,6 +150,12 @@ module Ore
 
       @summary = (metadata['summary'] || metadata['description'])
       @description = (metadata['description'] || metadata['summary'])
+
+      @licenses = []
+
+      if metadata['license']
+        set_license!(metadata['license'])
+      end
 
       @authors = []
 
@@ -300,6 +309,16 @@ module Ore
     end
 
     #
+    # The primary license of the project.
+    #
+    # @return [String, nil]
+    #   The primary license for the project.
+    #
+    def license
+      @licenses.first
+    end
+
+    #
     # Determines whether the project uses Bundler.
     #
     # @return [Boolean]
@@ -360,6 +379,7 @@ module Ore
         gemspec.version = @version.to_s
         gemspec.summary = @summary.to_s
         gemspec.description = @description.to_s
+        gemspec.licenses = @licenses
         gemspec.authors = @authors.to_a
         gemspec.homepage = @homepage
         gemspec.email = @email

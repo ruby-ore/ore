@@ -32,6 +32,20 @@ module Ore
     end
 
     #
+    # Sets the license(s) of the project.
+    #
+    # @param [Array, String] license
+    #   The license(s) of the project.
+    #
+    def set_license!(license)
+      if license.kind_of?(Array)
+        license.each { |name| @licenses << name.to_s }
+      else
+        @licenses << license.to_s
+      end
+    end
+
+    #
     # Sets the authors of the project.
     #
     # @param [Array<String>, String] authors
