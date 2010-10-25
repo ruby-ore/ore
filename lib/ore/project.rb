@@ -85,6 +85,12 @@ module Ore
     # The test files for the project
     attr_reader :test_files
 
+    # The version of Ruby required by the project
+    attr_reader :required_ruby_version
+
+    # The version of RubyGems required by the project
+    attr_reader :required_rubygems_version
+
     # The dependencies of the project
     attr_reader :dependencies
 
@@ -217,6 +223,16 @@ module Ore
         set_test_files! metadata['test_files']
       else
         default_test_files!
+      end
+
+      if metadata['required_ruby_version']
+        set_required_ruby_version! metadata['required_ruby_version']
+      end
+
+      if metadata['required_rubygems_version']
+        set_required_rubygems_version! metadata['required_rubygems_version']
+      else
+        default_required_rubygems_version!
       end
 
       @dependencies = []

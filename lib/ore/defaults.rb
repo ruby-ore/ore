@@ -123,5 +123,15 @@ module Ore
       end
     end
 
+    #
+    # Defaults the required version of RubyGems to `>= 1.3.6`, if the
+    # project uses Bundler.
+    #
+    def default_required_rubygems_version!
+      if bundler?
+        @required_rubygems_version = '>= 1.3.6'
+      end
+    end
+
   end
 end

@@ -180,6 +180,21 @@ More than one test-file pattern can be supplied:
 If `test_files` is not listed, Ore will default `files` to
 `test/{**/}test_*.rb` and `spec/{**/}*_spec.rb`.
 
+## required_ruby_version
+
+The version of Ruby required by the project can be listed like so:
+
+    required_ruby_version: >= 1.9.1
+
+## required_rubygems_version
+
+The version of RubyGems required by the project can be listed like so:
+
+    required_rubygems_version: >= 1.3.7
+
+If `required_rubygems_version` is not listed and the project uses Bundler,
+Ore will default `required_rubygems_version` to `>= 1.3.6`.
+
 ## dependencies
 
 The dependencies of the project can be listed like so:

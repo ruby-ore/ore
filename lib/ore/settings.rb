@@ -141,6 +141,26 @@ module Ore
     end
 
     #
+    # Sets the Ruby version required by the project.
+    #
+    # @param [String] version
+    #   The version requirement.
+    #
+    def set_required_ruby_version!(version)
+      @required_ruby_version = version.to_s
+    end
+
+    #
+    # Sets the RubyGems version required by the project.
+    #
+    # @param [String] version
+    #   The version requirement.
+    #
+    def set_required_rubygems_version!(version)
+      @required_rubygems_version = version.to_s
+    end
+
+    #
     # Sets the dependencies of the project.
     #
     # @param [Hash{String => String}] dependencies
