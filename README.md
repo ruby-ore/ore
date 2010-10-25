@@ -50,6 +50,7 @@ The `gemspec.yml` file used to build Ore:
       files. Ore allows the developer to keep all of the project information
       in a single YAML file.
     
+    license: MIT
     authors: Postmodern
     email: postmodern.mod3@gmail.com
     homepage: http://github.com/postmodern/ore
