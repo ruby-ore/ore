@@ -1,4 +1,4 @@
 require 'rspec'
-require 'ore/version'
+require 'ore/config'
 
 include Ore
