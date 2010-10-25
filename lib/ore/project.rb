@@ -396,12 +396,24 @@ module Ore
           gemspec.add_dependency(dep.name,*dep.versions)
         end
 
-        @runtime_dependencies.each do |dep|
-          gemspec.add_runtime_dependency(dep.name,*dep.versions)
+        if gemspec.respond_to?(:add_runtime_dependency)
+          @runtime_dependencies.each do |dep|
+            gemspec.add_runtime_dependency(dep.name,*dep.versions)
+          end
+        else
+          @runtime_dependencies.each do |dep|
+            gemspec.add_dependency(dep.name,*dep.versions)
+          end
         end
 
-        @development_dependencies.each do |dep|
-          gemspec.add_development_dependency(dep.name,*dep.versions)
+        if gemspec.respond_to?(:add_development_dependency)
+          @development_dependencies.each do |dep|
+            gemspec.add_development_dependency(dep.name,*dep.versions)
+          end
+        else
+          @development_dependencies.each do |dep|
+            gemspec.add_dependency(dep.name,*dep.versions)
+          end
         end
 
         yield gemspec if block_given?
