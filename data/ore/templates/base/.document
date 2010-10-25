@@ -1,5 +1,3 @@
-lib/**/*.rb
-bin/*
 - 
 ChangeLog.*
 LICENSE.txt
