@@ -1,9 +1,4 @@
 module Ore
-  unless const_defined?(:ORE_LIB_DIR)
-    # The path to the `lib/` directory of ore.
-    ORE_LIB_DIR = File.expand_path(File.dirname(__FILE__))
-  end
-
   #
   # Provides transparent access to {Ore::Specification}.
   #
@@ -22,6 +17,9 @@ module Ore
         # attempt to load 'ore/specification' from the $LOAD_PATH
         require 'ore/specification'
       rescue ::LoadError
+        # find our `lib/` directory
+        lib_dir = File.expand_path(File.dirname(__FILE__))
+
         # modify the $LOAD_PATH is 'ore/specification' is not available
         $LOAD_PATH << ORE_LIB_DIR unless $LOAD_PATH.include?(ORE_LIB_DIR)
 
