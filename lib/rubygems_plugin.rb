@@ -16,8 +16,21 @@ module Ore
   #
   def self.const_missing(name)
     if name == :Specification
-      $LOAD_PATH << ORE_LIB_DIR unless $LOAD_PATH.include?(ORE_LIB_DIR)
-      require 'ore/specification'
+      begin
+        # attempt to load 'ore/specification' from the $LOAD_PATH
+        require 'ore/specification'
+      rescue ::LoadError
+        # modify the $LOAD_PATH is 'ore/specification' is not available
+        $LOAD_PATH << ORE_LIB_DIR unless $LOAD_PATH.include?(ORE_LIB_DIR)
+
+        begin
+          # attempt loading 'ore/specification' again
+          require 'ore/specification'
+        rescue ::LoadError
+          # ore is probably not installed, so raise a NameError
+          return super(name)
+        end
+      end
 
       return Ore.const_get(name)
     end
