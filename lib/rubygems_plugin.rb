@@ -1,6 +1,8 @@
 module Ore
-  # The path to the `lib/` directory of ore.
-  ORE_LIB_DIR = File.expand_path(File.dirname(__FILE__))
+  unless const_defined?(:ORE_LIB_DIR)
+    # The path to the `lib/` directory of ore.
+    ORE_LIB_DIR = File.expand_path(File.dirname(__FILE__))
+  end
 
   #
   # Provides transparent access to {Ore::Specification}.
