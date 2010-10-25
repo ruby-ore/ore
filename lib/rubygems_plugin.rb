@@ -19,7 +19,7 @@ module Ore
       $LOAD_PATH << ORE_LIB_DIR unless $LOAD_PATH.include?(ORE_LIB_DIR)
       require 'ore/specification'
 
-      return Ore.const_get('Specification')
+      return Ore.const_get(name)
     end
 
     super(name)
