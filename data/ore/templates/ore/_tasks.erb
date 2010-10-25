@@ -4,7 +4,7 @@ Ore::Tasks.new
 <%- else -%>
 begin
   require 'ore/tasks'
-  Ore::Tasks
+  Ore::Tasks.new
 rescue LoadError => e
   STDERR.puts e.message
   STDERR.puts "Run `gem install ore-tasks` to install 'ore/tasks'."
