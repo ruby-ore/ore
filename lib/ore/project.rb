@@ -380,7 +380,7 @@ module Ore
         gemspec.summary = @summary.to_s
         gemspec.description = @description.to_s
         gemspec.licenses = @licenses
-        gemspec.authors = @authors.to_a
+        gemspec.authors = @authors
         gemspec.homepage = @homepage
         gemspec.email = @email
         gemspec.date = @date
@@ -391,7 +391,7 @@ module Ore
           end
         end
 
-        gemspec.executables = @executables.to_a
+        gemspec.executables = @executables
         gemspec.default_executable = @default_executable
 
         gemspec.has_rdoc = if has_yard
@@ -400,9 +400,9 @@ module Ore
                              true
                            end
 
-        gemspec.extra_rdoc_files = @extra_doc_files.to_a
-        gemspec.files = @files.to_a
-        gemspec.test_files = @test_files.to_a
+        gemspec.extra_rdoc_files = @extra_doc_files
+        gemspec.files = @files
+        gemspec.test_files = @test_files
 
         if gemspec.respond_to?(:required_ruby_version=)
           gemspec.required_ruby_version = @required_ruby_version
