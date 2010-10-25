@@ -384,6 +384,14 @@ module Ore
         gemspec.files = @files.to_a
         gemspec.test_files = @test_files.to_a
 
+        if gemspec.respond_to?(:required_ruby_version=)
+          gemspec.required_ruby_version = @required_ruby_version
+        end
+
+        if gemspec.respond_to?(:required_rubygems_version=)
+          gemspec.required_rubygems_version = @required_rubygems_version
+        end
+
         @dependencies.each do |dep|
           gemspec.add_dependency(dep.name,*dep.versions)
         end
