@@ -1,6 +1,6 @@
 name: ore
 version: 0.1.0
-summary: Cut raw RubyGems from YAML.
+summary: Cut raw RubyGems from YAML
 description:
   Ore is a simple RubyGem building solution. Ore handles the
   creation of Gem::Specification objects as well as building '.gem'
