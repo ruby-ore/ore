@@ -1,3 +1,11 @@
+### 0.1.4 / 2010-10-26
+
+* Increased documentation coverage.
+* Make sure {Ore::Config.builtin_templates} and
+  {Ore::Config.installed_templates} only yield valid directories.
+* Ensure that {Ore::Settings} handles versions as Strings.
+* Fixed two typos.
+
 ### 0.1.3 / 2010-10-25
 
 * Fixed URLs in the `gemspec.yml` and {file:README.md}.
