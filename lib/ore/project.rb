@@ -13,6 +13,10 @@ require 'find'
 require 'fileutils'
 
 module Ore
+  #
+  # Combinds the metadata from the `gemspec.yml` file and the inferred
+  # information from the project directory.
+  #
   class Project
 
     include Naming
