@@ -21,7 +21,7 @@ module Ore
         lib_dir = File.expand_path(File.dirname(__FILE__))
 
         # modify the $LOAD_PATH is 'ore/specification' is not available
-        $LOAD_PATH << ORE_LIB_DIR unless $LOAD_PATH.include?(ORE_LIB_DIR)
+        $LOAD_PATH << lib_dir unless $LOAD_PATH.include?(lib_dir)
 
         begin
           # attempt loading 'ore/specification' again
