@@ -1,6 +1,9 @@
 require 'ore/naming'
 
 module Ore
+  #
+  # A mixin for {Project} which provides methods for working with paths.
+  #
   module Paths
     include Naming
 
