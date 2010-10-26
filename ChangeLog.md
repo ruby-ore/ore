@@ -1,3 +1,9 @@
+### 0.1.2 / 2010-10-25
+
+* Renamed `--jeweler` to `--jeweler-tasks` in {Ore::Generator}.
+* Renamed `--ore` to `--ore-tasks` in {Ore::Generator}.
+* Fixed the `remove` task in {Ore::CLI}.
+
 ### 0.1.1 / 2010-10-25
 
 * Show stopper bug fixed.
