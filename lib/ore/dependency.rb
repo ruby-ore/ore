@@ -1,4 +1,7 @@
 module Ore
+  #
+  # Represents a RubyGem dependency.
+  #
   class Dependency
 
     # The name of the dependency
