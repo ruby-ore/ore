@@ -1,5 +1,8 @@
 module Ore
   module Template
+    #
+    # Helper methods that can be used within ERb templates.
+    #
     module Helpers
       protected
 
