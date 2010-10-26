@@ -67,7 +67,7 @@ module Ore
     #   The path of a `.gem` file for the project.
     #
     def pkg_file
-      File.join(PKG_DIR,"#{@name}-#{@version}.gem")
+      File.join(@@pkg_dir,"#{@name}-#{@version}.gem")
     end
 
     #

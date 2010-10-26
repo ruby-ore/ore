@@ -443,7 +443,7 @@ module Ore
     #   The path to the built gem file within the `pkg/` directory.
     #
     def build!
-      pkg_dir = @root.join(PKG_DIR)
+      pkg_dir = @root.join(@@pkg_dir)
       FileUtils.mkdir_p(pkg_dir)
 
       gem_file = Gem::Builder.new(self.to_gemspec).build
