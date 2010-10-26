@@ -18,7 +18,15 @@ directory.
 
 The version of the project can be listed like so:
 
-    version: 0.1.0
+    version: 1.2.3
+
+The `version` may also be listed as a Hash:
+
+    version:
+      major: 1
+      minor: 2
+      patch: 3
+      build: pre
 
 If the version is not listed, Ore will first search for a `VERSION` or
 `VERSION.yml` file in the root of the project. If Ore cannot find any
