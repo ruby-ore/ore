@@ -3,6 +3,10 @@ require 'ore/versions/version'
 require 'ore/dependency'
 
 module Ore
+  #
+  # A mixin for {Project} which provides methods for normalizing and
+  # setting project attributes.
+  #
   module Settings
     protected
 
