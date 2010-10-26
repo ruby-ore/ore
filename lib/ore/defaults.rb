@@ -4,6 +4,10 @@ require 'ore/versions'
 require 'date'
 
 module Ore
+  #
+  # A mixin for {Project} which provides methods for assigning default
+  # values to project attributes.
+  #
   module Defaults
     include Naming
 
