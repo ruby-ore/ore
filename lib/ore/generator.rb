@@ -3,7 +3,6 @@ require 'ore/template/interpolations'
 require 'ore/template/helpers'
 require 'ore/naming'
 require 'ore/config'
-require 'ore/version'
 
 require 'thor/group'
 require 'date'
@@ -155,6 +154,8 @@ module Ore
     # Initializes variables for the templates.
     #
     def initialize_variables!
+      @ore_version = '0.1.0'
+
       @project_dir = File.basename(destination_root)
       @name = (options.name || @project_dir)
 
