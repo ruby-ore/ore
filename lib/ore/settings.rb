@@ -25,7 +25,7 @@ module Ore
 
         @version = Versions::Version.new(major,minor,patch,build)
       when String
-        @version = Versions::Version.parse(version)
+        @version = Versions::Version.parse(version.to_s)
       else
         raise(InvalidMetadata,"version must be a Hash or a String")
       end
