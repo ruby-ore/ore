@@ -72,7 +72,7 @@ module Ore
     class_option :test_unit, :type => :boolean, :default => false
     class_option :rspec, :type => :boolean, :default => true
     class_option :bundler, :type => :boolean, :default => false
-    class_option :jeweler, :type => :boolean, :default => false
+    class_option :jeweler_tasks, :type => :boolean, :default => false
     class_option :ore_tasks, :type => :boolean, :default => false
     class_option :git, :type => :boolean, :default => true
     argument :path, :required => true
@@ -109,7 +109,7 @@ module Ore
       @enabled_templates = [@@base_template]
 
       @enabled_templates << :bundler if options.bundler?
-      @enabled_templates << :jeweler if options.jeweler?
+      @enabled_templates << :jeweler_tasks if options.jeweler_tasks?
       @enabled_templates << :ore_tasks if options.ore_tasks?
       
       if options.rspec?
