@@ -45,9 +45,11 @@ module Ore
     # @yieldparam [String] path
     #   The path of a Ore template directory.
     #
-    def Config.installed_templates(&block)
+    def Config.installed_templates
       if File.directory?(@@templates_dir)
-        Dir.glob("#{@@templates_dir}/*",&block)
+        Dir.glob("#{@@templates_dir}/*") do |template|
+          yield template if File.directory?(template)
+        end
       end
     end
   end
