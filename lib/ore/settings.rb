@@ -39,9 +39,9 @@ module Ore
     #
     def set_license!(license)
       if license.kind_of?(Array)
-        license.each { |name| @licenses << name.to_s }
+        @licenses += license
       else
-        @licenses << license.to_s
+        @licenses << license
       end
     end
 
