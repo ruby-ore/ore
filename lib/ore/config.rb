@@ -26,11 +26,13 @@ module Ore
     # @yieldparam [String] path
     #   The path of a Ore template directory.
     #
-    def Config.builtin_templates(&block)
+    def Config.builtin_templates
       path = File.join(@@data_dir,'ore','templates')
 
       if File.directory?(path)
-        Dir.glob("#{path}/*",&block)
+        Dir.glob("#{path}/*") do |template|
+          yield template if File.directory?(template)
+        end
       end
     end
 
