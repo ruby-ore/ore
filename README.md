@@ -28,7 +28,7 @@ the developer to keep all of the project information in a single YAML file.
         # custom logic here
       end
 
-* Provides an **extendable** project **generator** that can use
+* Provides an **extendable** project **generator** that supports
   user-installed templates.
 
 ## Requirements
