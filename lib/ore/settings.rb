@@ -189,6 +189,8 @@ module Ore
       end
 
       dependencies.each do |name,versions|
+        versions = versions.to_s
+
         @dependencies << Dependency.parse_versions(name,versions)
       end
     end
@@ -209,6 +211,8 @@ module Ore
       end
 
       dependencies.each do |name,versions|
+        versions = versions.to_s
+
         @runtime_dependencies << Dependency.parse_versions(name,versions)
       end
     end
@@ -229,6 +233,8 @@ module Ore
       end
 
       dependencies.each do |name,versions|
+        versions = versions.to_s
+
         @development_dependencies << Dependency.parse_versions(name,versions)
       end
     end
