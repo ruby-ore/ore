@@ -1,4 +1,8 @@
-### 0.1.0 / 2010-10-23
+### 0.1.1 / 2010-10-25
+
+* Show stopper bug fixed.
+
+### 0.1.0 / 2010-10-25
 
 * Initial release:
   * Added {Ore::Config}.
