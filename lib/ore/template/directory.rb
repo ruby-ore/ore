@@ -2,6 +2,10 @@ require 'find'
 
 module Ore
   module Template
+    #
+    # Represents a template directory and the static files, ERb files
+    # and sub-directories within it.
+    #
     class Directory
 
       # Files or directory names to ignore
