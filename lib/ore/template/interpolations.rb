@@ -1,6 +1,7 @@
 module Ore
   module Template
     module Interpolations
+      # The accepted interpolation keywords that may be used in paths
       @@keywords = %w[
         name
         project_dir
@@ -9,6 +10,24 @@ module Ore
 
       protected
 
+      #
+      # Expands the given path by substituting the interpolation keywords
+      # for the related instance variables.
+      #
+      # @param [String] path
+      #   The path to expand.
+      #
+      # @return [String]
+      #   The expanded path.
+      #
+      # @example Assuming `@project_dir` contains `my_project`.
+      #   interpolate "lib/:project_dir:.rb"
+      #   # => "lib/my_project.rb"
+      #
+      # @example Assuming `@namespace_dir` contains `my/project`.
+      #   interpolate "spec/:namespace_dir:_spec.rb"
+      #   # => "spec/my/project_spec.rb"
+      #
       def interpolate(path)
         dirs = path.split(File::SEPARATOR)
 
