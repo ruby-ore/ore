@@ -87,7 +87,7 @@ module Ore
         exit -1
       end
 
-      File.rm_rf(path)
+      FileUtils.rm_rf(path)
     end
 
     desc 'gemspec', 'Dumps a Ruby gemspec for the project'
