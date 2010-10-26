@@ -1,4 +1,7 @@
 module Ore
+  #
+  # A mixin for {Project} which provides methods for checking files.
+  #
   module Checks
     protected
 
