@@ -1,5 +1,15 @@
 module Ore
   module Template
+    #
+    # Handles the expansion of paths and substitution of path keywords.
+    # The following keywords are supported:
+    #
+    # * `:name:` - The name of the project.
+    # * `:project_dir:` - The directory base-name derived from the project
+    #   name.
+    # * `:namespace_dir:` - The full directory path derived from the
+    #   project name.
+    #
     module Interpolations
       # The accepted interpolation keywords that may be used in paths
       @@keywords = %w[
