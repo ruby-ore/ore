@@ -1,3 +1,7 @@
+### 0.1.3 / 2010-10-25
+
+* Fixed URLs in the `gemspec.yml` and {file:README.md}.
+
 ### 0.1.2 / 2010-10-25
 
 * Renamed `--jeweler` to `--jeweler-tasks` in {Ore::Generator}.
