@@ -1,7 +1,7 @@
 # Ore
 
-* [Source](http://github.com/postmodern/ore)
-* [Issues](http://github.com/postmodern/ore/issues)
+* [Source](http://github.com/ruby-ore/ore)
+* [Issues](http://github.com/ruby-ore/ore/issues)
 * IRC: irc.freenode.net #ruby-ore
 * Postmodern (postmodern.mod3 at gmail.com)
 
