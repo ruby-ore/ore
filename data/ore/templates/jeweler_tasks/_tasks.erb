@@ -5,9 +5,14 @@ Jeweler::Tasks.new(Ore::Specification.new)
 <%- else -%>
 begin
   gem 'ore', '<%= @ore_dependency %>'
-  gem 'jeweler', '<%= @jeweler_dependency %>'
-
   require 'ore/specification'
+rescue LoadError
+  STDERR.puts e.message
+  STDERR.puts "Run `gem install ore` to install Ore."
+end
+
+begin
+  gem 'jeweler', '<%= @jeweler_dependency %>'
   require 'jeweler'
 
   Jeweler::Tasks.new(Ore::Specification.new)
