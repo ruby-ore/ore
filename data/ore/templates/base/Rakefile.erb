@@ -10,7 +10,7 @@ rescue LoadError => e
 end
 
 begin
-  Bundler.setup(:development, :doc)
+  Bundler.setup(:development)
 rescue Bundler::BundlerError => e
   STDERR.puts e.message
   STDERR.puts "Run `bundle install` to install missing gems."
