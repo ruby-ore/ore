@@ -447,6 +447,11 @@ module Ore
           end
         end
 
+        # legacy information
+        if gemspec.respond_to?(:rubyforge_project=)
+          gemspec.rubyforge_project = gemspec.name
+        end
+
         yield gemspec if block_given?
       end
     end
