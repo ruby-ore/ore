@@ -145,8 +145,8 @@ module Ore
           exit -1
         end
 
-        self.source_paths << template_dir
         @templates << Template::Directory.new(template_dir)
+        self.source_paths << template_dir
       end
     end
 
@@ -193,6 +193,12 @@ module Ore
       @year = @date.year
       @month = @date.month
       @day = @date.day
+
+      @templates.each do |template|
+        template.data.each do |name,value|
+          instance_variable_set("@#{name}",value)
+        end
+      end
     end
 
     #
