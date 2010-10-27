@@ -164,6 +164,8 @@ module Ore
     # @param [Array, String] requirements
     #   The external requirements.
     #
+    # @since 0.2.0
+    #
     def set_requirements!(requirements)
       if requirements.kind_of?(Array)
         @requirements += requirements

@@ -122,6 +122,8 @@ module Ore
       # @raise [InvalidTemplate]
       #   The `template.yml` file did not contain a YAML Hash.
       #
+      # @since 0.2.0
+      #
       def load!
         config_path = File.join(@path,@@config_file)
         return false unless File.file?(config_path)
