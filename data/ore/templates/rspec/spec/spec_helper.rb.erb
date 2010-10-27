@@ -1,5 +1,5 @@
 <%- unless bundler? -%>
-gem 'rspec', '~> 2.0.0'
+gem 'rspec', '<%= @rspec_dependency %>'
 <%- end -%>
 require 'rspec'
 require '<%= @namespace_dir %>/version'

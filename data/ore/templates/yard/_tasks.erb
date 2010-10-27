@@ -3,7 +3,9 @@ require 'yard'
 YARD::Rake::YardocTask.new  
 <%- else -%>
 begin
+  gem 'yard', '<%= @yard_dependency %>'
   require 'yard'
+
   YARD::Rake::YardocTask.new  
 rescue LoadError => e
   task :yard do

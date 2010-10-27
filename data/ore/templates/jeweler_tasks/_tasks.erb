@@ -5,7 +5,7 @@ Jeweler::Tasks.new(Ore::Specification.new)
 <%- else -%>
 begin
   gem 'ore', '<%= @ore_dependency %>'
-  gem 'jeweler', '~> 1.4'
+  gem 'jeweler', '<%= @jeweler_dependency %>'
 
   require 'ore/specification'
   require 'jeweler'
