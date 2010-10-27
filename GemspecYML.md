@@ -200,6 +200,18 @@ More than one test-file pattern can be supplied:
 If `test_files` is not listed, Ore will default `files` to
 `test/{**/}test_*.rb` and `spec/{**/}*_spec.rb`.
 
+## requirements
+
+The external requirements of the project can be listed like so:
+
+    requirements: libcairo >= 1.8
+
+Multiple external requirements can also be listed:
+
+    requirements:
+     - libcairo >= 1.8.0
+     - libclutter >= 1.2.0
+
 ## required_ruby_version
 
 The version of Ruby required by the project can be listed like so:

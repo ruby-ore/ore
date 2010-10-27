@@ -3,5 +3,7 @@ summary: FFI Binding
 description: FFI Binding for some C library
 authors: Wayne Meissner
 
+requirements: libstuff >= 1.0
+
 dependencies:
   ffi: ~> 0.6.0

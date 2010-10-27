@@ -18,4 +18,8 @@ describe "FFI Bindings project" do
   it "should have a namespace directory" do
     @project.namespace_dir.should == 'ffi/binding'
   end
+
+  it "should have external requirements" do
+    @project.requirements.should == ['libstuff >= 1.0']
+  end
 end

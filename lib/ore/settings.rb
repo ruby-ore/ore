@@ -159,6 +159,20 @@ module Ore
     end
 
     #
+    # Sets the external requirements of the project.
+    #
+    # @param [Array, String] requirements
+    #   The external requirements.
+    #
+    def set_requirements!(requirements)
+      if requirements.kind_of?(Array)
+        @requirements += requirements
+      else
+        @requirements << requirements
+      end
+    end
+
+    #
     # Sets the Ruby version required by the project.
     #
     # @param [String] version

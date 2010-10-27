@@ -94,6 +94,9 @@ module Ore
     # The test files for the project
     attr_reader :test_files
 
+    # Any external requirements needed by the project
+    attr_reader :requirements
+
     # The version of Ruby required by the project
     attr_reader :required_ruby_version
 
@@ -234,6 +237,12 @@ module Ore
         set_test_files! metadata['test_files']
       else
         default_test_files!
+      end
+
+      @requirements = []
+
+      if metadata['requirements']
+        set_requirements! metadata['requirements']
       end
 
       if metadata['required_ruby_version']
@@ -403,6 +412,8 @@ module Ore
         gemspec.extra_rdoc_files = @extra_doc_files
         gemspec.files = @files
         gemspec.test_files = @test_files
+
+        gemspec.requirements = @requirements
 
         if gemspec.respond_to?(:required_ruby_version=)
           gemspec.required_ruby_version = @required_ruby_version
