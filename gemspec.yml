@@ -1,5 +1,5 @@
 name: ore
-version: 0.1.4
+version: 0.2.0
 summary: Cut raw RubyGems from YAML
 description:
   Ore is a simple RubyGem building solution. Ore handles the
