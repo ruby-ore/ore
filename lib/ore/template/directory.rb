@@ -1,5 +1,6 @@
 require 'ore/template/exceptions/invalid_template'
 
+require 'yaml'
 require 'find'
 
 module Ore
