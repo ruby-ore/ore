@@ -1,3 +1,20 @@
+### 0.2.0 / 2010-10-27
+
+* Added {Ore::Project#requirements}.
+* Added {Ore::Settings#set_requirements!}.
+* Added {Ore::Template::InvalidTemplate}.
+* Added {Ore::Template::Directory#load!}.
+* Suppress `no rubyforge_project specified` warnings by setting the
+  `rubyforge_project` to the project name in {Ore::Project#to_gemspec}.
+* Do not add extra dependencies to the `gemspec.yml` file when generating
+  a Bundler enabled project. Extra dependencies will be added to the
+  `Gemfile` and controlled by Bundler.
+* Allow Ore template directories to contain `template.yml` which may list
+  template variables:
+
+      data:
+        variable: Value
+
 ### 0.1.4 / 2010-10-26
 
 * Increased documentation coverage.
