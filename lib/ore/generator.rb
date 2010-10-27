@@ -154,8 +154,6 @@ module Ore
     # Initializes variables for the templates.
     #
     def initialize_variables!
-      @ore_dependency = '~> 0.2.0'
-
       @project_dir = File.basename(destination_root)
       @name = (options.name || @project_dir)
 
