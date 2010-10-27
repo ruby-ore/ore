@@ -1,3 +1,5 @@
+require 'ore/template/exceptions/invalid_template'
+
 require 'find'
 
 module Ore
@@ -8,8 +10,11 @@ module Ore
     #
     class Directory
 
+      # The template configuration file
+      @@config_file = 'template.yml'
+
       # Files or directory names to ignore
-      @@ignore = %w[.git]
+      @@ignore = ['.git', @@config_file]
 
       # The known markup languages and file extensions
       @@markups = {
@@ -33,6 +38,9 @@ module Ore
       # The include templates in the template directory
       attr_reader :includes
 
+      # The data to use when rendering the template files
+      attr_reader :data
+
       #
       # Initializes a new template directory.
       #
@@ -47,6 +55,9 @@ module Ore
         @templates = {}
         @includes = Hash.new { |hash,key| hash[key] = {} }
 
+        @data = {}
+
+        load!
         scan!
       end
 
@@ -104,6 +115,37 @@ module Ore
       end
 
       protected
+
+      #
+      # Loads template configuration information from `template.yml`.
+      #
+      # @raise [InvalidTemplate]
+      #   The `template.yml` file did not contain a YAML Hash.
+      #
+      def load!
+        config_path = File.join(@path,@@config_file)
+        return false unless File.file?(config_path)
+
+        config = YAML.load_file(config_path)
+
+        unless config.kind_of?(Hash)
+          raise(InvalidTemplate,"invalid configuration in #{config_path.dump}")
+        end
+
+        if (data = config['data'])
+          # data must be a Hash
+          unless data.kind_of?(Hash)
+            raise(InvalidTemplate,"data must be a Hash: #{config_path.dump}")
+          end
+
+          # load the template data
+          data.each do |name,value|
+            @data[name.to_sym] = value
+          end
+        end
+
+        return true
+      end
 
       #
       # Scans the template directory recursively recording the directories,
