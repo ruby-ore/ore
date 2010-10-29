@@ -42,6 +42,10 @@ describe Naming do
     subject.namespace_dirs_of('foo-bar').should == ['foo', 'bar']
   end
 
+  it "should filter out namespaces that are rarely used in directory names" do
+    subject.namespace_dirs_of('ruby-foo').should == ['foo']
+  end
+
   it "should guess the namespace directory from a project name" do
     subject.namespace_path_of('foo-bar').should == 'foo/bar'
   end

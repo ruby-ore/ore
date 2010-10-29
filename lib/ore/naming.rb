@@ -27,6 +27,9 @@ module Ore
     # The directory which contains built packages
     @@pkg_dir = 'pkg'
 
+    # Words used in project names, but never in directory names
+    @@ignore_namespaces = %w[ruby java]
+
     # Common project prefixes and namespaces
     @@common_namespaces = {
       'ffi' => 'FFI',
@@ -79,7 +82,9 @@ module Ore
     #   The namespace directories for the project.
     #
     def namespace_dirs_of(name)
-      name.split('-').map { |word| underscore(word) }
+      name.split('-').map { |word|
+        underscore(word) unless @@ignore_namespaces.include?(word)
+      }.compact
     end
 
     #
