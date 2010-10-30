@@ -37,13 +37,28 @@ module Ore
     }
 
     #
+    # Splits the project name into individual names.
+    #
+    # @param [String] name
+    #   The name to split.
+    #
+    # @return [Array<String>]
+    #   The individual names of the project name.
+    #
+    def names_in(name)
+      name.split('-').reject do |word|
+        @@ignore_namespaces.include?(word)
+      end
+    end
+
+    #
     # Guesses the module names from a project name.
     #
     # @return [Array<String>]
     #   The module names for a project.
     #
     def modules_of(name)
-      name.split('-').map do |words|
+      names_in(name).map do |words|
         words.split('_').map { |word|
           @@common_namespaces[word] || word.capitalize
         }.join
@@ -82,9 +97,7 @@ module Ore
     #   The namespace directories for the project.
     #
     def namespace_dirs_of(name)
-      name.split('-').map { |word|
-        underscore(word) unless @@ignore_namespaces.include?(word)
-      }.compact
+      names_in(name).map { |word| underscore(word) }
     end
 
     #

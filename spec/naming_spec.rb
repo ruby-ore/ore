@@ -30,6 +30,10 @@ describe Naming do
     subject.modules_of('foo-bar').should == ['Foo', 'Bar']
   end
 
+  it "should filter out obvious names from the module names" do
+    subject.modules_of('ruby-foo').should == ['Foo']
+  end
+
   it "should recognize common acronyms in project names" do
     subject.modules_of('ffi-bar').should == ['FFI', 'Bar']
   end
