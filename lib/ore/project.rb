@@ -28,6 +28,9 @@ module Ore
     # The project metadata file
     @@metadata_file = 'gemspec.yml'
 
+    # The root directory of the project
+    attr_reader :root
+
     # The SCM which the project is currently under
     attr_reader :scm
 
