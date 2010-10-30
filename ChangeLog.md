@@ -1,3 +1,10 @@
+### 0.2.1 / 2010-10-29
+
+* Ignore 'ruby' and 'java' from namespace directories returned from
+  {Ore::Naming#namespace_dirs_of}.
+* Ignore 'ruby' and 'java' from module names returned from
+  {Ore::Naming#modules_of}.
+
 ### 0.2.0 / 2010-10-27
 
 * Added {Ore::Project#requirements}.
