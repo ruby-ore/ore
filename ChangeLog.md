@@ -1,3 +1,7 @@
+### 0.2.2 / 2010-10-30
+
+* Added {Ore::Project#root}.
+
 ### 0.2.1 / 2010-10-29
 
 * Ignore 'ruby' and 'java' from namespace directories returned from
