@@ -42,7 +42,7 @@ module Ore
         dirs = path.split(File::SEPARATOR)
 
         dirs.each do |dir|
-          dir.gsub!(/(\[[a-z_]+\[)/) do |capture|
+          dir.gsub!(/(\[[a-z_]+\])/) do |capture|
             keyword = capture[1..-2]
 
             if @@keywords.include?(keyword)
