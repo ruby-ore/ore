@@ -5,6 +5,6 @@ begin
     # custom logic here
   end
 rescue NameError
-  STDERR.puts "The 'my-project.gemspec' file requires Ore."
+  STDERR.puts "The 'dm-is-plugin.gemspec' file requires Ore."
   STDERR.puts "Run `gem install ore` to install Ore."
 end
