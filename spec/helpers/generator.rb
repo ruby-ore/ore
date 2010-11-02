@@ -1,5 +1,6 @@
 require 'tempfile'
 require 'pathname'
+require 'yaml'
 require 'fileutils'
 
 module Helpers
@@ -14,7 +15,16 @@ module Helpers
         options.merge(:quiet => true)
       ).invoke_all
 
-      return Pathname.new(path)
+      @path = Pathname.new(path)
+      @gemspec = YAML.load_file(@path.join('gemspec.yml'))
+    end
+
+    def rspec_opts
+      @path.join('.rspec').read
+    end
+
+    def yard_opts
+      @path.join('.yardopts').read
     end
 
     def cleanup!

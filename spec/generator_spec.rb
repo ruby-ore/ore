@@ -9,7 +9,7 @@ describe Generator do
     let(:name) { 'my-project' }
 
     before(:all) do
-      @path = generate!(name)
+      generate!(name)
     end
 
     it "should create the project root directory" do
@@ -44,6 +44,38 @@ describe Generator do
       @path.join('gemspec.yml').should be_file
     end
 
+    describe "gemspec.yml" do
+      subject { @gemspec }
+
+      it "should have a name" do
+        subject['name'].should == 'my-project'
+      end
+
+      it "should not contain a version by default" do
+        subject.should_not have_key('version')
+      end
+
+      it "should a dummy summary" do
+        subject['summary'].should_not be_empty
+      end
+
+      it "should a description summary" do
+        subject['description'].should_not be_empty
+      end
+
+      it "should have a license" do
+        subject['license'].should == 'MIT'
+      end
+
+      it "should have authors" do
+        subject['authors'].should_not be_empty
+      end
+
+      it "should have 'ore' as a development dependency" do
+        subject['development_dependencies'].should have_key('ore')
+      end
+    end
+
     it "should add a *.gemspec file" do
       @path.join('my-project.gemspec').should be_file
     end
@@ -73,11 +105,15 @@ describe Generator do
     let(:name) { 'yard-project' }
 
     before(:all) do
-      @path = generate!(name, :yard => true)
+      generate!(name, :yard => true)
     end
 
     it "should add a .yardopts file" do
       @path.join('.yardopts').should be_file
+    end
+
+    it "should set 'has_yard' to 'true' in the gemspec.yml file" do
+      @gemspec['has_yard'].should == true
     end
   end
 
@@ -85,7 +121,7 @@ describe Generator do
     let(:name) { 'yard_markdown-project' }
 
     before(:all) do
-      @path = generate!(name, :yard => true, :markdown => true)
+      generate!(name, :yard => true, :markdown => true)
     end
 
     it "should add a README.md file" do
@@ -95,13 +131,17 @@ describe Generator do
     it "should add a ChangeLog.md file" do
       @path.join('ChangeLog.md').should be_file
     end
+
+    it "should set --markup to markdown in .yardopts" do
+      yard_opts.should include('--markup markdown')
+    end
   end
 
   context "yard with textile" do
     let(:name) { 'yard_textile-project' }
 
     before(:all) do
-      @path = generate!(name, :yard => true, :textile => true)
+      generate!(name, :yard => true, :textile => true)
     end
 
     it "should add a README.tt file" do
@@ -111,17 +151,25 @@ describe Generator do
     it "should add a ChangeLog.tt file" do
       @path.join('ChangeLog.tt').should be_file
     end
+
+    it "should set --markup to textile in .yardopts" do
+      yard_opts.should include('--markup textile')
+    end
   end
 
   context "bundler" do
     let(:name) { 'bundled_project' }
 
     before(:all) do
-      @path = generate!(name, :bundler => true)
+      generate!(name, :bundler => true)
     end
 
     it "should add a Gemfile" do
       @path.join('Gemfile').should be_file
+    end
+
+    it "should add 'bundler' as a development dependency" do
+      @gemspec['development_dependencies'].should have_key('bundler')
     end
   end
 
@@ -129,7 +177,7 @@ describe Generator do
     let(:name) { 'rspec_project' }
 
     before(:all) do
-      @path = generate!(name, :rspec => true)
+      generate!(name, :rspec => true)
     end
 
     it "should not create the test/ directory" do
@@ -151,13 +199,21 @@ describe Generator do
     it "should add a .rspec file" do
       @path.join('.rspec').should be_file
     end
+
+    it "should add 'rspec' as a development dependency" do
+      @gemspec['development_dependencies'].should have_key('rspec')
+    end
   end
 
   context "rspec with bundler" do
     let(:name) { 'bundled_rspec_project' }
 
     before(:all) do
-      @path = generate!(name, :bundler => true, :rspec => true)
+      generate!(name, :bundler => true, :rspec => true)
+    end
+
+    it "should not add 'rspec' as a development dependency" do
+      @gemspec['development_dependencies'].should_not have_key('rspec')
     end
   end
 
@@ -165,7 +221,11 @@ describe Generator do
     let(:name) { 'jewelery_project' }
 
     before(:all) do
-      @path = generate!(name, :jeweler_tasks => true)
+      generate!(name, :jeweler_tasks => true)
+    end
+
+    it "should add 'jeweler' as a development dependency" do
+      @gemspec['development_dependencies'].should have_key('jeweler')
     end
   end
 
@@ -173,7 +233,11 @@ describe Generator do
     let(:name) { 'bundled_jewelery_project' }
 
     before(:all) do
-      @path = generate!(name, :bundler => true, :jeweler_tasks => true)
+      generate!(name, :bundler => true, :jeweler_tasks => true)
+    end
+
+    it "should not add 'jeweler' as a development dependency" do
+      @gemspec['development_dependencies'].should_not have_key('jeweler')
     end
   end
 
@@ -181,7 +245,11 @@ describe Generator do
     let(:name) { 'ore_project' }
 
     before(:all) do
-      @path = generate!(name, :ore_tasks => true)
+      generate!(name, :ore_tasks => true)
+    end
+
+    it "should add 'ore-tasks' as a development dependency" do
+      @gemspec['development_dependencies'].should have_key('ore-tasks')
     end
   end
 
@@ -189,7 +257,11 @@ describe Generator do
     let(:name) { 'bundled_ore_project' }
 
     before(:all) do
-      @path = generate!(name, :bundler => true, :ore_tasks => true)
+      generate!(name, :bundler => true, :ore_tasks => true)
+    end
+
+    it "should not add 'ore-tasks' as a development dependency" do
+      @gemspec['development_dependencies'].should_not have_key('ore-tasks')
     end
   end
 
