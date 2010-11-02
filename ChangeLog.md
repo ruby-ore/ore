@@ -1,3 +1,16 @@
+### 0.2.3 / 2010-11-01
+
+* Fixed path interpolation on Windows:
+  * Windows does not allow the `:` character in paths, so path interpolation
+    keywords are now wrapped in `[` and `]` characters.
+
+        interpolate("[name].gemspec")
+        # => "my-project.gemspec"
+
+* Do not include `ore-tasks` as a developmnet dependency in generated
+  projects that also use Bundler.
+* Added more specs to {Ore::Generator} and the builtin templates.
+
 ### 0.2.2 / 2010-10-30
 
 * Added {Ore::Project#root}.
