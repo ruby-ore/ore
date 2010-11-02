@@ -31,11 +31,11 @@ module Ore
       #   The expanded path.
       #
       # @example Assuming `@project_dir` contains `my_project`.
-      #   interpolate "lib/[project_dir].rb"
+      #   interpolate("lib/[project_dir].rb")
       #   # => "lib/my_project.rb"
       #
       # @example Assuming `@namespace_dir` contains `my/project`.
-      #   interpolate "spec/[namespace_dir]_spec.rb"
+      #   interpolate("spec/[namespace_dir]_spec.rb")
       #   # => "spec/my/project_spec.rb"
       #
       def interpolate(path)
