@@ -71,6 +71,10 @@ describe Generator do
         subject['authors'].should_not be_empty
       end
 
+      it "should have a dummy homepage" do
+        subject['homepage'].should_not be_empty
+      end
+
       it "should have 'ore' as a development dependency" do
         subject['development_dependencies'].should have_key('ore')
       end
