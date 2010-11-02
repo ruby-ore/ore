@@ -101,6 +101,22 @@ describe Generator do
     end
   end
 
+  context "bundler" do
+    let(:name) { 'bundled_project' }
+
+    before(:all) do
+      generate!(name, :bundler => true)
+    end
+
+    it "should add a Gemfile" do
+      @path.join('Gemfile').should be_file
+    end
+
+    it "should add 'bundler' as a development dependency" do
+      @gemspec['development_dependencies'].should have_key('bundler')
+    end
+  end
+
   context "yard" do
     let(:name) { 'yard-project' }
 
@@ -157,19 +173,15 @@ describe Generator do
     end
   end
 
-  context "bundler" do
-    let(:name) { 'bundled_project' }
+  context "yard with bundler" do
+    let(:name) { 'bundled_yard_project' }
 
     before(:all) do
-      generate!(name, :bundler => true)
+      generate!(name, :bundler => true, :yard => true)
     end
 
-    it "should add a Gemfile" do
-      @path.join('Gemfile').should be_file
-    end
-
-    it "should add 'bundler' as a development dependency" do
-      @gemspec['development_dependencies'].should have_key('bundler')
+    it "should still add 'yard' as a development dependency" do
+      @gemspec['development_dependencies'].should have_key('yard')
     end
   end
 
