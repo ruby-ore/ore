@@ -141,7 +141,7 @@ module Ore
       
       @enabled_templates.each do |name|
         unless (template_dir = Generator.templates[name])
-          say "Unknown template #{name.dump}", :red
+          say "Unknown template #{name}", :red
           exit -1
         end
 
