@@ -4,7 +4,7 @@ require 'jeweler'
 Jeweler::Tasks.new(Ore::Specification.new)
 <%- else -%>
 begin
-  gem 'ore', '<%= @ore_dependency %>'
+  gem 'ore', '<%= @ore_core_dependency %>'
   require 'ore/specification'
 rescue LoadError
   STDERR.puts e.message

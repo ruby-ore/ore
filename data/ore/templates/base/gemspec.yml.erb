@@ -20,6 +20,6 @@ homepage: <%= @homepage %>
 
 development_dependencies:
 <%- unless (bundler? || ore_tasks?) -%>
-  ore-core: <%= @ore_dependency %>
+  ore-core: <%= @ore_core_dependency %>
 <%- end -%>
 <%= includes :dependencies, '' -%>
