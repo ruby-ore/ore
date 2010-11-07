@@ -6,5 +6,5 @@ begin
   end
 rescue NameError
   STDERR.puts "The 'ore.gemspec' file requires Ore."
-  STDERR.puts "Run `gem install ore-ore` to install Ore."
+  STDERR.puts "Run `gem install ore-core` to install Ore."
 end
