@@ -98,6 +98,30 @@ module Ore
       end
 
       #
+      # Determines if the project is using `Jeweler::Tasks`.
+      #
+      # @return [Boolean]
+      #   Specifies whether the project is using `Jeweler::Tasks`.
+      #
+      # @since 0.3.0
+      #
+      def jeweler_tasks?
+        enabled?(:jeweler_tasks)
+      end
+
+      #
+      # Determines if the project is using `Ore::Tasks`.
+      #
+      # @return [Boolean]
+      #   Specifies whether the project is using `Ore::Tasks`.
+      #
+      # @since 0.3.0
+      #
+      def ore_tasks?
+        enabled?(:ore_tasks)
+      end
+
+      #
       # Creates an indentation string.
       #
       # @param [Integer] n
