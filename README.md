@@ -15,7 +15,6 @@ the developer to keep all of the project information in a single YAML file.
 ## Features
 
 * Stores project information in **one YAML file** (`gemspec.yml`).
-* Has only **one** dependency ([thor](http://github.com/wycats/thor)).
 * **Does not** impose a development workflow onto the developer. One could
   even use Ore with `Jeweler::Tasks`.
 * **Can** load the project version from:
@@ -34,6 +33,7 @@ the developer to keep all of the project information in a single YAML file.
 
 ## Requirements
 
+* [ore-core](http://github.com/ruby-ore/ore-core) ~> 0.1.0
 * [thor](http://github.com/wycats/thor) ~> 0.14.3
 
 ## Install
