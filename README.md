@@ -64,8 +64,9 @@ The `gemspec.yml` file used to build Ore:
       thor: ~> 0.14.3
     
     development_dependencies:
-      yard: ~> 0.6.1
+      ore-tasks: ~> 0.2.0
       rspec: ~> 2.0.0
+      yard: ~> 0.6.1
 
 For a complete refrence to the `gemspec.yml` file, please see the
 [GemspecYML Reference](http://rubydoc.info/gems/ore-core/file/GemspecYML.html)
