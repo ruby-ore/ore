@@ -1,5 +1,5 @@
 name: ore
-version: 0.2.3
+version: 0.3.0
 summary: Mine raw RubyGems from YAML
 description:
   Ore is a simple RubyGem building solution. Ore handles the
@@ -18,5 +18,5 @@ dependencies:
   thor: ~> 0.14.3
 
 development_dependencies:
-  yard: ~> 0.6.1
   rspec: ~> 2.0.0
+  yard: ~> 0.6.1
