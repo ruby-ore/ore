@@ -1,6 +1,10 @@
-lib_dir = File.expand_path('lib',File.dirname(__FILE__))
-$LOAD_PATH << lib_dir unless $LOAD_PATH.include?(lib_dir)
+# -*- encoding: utf-8 -*-
 
-require 'ore/specification'
-
-Ore::Specification.new
+begin
+  Ore::Specification.new do |gemspec|
+    # custom logic here
+  end
+rescue NameError
+  STDERR.puts "The 'ore.gemspec' file requires Ore."
+  STDERR.puts "Run `gem install ore-ore` to install Ore."
+end
