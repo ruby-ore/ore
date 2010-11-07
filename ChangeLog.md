@@ -1,4 +1,4 @@
-### 0.3.0 / 2010-11-06
+### 0.3.0 / 2010-11-07
 
 * Split all non-CLI and non-Generator related code out into
   [ore-core](http://github.com/ruby-ore/ore-core).
