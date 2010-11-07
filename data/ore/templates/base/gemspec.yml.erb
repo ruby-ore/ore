@@ -19,7 +19,7 @@ homepage: <%= @homepage %>
 <%= includes :gemspec, '' -%>
 
 development_dependencies:
-<%- unless bundler? -%>
+<%- unless (bundler? || ore_tasks?) -%>
   ore-core: <%= @ore_dependency %>
 <%- end -%>
 <%= includes :dependencies, '' -%>

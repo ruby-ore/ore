@@ -76,7 +76,7 @@ describe Generator do
       end
 
       it "should have 'ore' as a development dependency" do
-        subject['development_dependencies'].should have_key('ore')
+        subject['development_dependencies'].should have_key('ore-core')
       end
     end
 
@@ -264,6 +264,10 @@ describe Generator do
       generate!(name, :ore_tasks => true)
     end
 
+    it "should omit 'ore-core' as a development dependency" do
+      @gemspec['development_dependencies'].should_not have_key('ore-core')
+    end
+
     it "should add 'ore-tasks' as a development dependency" do
       @gemspec['development_dependencies'].should have_key('ore-tasks')
     end
@@ -274,6 +278,10 @@ describe Generator do
 
     before(:all) do
       generate!(name, :bundler => true, :ore_tasks => true)
+    end
+
+    it "should omit 'ore-core' as a development dependency" do
+      @gemspec['development_dependencies'].should_not have_key('ore-core')
     end
 
     it "should not add 'ore-tasks' as a development dependency" do
