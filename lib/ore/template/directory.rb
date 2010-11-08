@@ -39,6 +39,9 @@ module Ore
       # The include templates in the template directory
       attr_reader :includes
 
+      # Other templates to be disabled
+      attr_reader :disable
+
       # Other templates to be enabled
       attr_reader :enable
 
@@ -59,6 +62,7 @@ module Ore
         @templates = {}
         @includes = Hash.new { |hash,key| hash[key] = {} }
 
+        @disable = []
         @enable = []
         @variables = {}
 
@@ -139,11 +143,19 @@ module Ore
           raise(InvalidTemplate,"invalid configuration in #{config_path.dump}")
         end
 
-        if (enable = config['enable'])
-          if enable.kind_of?(Array)
-            enable.each { |name| @enable << name.to_sym }
+        if (templates = config['disable'])
+          if templates.kind_of?(Array)
+            templates.each { |name| @disable << name.to_sym }
           else
-            @enable << enable.to_sym
+            @disable << templates.to_sym
+          end
+        end
+
+        if (templates = config['enable'])
+          if templates.kind_of?(Array)
+            templates.each { |name| @enable << name.to_sym }
+          else
+            @enable << templates.to_sym
           end
         end
 

@@ -112,29 +112,53 @@ module Ore
     def enable_template(name)
       name = name.to_sym
 
-      unless @enabled_templates.include?(name)
-        unless (template_dir = Generator.templates[name])
-          say "Unknown template #{name}", :red
-          exit -1
-        end
+      return false if @enabled_templates.include?(name)
 
-        new_template = Template::Directory.new(template_dir)
-
-        # mark the template as enabled
-        @enabled_templates << name
-
-        # enable any other templates
-        new_template.enable.each do |sub_template|
-          enable_template(sub_template)
-        end
-
-        # append the new template to the end of the list,
-        # to override previously loaded templates
-        @templates << new_template
-
-        # add the template directory to the source-paths
-        self.source_paths << template_dir
+      unless (template_dir = Generator.templates[name])
+        say "Unknown template #{name}", :red
+        exit -1
       end
+
+      new_template = Template::Directory.new(template_dir)
+
+      # mark the template as enabled
+      @enabled_templates << name
+
+      # enable any other templates
+      new_template.enable.each do |sub_template|
+        enable_template(sub_template)
+      end
+
+      # append the new template to the end of the list,
+      # to override previously loaded templates
+      @templates << new_template
+
+      # add the template directory to the source-paths
+      self.source_paths << new_template.path
+      return true
+    end
+
+    #
+    # Disables a template in the generator.
+    #
+    # @param [Symbol, String] name
+    #   The name of the template.
+    #
+    # @since 0.4.0
+    #
+    def disable_template(name)
+      name = name.to_sym
+
+      unless (template_dir = Generator.templates[name])
+        say "Unknown template #{name}", :red
+        exit -1
+      end
+
+      self.source_paths.delete(template_dir)
+
+      @templates.delete_if { |template| template.path == template_dir }
+      @enabled_templates.delete(name)
+      return true
     end
 
     #
@@ -150,19 +174,19 @@ module Ore
       enable_template(:jeweler_tasks) if options.jeweler_tasks?
       enable_template(:ore_tasks) if options.ore_tasks?
       
-      if options.rspec?
-        enable_template(:rspec)
-      elsif options.test_unit?
-        enable_template(:test_unit)
-      end
+      enable_template(:rspec) if options.rspec?
+      enable_template(:test_unit) if options.test_unit?
 
-      if options.yard?
-        enable_template(:yard)
-      elsif options.rdoc?
-        enable_template(:rdoc)
-      end
+      enable_template(:yard) if options.yard?
+      enable_template(:rdoc) if options.rdoc?
 
+      # enable any additionally specified templates
       options.templates.each { |name| enable_template(name) }
+
+      # disable any previously enabled templates
+      @templates.reverse_each do |template|
+        template.disable.each { |name| disable_template(name) }
+      end
     end
 
     #
