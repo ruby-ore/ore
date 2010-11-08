@@ -107,7 +107,7 @@ module Ore
     # @param [Symbol, String] name
     #   The name of the template to add.
     #
-    # @since 0.3.0
+    # @since 0.4.0
     #
     def enable_template(name)
       name = name.to_sym
