@@ -7,14 +7,17 @@ module Ore
     # * `[name]` - The name of the project.
     # * `[project_dir]` - The directory base-name derived from the project
     #   name.
-    # * `[namespace_dir]` - The full directory path derived from the
+    # * `[namespace_path]` - The full directory path derived from the
     #   project name.
+    # * `[namespace_dir]` - The last directory name derivied from the
+    #    project name.
     #
     module Interpolations
       # The accepted interpolation keywords that may be used in paths
       @@keywords = %w[
         name
         project_dir
+        namespace_path
         namespace_dir
       ]
 
