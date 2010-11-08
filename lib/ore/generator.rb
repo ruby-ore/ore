@@ -215,14 +215,10 @@ module Ore
       @authors = options.authors
       @author = options.authors.first
 
-      @markup = if options.yard?
-                  if options.markdown?
-                    :markdown
-                  elsif options.textile?
-                    :textile
-                  else
-                    :rdoc
-                  end
+      @markup = if options.markdown?
+                  :markdown
+                elsif options.textile?
+                  :textile
                 else
                   :rdoc
                 end
