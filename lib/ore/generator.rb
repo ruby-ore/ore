@@ -81,7 +81,6 @@ module Ore
       self.destination_root = path
 
       enable_templates!
-      load_templates!
       initialize_variables!
 
       say "Generating #{self.destination_root}", :green
@@ -103,51 +102,67 @@ module Ore
     protected
 
     #
-    # Enables templates.
+    # Enables a template, adding it to the generator.
     #
-    def enable_templates!
-      @enabled_templates = [@@base_template]
-
-      @enabled_templates << :bundler if options.bundler?
-      @enabled_templates << :jeweler_tasks if options.jeweler_tasks?
-      @enabled_templates << :ore_tasks if options.ore_tasks?
-      
-      if options.rspec?
-        @enabled_templates << :rspec
-      elsif options.test_unit?
-        @enabled_templates << :test_unit
-      end
-
-      if options.yard?
-        @enabled_templates << :yard
-      elsif options.rdoc?
-        @enabled_templates << :rdoc
-      end
-
-      options.templates.each do |name|
-        name = name.to_sym
-
-        unless @enabled_templates.include?(name)
-          @enabled_templates << name
-        end
-      end
-    end
-
+    # @param [Symbol, String] name
+    #   The name of the template to add.
     #
-    # Loads the given templates.
+    # @since 0.3.0
     #
-    def load_templates!
-      @templates = []
-      
-      @enabled_templates.each do |name|
+    def enable_template(name)
+      name = name.to_sym
+
+      unless @enabled_templates.include?(name)
         unless (template_dir = Generator.templates[name])
           say "Unknown template #{name}", :red
           exit -1
         end
 
-        @templates << Template::Directory.new(template_dir)
+        new_template = Template::Directory.new(template_dir)
+
+        # mark the template as enabled
+        @enabled_templates << name
+
+        # enable any other templates
+        new_template.enable.each do |sub_template|
+          enable_template(sub_template)
+        end
+
+        # append the new template to the end of the list,
+        # to override previously loaded templates
+        @templates << new_template
+
+        # add the template directory to the source-paths
         self.source_paths << template_dir
       end
+    end
+
+    #
+    # Enables templates.
+    #
+    def enable_templates!
+      @templates = []
+      @enabled_templates = []
+      
+      enable_template(@@base_template)
+
+      enable_template(:bundler) if options.bundler?
+      enable_template(:jeweler_tasks) if options.jeweler_tasks?
+      enable_template(:ore_tasks) if options.ore_tasks?
+      
+      if options.rspec?
+        enable_template(:rspec)
+      elsif options.test_unit?
+        enable_template(:test_unit)
+      end
+
+      if options.yard?
+        enable_template(:yard)
+      elsif options.rdoc?
+        enable_template(:rdoc)
+      end
+
+      options.templates.each { |name| enable_template(name) }
     end
 
     #
@@ -223,7 +238,10 @@ module Ore
     def generate_files!
       generated = Set[]
 
+      # iterate through the templates in reverse, so files in the templates
+      # loaded last override the previously templates.
       @templates.reverse_each do |template|
+        # copy in the static files first
         template.each_file(@markup) do |dest,file|
           unless generated.include?(dest)
             path = interpolate(dest)
@@ -233,6 +251,7 @@ module Ore
           end
         end
 
+        # then render the templates
         template.each_template(@markup) do |dest,file|
           unless generated.include?(dest)
             path = interpolate(dest)
