@@ -37,8 +37,8 @@ module Ore
       #   interpolate("lib/[project_dir].rb")
       #   # => "lib/my_project.rb"
       #
-      # @example Assuming `@namespace_dir` contains `my/project`.
-      #   interpolate("spec/[namespace_dir]_spec.rb")
+      # @example Assuming `@namespace_path` contains `my/project`.
+      #   interpolate("spec/[namespace_path]_spec.rb")
       #   # => "spec/my/project_spec.rb"
       #
       def interpolate(path)
