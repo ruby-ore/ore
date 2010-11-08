@@ -2,7 +2,7 @@
 gem 'rspec', '<%= @rspec_dependency %>'
 <%- end -%>
 require 'rspec'
-require '<%= @namespace_dir %>/version'
+require '<%= @namespace_path %>/version'
 
 include <%= @namespace %>
 
