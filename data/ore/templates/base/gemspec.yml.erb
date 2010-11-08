@@ -18,9 +18,11 @@ email: <%= @email %>
 homepage: <%= @homepage %>
 <%= includes :gemspec, '' -%>
 
+<%- unless (dependencies = includes(:dependencies,'')).empty? -%>
 dependencies:
-<%= includes :dependencies, '' -%>
+<%= dependencies %>
 
+<%- end -%>
 development_dependencies:
 <%- unless (bundler? || ore_tasks?) -%>
   ore-core: <%= @ore_core_dependency %>
