@@ -1,2 +1,2 @@
-data:
+variables:
   jeweler_dependency: ~> 1.4

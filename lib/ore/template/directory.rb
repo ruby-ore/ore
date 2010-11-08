@@ -39,8 +39,8 @@ module Ore
       # The include templates in the template directory
       attr_reader :includes
 
-      # The data to use when rendering the template files
-      attr_reader :data
+      # The variables to use when rendering the template files
+      attr_reader :variables
 
       #
       # Initializes a new template directory.
@@ -56,7 +56,7 @@ module Ore
         @templates = {}
         @includes = Hash.new { |hash,key| hash[key] = {} }
 
-        @data = {}
+        @variables = {}
 
         load!
         scan!
@@ -135,15 +135,15 @@ module Ore
           raise(InvalidTemplate,"invalid configuration in #{config_path.dump}")
         end
 
-        if (data = config['data'])
-          # data must be a Hash
-          unless data.kind_of?(Hash)
-            raise(InvalidTemplate,"data must be a Hash: #{config_path.dump}")
+        if (variables = config['variables'])
+          # variables must be a Hash
+          unless variables.kind_of?(Hash)
+            raise(InvalidTemplate,"template variables must be a Hash: #{config_path.dump}")
           end
 
-          # load the template data
-          data.each do |name,value|
-            @data[name.to_sym] = value
+          # load the template variables
+          variables.each do |name,value|
+            @variables[name.to_sym] = value
           end
         end
 

@@ -193,7 +193,7 @@ module Ore
       @day = @date.day
 
       @templates.each do |template|
-        template.data.each do |name,value|
+        template.variables.each do |name,value|
           instance_variable_set("@#{name}",value)
         end
       end

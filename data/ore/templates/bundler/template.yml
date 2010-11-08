@@ -1,2 +1,2 @@
-data:
+variables:
   bundler_dependency: ~> 1.0.0

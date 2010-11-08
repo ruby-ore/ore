@@ -1,2 +1,2 @@
-data:
+variables:
   rspec_dependency: ~> 2.0.0
