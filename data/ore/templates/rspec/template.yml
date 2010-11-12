@@ -1,4 +1,4 @@
 disable:
   - test_unit
 variables:
-  rspec_dependency: ~> 2.0.0
+  rspec_dependency: ~> 2.1.0
