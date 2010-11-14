@@ -1,2 +1,2 @@
 variables:
-  ore_tasks_dependency: ~> 0.2.0
+  ore_tasks_dependency: ~> 0.3.0
