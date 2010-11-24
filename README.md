@@ -45,7 +45,7 @@ the developer to keep all of the project information in a single YAML file.
 The `gemspec.yml` file used to build Ore:
 
     name: ore
-    version: 0.3.0
+    version: 0.4.0
     summary: Mine raw RubyGems from YAML.
     description:
       Ore is a simple RubyGem building solution. Ore handles the
@@ -64,8 +64,8 @@ The `gemspec.yml` file used to build Ore:
       thor: ~> 0.14.3
     
     development_dependencies:
-      ore-tasks: ~> 0.2.0
-      rspec: ~> 2.0.0
+      ore-tasks: ~> 0.3.0
+      rspec: ~> 2.1.0
       yard: ~> 0.6.1
 
 For a complete refrence to the `gemspec.yml` file, please see the
