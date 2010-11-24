@@ -1,2 +1,2 @@
 variables:
-  jeweler_dependency: ~> 1.4
+  jeweler_dependency: ~> 1.5.0
