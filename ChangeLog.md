@@ -1,3 +1,35 @@
+### 0.4.0 / 2010-11-24
+
+* Ore Template variables are now loaded from the `variables` Hash within
+  a `template.yml` file:
+
+        variables:
+          x: foo
+          y: bar
+
+* Allow Ore Templates to list other templates to be enabled via the
+  `enable` field within a `template.yml` file:
+
+        enable:
+         - yard
+         - rspec
+
+* Allow Ore Templates to list other templates to be disabled via the
+  `disable` field within a `template.yml` file:
+
+        disable:
+         - rdoc
+
+* Renamed the `ore_depencency` template variable to `ore_core_dependency`.
+* Renamed `@namespace_dir` to `@namespace_path` within {Ore::Generator}.
+  * `@namespace_dir` now stores the last sub-directory name, derived from
+    the project name.
+* Include any `_development_dependencies.erb` and `_dependencies.erb`
+  includes into the generated `gemspec.yml` file.
+* Added a default Example to generated `README` files.
+* Bumped the `ore_tasks_dependency` template variable to `~> 0.3.0`.
+* Bumped the `jeweler_dependency` template variable to `~> 1.5.0`.
+
 ### 0.3.0 / 2010-11-07
 
 * Split all non-CLI and non-Generator related code out into
