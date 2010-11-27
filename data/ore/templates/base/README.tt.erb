@@ -1,11 +1,11 @@
 h1. <%= @name %>
 
 <%- if @homepage -%>
-* [Homepage](<%= @homepage %>)
+* "Homepage":<%= @homepage %>
 <%- end -%>
-* [Documentation](http://rubydoc.info/gems/<%= @name %>)
+* "Documentation":http://rubydoc.info/gems/<%= @name %>
 <%- if @safe_email -%>
-* [Email](<%= @safe_email %>)
+* "Email":<%= @safe_email %>
 <%- end -%>
 
 h2. Description
