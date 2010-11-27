@@ -14,7 +14,7 @@ homepage: http://github.com/ruby-ore/ore
 has_yard: true
 post_install_message: |
   **************************************************************************
-  To generate a new Ruby library:
+  Generate a new Ruby library:
   
       $ mine my_library --rspec --ore-tasks
   
