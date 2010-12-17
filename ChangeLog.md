@@ -1,3 +1,14 @@
+### 0.4.1 / 2010-12-17
+
+* Added a post-install message.
+* Added links to [rubydoc.info](http://rubydoc.info) in the README
+  templates.
+* Add `Gemfile.lock` to the generated `.gitignore` file when `--bundler`
+  is used.
+* Use `platforms :jruby` and `platforms :ruby` to separate JRuby and
+  non-JRuby dependencies.
+* Fixed the link syntax in the TexTile README template.
+
 ### 0.4.0 / 2010-11-24
 
 * Ore Template variables are now loaded from the `variables` Hash within
