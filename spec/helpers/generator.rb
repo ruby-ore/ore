@@ -27,6 +27,18 @@ module Helpers
       @path.join('.yardopts').read
     end
 
+    def gitignore
+      lines = []
+
+      @path.join('.gitignore').read.each_line do |line|
+        unless (line.empty? && line =~ /\s*\#/)
+          lines << line.strip
+        end
+      end
+
+      return lines
+    end
+
     def cleanup!
       FileUtils.rm_r(ROOT)
     end
