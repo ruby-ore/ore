@@ -34,5 +34,5 @@ dependencies:
 
 development_dependencies:
   ore-tasks: ~> 0.3.0
-  rspec: ~> 2.1.0
+  rspec: ~> 2.3.0
   yard: ~> 0.6.1
