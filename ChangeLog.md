@@ -6,7 +6,7 @@
 * Add `Gemfile.lock` to the generated `.gitignore` file when `--bundler`
   is used.
 * Use `platforms :jruby` and `platforms :ruby` to separate JRuby and
-  non-JRuby dependencies.
+  non-JRuby dependencies when generating the `Gemfile`.
 * Fixed the link syntax in the TexTile README template.
 
 ### 0.4.0 / 2010-11-24
