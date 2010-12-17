@@ -1,9 +1,10 @@
 <%- case @markup
     when :markdown -%>
-  case RUBY_PLATFORM
-  when 'java'
+  platforms :jruby do
     gem 'maruku'
-  else
+  end
+
+  platforms :ruby do
     gem 'bluecloth', '>= 2.0.0'
   end
 <%- when :textile -%>
