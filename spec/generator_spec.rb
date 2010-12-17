@@ -119,6 +119,10 @@ describe Generator do
     it "should add 'bundler' as a development dependency" do
       @gemspec['development_dependencies'].should have_key('bundler')
     end
+
+    it "should add 'Gemfile.lock' to the .gitignore file" do
+      gitignore.should include('Gemfile.lock')
+    end
   end
 
   context "yard" do
