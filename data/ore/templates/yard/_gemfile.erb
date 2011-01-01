@@ -1,12 +1,6 @@
 <%- case @markup
     when :markdown -%>
-  platforms :jruby do
-    gem 'BlueCloth'
-  end
-
-  platforms :ruby do
-    gem 'bluecloth', '>= 2.0.0'
-  end
+  gem 'kramdown'
 <%- when :textile -%>
   gem 'RedCloth'
 <%- end -%>
