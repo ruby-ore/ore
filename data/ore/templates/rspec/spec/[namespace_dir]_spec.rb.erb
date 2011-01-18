@@ -3,6 +3,6 @@ require '<%= @namespace_path %>'
 
 describe <%= @namespace %> do
   it "should have a VERSION constant" do
-    <%= @namespace %>.const_get('VERSION').should_not be_empty
+    subject.const_get('VERSION').should_not be_empty
   end
 end
