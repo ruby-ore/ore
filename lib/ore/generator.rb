@@ -66,6 +66,7 @@ module Ore
     class_option :email, :type => :string, :aliases => '-e'
     class_option :authors, :type => :array,
                            :default => [ENV['USER']], :aliases => '-a'
+    class_option :git, :type => :boolean, :default => true
 
     argument :path, :required => true
 
