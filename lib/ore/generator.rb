@@ -16,14 +16,11 @@ module Ore
     include Template::Interpolations
     include Template::Helpers
 
-    # The base template for all RubyGems
-    @@base_template = :base
-
     #
     # The templates registered with the generator.
     #
-    def Generator.templates
-      @templates ||= {}
+    def self.templates
+      @@templates ||= {}
     end
 
     #
@@ -32,20 +29,22 @@ module Ore
     # @param [String] path
     #   The path to the template.
     #
+    # @return [Symbol]
+    #   The name of the registered template.
+    #
     # @raise [StandardError]
     #   The given path was not a directory.
     #
-    def Generator.register_template(path)
+    def self.register_template(path)
       unless File.directory?(path)
         raise(StandardError,"#{path.dump} is must be a directory")
       end
 
       name = File.basename(path).to_sym
-      Generator.templates[name] = path
-    end
 
-    Config.builtin_templates { |path| Generator.register_template(path) }
-    Config.installed_templates { |path| Generator.register_template(path) }
+      self.templates[name] = path
+      return name
+    end
 
     namespace ''
 
@@ -67,14 +66,7 @@ module Ore
     class_option :email, :type => :string, :aliases => '-e'
     class_option :authors, :type => :array,
                            :default => [ENV['USER']], :aliases => '-a'
-    class_option :rdoc, :type => :boolean, :default => true
-    class_option :yard, :type => :boolean, :default => false
-    class_option :test_unit, :type => :boolean, :default => false
-    class_option :rspec, :type => :boolean, :default => true
-    class_option :bundler, :type => :boolean, :default => false
-    class_option :jeweler_tasks, :type => :boolean, :default => false
-    class_option :ore_tasks, :type => :boolean, :default => false
-    class_option :git, :type => :boolean, :default => true
+
     argument :path, :required => true
 
     def generate
@@ -100,6 +92,23 @@ module Ore
     end
 
     protected
+
+    # templates which are enabled by default
+    @default_templates = Set[:rdoc, :rspec, :git]
+
+    # register builtin templates
+    Config.builtin_templates do |path|
+      name = register_template(path)
+
+      # define options for builtin templates
+      class_option name, :type => :boolean,
+                         :default => @default_templates.include?(name)
+    end
+
+    # register installed templates
+    Config.installed_templates do |path|
+      register_template(path)
+    end
 
     #
     # Enables a template, adding it to the generator.
@@ -154,7 +163,7 @@ module Ore
         exit -1
       end
 
-      self.source_paths.delete(template_dir)
+      source_paths.delete(template_dir)
 
       @templates.delete_if { |template| template.path == template_dir }
       @enabled_templates.delete(name)
@@ -168,17 +177,12 @@ module Ore
       @templates = []
       @enabled_templates = []
       
-      enable_template(@@base_template)
+      enable_template :base
 
-      enable_template(:bundler) if options.bundler?
-      enable_template(:jeweler_tasks) if options.jeweler_tasks?
-      enable_template(:ore_tasks) if options.ore_tasks?
-      
-      enable_template(:rspec) if options.rspec?
-      enable_template(:test_unit) if options.test_unit?
-
-      enable_template(:yard) if options.yard?
-      enable_template(:rdoc) if options.rdoc?
+      # enable templates specified by options
+      self.class.templates.each_key do |name|
+        enable_template(name) if options[name]
+      end
 
       # enable any additionally specified templates
       options.templates.each { |name| enable_template(name) }
