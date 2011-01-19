@@ -69,6 +69,9 @@ module Ore
 
     argument :path, :required => true
 
+    #
+    # Generates a new project.
+    #
     def generate
       self.destination_root = path
 
