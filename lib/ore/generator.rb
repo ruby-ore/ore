@@ -12,7 +12,6 @@ module Ore
   class Generator < Thor::Group
 
     include Thor::Actions
-    include Config
     include Naming
     include Template::Interpolations
     include Template::Helpers
