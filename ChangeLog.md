@@ -1,3 +1,21 @@
+### 0.5.0 / 2011-01-19
+
+* Require ore-core ~> 0.1.1.
+* Require rspec ~> 2.4.0.
+* Load default options from `~/.ore/options.yml`.
+* Added the `gem_test` template and `--gem-test` to {Ore::Generator}.
+  This opts-in projects to be tested via the `gem test` command.
+* Auto-define options in {Ore::Generator} for builtin templates.
+* Added `lib/ore.rb`.
+* Added {Ore::Config.enable!}.
+* Added {Ore::Config.disable!}.
+* Added {Ore::Config.default_options}.
+* Added {Ore::Generator.defaults}.
+* Added {Ore::Generator.generator_option}.
+* Added `vendor/cache/*.gem` to `.gitignore` if `--bundler` is specified.
+* Attempt to auto-load `ore/specification` in the generated `*.gemspec`
+  files.
+
 ### 0.4.1 / 2010-12-17
 
 * Added a post-install message.
