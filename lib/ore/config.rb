@@ -8,8 +8,8 @@ module Ore
     # Ore config directory
     @@path = File.join(@@home,'.ore')
 
-    # Default `ore` options file.
-    @@options_file = File.join(@@path,'default.opts')
+    # Default options file.
+    @@default_options = File.join(@@path,'options.yml')
 
     # Custom Ore Templates directory
     @@templates_dir = File.join(@@path,'templates')

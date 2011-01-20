@@ -12,6 +12,7 @@ module Ore
   class Generator < Thor::Group
 
     include Thor::Actions
+    include Config
     include Naming
     include Template::Interpolations
     include Template::Helpers
@@ -46,29 +47,42 @@ module Ore
       return name
     end
 
-    namespace ''
+    #
+    # Default options for the generator.
+    #
+    # @return [Hash{Symbol => Object}]
+    #   The option names and default values.
+    #
+    # @since 0.5.0
+    #
+    def self.defaults
+      @@defaults ||= {
+        :templates => [],
+        :version => '0.1.0',
+        :summary => 'TODO: Summary',
+        :description => 'TODO: Description',
+        :license => 'MIT',
+        :authors => [ENV['USER']],
+        :rdoc => true,
+        :rspec => true,
+        :git => true
+      }
+    end
 
-    class_option :markdown, :type => :boolean, :default => false
-    class_option :textile, :type => :boolean, :default => false
-    class_option :templates, :type => :array,
-                             :default => [],
-                             :aliases => '-T'
-    class_option :name, :type => :string, :aliases => '-n'
-    class_option :version, :type => :string,
-                            :default => '0.1.0',
-                            :aliases => '-V'
-    class_option :summary, :default => 'TODO: Summary',
-                           :aliases => '-s'
-    class_option :description, :default => 'TODO: Description',
-                               :aliases => '-D'
-    class_option :license, :default => 'MIT', :aliases => '-L'
-    class_option :homepage, :type => :string, :aliases => '-U'
-    class_option :email, :type => :string, :aliases => '-e'
-    class_option :authors, :type => :array,
-                           :default => [ENV['USER']], :aliases => '-a'
-    class_option :git, :type => :boolean, :default => true
-
-    argument :path, :required => true
+    #
+    # Defines a generator option.
+    #
+    # @param [Symbol] name
+    #   The name of the option.
+    #
+    # @param [Hash{Symbol => Object}] options
+    #   The Thor options of the option.
+    #
+    # @since 0.5.0
+    #
+    def self.generator_option(name,options={})
+      class_option(name,options.merge(:default => defaults[name]))
+    end
 
     #
     # Generates a new project.
@@ -97,22 +111,59 @@ module Ore
 
     protected
 
-    # templates which are enabled by default
-    @default_templates = Set[:rdoc, :rspec, :git]
+    # load the default options for the generator
+    if File.file?(@@default_options)
+      new_defaults = YAML.load_file(@@default_options)
+
+      # default options must be a Hash
+      unless new_defaults.kind_of?(Hash)
+        raise("#{@@default_options} must contain a YAML encoded Hash")
+      end
+
+      # merge default options
+      new_defaults.each do |name,value|
+        self.defaults[name.to_sym] = value
+      end
+    end
 
     # register builtin templates
     Config.builtin_templates do |path|
       name = register_template(path)
 
+      # skip the `base` template
+      next if name == :base
+
       # define options for builtin templates
-      class_option name, :type => :boolean,
-                         :default => @default_templates.include?(name)
+      class_option name, :type => :boolean, :default => defaults[name]
     end
 
     # register installed templates
     Config.installed_templates do |path|
       register_template(path)
     end
+
+    # disable the Thor namespace
+    namespace ''
+
+    # define the options
+    generator_option :markdown, :type => :boolean
+    generator_option :textile, :type => :boolean
+    generator_option :templates, :type => :array,
+                                 :aliases => '-T',
+                                 :banner => 'TEMPLATE [...]'
+    generator_option :name, :type => :string, :aliases => '-n'
+    generator_option :version, :type => :string, :aliases => '-V'
+    generator_option :summary, :aliases => '-s'
+    generator_option :description, :aliases => '-D'
+    generator_option :authors, :type => :array,
+                               :aliases => '-a',
+                               :banner => 'NAME [...]'
+    generator_option :email, :type => :string, :aliases => '-e'
+    generator_option :homepage, :type => :string, :aliases => '-U'
+    generator_option :license, :aliases => '-L'
+    generator_option :git, :type => :boolean
+
+    argument :path, :required => true
 
     #
     # Enables a template, adding it to the generator.
