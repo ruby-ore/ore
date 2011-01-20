@@ -105,6 +105,18 @@ describe Generator do
     end
   end
 
+  context "gem test" do
+    let(:name) { 'gem_test_project' }
+
+    before(:all) do
+      generate!(name, :gem_test => true)
+    end
+
+    it "should add a .gemtest file" do
+      @path.join('.gemtest').should be_file
+    end
+  end
+
   context "bundler" do
     let(:name) { 'bundled_project' }
 
