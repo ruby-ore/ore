@@ -111,19 +111,9 @@ module Ore
 
     protected
 
-    # load the default options for the generator
-    if File.file?(@@default_options)
-      new_defaults = YAML.load_file(@@default_options)
-
-      # default options must be a Hash
-      unless new_defaults.kind_of?(Hash)
-        raise("#{@@default_options} must contain a YAML encoded Hash")
-      end
-
-      # merge default options
-      new_defaults.each do |name,value|
-        self.defaults[name.to_sym] = value
-      end
+    # merge default options
+    Config.default_options.each do |name,value|
+      self.defaults[name.to_sym] = value
     end
 
     # register builtin templates
