@@ -60,7 +60,9 @@ module Ore
           raise("#{@@options_file} must contain a YAML encoded Hash")
         end
 
-        options.merge!(new_options)
+        new_options.each do |name,value|
+          options[name.to_sym] = value
+        end
       end
 
       return options

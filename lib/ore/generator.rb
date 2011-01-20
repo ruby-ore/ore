@@ -111,9 +111,7 @@ module Ore
     protected
 
     # merge default options
-    Config.default_options.each do |name,value|
-      self.defaults[name.to_sym] = value
-    end
+    defaults.merge!(Config.default_options)
 
     # register builtin templates
     Config.builtin_templates do |path|
