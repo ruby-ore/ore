@@ -112,6 +112,16 @@ Generate a new project using previously installed templates:
 
     $ mine myproj --bundler --rspec --yard -T awesometest
 
+Add default generator options to `~/.ore/options.yml`:
+
+    ore_tasks: true
+    rspec: true
+    yard: true
+    markdown: true
+    authors:
+      - Alice
+    email: alice@example.com
+
 Builds a `.gem` file in the `pkg/` directory of a project:
 
     $ ore
