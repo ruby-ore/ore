@@ -84,7 +84,7 @@ The `gemspec.yml` file used to build Ore:
       yard: ~> 0.6.1
 
 For a complete refrence to the `gemspec.yml` file, please see the
-[GemspecYML Reference](http://rubydoc.info/gems/ore-core/file/GemspecYML.html)
+[GemspecYML Reference](http://rubydoc.info/gems/ore-core/file/GemspecYML.html).
 
 ## Synopsis
 
