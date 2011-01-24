@@ -9,7 +9,7 @@ module Ore
     #   name.
     # * `[namespace_path]` - The full directory path derived from the
     #   project name.
-    # * `[namespace_dir]` - The last directory name derivied from the
+    # * `[namespace_dir]` - The last directory name derived from the
     #    project name.
     #
     module Interpolations

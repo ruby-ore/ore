@@ -241,7 +241,7 @@ module Ore
       #   The specified type of markup.
       #
       # @return [Boolean]
-      #   Specifies whether the file has the sepcified formatting.
+      #   Specifies whether the file contains the given formatting.
       #
       def formatted_like?(path,markup)
         @@markups[markup].include?(File.extname(path))
