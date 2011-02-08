@@ -1,0 +1,3 @@
+<%- unless (jeweler_tasks? || ore_tasks?) -%>
+Bundler::GemHelper.install_tasks
+<%- end -%>
