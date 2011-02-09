@@ -33,35 +33,17 @@ fi
 # it be automatically loaded, uncomment the following and adjust the filename if
 # necessary.
 #
-# filename=".gems"
-# if [[ -s "$filename" ]] ; then
-#   rvm gemset import "$filename" | grep -v already | grep -v listed | grep -v complete | sed '/^$/d'
-# fi
+filename=".gems"
+if [[ -s "$filename" ]] ; then
+  rvm gemset import "$filename" | grep -v already | grep -v listed | grep -v complete | sed '/^$/d'
+fi
 
 #
 # If you use bundler and would like to run bundle each time you enter the
 # directory you can uncomment the following code.
 #
 <%- if bundler? -%>
-
-# Ensure that Bundler is installed, install it if it is not.
-if ! command -v bundle ; then
-   printf "The rubygem 'bundler' is not installed, installing it now.\n"
-   gem install bundler
-fi
-
 # Bundle while reducing excess noise.
 printf "Bundling your gems this may take a few minutes on a fresh clone.\n"
 bundle | grep -v 'Using' | grep -v 'complete' | sed '/^$/d'
-<%- else -%>
-#   # Ensure that Bundler is installed, install it if it is not.
-#   if ! command -v bundle ; then
-#      printf "The rubygem 'bundler' is not installed, installing it now.\n"
-#      gem install bundler
-#   fi
-#
-#   # Bundle while reducing excess noise.
-#   printf "Bundling your gems this may take a few minutes on a fresh clone.\n"
-#   bundle | grep -v 'Using' | grep -v 'complete' | sed '/^$/d'
-#
 <%- end -%>

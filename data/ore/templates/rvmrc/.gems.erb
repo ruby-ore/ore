@@ -1,0 +1,17 @@
+ore-core -v<%= @ore_core_dependency -%>
+<%- unless bundler
+      if jeweler_tasks? -%>
+jeweler -v<%= @jeweler_dependency -%>
+<%-   end
+      if ore_tasks? -%>
+ore-tasks -v<%= @ore_tasks_dependency -%>
+<%-   end
+      if yard? -%>
+yard -v<%= @yard_dependency -%>
+<%-   end
+      if rspec? -%>
+rspec -v<%= @rspec_dependency -%>
+<%-   end
+    else -%>
+bundler -v<%= @bundler_dependency -%>
+<%- end -%>
