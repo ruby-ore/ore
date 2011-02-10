@@ -1,5 +1,3 @@
-require 'ore/specification'
-
 source :rubygems
 
 gemspec
