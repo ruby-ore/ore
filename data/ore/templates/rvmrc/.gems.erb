@@ -1,5 +1,5 @@
 ore-core -v<%= @ore_core_dependency.dump -%>
-<%- unless bundler
+<%- unless bundler?
       if jeweler_tasks? -%>
 jeweler -v<%= @jeweler_dependency.dump -%>
 <%-   end
