@@ -28,21 +28,24 @@ else
   rvm --create  "$environment_id"
 fi
 
-#
-# If you use an RVM gemset file to install a list of gems (*.gems), you can have
-# it be automatically loaded, uncomment the following and adjust the filename if
-# necessary.
-#
-filename=".gems"
-if [[ -s "$filename" ]] ; then
-  rvm gemset import "$filename" | grep -v already | grep -v listed | grep -v complete | sed '/^$/d'
-fi
-
+<%- if bundler? -%>
 #
 # If you use bundler and would like to run bundle each time you enter the
 # directory you can uncomment the following code.
 #
-<%- if bundler? -%>
+
+# Ensure that ore-core is installed.
+if [[ -z `gem list ore-core` ]]; then
+  printf "The rubygem 'ore-core' is not installed, installing it now.\n"
+  gem install ore-core --version <%= @ore_core_dependency.dump %>
+fi
+
+# Ensure that Bundler is installed, install it if it is not.
+if ! command -v bundle ; then
+  printf "The rubygem 'bundler' is not installed, installing it now.\n"
+  gem install bundler
+fi
+
 # Bundle while reducing excess noise.
 printf "Bundling your gems this may take a few minutes on a fresh clone.\n"
 bundle | grep -v 'Using' | grep -v 'complete' | sed '/^$/d'
