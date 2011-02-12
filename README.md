@@ -128,5 +128,6 @@ Builds a `.gem` file in the `pkg/` directory of a project:
 
 ## License
 
-See {file:LICENSE.txt} for license information.
+Copyright (c) 2010-2011 Hal Brodigan
 
+See {file:LICENSE.txt} for license information.
