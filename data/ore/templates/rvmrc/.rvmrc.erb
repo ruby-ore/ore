@@ -35,7 +35,7 @@ fi
 #
 
 # Ensure that ore-core is installed.
-if [[ -z `gem list ore-core` ]]; then
+if [[ `gem list -i ore-core` -ne "true" ]]; then
   printf "The rubygem 'ore-core' is not installed, installing it now.\n"
   gem install ore-core --version <%= @ore_core_dependency.dump %>
 fi
