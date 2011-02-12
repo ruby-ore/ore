@@ -1,3 +1,18 @@
+### 0.6.0 / 2011-02-11
+
+* Opted into [gem-testers.org](http://gem-testers.org/).
+* Added the `rvmrc` template and `--rvmrc` option to {Ore::Generator}:
+  * Generates an `.rvmrc` file that creates a new gemset for the project
+    and supports Bundler.
+* Added `mailto:` to the `Email` links in the generated `README` files.
+* Use `__FILE__` instead of hardcoding the gemspec file name into the
+  generated `.gemspec` file.
+* No longer necessary to load `ore/specification` in the `Gemfile`:
+  * The new generated `.gemspec` files can auto-load `Ore::Specification`.
+* Fixed typos in the documentation thanks to
+  [yard-spellcheck](http://github.com/postmodern/yard-spellcheck).
+* Renamed `ore cut` command to `ore gem`.
+
 ### 0.5.0 / 2011-01-19
 
 * Require ore-core ~> 0.1.1.
