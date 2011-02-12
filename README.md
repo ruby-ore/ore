@@ -124,7 +124,7 @@ Add default generator options to `~/.ore/options.yml`:
 
 Builds a `.gem` file in the `pkg/` directory of a project:
 
-    $ ore
+    $ ore gem
 
 ## License
 

@@ -9,7 +9,7 @@ module Ore
 
     include Config
 
-    default_task :cut
+    default_task :gem
 
     map '-l' => :list
     map '-u' => :update
@@ -108,9 +108,9 @@ module Ore
       end
     end
 
-    desc 'cut', 'Cuts a new RubyGem'
+    desc 'gem', 'Builds a RubyGem'
 
-    def cut
+    def gem
       require 'ore/project'
 
       Project.find.build!
