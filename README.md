@@ -3,8 +3,8 @@
 * [Source](http://github.com/ruby-ore/ore)
 * [Issues](http://github.com/ruby-ore/ore/issues)
 * [Documentation](http://rubydoc.info/gems/ore/file/README.md)
+* [Email](mailto:postmodern.mod3 at gmail.com)
 * IRC: irc.freenode.net #ruby-ore
-* Postmodern (postmodern.mod3 at gmail.com)
 
 ## Description
 
@@ -75,11 +75,11 @@ The `gemspec.yml` file used to build Ore:
       **************************************************************************
     
     dependencies:
-      ore-core: ~> 0.1.1
+      ore-core: ~> 0.1.2
       thor: ~> 0.14.3
     
     development_dependencies:
-      ore-tasks: ~> 0.3.0
+      ore-tasks: ~> 0.4.0
       rspec: ~> 2.4.0
       yard: ~> 0.6.1
 
