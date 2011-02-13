@@ -5,13 +5,14 @@
   * Generates an `.rvmrc` file that creates a new gemset for the project
     and supports Bundler.
 * Added `mailto:` to the `Email` links in the generated `README` files.
-* Use `__FILE__` instead of hardcoding the gemspec file name into the
-  generated `.gemspec` file.
-* No longer necessary to load `ore/specification` in the `Gemfile`:
+* Renamed the `ore cut` command to `ore gem`.
+* Use `__FILE__` instead of hard-coding the file name into the generated
+  `.gemspec` file.
+* No longer necessary to require `ore/specification` in the generated
+  `Gemfile`:
   * The new generated `.gemspec` files can auto-load `Ore::Specification`.
 * Fixed typos in the documentation thanks to
   [yard-spellcheck](http://github.com/postmodern/yard-spellcheck).
-* Renamed `ore cut` command to `ore gem`.
 
 ### 0.5.0 / 2011-01-19
 
