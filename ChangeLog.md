@@ -1,4 +1,4 @@
-### 0.6.0 / 2011-02-11
+### 0.6.0 / 2011-02-12
 
 * Opted into [gem-testers.org](http://gem-testers.org/).
 * Added the `rvmrc` template and `--rvmrc` option to {Ore::Generator}:
@@ -11,6 +11,10 @@
 * No longer necessary to require `ore/specification` in the generated
   `Gemfile`:
   * The new generated `.gemspec` files can auto-load `Ore::Specification`.
+* Do not include `ore-core` in the generated `Gemfile`, if `ore-tasks`
+  has already been included.
+* Bumped the `ore-tasks` dependency to `~> 0.4.0` in the `ore_tasks`
+  template.
 * Fixed typos in the documentation thanks to
   [yard-spellcheck](http://github.com/postmodern/yard-spellcheck).
 
