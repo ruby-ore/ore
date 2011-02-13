@@ -1,5 +1,6 @@
 ### 0.6.0 / 2011-02-12
 
+* Require ore-core ~> 0.1.2.
 * Opted into [gem-testers.org](http://gem-testers.org/).
 * Added the `rvmrc` template and `--rvmrc` option to {Ore::Generator}:
   * Generates an `.rvmrc` file that creates a new gemset for the project
