@@ -1,4 +1,4 @@
-gem 'rspec', '~> 2.4.0'
+gem 'rspec', '~> 2.4'
 require 'rspec'
 
 gem 'ore-core', '~> 0.1.0'
