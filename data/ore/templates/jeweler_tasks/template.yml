@@ -1,2 +1,5 @@
+disables:
+  - ore_tasks
+
 variables:
   jeweler_dependency: ~> 1.5.0
