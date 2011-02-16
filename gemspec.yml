@@ -16,7 +16,7 @@ post_install_message: |
   **************************************************************************
   Generate a new Ruby library:
   
-      $ mine my_library --ore-tasks --rspec
+      $ mine my_library --rspec
   
   Build the library:
   
