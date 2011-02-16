@@ -75,8 +75,8 @@ describe Generator do
         subject['homepage'].should_not be_empty
       end
 
-      it "should have 'ore' as a development dependency" do
-        subject['development_dependencies'].should have_key('ore-core')
+      it "should have 'ore-tasks' as a development dependency" do
+        subject['development_dependencies'].should have_key('ore-tasks')
       end
     end
 

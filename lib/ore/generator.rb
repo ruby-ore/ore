@@ -62,6 +62,7 @@ module Ore
         :description => 'TODO: Description',
         :license => 'MIT',
         :authors => [ENV['USER']],
+        :ore_tasks => true,
         :rdoc => true,
         :rspec => true,
         :git => true
