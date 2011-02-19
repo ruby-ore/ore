@@ -24,8 +24,18 @@ the developer to keep all of the project information in a single YAML file.
 
         require 'ore/specification'
         
-        Ore::Specification.new do |gemspec|
-          # custom logic here
+        begin
+          Ore::Specification.new do |gemspec|
+            # custom logic here
+          end
+        rescue NameError
+          begin
+            require 'ore/specification'
+            retry
+          rescue LoadError
+            STDERR.puts "The '#{__FILE__}' file requires Ore."
+            STDERR.puts "Run `gem install ore-core` to install Ore."
+          end
         end
 
 * Provides an **extendable** project **generator** that supports
@@ -33,7 +43,7 @@ the developer to keep all of the project information in a single YAML file.
 
 ## Requirements
 
-* [ore-core](http://github.com/ruby-ore/ore-core) ~> 0.1.2
+* [ore-core](http://github.com/ruby-ore/ore-core) ~> 0.1.2, >= 0.1.2
 * [thor](http://github.com/wycats/thor) ~> 0.14.3
 
 ## Install
@@ -45,7 +55,7 @@ the developer to keep all of the project information in a single YAML file.
 The `gemspec.yml` file used to build Ore:
 
     name: ore
-    version: 0.5.0
+    version: 0.6.1
     summary: Mine raw RubyGems from YAML.
     description:
       Ore is a simple RubyGem building solution. Ore handles the
