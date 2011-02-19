@@ -1,4 +1,4 @@
-### 0.6.1 / 2011-02-18
+### 0.6.1 / 2011-02-19
 
 * Require ore-core ~> 0.1, >= 0.1.2.
 * Enable `--ore-tasks` by default.
