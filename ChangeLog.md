@@ -1,3 +1,12 @@
+### 0.6.1 / 2011-02-18
+
+* Require ore-core ~> 0.1, >= 0.1.2.
+* Enable `--ore-tasks` by default.
+* Allow `--jeweler-tasks` to disable `--ore-tasks`.
+* Relax ore-tasks dependency to `~> 0.4`.
+* Relax rspec dependency to `~> 2.4`.
+* Relax ore-core dependency to `~> 0.1`.
+
 ### 0.6.0 / 2011-02-12
 
 * Require ore-core ~> 0.1.2.
