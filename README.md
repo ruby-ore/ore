@@ -2,7 +2,7 @@
 
 * [Source](http://github.com/ruby-ore/ore)
 * [Issues](http://github.com/ruby-ore/ore/issues)
-* [Documentation](http://rubydoc.info/gems/ore/file/README.md)
+* [Documentation](http://rubydoc.info/gems/ore/frames)
 * [Email](mailto:postmodern.mod3 at gmail.com)
 * IRC: irc.freenode.net #ruby-ore
 
