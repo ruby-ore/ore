@@ -60,6 +60,18 @@ module Ore
       end
 
       #
+      # Determines whether the project will have a bin script.
+      #
+      # @return [Boolean]
+      #   Specifies whether the project will have a bin script.
+      #
+      # @since 0.7.0
+      #
+      def bin?
+        enabled?(:bin)
+      end
+
+      #
       # Determines if the project will contain RDoc documented.
       #
       # @return [Boolean]
