@@ -313,7 +313,9 @@ module Ore
         template.each_file(@markup) do |dest,file|
           unless generated.include?(dest)
             path = interpolate(dest)
+
             copy_file file, path
+            chmod path, File.stat(file).mode
 
             generated << dest
           end
@@ -323,11 +325,12 @@ module Ore
         template.each_template(@markup) do |dest,file|
           unless generated.include?(dest)
             path = interpolate(dest)
-
             @current_template_dir = File.dirname(dest)
-            template file, path
-            @current_template_dir = nil
 
+            template file, path
+            chmod path, File.stat(file).mode
+
+            @current_template_dir = nil
             generated << dest
           end
         end
