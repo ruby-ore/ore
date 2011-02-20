@@ -1,6 +1,8 @@
 ### 0.7.0 / 2011-02-19
 
 * Require ore-core ~> 0.1, >= 0.1.2.
+* Added {Ore::Template::Helpers#git?}.
+* Added {Ore::Template::Helpers#bin?}.
 * Added the `bin` template and `--bin` option to {Ore::Generator}.
 * Enable `--ore-tasks` by default.
 * Allow `--jeweler-tasks` to disable `--ore-tasks`.
