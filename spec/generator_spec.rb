@@ -105,6 +105,26 @@ describe Generator do
     end
   end
 
+  context "bin" do
+    let(:name) { 'script-project' }
+
+    before(:all) do
+      generate!(name, :bin => true)
+    end
+
+    it "should add a 'bin/' directory" do
+      @path.join('bin').should be_directory
+    end
+
+    it "should add a bin/script-project file" do
+      @path.join('bin',name).should be_file
+    end
+
+    it "should make the bin/script-project file executable" do
+      @path.join('bin',name).should be_executable
+    end
+  end
+
   context "gem test" do
     let(:name) { 'gem_test_project' }
 
