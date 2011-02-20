@@ -43,7 +43,7 @@ module Ore
       # @return [Boolean]
       #   Specifies whether Git was enabled.
       #
-      # @since 0.6.1
+      # @since 0.7.0
       #
       def git?
         options.git?
