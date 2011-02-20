@@ -38,6 +38,18 @@ module Ore
       end
 
       #
+      # Determines if Git is enabled.
+      #
+      # @return [Boolean]
+      #   Specifies whether Git was enabled.
+      #
+      # @since 0.6.1
+      #
+      def git?
+        options.git?
+      end
+
+      #
       # Determines if a template was enabled.
       #
       # @return [Boolean]
