@@ -350,7 +350,9 @@ module Ore
         copy_file file, path
       end
 
-      chmod path, File.stat(file).mode
+      if File.executable?(file)
+        chmod path, File.stat(file).mode
+      end
 
       @generated_files << dest
       return path
