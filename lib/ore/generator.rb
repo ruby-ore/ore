@@ -208,7 +208,8 @@ module Ore
       end
 
       if File.executable?(file)
-        chmod path, File.stat(file).mode
+        umask = File.stat(File.join(destination_root,path)).mode
+        chmod path, (umask | 0111)
       end
 
       @generated_files << dest
