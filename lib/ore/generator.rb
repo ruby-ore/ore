@@ -280,59 +280,97 @@ module Ore
           instance_variable_set("@#{name}",value)
         end
       end
+
+      @generated_dirs = Set[]
+      @generated_files = Set[]
+    end
+
+    #
+    # Generates an empty directory.
+    #
+    # @param [String] dest
+    #   The uninterpolated destination path.
+    #
+    # @return [String]
+    #   The destination path of the directory.
+    #
+    # @since 0.7.1
+    #
+    def generate_dir(dest)
+      return if @generated_dirs.include?(dest)
+
+      path = interpolate(dest)
+      empty_directory path
+
+      @generated_dirs << dest
+      return path
     end
 
     #
     # Creates directories listed in the template directories.
     #
     def generate_directories!
-      generated = Set[]
-
       @templates.each do |template|
         template.each_directory do |dir|
-          unless generated.include?(dir)
-            path = interpolate(dir)
-            empty_directory path
-
-            generated << dir
-          end
+          generate_dir dir
         end
       end
+    end
+
+    #
+    # Generates a file.
+    #
+    # @param [String] dest
+    #   The uninterpolated destination path.
+    #
+    # @param [String] file
+    #   The source file or template.
+    #
+    # @param [Hash] options
+    #   Additional options.
+    #
+    # @option options [Boolean] :template
+    #   Specifies that the file is a template, and should be rendered.
+    #
+    # @return [String]
+    #   The destination path of the file.
+    #
+    # @since 0.7.1
+    #
+    def generate_file(dest,file,options={})
+      return if @generated_files.include?(dest)
+
+      path = interpolate(dest)
+
+      if options[:template]
+        @current_template_dir = File.dirname(dest)
+        template file, path
+        @current_template_dir = nil
+      else
+        copy_file file, path
+      end
+
+      chmod path, File.stat(file).mode
+
+      @generated_files << dest
+      return path
     end
 
     #
     # Copies static files and renders templates in the template directories.
     #
     def generate_files!
-      generated = Set[]
-
       # iterate through the templates in reverse, so files in the templates
       # loaded last override the previously templates.
       @templates.reverse_each do |template|
         # copy in the static files first
         template.each_file(@markup) do |dest,file|
-          unless generated.include?(dest)
-            path = interpolate(dest)
-
-            copy_file file, path
-            chmod path, File.stat(file).mode
-
-            generated << dest
-          end
+          generate_file dest, file
         end
 
         # then render the templates
         template.each_template(@markup) do |dest,file|
-          unless generated.include?(dest)
-            path = interpolate(dest)
-            @current_template_dir = File.dirname(dest)
-
-            template file, path
-            chmod path, File.stat(file).mode
-
-            @current_template_dir = nil
-            generated << dest
-          end
+          generate_file dest, file, :template => true
         end
       end
     end
