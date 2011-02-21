@@ -154,6 +154,68 @@ module Ore
     argument :path, :required => true
 
     #
+    # Generates an empty directory.
+    #
+    # @param [String] dest
+    #   The uninterpolated destination path.
+    #
+    # @return [String]
+    #   The destination path of the directory.
+    #
+    # @since 0.7.1
+    #
+    def generate_dir(dest)
+      return if @generated_dirs.include?(dest)
+
+      path = interpolate(dest)
+      empty_directory path
+
+      @generated_dirs << dest
+      return path
+    end
+
+    #
+    # Generates a file.
+    #
+    # @param [String] dest
+    #   The uninterpolated destination path.
+    #
+    # @param [String] file
+    #   The source file or template.
+    #
+    # @param [Hash] options
+    #   Additional options.
+    #
+    # @option options [Boolean] :template
+    #   Specifies that the file is a template, and should be rendered.
+    #
+    # @return [String]
+    #   The destination path of the file.
+    #
+    # @since 0.7.1
+    #
+    def generate_file(dest,file,options={})
+      return if @generated_files.include?(dest)
+
+      path = interpolate(dest)
+
+      if options[:template]
+        @current_template_dir = File.dirname(dest)
+        template file, path
+        @current_template_dir = nil
+      else
+        copy_file file, path
+      end
+
+      if File.executable?(file)
+        chmod path, File.stat(file).mode
+      end
+
+      @generated_files << dest
+      return path
+    end
+
+    #
     # Enables a template, adding it to the generator.
     #
     # @param [Symbol, String] name
@@ -286,27 +348,6 @@ module Ore
     end
 
     #
-    # Generates an empty directory.
-    #
-    # @param [String] dest
-    #   The uninterpolated destination path.
-    #
-    # @return [String]
-    #   The destination path of the directory.
-    #
-    # @since 0.7.1
-    #
-    def generate_dir(dest)
-      return if @generated_dirs.include?(dest)
-
-      path = interpolate(dest)
-      empty_directory path
-
-      @generated_dirs << dest
-      return path
-    end
-
-    #
     # Creates directories listed in the template directories.
     #
     def generate_directories!
@@ -315,47 +356,6 @@ module Ore
           generate_dir dir
         end
       end
-    end
-
-    #
-    # Generates a file.
-    #
-    # @param [String] dest
-    #   The uninterpolated destination path.
-    #
-    # @param [String] file
-    #   The source file or template.
-    #
-    # @param [Hash] options
-    #   Additional options.
-    #
-    # @option options [Boolean] :template
-    #   Specifies that the file is a template, and should be rendered.
-    #
-    # @return [String]
-    #   The destination path of the file.
-    #
-    # @since 0.7.1
-    #
-    def generate_file(dest,file,options={})
-      return if @generated_files.include?(dest)
-
-      path = interpolate(dest)
-
-      if options[:template]
-        @current_template_dir = File.dirname(dest)
-        template file, path
-        @current_template_dir = nil
-      else
-        copy_file file, path
-      end
-
-      if File.executable?(file)
-        chmod path, File.stat(file).mode
-      end
-
-      @generated_files << dest
-      return path
     end
 
     #
