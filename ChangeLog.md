@@ -1,3 +1,9 @@
+### 0.7.1 / 2011-02-20
+
+* Added {Ore::Generator#generate_dir}.
+* Added {Ore::Generator#generate_file}.
+* Only chmod generated files, if they are supposed to be executable.
+
 ### 0.7.0 / 2011-02-19
 
 * Require ore-core ~> 0.1, >= 0.1.2.
