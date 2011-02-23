@@ -1,8 +1,12 @@
 source :rubygems
 
+<%= includes :gemfile_header -%>
+
 gemspec
+
+<%= includes :gemfile -%>
 
 group :development do
   gem 'rake',     '~> 0.8.7'
-<%= includes :gemfile, '' -%>
+<%= includes :gemfile_development, '' -%>
 end
