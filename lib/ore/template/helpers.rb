@@ -12,8 +12,18 @@ module Ore
       # @param [Symbol] name
       #   The name of the include.
       #
-      # @return [String]
+      # @param [String] separator
+      #   The separator to join includes with.
+      #
+      # @yield [output]
+      #   If a block is given, it will be passed the rendered include files.
+      #
+      # @yieldparam [String] output
       #   The combined result of the rendered include files.
+      #
+      # @return [String, nil]
+      #   The combined result of the rendered include files.
+      #   If no includes were found, `nil` will be returned.
       #
       def includes(name,separator=$/)
         name = name.to_sym
@@ -34,7 +44,14 @@ module Ore
           end
         end
 
-        return output_buffer.join(separator)
+        output = output_buffer.join(separator)
+        output = nil if output.empty?
+
+        if (block_given? && output)
+          output = yield(output)
+        end
+
+        return output
       end
 
       #

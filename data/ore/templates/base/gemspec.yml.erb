@@ -18,9 +18,9 @@ email: <%= @email %>
 homepage: <%= @homepage %>
 <%= includes :gemspec, '' -%>
 
-<%- unless (dependencies = includes(:dependencies,'')).empty? -%>
+<%- includes(:dependencies,'') do |dependencies| -%>
 dependencies:
-<%= dependencies %>
+<%=   dependencies %>
 
 <%- end -%>
 development_dependencies:
