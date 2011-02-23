@@ -1,11 +1,15 @@
 source :rubygems
+<%- includes(:gemfile_prelude,'') do |prelude| -%>
 
-<%= includes :gemfile_header -%>
+<%= prelude %>
+<%- end -%>
 
 gemspec
 
-<%= includes :gemfile -%>
+<%- includes(:gemfile,'') do |gemfile| -%>
+<%= gemfile %>
 
+<%- end -%>
 group :development do
   gem 'rake',     '~> 0.8.7'
 <%= includes :gemfile_development, '' -%>
