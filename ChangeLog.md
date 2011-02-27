@@ -1,3 +1,19 @@
+### 0.7.2 / 2011-02-26
+
+* Require ore-core ~> 0.1, >= 0.1.4.
+* Define options for installed templates as well.
+* Allow {Ore::Template::Helpers#includes} to yield output.
+* Allow the `bundler` template to load `gemfile_prelude`, `gemfile` and
+  `gemfile_development` includes.
+* Allow `--rdoc` to disable `--yard`.
+* Set `@markup` to `:rdoc` in the `rdoc` template.
+* Added separate `.document` files for the `rdoc` and `yard` templates.
+* Added the `doc` alias-task to the `rdoc` and `yard` templates.
+* Added `html/` to the generated `.gitignore` file in the `rdoc` template.
+* Allow `--test-unit` to disable `--rspec`.
+* Fixed the `test_unit` template.
+* Added a `Rakefile` task to the `test_unit` template.
+
 ### 0.7.1 / 2011-02-20
 
 * Added {Ore::Generator#generate_dir}.
