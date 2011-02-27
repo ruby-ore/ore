@@ -194,12 +194,12 @@ module Ore
     # @since 0.7.1
     #
     def generate_dir(dest)
-      return if @generated_dirs.include?(dest)
+      return if @generated_dirs.has_key?(dest)
 
       path = interpolate(dest)
       empty_directory path
 
-      @generated_dirs << dest
+      @generated_dirs[dest] = path
       return path
     end
 
@@ -224,7 +224,7 @@ module Ore
     # @since 0.7.1
     #
     def generate_file(dest,file,options={})
-      return if @generated_files.include?(dest)
+      return if @generated_files.has_key?(dest)
 
       path = interpolate(dest)
 
@@ -236,11 +236,7 @@ module Ore
         copy_file file, path
       end
 
-      if File.executable?(file)
-        chmod path, 0755
-      end
-
-      @generated_files << dest
+      @generated_files[dest] = path
       return path
     end
 
@@ -385,8 +381,8 @@ module Ore
         end
       end
 
-      @generated_dirs = Set[]
-      @generated_files = Set[]
+      @generated_dirs = {}
+      @generated_files = {}
     end
 
     #
@@ -415,6 +411,14 @@ module Ore
         # then render the templates
         template.each_template(@markup) do |dest,file|
           generate_file dest, file, :template => true
+        end
+      end
+
+      @generated_files.each do |dest,path|
+        dir = path.split(File::SEPARATOR,2).first
+
+        if dir == 'bin'
+          chmod path, 0755
         end
       end
     end
