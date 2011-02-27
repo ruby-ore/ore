@@ -100,7 +100,7 @@ For a complete refrence to the `gemspec.yml` file, please see the
 
 Install a custom template:
 
-    $ ore install http://github.com/user/awesometest.git
+    $ ore install git://github.com/ruby-ore/mini_test.git
 
 List installed templates:
 
