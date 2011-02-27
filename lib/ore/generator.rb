@@ -297,8 +297,8 @@ module Ore
     #
     def enable_templates!
       @templates = []
-      @enabled_templates = []
-      @disabled_templates = []
+      @enabled_templates = Set[]
+      @disabled_templates = Set[]
       
       enable_template :base
 
