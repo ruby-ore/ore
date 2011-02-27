@@ -1,6 +1,4 @@
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
   rdoc.title = <%= @name.dump %>
-  rdoc.rdoc_files.include("README.rdoc")
-  rdoc.rdoc_files.include("lib/**/*.rb")
 end
