@@ -99,6 +99,21 @@ module Ore
       class_option(name,options.merge(:default => defaults[name]))
     end
 
+    # The enabled templates.
+    attr_reader :enabled_templates
+
+    # The disabled templates.
+    attr_reader :disabled_templates
+
+    # The loaded templates.
+    attr_reader :templates
+
+    # The generated directories.
+    attr_reader :generated_dirs
+
+    # The generated files.
+    attr_reader :generated_files
+
     #
     # Generates a new project.
     #
