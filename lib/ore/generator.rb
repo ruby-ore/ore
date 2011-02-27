@@ -127,7 +127,10 @@ module Ore
 
     # register installed templates
     Config.installed_templates do |path|
-      register_template(path)
+      name = register_template(path)
+
+      # define options for installed templates
+      class_option name, :type => :boolean, :default => false
     end
 
     # disable the Thor namespace
