@@ -161,7 +161,7 @@ describe Generator do
     let(:name) { 'rdoc-project' }
 
     before(:all) do
-      generate!(name, :yard => false, :rdoc => true)
+      generate!(name, :rdoc => true)
     end
 
     it "should set @markup to :rdoc" do
@@ -293,7 +293,7 @@ describe Generator do
     let(:name) { 'test_unit_project' }
 
     before(:all) do
-      generate!(name, :rspec => false, :test_unit => true)
+      generate!(name, :test_unit => true)
     end
 
     it "should create the test/ directory" do
