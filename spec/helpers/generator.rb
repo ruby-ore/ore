@@ -27,6 +27,18 @@ module Helpers
       @path.join('.yardopts').read
     end
 
+    def document
+      lines = []
+
+      @path.join('.document').read.each_line do |line|
+        unless (line.empty? && line =~ /\s*\#/)
+          lines << line.strip
+        end
+      end
+
+      return lines
+    end
+
     def gitignore
       lines = []
 

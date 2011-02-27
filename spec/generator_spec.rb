@@ -171,6 +171,28 @@ describe Generator do
     it "should add 'html/' to the .gitignore file" do
       gitignore.should include('html/')
     end
+
+    it "should add a '.document' file" do
+      @path.join('.document').should be_file
+    end
+
+    context ".document" do
+      it "should include 'lib/**/*.rb'" do
+        document.should include('lib/**/*.rb')
+      end
+
+      it "should include 'README.rdoc'" do
+        document.should include('README.rdoc')
+      end
+
+      it "should include 'ChangeLog.rdoc'" do
+        document.should include('ChangeLog.rdoc')
+      end
+
+      it "should include 'LICENSE.txt'" do
+        document.should include('LICENSE.txt')
+      end
+    end
   end
 
   context "yard" do
@@ -186,6 +208,24 @@ describe Generator do
 
     it "should set 'has_yard' to 'true' in the gemspec.yml file" do
       @gemspec['has_yard'].should == true
+    end
+
+    it "should add a '.document' file" do
+      @path.join('.document').should be_file
+    end
+
+    context ".document" do
+      it "should not include 'README.*'" do
+        document.grep(/^README\./).should be_empty
+      end
+
+      it "should include 'ChangeLog.*'" do
+        document.should include('ChangeLog.*')
+      end
+
+      it "should include 'LICENSE.txt'" do
+        document.should include('LICENSE.txt')
+      end
     end
   end
 
