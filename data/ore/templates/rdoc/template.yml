@@ -1,2 +1,5 @@
 disable:
   - yard
+
+variables:
+  markup: :rdoc
