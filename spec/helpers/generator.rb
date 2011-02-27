@@ -10,10 +10,11 @@ module Helpers
     def generate!(path,options={})
       path = File.join(ROOT,path)
 
-      Ore::Generator.new(
+      @generator = Ore::Generator.new(
         [path],
         options.merge(:quiet => true)
-      ).invoke_all
+      )
+      @generator.invoke_all
 
       @path = Pathname.new(path)
       @gemspec = YAML.load_file(@path.join('gemspec.yml'))
