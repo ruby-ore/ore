@@ -115,22 +115,17 @@ module Ore
     defaults.merge!(Config.default_options)
 
     # register builtin templates
-    Config.builtin_templates do |path|
-      name = register_template(path)
+    Config.builtin_templates { |path| register_template(path) }
+    # register installed templates
+    Config.installed_templates { |path| register_template(path) }
 
+    # define options for all templates
+    templates.each_key do |name|
       # skip the `base` template
       next if name == :base
 
-      # define options for builtin templates
-      class_option name, :type => :boolean, :default => defaults[name]
-    end
-
-    # register installed templates
-    Config.installed_templates do |path|
-      name = register_template(path)
-
-      # define options for installed templates
-      class_option name, :type => :boolean, :default => false
+      class_option name, :type => :boolean,
+                         :default => defaults.fetch(name,false)
     end
 
     # disable the Thor namespace
