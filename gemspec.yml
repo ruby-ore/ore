@@ -16,7 +16,7 @@ post_install_message: |
   **************************************************************************
   Generate a new Ruby library:
   
-      $ mine my_library --rspec
+      $ mine my_library --rspec --yard
   
   Build the library:
   

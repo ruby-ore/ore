@@ -72,7 +72,7 @@ The `gemspec.yml` file used to build Ore:
       **************************************************************************
       Generate a new Ruby library:
       
-          $ mine my_library --rspec
+          $ mine my_library --rspec --yard
       
       Build the library:
       
