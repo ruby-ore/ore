@@ -32,9 +32,11 @@ module Helpers
       unless @document
         @document = []
 
-        @path.join('.document').read.each_line do |line|
-          unless (line.empty? && line =~ /\s*\#/)
-            @document << line.strip
+        @path.join('.document').open do |file|
+          file.each_line do |line|
+            unless (line.empty? && line =~ /\s*\#/)
+              @document << line.strip
+            end
           end
         end
       end
@@ -46,9 +48,11 @@ module Helpers
       unless @gitignore
         @gitignore = []
 
-        @path.join('.gitignore').read.each_line do |line|
-          unless (line.empty? && line =~ /\s*\#/)
-            @gitignore << line.strip
+        @path.join('.gitignore').open do |file|
+          file.each_line do |line|
+            unless (line.empty? && line =~ /\s*\#/)
+              @gitignore << line.strip
+            end
           end
         end
       end
