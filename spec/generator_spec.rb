@@ -161,7 +161,7 @@ describe Generator do
     let(:name) { 'rdoc-project' }
 
     before(:all) do
-      generate!(name, :rdoc => true)
+      generate!(name, :yard => false, :rdoc => true)
     end
 
     it "should set @markup to :rdoc" do
@@ -238,6 +238,26 @@ describe Generator do
 
     it "should still add 'yard' as a development dependency" do
       @gemspec['development_dependencies'].should have_key('yard')
+    end
+  end
+
+  context "test_unit" do
+    let(:name) { 'test_unit_project' }
+
+    before(:all) do
+      generate!(name, :rspec => false, :test_unit => true)
+    end
+
+    it "should create the test/ directory" do
+      @path.join('test').should be_directory
+    end
+
+    it "should create the test/helper.rb file" do
+      @path.join('test','helper.rb').should be_file
+    end
+
+    it "should add a single test_*.rb file" do
+      @path.join('test','test_test_unit_project.rb').should be_file
     end
   end
 
