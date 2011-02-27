@@ -29,27 +29,31 @@ module Helpers
     end
 
     def document
-      lines = []
+      unless @document
+        @document = []
 
-      @path.join('.document').read.each_line do |line|
-        unless (line.empty? && line =~ /\s*\#/)
-          lines << line.strip
+        @path.join('.document').read.each_line do |line|
+          unless (line.empty? && line =~ /\s*\#/)
+            @document << line.strip
+          end
         end
       end
 
-      return lines
+      return @document
     end
 
     def gitignore
-      lines = []
+      unless @gitignore
+        @gitignore = []
 
-      @path.join('.gitignore').read.each_line do |line|
-        unless (line.empty? && line =~ /\s*\#/)
-          lines << line.strip
+        @path.join('.gitignore').read.each_line do |line|
+          unless (line.empty? && line =~ /\s*\#/)
+            @gitignore << line.strip
+          end
         end
       end
 
-      return lines
+      return @gitignore
     end
 
     def cleanup!
