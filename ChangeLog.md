@@ -1,7 +1,12 @@
 ### 0.7.2 / 2011-02-26
 
 * Require ore-core ~> 0.1, >= 0.1.4.
-* Define options for installed templates as well.
+* Added {Ore::Generator.template?}.
+* Added {Ore::Generator#enabled_templates}.
+* Added {Ore::Generator#disabled_templates}.
+* Added {Ore::Generator#templates}.
+* Added {Ore::Generator#generated_dirs}.
+* Added {Ore::Generator#generated_files}.
 * Allow {Ore::Template::Helpers#includes} to yield output.
 * Allow the `bundler` template to load `gemfile_prelude`, `gemfile` and
   `gemfile_development` includes.
@@ -13,6 +18,7 @@
 * Allow `--test-unit` to disable `--rspec`.
 * Fixed the `test_unit` template.
 * Added a `Rakefile` task to the `test_unit` template.
+* Define options for installed templates as well.
 
 ### 0.7.1 / 2011-02-20
 
