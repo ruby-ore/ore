@@ -242,7 +242,7 @@ module Ore
 
       return false if @enabled_templates.include?(name)
 
-      unless (template_dir = Generator.templates[name])
+      unless (template_dir = self.class.templates[name])
         say "Unknown template #{name}", :red
         exit -1
       end
@@ -279,7 +279,7 @@ module Ore
 
       return false if @disabled_templates.include?(name)
 
-      unless (template_dir = Generator.templates[name])
+      unless (template_dir = self.class.templates[name])
         say "Unknown template #{name}", :red
         exit -1
       end
