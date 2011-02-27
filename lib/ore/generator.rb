@@ -414,7 +414,7 @@ module Ore
         end
       end
 
-      @generated_files.each do |dest,path|
+      @generated_files.each_value do |path|
         dir = path.split(File::SEPARATOR,2).first
 
         if dir == 'bin'
