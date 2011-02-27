@@ -157,6 +157,22 @@ describe Generator do
     end
   end
 
+  context "rdoc" do
+    let(:name) { 'rdoc-project' }
+
+    before(:all) do
+      generate!(name, :rdoc => true)
+    end
+
+    it "should set @markup to :rdoc" do
+      @path.join('README.rdoc').should be_file
+    end
+
+    it "should add 'html/' to the .gitignore file" do
+      gitignore.should include('html/')
+    end
+  end
+
   context "yard" do
     let(:name) { 'yard-project' }
 
