@@ -164,8 +164,12 @@ describe Generator do
       generate!(name, :rdoc => true)
     end
 
+    it "should disable the yard template" do
+      @generator.disabled_templates.should include(:yard)
+    end
+
     it "should set @markup to :rdoc" do
-      @path.join('README.rdoc').should be_file
+      @generator.instance_variable_get('@markup').should == :rdoc
     end
 
     it "should add 'html/' to the .gitignore file" do
@@ -200,6 +204,10 @@ describe Generator do
 
     before(:all) do
       generate!(name, :yard => true)
+    end
+
+    it "should disable the rdoc template" do
+      @generator.disabled_templates.should include(:rdoc)
     end
 
     it "should add a .yardopts file" do
@@ -296,6 +304,10 @@ describe Generator do
       generate!(name, :test_unit => true)
     end
 
+    it "should disable the rspec template" do
+      @generator.disabled_templates.should include(:rspec)
+    end
+
     it "should create the test/ directory" do
       @path.join('test').should be_directory
     end
@@ -314,6 +326,10 @@ describe Generator do
 
     before(:all) do
       generate!(name, :rspec => true)
+    end
+
+    it "should disable the test_unit template" do
+      @generator.disabled_templates.should include(:test_unit)
     end
 
     it "should not create the test/ directory" do
@@ -360,6 +376,10 @@ describe Generator do
       generate!(name, :jeweler_tasks => true)
     end
 
+    it "should disable the ore_tasks template" do
+      @generator.disabled_templates.should include(:ore_tasks)
+    end
+
     it "should add 'jeweler' as a development dependency" do
       @gemspec['development_dependencies'].should have_key('jeweler')
     end
@@ -382,6 +402,10 @@ describe Generator do
 
     before(:all) do
       generate!(name, :ore_tasks => true)
+    end
+
+    it "should disable the jeweler_tasks template" do
+      @generator.disabled_templates.should include(:jeweler_tasks)
     end
 
     it "should omit 'ore-core' as a development dependency" do
