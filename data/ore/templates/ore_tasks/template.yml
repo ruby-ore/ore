@@ -1,4 +1,4 @@
-disables:
+disable:
   - jeweler_tasks
 
 variables:
