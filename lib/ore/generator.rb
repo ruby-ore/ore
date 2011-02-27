@@ -24,6 +24,21 @@ module Ore
     end
 
     #
+    # Determines whether a template was registered.
+    #
+    # @param [Symbol, String] name
+    #   The name of the template.
+    #
+    # @return [Boolean]
+    #   Specifies whether the template was registered.
+    #
+    # @since 0.7.2
+    #
+    def self.template?(name)
+      self.templates.has_key?(name.to_sym)
+    end
+
+    #
     # Registers a template with the generator.
     #
     # @param [String] path
@@ -262,6 +277,8 @@ module Ore
     def disable_template(name)
       name = name.to_sym
 
+      return false if @disabled_templates.include?(name)
+
       unless (template_dir = Generator.templates[name])
         say "Unknown template #{name}", :red
         exit -1
@@ -271,6 +288,7 @@ module Ore
 
       @templates.delete_if { |template| template.path == template_dir }
       @enabled_templates.delete(name)
+      @disabled_templates << name
       return true
     end
 
@@ -280,12 +298,22 @@ module Ore
     def enable_templates!
       @templates = []
       @enabled_templates = []
+      @disabled_templates = []
       
       enable_template :base
 
-      # enable templates specified by options
-      self.class.templates.each_key do |name|
-        enable_template(name) if options[name]
+      # enable the default templates first
+      self.class.defaults.each_key do |name|
+        if (self.class.template?(name) && options[name])
+          enable_template(name)
+        end
+      end
+
+      # enable the templates specified by option
+      options.each do |name,value|
+        if (self.class.template?(name) && value)
+          enable_template(name)
+        end
       end
 
       # enable any additionally specified templates
