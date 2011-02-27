@@ -215,6 +215,14 @@ describe Generator do
     end
 
     context ".document" do
+      it "should not include 'lib/**/*.rb'" do
+        document.should_not include('lib/**/*.rb')
+      end
+
+      it "should include a '-' separator for non-code files" do
+        document.should include('-')
+      end
+
       it "should not include 'README.*'" do
         document.grep(/^README\./).should be_empty
       end
