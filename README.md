@@ -86,6 +86,7 @@ The `gemspec.yml` file used to build Ore:
     
     dependencies:
       ore-core: ~> 0.1, >= 0.1.4
+      env: ~> 0.1.2
       thor: ~> 0.14.3
     
     development_dependencies:

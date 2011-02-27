@@ -1,4 +1,5 @@
 require 'pathname'
+require 'env'
 
 module Ore
   module Config
@@ -6,7 +7,7 @@ module Ore
     @@enabled = true
 
     # The users home directory
-    @@home = File.expand_path(ENV['HOME'] || ENV['HOMEPATH'])
+    @@home = Env.home
 
     # Ore config directory
     @@path = File.join(@@home,'.ore')
