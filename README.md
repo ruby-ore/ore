@@ -50,7 +50,7 @@ the developer to keep all of the project information in a single YAML file.
 
     $ gem install ore
 
-## Example gemspec.yml files
+## Example gemspec.yml File
 
 The `gemspec.yml` file used to build Ore:
 
@@ -108,19 +108,19 @@ List installed templates:
 
 Remove a previously installed template:
 
-    $ ore remove awesometest
+    $ ore remove mini_test
 
 Generate a new project:
 
-    $ mine myproj
+    $ mine my_project
 
 Generate a new customized project:
 
-    $ mine myproj --bundler --rspec --yard
+    $ mine my_project --bundler --rspec --yard
 
 Generate a new project using previously installed templates:
 
-    $ mine myproj --bundler --rspec --yard -T awesometest
+    $ mine my_project --bundler --rspec --yard --template mini_test
 
 Add default generator options to `~/.ore/options.yml`:
 
@@ -132,7 +132,7 @@ Add default generator options to `~/.ore/options.yml`:
       - Alice
     email: alice@example.com
 
-Builds a `.gem` file in the `pkg/` directory of a project:
+Build a `.gem` file in the `pkg/` directory of a project:
 
     $ ore gem
 
