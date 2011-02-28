@@ -16,10 +16,15 @@ module Ore
       # The accepted interpolation keywords that may be used in paths
       @@keywords = %w[
         name
+        version
         project_dir
         namespace_path
         namespace_dir
         markup
+        date
+        year
+        month
+        day
       ]
 
       protected
