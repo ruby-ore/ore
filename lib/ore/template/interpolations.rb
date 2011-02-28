@@ -19,6 +19,7 @@ module Ore
         project_dir
         namespace_path
         namespace_dir
+        markup
       ]
 
       protected
