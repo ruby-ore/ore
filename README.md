@@ -121,7 +121,7 @@ Generate a new customized project:
 
 Generate a new project using previously installed templates:
 
-    $ mine my_project --bundler --rspec --yard --template mini_test
+    $ mine my_project --bundler --rspec --yard --templates mini_test
 
 Add default generator options to `~/.ore/options.yml`:
 
