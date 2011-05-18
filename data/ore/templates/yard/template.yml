@@ -2,4 +2,4 @@ disable:
   - rdoc
 
 variables:
-  yard_dependency: ~> 0.6.0
+  yard_dependency: ~> 0.7.0
