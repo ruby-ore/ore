@@ -26,6 +26,7 @@ the developer to keep all of the project information in a single YAML file.
 ## Requirements
 
 * [ore-core](http://github.com/ruby-ore/ore-core) ~> 0.1, >= 0.1.4
+* [env](http://github.com/postmodern/env) ~> 0.1.2
 * [thor](http://github.com/wycats/thor) ~> 0.14.3
 
 ## Install
