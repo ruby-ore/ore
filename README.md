@@ -20,24 +20,6 @@ the developer to keep all of the project information in a single YAML file.
 * **Can** load the project version from:
   * `VERSION` or `VERSION.yml` files.
   * `VERSION` constants or `Version` modules defined in a `version.rb` file.
-* **Can** be used in traditional `.gemspec` files:
-
-        require 'ore/specification'
-        
-        begin
-          Ore::Specification.new do |gemspec|
-            # custom logic here
-          end
-        rescue NameError
-          begin
-            require 'ore/specification'
-            retry
-          rescue LoadError
-            STDERR.puts "The '#{__FILE__}' file requires Ore."
-            STDERR.puts "Run `gem install ore-core` to install Ore."
-          end
-        end
-
 * Provides an **extendable** project **generator** that supports
   user-installed templates.
 
