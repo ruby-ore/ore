@@ -15,8 +15,7 @@ the developer to keep all of the project information in a single YAML file.
 ## Features
 
 * Stores project information in **one YAML file** (`gemspec.yml`).
-* **Does not** impose a development workflow onto the developer. One could
-  even use Ore with `Jeweler::Tasks`.
+* **Does not** impose a development workflow onto the developer.
 * **Can** load the project version from:
   * `VERSION` or `VERSION.yml` files.
   * `VERSION` constants or `Version` modules defined in a `version.rb` file.
