@@ -3,6 +3,14 @@
 require 'yaml'
 
 Gem::Specification.new do |gemspec|
+  defaults = {
+    :bin_files => 'bin/*',
+    :files => 'lib/{**/}*.rb',
+    :test_files => '{test/{**/}*_test.rb,spec/{**/}*_spec.rb}',
+    :extra_doc_files => '*.{txt,rdoc,md,markdown,tt,textile}',
+    :version_path => File.join('lib','<%= @namespace_dir %>','version.rb')
+  }
+
   scm = if File.directory?('.git')
           :git
         end
@@ -13,14 +21,6 @@ Gem::Specification.new do |gemspec|
           else
             Dir.glob('{**/}{.*,*}').select { |path| File.file?(path) }
           end
-
-  defaults = {
-    :bin_files => 'bin/*',
-    :files => 'lib/{**/}*.rb',
-    :test_files => '{test/{**/}*_test.rb,spec/{**/}*_spec.rb}',
-    :extra_doc_files => '*.{txt,rdoc,md,markdown,tt,textile}',
-    :version_path => File.join('lib','<%= @namespace_dir %>','version.rb')
-  }
 
   expand_files = lambda { |pattern|
     case pattern
