@@ -2,10 +2,9 @@ name: ore
 version: 0.7.3
 summary: Mine raw RubyGems from YAML
 description:
-  Ore is a simple RubyGem building solution. Ore handles the
-  creation of Gem::Specification objects as well as building '.gem'
-  files. Ore allows the developer to keep all of the project information
-  in a single YAML file.
+  Ore is a flexible Ruby project generator. Unlike other Ruby project
+  generators, Ore provides many builtin templates and allows custom
+  templates to be installed from Git repositories.
 
 license: MIT
 authors: Postmodern

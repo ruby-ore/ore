@@ -8,19 +8,29 @@
 
 ## Description
 
-Ore is a simple RubyGem building solution. Ore handles the creation of
-`Gem::Specification` objects as well as building `.gem` files. Ore allows
-the developer to keep all of the project information in a single YAML file.
+Ore is a flexible Ruby project generator. Unlike other Ruby project
+generators, Ore provides many builtin templates and allows custom
+templates to be installed from Git repositories.
 
 ## Features
 
-* Stores project information in **one YAML file** (`gemspec.yml`).
-* **Does not** impose a development workflow onto the developer.
-* **Can** load the project version from:
-  * `VERSION` or `VERSION.yml` files.
-  * `VERSION` constants or `Version` modules defined in a `version.rb` file.
-* Provides an **extendable** project **generator** that supports
-  user-installed templates.
+* Stores project metadata in **one YAML file** (`gemspec.yml`).
+* Generates a **pure Ruby** `.gemspec` supporting:
+  * Git
+  * `gemspec.yml`
+  * `VERSION` or `version.rb` files
+* Provides many builtin templates:
+  * bundler
+  * rvmrc
+  * jeweler
+  * rdoc
+  * yard
+  * test_unit
+  * rspec
+  * gem_test
+* Allows installing custom templates from Git repositories:
+
+      $ ore install git://github.com/ruby-ore/cucumber.git
 
 ## Requirements
 
