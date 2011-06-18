@@ -9,7 +9,7 @@ Gem::Specification.new do |gemspec|
     :test_files => '{test/{**/}*_test.rb,spec/{**/}*_spec.rb}',
     :extra_doc_files => '*.{txt,rdoc,md,markdown,tt,textile}',
     :version => {
-      :path => '<%= @namespace_dir %>/version.rb',
+      :file => 'lib/<%= @namespace_dir %>/version.rb',
       :constant => '<%= @namespace %>::VERSION'
     }
   }
@@ -48,8 +48,8 @@ Gem::Specification.new do |gemspec|
                       metadata['version']
                     elsif files.include?('VERSION')
                       File.read('VERSION').chomp
-                    elsif files.include?(defaults[:version_path])
-                      require File.join('.','lib',defaults[:version][:path])
+                    elsif files.include?(defaults[:version][:file])
+                      require File.join('.',defaults[:version][:file])
                       eval(defaults[:version][:constant])
                     end
 
