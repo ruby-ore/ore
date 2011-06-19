@@ -59,7 +59,6 @@ The `gemspec.yml` file used to build Ore:
     authors: Postmodern
     email: postmodern.mod3@gmail.com
     homepage: http://github.com/ruby-ore/ore
-    has_yard: true
     post_install_message: |
       **************************************************************************
       Generate a new Ruby library:
