@@ -87,36 +87,30 @@ Gem::Specification.new do |gemspec|
     gemspec.required_rubygems_version = metadata['required_ruby_version']
   end
 
-  add_dependencies = lambda { |group|
-    key = if group == :default
-            'dependencies'
-          else
-            "#{group}_dependencies"
-          end
-
-    method = if group == :default
-               'add_dependency'
-             elsif gemspec.respond_to?("add_#{group}_dependency")
-               "add_#{group}_dependency"
-             else
-               'add_dependency'
-             end
-
-    if metadata.has_key?(key)
-      metadata[key].each do |name,versions|
-        versions = case versions
-                   when Array
-                     versions.map { |v| v.to_s }
-                   when String
-                     versions.split(/,\s*/)
-                   end
-
-        gemspec.send(method,name.to_s,*versions)
-      end
+  parse_versions = lambda { |versions|
+    case versions
+    when Array
+      versions.map { |v| v.to_s }
+    when String
+      versions.split(/,\s*/)
     end
   }
 
-  add_dependencies[:default]
-  add_dependencies['runtime']
-  add_dependencies['development']
+  if metadata['dependencies']
+    metdata['dependencies'].each do |name,versions|
+      gemspec.add_dependency(name,parse_versions[versions])  
+    end
+  end
+
+  if metadata['runtime_dependencies']
+    metdata['runtime_dependencies'].each do |name,versions|
+      gemspec.add_runtime_dependency(name,parse_versions[versions])  
+    end
+  end
+
+  if metadata['development_dependencies']
+    metdata['development_dependencies'].each do |name,versions|
+      gemspec.add_development_dependency(name,parse_versions[versions])  
+    end
+  end
 end
