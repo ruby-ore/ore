@@ -20,19 +20,9 @@ The version of the project can be listed like so:
 
     version: 1.2.3
 
-The `version` may also be listed as a Hash:
-
-    version:
-      major: 1
-      minor: 2
-      patch: 3
-      build: pre
-
-If the version is not listed, Ore will first search for a `VERSION` or
-`VERSION.yml` file in the root of the project. If Ore cannot find any
-version files, it will then search within the `lib/` directory for a
-`version.rb`. Ore can load both Ruby `VERSION` constants or `Version`
-modules that contain `MAJOR`, `MINOR`, `PATCH` and `BUILD` constants.
+If the version is not listed, Ore will first search for a `VERSION`
+file in the root of the project. If Ore cannot find any version files,
+it will then search within the `lib/` directory for a `version.rb`.
 
 ## summary
 
@@ -95,17 +85,6 @@ listed:
       - eve@example.com
       - bob@example.com
 
-## date
-
-The publish date of the current version can be listed like so:
-
-    date: 2010-10-23
-
-Ore will use [Date.parse](http://rubydoc.info/docs/ruby-stdlib/1.9.2/Date.parse)
-to parse the `date` value.
-
-If the `date` is not listed, Ore will default it to the current date.
-
 ## require_paths
 
 The require_paths of a project can be listed like so:
@@ -133,32 +112,17 @@ One can also list the executables individually:
 If the `executables` are not listed, Ore will use the names of any
 executable file within the `bin/` directory.
 
-## default_executable
+## extensions
 
-The primary executable of the project can be listed like so:
+Any Ruby C-extensions can be listed like so:
 
-    default_executable: util1
+    extensions: ext/foo/extconf.rb
 
-If `default_executable` is not listed, Ore will use the first element
-in `executables`.
+## documentation
 
-## has_rdoc
+The format of the documentation can be listed like so:
 
-One can specify the project contains [RDoc](http://rdoc.rubyforge.org/)
-documentation:
-
-    has_rdoc: true
-
-## has_yard
-
-If the project contains [YARD](http://yardoc.org/) and not
-[RDoc](http://rdoc.rubyforge.org/) documentation, one can specify this:
-
-    has_yard: true
-
-If neither `has_yard` or `has_rdoc` are listed, Ore will set `has_yard`
-if the `.yardopts` file exists in the root directory of the project.
-Otherwise, Ore will default `has_rdoc` to true.
+    documentation: yard
 
 ## extra_doc_files
 
