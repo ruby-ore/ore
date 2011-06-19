@@ -13,13 +13,12 @@ Gem::Specification.new do |gemspec|
     }
   }
 
-  scm = if File.directory?('.git')
-          :git
-        end
-
-  files = case scm
-          when :git
+  files = if File.directory?('.git')
             `git ls-files`.split($/)
+          elsif File.directory?('.hg')
+            `hg manifest`.split($/)
+          elsif File.directory?('.svn')
+            `svn ls -R`.split($/).select { |path| File.file?(path) }
           else
             Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
           end
