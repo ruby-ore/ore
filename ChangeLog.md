@@ -1,10 +1,11 @@
-### 0.7.3 / 2011-06-15
+### 0.8.0 / 2011-06-18
 
 * Added the `markup`, `date`, `year`, `month` and `day` keywords to
   {Ore::Template::Interpolations}.
 * Added `encoding` comments to generated `Rakefile` and `*.gemspec` files.
 * Fixed chmoding of bin files.
-* Updated generated `yard` dependency to `~> 0.7.0`.
+* Updated the generated `yard` dependency to `~> 0.7.0`.
+* No longer add `has_yard: true` to generated `gemspec.yml` files.
 * Generate a pure-Ruby `*.gemspec` file, which loads `gemspec.yml`.
 
 ### 0.7.2 / 2011-02-26
