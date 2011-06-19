@@ -63,6 +63,7 @@ Gem::Specification.new do |gemspec|
   gemspec.files = filter_files[metadata['files']]
 
   gemspec.executables = metadata['executables']
+  gemspec.extensions = metadata['extensions']
 
   if Gem::VERSION < '1.7.'
     gemspec.default_executable = gemspec.executables.first
