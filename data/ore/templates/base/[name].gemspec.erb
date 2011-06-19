@@ -95,19 +95,19 @@ Gem::Specification.new do |gemspec|
   }
 
   if metadata['dependencies']
-    metdata['dependencies'].each do |name,versions|
+    metadata['dependencies'].each do |name,versions|
       gemspec.add_dependency(name,parse_versions[versions])  
     end
   end
 
   if metadata['runtime_dependencies']
-    metdata['runtime_dependencies'].each do |name,versions|
+    metadata['runtime_dependencies'].each do |name,versions|
       gemspec.add_runtime_dependency(name,parse_versions[versions])  
     end
   end
 
   if metadata['development_dependencies']
-    metdata['development_dependencies'].each do |name,versions|
+    metadata['development_dependencies'].each do |name,versions|
       gemspec.add_development_dependency(name,parse_versions[versions])  
     end
   end
