@@ -83,8 +83,6 @@ Gem::Specification.new do |gemspec|
 
   gemspec.test_files = filter_files[metadata['test_files']]
 
-  gemspec.has_rdoc = metadata['documentation']
-
   unless gemspec.files.include?('.document')
     gemspec.extra_rdoc_files = metadata['extra_doc_files']
   end
