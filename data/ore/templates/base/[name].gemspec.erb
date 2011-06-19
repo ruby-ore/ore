@@ -47,9 +47,21 @@ Gem::Specification.new do |gemspec|
 
   gemspec.summary = metadata.fetch('summary',metadata['description'])
   gemspec.description = metadata.fetch('description',metadata['summary'])
-  gemspec.licenses = metadata['license']
 
-  gemspec.authors = metadata['authors']
+  case metadata['license']
+  when Array
+    gemspec.licenses = metadata['license']
+  when String
+    gemspec.license = metadata['license']
+  end
+
+  case metadata['authors']
+  when Array
+    gemspec.authors = metadata['authors']
+  when String
+    gemspec.author = metadata['authors']
+  end
+
   gemspec.email = metadata['email']
   gemspec.homepage = metadata['homepage']
 
