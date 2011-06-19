@@ -42,9 +42,9 @@ Gem::Specification.new do |gemspec|
                       metadata['version']
                     elsif File.file?('VERSION')
                       File.read('VERSION').chomp
-                    elsif File.file?(defaults[:version][:file])
-                      require File.join('.',defaults[:version][:file])
-                      eval(defaults[:version][:constant])
+                    elsif File.file?(version[:file])
+                      require File.join('.',version[:file])
+                      eval(version[:constant])
                     end
 
   gemspec.summary = metadata.fetch('summary',metadata['description'])
