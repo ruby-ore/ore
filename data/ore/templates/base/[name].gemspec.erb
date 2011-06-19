@@ -44,9 +44,9 @@ Gem::Specification.new do |gemspec|
 
   gemspec.version = if metadata['version']
                       metadata['version']
-                    elsif files.include?('VERSION')
+                    elsif File.file?('VERSION')
                       File.read('VERSION').chomp
-                    elsif files.include?(defaults[:version][:file])
+                    elsif File.file?(defaults[:version][:file])
                       require File.join('.',defaults[:version][:file])
                       eval(defaults[:version][:constant])
                     end
