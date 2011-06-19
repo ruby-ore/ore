@@ -20,9 +20,9 @@ Gem::Specification.new do |gemspec|
 
   files = case scm
           when :git
-            `git ls-files -z`.split("\0")
+            `git ls-files`.split($/)
           else
-            Dir.glob('{**/}{.*,*}').select { |path| File.file?(path) }
+            Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
           end
 
   expand_files = lambda { |pattern|
@@ -30,9 +30,7 @@ Gem::Specification.new do |gemspec|
     when Array
       pattern
     when String
-      Dir.glob(pattern).select { |path|
-        File.file?(path) && files.include?(path)
-      }
+      (files & Dir[pattern])
     end
   }
 
@@ -71,9 +69,9 @@ Gem::Specification.new do |gemspec|
   gemspec.executables = if metadata['executables']
                           metadata['executables']
                         else
-                          expand_files[defaults[:bin_files]].map { |path|
+                          expand_files[defaults[:bin_files]].map do |path|
                             File.basename(path)
-                          }
+                          end
                         end
 
   if Gem::VERSION < '1.7.'
@@ -82,10 +80,6 @@ Gem::Specification.new do |gemspec|
                                  else
                                    gemspec.executables.first
                                  end
-  end
-
-  unless gemspec.files.include?('.document')
-    gemspec.extra_rdoc_files = expand_files[defaults[:extra_doc_files]]
   end
 
   gemspec.files = if metadata['files']
@@ -100,6 +94,10 @@ Gem::Specification.new do |gemspec|
                          expand_files[defaults[:test_files]]
                        end
 
+  unless gemspec.files.include?('.document')
+    gemspec.extra_rdoc_files = expand_files[defaults[:extra_doc_files]]
+  end
+
   gemspec.post_install_message = metadata['post_install_message']
   gemspec.requirements = metadata['requirements']
 
@@ -112,21 +110,19 @@ Gem::Specification.new do |gemspec|
   end
 
   add_dependencies = lambda { |group|
-    method = if group == :default
-               'add_dependency'
-             else
-               if gemspec.respond_to?("add_#{group}_dependency")
-                 "add_#{group}_dependency"
-               else
-                 'add_dependency'
-               end
-             end
-
     key = if group == :default
             'dependencies'
           else
             "#{group}_dependencies"
           end
+
+    method = if group == :default
+               'add_dependency'
+             elsif gemspec.respond_to?("add_#{group}_dependency")
+               "add_#{group}_dependency"
+             else
+               'add_dependency'
+             end
 
     if metadata.has_key?(key)
       metadata[key].each do |name,versions|
