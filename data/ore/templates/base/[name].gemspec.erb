@@ -3,16 +3,6 @@
 require 'yaml'
 
 Gem::Specification.new do |gemspec|
-  defaults = {
-    :bin_files => 'bin/*',
-    :test_files => '{test/{**/}*_test.rb,spec/{**/}*_spec.rb}',
-    :extra_doc_files => '*.{txt,rdoc,md,markdown,tt,textile}',
-    :version => {
-      :file => 'lib/<%= @namespace_dir %>/version.rb',
-      :constant => '<%= @namespace %>::VERSION'
-    }
-  }
-
   files = if File.directory?('.git')
             `git ls-files`.split($/)
           elsif File.directory?('.hg')
@@ -23,23 +13,31 @@ Gem::Specification.new do |gemspec|
             Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
           end
 
-  expand_files = lambda { |pattern|
-    case pattern
+  filter_files = lambda { |paths|
+    case paths
     when Array
-      pattern
+      (files & paths)
     when String
-      (files & Dir[pattern])
+      (files & Dir[paths])
     end
   }
 
-  metadata = YAML.load_file('gemspec.yml')
+  version = {
+    :file => 'lib/<%= @namespace_dir %>/version.rb',
+    :constant => '<%= @namespace %>::VERSION'
+  }
 
-  gemspec.name = if metadata['name']
-                   metadata['name']
-                 else
-                   File.basename(File.dirname(__FILE__))
-                 end
+  defaults = {
+    'name' => File.basename(File.dirname(__FILE__)),
+    'files' => files,
+    'executables' => filter_files['bin/*'].map { |path| File.basename(path) },
+    'test_files' => filter_files['{test/{**/}*_test.rb,spec/{**/}*_spec.rb}'],
+    'extra_doc_files' => filter_files['*.{txt,rdoc,md,markdown,tt,textile}'],
+  }
 
+  metadata = defaults.merge(YAML.load_file('gemspec.yml'))
+
+  gemspec.name = metadata.fetch('name',defaults[:name])
   gemspec.version = if metadata['version']
                       metadata['version']
                     elsif File.file?('VERSION')
@@ -64,36 +62,18 @@ Gem::Specification.new do |gemspec|
     gemspec.require_path = metadata['require_paths']
   end
 
-  gemspec.files = if metadata['files']
-                    expand_files[metadata['files']]
-                  else
-                    files
-                  end
+  gemspec.files = filter_files[metadata['files']]
 
-  gemspec.executables = if metadata['executables']
-                          metadata['executables']
-                        else
-                          expand_files[defaults[:bin_files]].map do |path|
-                            File.basename(path)
-                          end
-                        end
+  gemspec.executables = metadata['executables']
 
   if Gem::VERSION < '1.7.'
-    gemspec.default_executable = if metadata['default_executable']
-                                   metadata['default_executable']
-                                 else
-                                   gemspec.executables.first
-                                 end
+    gemspec.default_executable = gemspec.executables.first
   end
 
-  gemspec.test_files = if metadata['test_files']
-                         expand_files[metadata['test_files']]
-                       else
-                         expand_files[defaults[:test_files]]
-                       end
+  gemspec.test_files = filter_files[metadata['test_files']]
 
   unless gemspec.files.include?('.document')
-    gemspec.extra_rdoc_files = expand_files[defaults[:extra_doc_files]]
+    gemspec.extra_rdoc_files = metadata['extra_doc_files']
   end
 
   gemspec.post_install_message = metadata['post_install_message']
