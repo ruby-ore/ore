@@ -214,10 +214,6 @@ describe Generator do
       @path.join('.yardopts').should be_file
     end
 
-    it "should set 'has_yard' to 'true' in the gemspec.yml file" do
-      @gemspec['has_yard'].should == true
-    end
-
     it "should add a '.document' file" do
       @path.join('.document').should be_file
     end
