@@ -7,8 +7,8 @@ begin
   gem 'ore', '<%= @ore_core_dependency %>'
   require 'ore/specification'
 rescue LoadError
-  STDERR.puts e.message
-  STDERR.puts "Run `gem install ore` to install Ore."
+  warn e.message
+  warn "Run `gem install ore` to install Ore."
 end
 
 begin
@@ -17,6 +17,6 @@ begin
 
   Jeweler::Tasks.new(Ore::Specification.new)
 rescue LoadError
-  STDERR.puts 'Jeweler (or a dependency) not available. Install it with: gem install jeweler'
+  warn 'Jeweler (or a dependency) not available. Install it with: gem install jeweler'
 end
 <%- end -%>

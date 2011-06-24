@@ -5,7 +5,7 @@ require 'rubygems'
 begin
   require 'ore/generator'
 rescue LoadError => e
-  STDERR.puts 'Could not load "ore/generator"'
+  warn 'Could not load "ore/generator"'
   exit -1
 end
 
