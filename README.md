@@ -47,7 +47,7 @@ templates to be installed from Git repositories.
 The `gemspec.yml` file used to build Ore:
 
     name: ore
-    version: 0.8.0
+    version: 0.8.1
     summary: Mine raw RubyGems from YAML.
     description:
       Ore is a simple RubyGem building solution. Ore handles the
