@@ -37,7 +37,7 @@ Gem::Specification.new do |gemspec|
 
   metadata = defaults.merge(YAML.load_file('gemspec.yml'))
 
-  gemspec.name = metadata.fetch('name',defaults[:name])
+  gemspec.name = metadata['name']
   gemspec.version = if metadata['version']
                       metadata['version']
                     elsif File.file?(version[:file])
