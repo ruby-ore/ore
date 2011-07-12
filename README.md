@@ -16,7 +16,9 @@ templates to be installed from Git repositories.
 
 * Stores project metadata in **one YAML file** (`gemspec.yml`).
 * Generates a **pure Ruby** `.gemspec` supporting:
-  * Git
+  * [Git](http://git-scm.com/)
+  * [Mercurial (Hg)](http://mercurial.selenic.com/)
+  * [SubVersion (SVN)](http://subversion.tigris.org/)
   * `gemspec.yml`
   * `VERSION` or `version.rb` files
 * Provides many builtin templates:
