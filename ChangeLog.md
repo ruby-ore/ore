@@ -1,3 +1,12 @@
+### 0.8.1 / 2011-07-11
+
+* Generated `.gemspec` file:
+  * Fixed a redundancy.
+  * Load the `version.rb` file, after populating `$LOAD_PATH`.
+* Generated `Rakefile`:
+  * Use `warn` instead of `STDERR.puts`.
+* Losen generated `yard` dependency to `~> 0.7`.
+
 ### 0.8.0 / 2011-06-18
 
 * Added the `markup`, `date`, `year`, `month` and `day` keywords to
