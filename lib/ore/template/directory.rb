@@ -12,13 +12,13 @@ module Ore
     class Directory
 
       # The template configuration file
-      @@config_file = 'template.yml'
+      CONFIG_FILE = 'template.yml'
 
       # Files or directory names to ignore
-      @@ignore = ['.git', @@config_file]
+      IGNORE = ['.git', CONFIG_FILE]
 
       # The known markup languages and file extensions
-      @@markups = {
+      MARKUPS = {
         :markdown => %w[.md .markdown],
         :textile => %w[.tt .textile],
         :rdoc => %w[.rdoc]
@@ -134,7 +134,7 @@ module Ore
       # @since 0.2.0
       #
       def load!
-        config_path = File.join(@path,@@config_file)
+        config_path = File.join(@path,CONFIG_FILE)
         return false unless File.file?(config_path)
 
         config = YAML.load_file(config_path)
@@ -188,7 +188,7 @@ module Ore
             name = File.basename(file)
 
             # ignore certain files/directories
-            Find.prune if @@ignore.include?(name)
+            Find.prune if IGNORE.include?(name)
 
             if File.directory?(file)
               @directories << file
@@ -228,7 +228,7 @@ module Ore
       #   Specifies whether the file is formatting.
       #
       def formatted?(path)
-        @@markups.values.any? { |exts| exts.include?(File.extname(path)) }
+        MARKUPS.values.any? { |exts| exts.include?(File.extname(path)) }
       end
 
       #
@@ -244,7 +244,7 @@ module Ore
       #   Specifies whether the file contains the given formatting.
       #
       def formatted_like?(path,markup)
-        @@markups[markup].include?(File.extname(path))
+        MARKUPS[markup].include?(File.extname(path))
       end
 
     end

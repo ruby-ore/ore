@@ -3,23 +3,23 @@ require 'env'
 
 module Ore
   module Config
-    # Specifies whether user settings will be loaded
-    @@enabled = true
-
     # The users home directory
-    @@home = Env.home
+    HOME = Env.home
 
     # Ore config directory
-    @@path = File.join(@@home,'.ore')
+    PATH = File.join(HOME,'.ore')
 
     # Default options file.
-    @@options_file = File.join(@@path,'options.yml')
+    OPTIONS_FILE = File.join(PATH,'options.yml')
 
     # Custom Ore Templates directory
-    @@templates_dir = File.join(@@path,'templates')
+    TEMPLATES_DIR = File.join(PATH,'templates')
 
     # The `data/` directory for Ore
-    @@data_dir = File.expand_path(File.join('..','..','data'),File.dirname(__FILE__))
+    DATA_DIR = File.expand_path(File.join('..','..','data'),File.dirname(__FILE__))
+
+    # Specifies whether user settings will be loaded
+    @@enabled = true
 
     #
     # Enables access to user settings.
@@ -53,12 +53,12 @@ module Ore
     def Config.default_options
       options = {}
 
-      if (@@enabled && File.file?(@@options_file))
-        new_options = YAML.load_file(@@options_file)
+      if (@@enabled && File.file?(OPTIONS_FILE))
+        new_options = YAML.load_file(OPTIONS_FILE)
 
         # default options must be a Hash
         unless new_options.kind_of?(Hash)
-          raise("#{@@options_file} must contain a YAML encoded Hash")
+          raise("#{OPTIONS_FILE} must contain a YAML encoded Hash")
         end
 
         new_options.each do |name,value|
@@ -79,7 +79,7 @@ module Ore
     #   The path of a Ore template directory.
     #
     def Config.builtin_templates
-      path = File.join(@@data_dir,'ore','templates')
+      path = File.join(DATA_DIR,'ore','templates')
 
       if File.directory?(path)
         Dir.glob("#{path}/*") do |template|
@@ -98,11 +98,11 @@ module Ore
     #   The path of a Ore template directory.
     #
     def Config.installed_templates
-      return unless @@enabled
-
-      if File.directory?(@@templates_dir)
-        Dir.glob("#{@@templates_dir}/*") do |template|
-          yield template if File.directory?(template)
+      if @@enabled
+        if File.directory?(TEMPLATES_DIR)
+          Dir.glob("#{TEMPLATES_DIR}/*") do |template|
+            yield template if File.directory?(template)
+          end
         end
       end
     end

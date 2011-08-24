@@ -7,8 +7,6 @@ require 'uri'
 module Ore
   class CLI < Thor
 
-    include Config
-
     default_task :gem
 
     map '-l' => :list
@@ -46,7 +44,7 @@ module Ore
       name = File.basename(url.path)
       name.gsub!(/\.git$/,'')
 
-      path = File.join(@@templates_dir,name)
+      path = File.join(Config::TEMPLATES_DIR,name)
 
       if File.directory?(path)
         say "Template #{name} already installed.", :red
@@ -80,7 +78,7 @@ module Ore
     #
     def remove(name)
       name = File.basename(name)
-      path = File.join(@@templates_dir,name)
+      path = File.join(Config::TEMPLATES_DIR,name)
 
       unless File.exists?(path)
         say "Unknown template: #{name}", :red
