@@ -24,7 +24,4 @@ dependencies:
 
 <%- end -%>
 development_dependencies:
-<%- unless (bundler? || ore_tasks?) -%>
-  ore-core: <%= @ore_core_dependency %>
-<%- end -%>
 <%= includes :development_dependencies, '' -%>
