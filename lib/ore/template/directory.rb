@@ -48,6 +48,12 @@ module Ore
       # The variables to use when rendering the template files
       attr_reader :variables
 
+      # Runtime dependencies defined by the template
+      attr_reader :dependencies
+
+      # Development dependencies defined by the template
+      attr_reader :development_dependencies
+
       #
       # Initializes a new template directory.
       #
@@ -64,7 +70,10 @@ module Ore
 
         @disable = []
         @enable = []
+
         @variables = {}
+        @dependencies = {}
+        @development_dependencies = {}
 
         load!
         scan!
@@ -169,6 +178,22 @@ module Ore
           variables.each do |name,value|
             @variables[name.to_sym] = value
           end
+        end
+
+        if (dependencies = config['dependencies'])
+          unless dependencies.kind_of?(Hash)
+            raise(InvalidTemplate,"template dependencies must be a Hash: #{config_path.dump}")
+          end
+
+          @dependencies.merge!(dependencies)
+        end
+
+        if (dependencies = config['development_dependencies'])
+          unless dependencies.kind_of?(Hash)
+            raise(InvalidTemplate,"template dependencies must be a Hash: #{config_path.dump}")
+          end
+
+          @development_dependencies.merge!(dependencies)
         end
 
         return true
