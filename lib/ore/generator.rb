@@ -72,16 +72,16 @@ module Ore
     #
     def self.defaults
       @@defaults ||= {
-        :templates => [],
-        :version => '0.1.0',
-        :summary => 'TODO: Summary',
+        :templates   => [],
+        :version     => '0.1.0',
+        :summary     => 'TODO: Summary',
         :description => 'TODO: Description',
-        :license => 'MIT',
-        :authors => [Env.user],
-        :ore_tasks => true,
-        :rdoc => true,
-        :rspec => true,
-        :git => true
+        :license     => 'MIT',
+        :authors     => [Env.user],
+        :ore_tasks   => true,
+        :rdoc        => true,
+        :rspec       => true,
+        :git         => true
       }
     end
 
@@ -155,7 +155,7 @@ module Ore
       # skip the `base` template
       next if name == :base
 
-      class_option name, :type => :boolean,
+      class_option name, :type    => :boolean,
                          :default => defaults.fetch(name,false)
     end
 
@@ -178,7 +178,6 @@ module Ore
     generator_option :email, :type => :string, :aliases => '-e'
     generator_option :homepage, :type => :string, :aliases => '-U'
     generator_option :license, :aliases => '-L'
-    generator_option :git, :type => :boolean
 
     argument :path, :required => true
 
@@ -307,8 +306,8 @@ module Ore
     # Enables templates.
     #
     def enable_templates!
-      @templates = []
-      @enabled_templates = Set[]
+      @templates          = []
+      @enabled_templates  = Set[]
       @disabled_templates = Set[]
       
       enable_template :base
@@ -374,6 +373,14 @@ module Ore
       @year = @date.year
       @month = @date.month
       @day = @date.day
+
+      @dependencies = {}
+      @development_dependencies = {}
+
+      @templates.each do |template|
+        @dependencies.merge!(template.dependencies)
+        @development_dependencies.merge!(template.development_dependencies)
+      end
 
       @templates.each do |template|
         template.variables.each do |name,value|

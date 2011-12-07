@@ -1,5 +1,5 @@
 disable:
   - jeweler_tasks
 
-variables:
-  ore_tasks_dependency: ~> 0.4
+development_dependencies:
+  ore-tasks: ~> 0.4  

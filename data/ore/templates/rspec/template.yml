@@ -1,5 +1,5 @@
 disable:
   - test_unit
 
-variables:
-  rspec_dependency: ~> 2.4
+development_dependencies:
+  rspec: ~> 2.4

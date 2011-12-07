@@ -1,2 +1,2 @@
-variables:
-  bundler_dependency: ~> 1.0.0
+development_dependencies:
+  bundler: ~> 1.0.0

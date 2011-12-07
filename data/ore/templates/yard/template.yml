@@ -1,5 +1,5 @@
 disable:
   - rdoc
 
-variables:
-  yard_dependency: ~> 0.7
+development_dependencies:
+  yard: ~> 0.7

@@ -18,10 +18,24 @@ email: <%= @email %>
 homepage: <%= @homepage %>
 <%= includes :gemspec, '' -%>
 
-<%- includes(:dependencies,'') do |dependencies| -%>
+<%- unless @dependencies.empty? -%>
 dependencies:
-<%=   dependencies %>
-
+<%-   @dependencies.each do |name,version| -%>
+  <%= name %>: <%= version %>
+<%-   end -%>
 <%- end -%>
+
+<%- if bundler? -%>
 development_dependencies:
-<%= includes :development_dependencies, '' -%>
+  bundler: <%= @development_dependencies['bundler'] %>
+  <%- if yard? -%>
+  yard: <%= @development_dependencies['yard'] %>
+  <%- end -%>
+<%- else -%>
+<%-   unless @development_dependencies.empty? -%>
+development_dependencies:
+<%-     @development_dependencies.each do |name,version| -%>
+  <%= name %>: <%= version %>
+<%-     end -%>
+<%-   end -%>
+<%- end -%>

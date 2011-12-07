@@ -3,7 +3,7 @@ require 'ore/tasks'
 Ore::Tasks.new
 <%- else -%>
 begin
-  gem 'ore-tasks', '<%= @ore_tasks_dependency %>'
+  gem 'ore-tasks', '<%= @development_dependencies['ore-tasks'] %>'
   require 'ore/tasks'
 
   Ore::Tasks.new

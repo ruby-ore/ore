@@ -3,7 +3,7 @@ require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new
 <%- else -%>
 begin
-  gem 'rspec', '<%= @rspec_dependency %>'
+  gem 'rspec', '<%= @development_dependencies['rspec'] %>'
   require 'rspec/core/rake_task'
 
   RSpec::Core::RakeTask.new
