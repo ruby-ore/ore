@@ -129,13 +129,11 @@ module Ore
       generate_directories!
       generate_files!
 
-      if options.git?
-        in_root do
-          unless File.directory?('.git')
-            run 'git init'
-            run 'git add .'
-            run 'git commit -m "Initial commit."'
-          end
+      in_root do
+        if (options.git? && !File.directory?('.git'))
+          run 'git init'
+          run 'git add .'
+          run 'git commit -m "Initial commit."'
         end
       end
     end
