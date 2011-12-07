@@ -147,10 +147,7 @@ module Ore
         return false unless File.file?(config_path)
 
         config = YAML.load_file(config_path)
-
-        unless config.kind_of?(Hash)
-          raise(InvalidTemplate,"invalid configuration in #{config_path.dump}")
-        end
+        return false unless config.kind_of?(Hash)
 
         if (templates = config['disable'])
           if templates.kind_of?(Array)
