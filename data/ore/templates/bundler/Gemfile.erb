@@ -10,7 +10,7 @@ gemspec
 <%= gemfile %>
 
 <%- @dependencies.each do |name,version| -%>
-  gem '<%= name %>',  '<%- version %>'
+  gem '<%= name %>',  '<%= version %>'
 <%- end -%>
 
 <%- end -%>
@@ -19,6 +19,6 @@ group :development do
 <%= includes(:gemfile_development,'') %>
 
 <%- @development_dependencies.each do |name,version| -%>
-  gem '<%= name %>',  '<%- version %>'
+  gem '<%= name %>',  '<%= version %>'
 <%- end -%>
 end
