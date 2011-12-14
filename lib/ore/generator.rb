@@ -340,24 +340,24 @@ module Ore
       @project_dir = File.basename(destination_root)
       @name = (options.name || @project_dir)
 
-      @modules = modules_of(@name)
+      @modules      = modules_of(@name)
       @module_depth = @modules.length
-      @module = @modules.last
+      @module       = @modules.last
 
-      @namespace = namespace_of(@name)
+      @namespace      = namespace_of(@name)
       @namespace_dirs = namespace_dirs_of(@name)
       @namespace_path = namespace_path_of(@name)
-      @namespace_dir = @namespace_dirs.last
+      @namespace_dir  = @namespace_dirs.last
 
-      @version = options.version
-      @summary = options.summary
+      @version     = options.version
+      @summary     = options.summary
       @description = options.description
-      @license = options.license
-      @email = options.email
-      @safe_email = @email.sub('@',' at ') if @email
-      @homepage = (options.homepage || "http://rubygems.org/gems/#{@name}")
-      @authors = options.authors
-      @author = options.authors.first
+      @license     = options.license
+      @email       = options.email
+      @safe_email  = @email.sub('@',' at ') if @email
+      @homepage    = (options.homepage || "http://rubygems.org/gems/#{@name}")
+      @authors     = options.authors
+      @author      = options.authors.first
 
       @markup = if options.markdown?
                   :markdown
@@ -367,12 +367,12 @@ module Ore
                   :rdoc
                 end
 
-      @date = Date.today
-      @year = @date.year
+      @date  = Date.today
+      @year  = @date.year
       @month = @date.month
-      @day = @date.day
+      @day   = @date.day
 
-      @dependencies = {}
+      @dependencies             = {}
       @development_dependencies = {}
 
       @templates.each do |template|
@@ -386,7 +386,7 @@ module Ore
         end
       end
 
-      @generated_dirs = {}
+      @generated_dirs  = {}
       @generated_files = {}
     end
 
