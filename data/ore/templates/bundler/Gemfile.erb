@@ -9,11 +9,11 @@ gemspec
 <%- includes(:gemfile,'') do |gemfile| -%>
 <%= gemfile %>
 
+<%- end -%>
 <%- @dependencies.each do |name,version| -%>
   gem '<%= name %>',  '<%= version %>'
 <%- end -%>
 
-<%- end -%>
 group :development do
   gem 'rake', '~> 0.8.7'
 <%= includes(:gemfile_development,'') %>
