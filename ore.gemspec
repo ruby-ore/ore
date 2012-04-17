@@ -3,17 +3,17 @@
 require 'yaml'
 
 Gem::Specification.new do |gemspec|
-  root = File.dirname(__FILE__)
+  root    = File.dirname(__FILE__)
   lib_dir = File.join(root,'lib')
-  files = if File.directory?('.git')
-            `git ls-files`.split($/)
-          elsif File.directory?('.hg')
-            `hg manifest`.split($/)
-          elsif File.directory?('.svn')
-            `svn ls -R`.split($/).select { |path| File.file?(path) }
-          else
-            Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
-          end
+  files   = if File.directory?('.git')
+              `git ls-files`.split($/)
+            elsif File.directory?('.hg')
+              `hg manifest`.split($/)
+            elsif File.directory?('.svn')
+              `svn ls -R`.split($/).select { |path| File.file?(path) }
+            else
+              Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
+            end
 
   filter_files = lambda { |paths|
     case paths
@@ -25,21 +25,21 @@ Gem::Specification.new do |gemspec|
   }
 
   version = {
-    :file => 'ore/version.rb',
+    :file     => 'ore/version.rb',
     :constant => 'Ore::VERSION'
   }
 
   defaults = {
-    'name' => File.basename(File.dirname(__FILE__)),
-    'files' => files,
-    'executables' => filter_files['bin/*'].map { |path| File.basename(path) },
-    'test_files' => filter_files['{test/{**/}*_test.rb,spec/{**/}*_spec.rb}'],
+    'name'            => File.basename(File.dirname(__FILE__)),
+    'files'           => files,
+    'executables'     => filter_files['bin/*'].map { |path| File.basename(path) },
+    'test_files'      => filter_files['{test/{**/}*_test.rb,spec/{**/}*_spec.rb}'],
     'extra_doc_files' => filter_files['*.{txt,rdoc,md,markdown,tt,textile}'],
   }
 
   metadata = defaults.merge(YAML.load_file('gemspec.yml'))
 
-  gemspec.name = metadata['name']
+  gemspec.name    = metadata['name']
   gemspec.version = if metadata['version']
                       metadata['version']
                     else
@@ -49,7 +49,7 @@ Gem::Specification.new do |gemspec|
                       eval(version[:constant])
                     end
 
-  gemspec.summary = metadata.fetch('summary',metadata['description'])
+  gemspec.summary     = metadata.fetch('summary',metadata['description'])
   gemspec.description = metadata.fetch('description',metadata['summary'])
 
   case metadata['license']
@@ -66,20 +66,19 @@ Gem::Specification.new do |gemspec|
     gemspec.author = metadata['authors']
   end
 
-  gemspec.email = metadata['email']
+  gemspec.email    = metadata['email']
   gemspec.homepage = metadata['homepage']
 
   case metadata['require_paths']
   when Array
     gemspec.require_paths = metadata['require_paths']
   when String
-    gemspec.require_path = metadata['require_paths']
+    gemspec.require_path  = metadata['require_paths']
   end
 
-  gemspec.files = filter_files[metadata['files']]
-
+  gemspec.files       = filter_files[metadata['files']]
   gemspec.executables = metadata['executables']
-  gemspec.extensions = metadata['extensions']
+  gemspec.extensions  = metadata['extensions']
 
   if Gem::VERSION < '1.7.'
     gemspec.default_executable = gemspec.executables.first
@@ -92,7 +91,7 @@ Gem::Specification.new do |gemspec|
   end
 
   gemspec.post_install_message = metadata['post_install_message']
-  gemspec.requirements = metadata['requirements']
+  gemspec.requirements         = metadata['requirements']
 
   if gemspec.respond_to?(:required_ruby_version=)
     gemspec.required_ruby_version = metadata['required_ruby_version']
