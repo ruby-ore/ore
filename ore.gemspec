@@ -52,33 +52,16 @@ Gem::Specification.new do |gemspec|
   gemspec.summary     = metadata.fetch('summary',metadata['description'])
   gemspec.description = metadata.fetch('description',metadata['summary'])
 
-  case metadata['license']
-  when Array
-    gemspec.licenses = metadata['license']
-  when String
-    gemspec.license = metadata['license']
-  end
-
-  case metadata['authors']
-  when Array
-    gemspec.authors = metadata['authors']
-  when String
-    gemspec.author = metadata['authors']
-  end
+  gemspec.licenses = Array(metadata['license'])
+  gemspec.authors  = Array(metadata['authors'])
 
   gemspec.email    = metadata['email']
   gemspec.homepage = metadata['homepage']
 
-  case metadata['require_paths']
-  when Array
-    gemspec.require_paths = metadata['require_paths']
-  when String
-    gemspec.require_path  = metadata['require_paths']
-  end
-
-  gemspec.files       = filter_files[metadata['files']]
-  gemspec.executables = metadata['executables']
-  gemspec.extensions  = metadata['extensions']
+  gemspec.require_paths = Array(metadata['require_paths'])
+  gemspec.files         = filter_files[metadata['files']]
+  gemspec.executables   = metadata['executables']
+  gemspec.extensions    = metadata['extensions']
 
   if Gem::VERSION < '1.7.'
     gemspec.default_executable = gemspec.executables.first
@@ -87,7 +70,7 @@ Gem::Specification.new do |gemspec|
   gemspec.test_files = filter_files[metadata['test_files']]
 
   unless gemspec.files.include?('.document')
-    gemspec.extra_rdoc_files = metadata['extra_doc_files']
+    gemspec.extra_rdoc_files = Array(metadata['extra_doc_files'])
   end
 
   gemspec.post_install_message = metadata['post_install_message']
