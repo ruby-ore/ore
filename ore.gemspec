@@ -67,11 +67,8 @@ Gem::Specification.new do |gemspec|
     gemspec.default_executable = gemspec.executables.first
   end
 
-  gemspec.test_files = filter_files[metadata['test_files']]
-
-  unless gemspec.files.include?('.document')
-    gemspec.extra_rdoc_files = Array(metadata['extra_doc_files'])
-  end
+  gemspec.test_files       = filter_files[metadata['test_files']]
+  gemspec.extra_rdoc_files = Array(metadata['extra_doc_files'])
 
   gemspec.post_install_message = metadata['post_install_message']
   gemspec.requirements         = metadata['requirements']
