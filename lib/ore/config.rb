@@ -1,10 +1,10 @@
+require 'rubygems'
 require 'pathname'
-require 'env'
 
 module Ore
   module Config
     # The users home directory
-    HOME = Env.home
+    HOME = Gem.user_home
 
     # Ore config directory
     PATH = File.join(HOME,'.ore')

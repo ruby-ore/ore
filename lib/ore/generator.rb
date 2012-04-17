@@ -7,7 +7,6 @@ require 'ore/config'
 require 'thor/group'
 require 'date'
 require 'set'
-require 'env'
 
 module Ore
   class Generator < Thor::Group
@@ -77,7 +76,7 @@ module Ore
         :summary     => 'TODO: Summary',
         :description => 'TODO: Description',
         :license     => 'MIT',
-        :authors     => [Env.user],
+        :authors     => [ENV['USER']],
         :ore_tasks   => true,
         :rdoc        => true,
         :rspec       => true,
