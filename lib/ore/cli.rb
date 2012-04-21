@@ -7,8 +7,6 @@ require 'uri'
 module Ore
   class CLI < Thor
 
-    default_task :gem
-
     map '-l' => :list
     map '-u' => :update
     map '-r' => :remove
@@ -86,32 +84,6 @@ module Ore
       end
 
       FileUtils.rm_rf(path)
-    end
-
-    desc 'gemspec', 'Dumps a Ruby gemspec for the project'
-    method_option :ruby, :type => :boolean,
-                         :default => true,
-                         :aliases => '-R'
-    method_option :yaml, :type => :boolean, :aliases => '-Y'
-
-    def gemspec
-      require 'ore/project'
-
-      gemspec = Project.find.to_gemspec
-      
-      if options.yaml?
-        print YAML.dump(gemspec)
-      else
-        print gemspec.to_ruby
-      end
-    end
-
-    desc 'gem', 'Builds a RubyGem'
-
-    def gem
-      require 'ore/project'
-
-      Project.find.build!
     end
 
   end

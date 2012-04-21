@@ -125,10 +125,6 @@ Add default generator options to `~/.ore/options.yml`:
       - Alice
     email: alice@example.com
 
-Build a `.gem` file in the `pkg/` directory of a project:
-
-    $ ore gem
-
 ## License
 
 Copyright (c) 2010-2011 Hal Brodigan
