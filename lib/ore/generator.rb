@@ -71,16 +71,16 @@ module Ore
     #
     def self.defaults
       @@defaults ||= {
-        :templates   => [],
-        :version     => '0.1.0',
-        :summary     => 'TODO: Summary',
-        :description => 'TODO: Description',
-        :license     => 'MIT',
-        :authors     => [ENV['USER']],
-        :ore_tasks   => true,
-        :rdoc        => true,
-        :rspec       => true,
-        :git         => true
+        :templates      => [],
+        :version        => '0.1.0',
+        :summary        => 'TODO: Summary',
+        :description    => 'TODO: Description',
+        :license        => 'MIT',
+        :authors        => [ENV['USER']],
+        :rubygems_tasks => true,
+        :rdoc           => true,
+        :rspec          => true,
+        :git            => true
       }
     end
 

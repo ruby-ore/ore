@@ -75,8 +75,8 @@ describe Generator do
         subject['homepage'].should_not be_empty
       end
 
-      it "should have 'ore-tasks' as a development dependency" do
-        subject['development_dependencies'].should have_key('ore-tasks')
+      it "should have 'rubygems-tasks' as a development dependency" do
+        subject['development_dependencies'].should have_key('rubygems-tasks')
       end
     end
 
@@ -372,8 +372,8 @@ describe Generator do
       generate!(name, :jeweler_tasks => true)
     end
 
-    it "should disable the ore_tasks template" do
-      @generator.disabled_templates.should include(:ore_tasks)
+    it "should disable the rubygems_tasks template" do
+      @generator.disabled_templates.should include(:rubygems_tasks)
     end
 
     it "should add 'jeweler' as a development dependency" do
@@ -393,39 +393,31 @@ describe Generator do
     end
   end
 
-  context "ore tasks" do
+  context "rubygems-tasks" do
     let(:name) { 'ore_project' }
 
     before(:all) do
-      generate!(name, :ore_tasks => true)
+      generate!(name, :rubygems_tasks => true)
     end
 
     it "should disable the jeweler_tasks template" do
       @generator.disabled_templates.should include(:jeweler_tasks)
     end
 
-    it "should omit 'ore-core' as a development dependency" do
-      @gemspec['development_dependencies'].should_not have_key('ore-core')
-    end
-
-    it "should add 'ore-tasks' as a development dependency" do
-      @gemspec['development_dependencies'].should have_key('ore-tasks')
+    it "should add 'rubygems-tasks' as a development dependency" do
+      @gemspec['development_dependencies'].should have_key('rubygems-tasks')
     end
   end
 
-  context "ore tasks with bundler" do
+  context "rubygems-tasks with bundler" do
     let(:name) { 'bundled_ore_project' }
 
     before(:all) do
-      generate!(name, :bundler => true, :ore_tasks => true)
+      generate!(name, :bundler => true, :rubygems_tasks => true)
     end
 
-    it "should omit 'ore-core' as a development dependency" do
-      @gemspec['development_dependencies'].should_not have_key('ore-core')
-    end
-
-    it "should not add 'ore-tasks' as a development dependency" do
-      @gemspec['development_dependencies'].should_not have_key('ore-tasks')
+    it "should not add 'rubygems-tasks' as a development dependency" do
+      @gemspec['development_dependencies'].should_not have_key('rubygems-tasks')
     end
   end
 

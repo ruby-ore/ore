@@ -1,0 +1,14 @@
+<%- if bundler? -%>
+require 'rubygems/tasks'
+Gem::Tasks.new
+<%- else -%>
+begin
+  gem 'rubygems-tasks', '<%= @development_dependencies['rubygems-tasks'] %>'
+  require 'rubygems/tasks'
+
+  Gem::Tasks.new
+rescue LoadError => e
+  warn e.message
+  warn "Run `gem install rubygems-tasks` to install 'rubygems/tasks'."
+end
+<%- end -%>

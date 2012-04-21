@@ -1,5 +1,6 @@
 disable:
+  - gem_package_task
   - jeweler_tasks
 
 development_dependencies:
-  ore-tasks: ~> 0.4  
+  rubygems-tasks: ~> 0.1.0

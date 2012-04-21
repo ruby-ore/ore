@@ -1,5 +1,5 @@
 disable:
-  - ore_tasks
+  - rubygems_tasks
 
 development_dependencies:
   jeweler: ~> 1.5.0  

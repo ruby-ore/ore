@@ -151,15 +151,15 @@ module Ore
       end
 
       #
-      # Determines if the project is using `Ore::Tasks`.
+      # Determines if the project is using `Gem::Tasks`.
       #
       # @return [Boolean]
-      #   Specifies whether the project is using `Ore::Tasks`.
+      #   Specifies whether the project is using `Gem::Tasks`.
       #
       # @since 0.3.0
       #
-      def ore_tasks?
-        enabled?(:ore_tasks)
+      def rubygems_tasks?
+        enabled?(:rubygems_tasks)
       end
 
       #
