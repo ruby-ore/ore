@@ -36,7 +36,6 @@ templates to be installed from Git repositories.
 
 ## Requirements
 
-* [ore-core](http://github.com/ruby-ore/ore-core) ~> 0.1, >= 0.1.4
 * [thor](http://github.com/wycats/thor) ~> 0.14.3
 
 ## Install
