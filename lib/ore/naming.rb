@@ -7,31 +7,31 @@ module Ore
   #
   module Naming
     # The directory which contains executables for a project
-    @@bin_dir = 'bin'
+    BIN_DIR = 'bin'
 
     # The directory which contains the code for a project
-    @@lib_dir = 'lib'
+    LIB_DIR = 'lib'
 
     # The directory which contains C extension code for a project
-    @@ext_dir = 'ext'
+    EXT_DIR = 'ext'
 
     # The directory which contains data files for a project
-    @@data_dir = 'data'
+    DATA_DIR = 'data'
 
     # The directory which contains unit-tests for a project
-    @@test_dir = 'test'
+    TEST_DIR = 'test'
 
     # The directory which contains spec-tests for a project
-    @@spec_dir = 'spec'
+    SPEC_DIR = 'spec'
 
     # The directory which contains built packages
-    @@pkg_dir = 'pkg'
+    PKG_DIR = 'pkg'
 
     # Words used in project names, but never in directory names
-    @@ignore_namespaces = %w[core ruby rb java]
+    IGNORE_NAMESPACES = %w[core ruby rb java]
 
     # Common acronyms used in namespaces
-    @@namespace_acronyms = %w[
+    NAMESPACE_ACRONYMS = %w[
       ffi yard i18n
       http https ftp smtp imap pop3 ssh ssl tcp udp dns rpc
       url uri www css html xhtml xml xsl json yaml csv
@@ -40,7 +40,7 @@ module Ore
     ]
 
     # Common project prefixes and namespaces
-    @@common_namespaces = {
+    COMMON_NAMESPACES = {
       'rubygems' => 'Gem',
       'ar' => 'ActiveRecord',
       'dm' => 'DataMapper',
@@ -61,7 +61,7 @@ module Ore
     #
     def names_in(name)
       name.split('-').reject do |word|
-        @@ignore_namespaces.include?(word)
+        IGNORE_NAMESPACES.include?(word)
       end
     end
 
@@ -77,9 +77,9 @@ module Ore
     # @since 0.1.1
     #
     def module_of(word)
-      if @@common_namespaces.has_key?(word)
-        @@common_namespaces[word]
-      elsif @@namespace_acronyms.include?(word)
+      if COMMON_NAMESPACES.has_key?(word)
+        COMMON_NAMESPACES[word]
+      elsif NAMESPACE_ACRONYMS.include?(word)
         word.upcase
       else
         word.capitalize
