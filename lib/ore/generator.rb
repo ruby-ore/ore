@@ -346,6 +346,7 @@ module Ore
       @namespace      = namespace_of(@name)
       @namespace_dirs = namespace_dirs_of(@name)
       @namespace_path = namespace_path_of(@name)
+      @namespace_dir  = @namespace_dirs.last
 
       @version     = options.version
       @summary     = options.summary
