@@ -149,48 +149,38 @@ module Ore
         config = YAML.load_file(config_path)
         return false unless config.kind_of?(Hash)
 
-        if (templates = config['disable'])
-          if templates.kind_of?(Array)
-            templates.each { |name| @disable << name.to_sym }
-          else
-            @disable << templates.to_sym
-          end
+        Array(config['disable']).each do |name|
+          @disable << name.to_sym
         end
 
-        if (templates = config['enable'])
-          if templates.kind_of?(Array)
-            templates.each { |name| @enable << name.to_sym }
-          else
-            @enable << templates.to_sym
-          end
+        Array(config['enable']).each do |name|
+          @enable << name.to_sym
         end
 
-        if (variables = config['variables'])
-          # variables must be a Hash
-          unless variables.kind_of?(Hash)
-            raise(InvalidTemplate,"template variables must be a Hash: #{config_path.dump}")
-          end
-
-          # load the template variables
+        case (variables = config['variables'])
+        when Hash
           variables.each do |name,value|
             @variables[name.to_sym] = value
           end
+        when nil
+        else
+          raise(InvalidTemplate,"template variables must be a Hash: #{config_path.dump}")
         end
 
-        if (dependencies = config['dependencies'])
-          unless dependencies.kind_of?(Hash)
-            raise(InvalidTemplate,"template dependencies must be a Hash: #{config_path.dump}")
-          end
-
+        case (dependencies = config['dependencies'])
+        when Hash
           @dependencies.merge!(dependencies)
+        when nil
+        else
+          raise(InvalidTemplate,"template dependencies must be a Hash: #{config_path.dump}")
         end
 
-        if (dependencies = config['development_dependencies'])
-          unless dependencies.kind_of?(Hash)
-            raise(InvalidTemplate,"template dependencies must be a Hash: #{config_path.dump}")
-          end
-
+        case (dependencies = config['development_dependencies'])
+        when Hash
           @development_dependencies.merge!(dependencies)
+        when nil
+        else
+          raise(InvalidTemplate,"template dependencies must be a Hash: #{config_path.dump}")
         end
 
         return true
