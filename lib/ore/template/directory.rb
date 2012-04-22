@@ -222,12 +222,12 @@ module Ore
                 # erb template
                 if name[0,1] == '_'
                   # partial template
-                  template_dir = File.dirname(file)
-                  template_name = name[1...-4].to_sym
+                  template_dir  = File.dirname(file)
+                  template_name = name[1..-1].chomp('.erb').to_sym
 
                   @includes[template_dir][template_name] = src
                 else
-                  dest = file[0...-4]
+                  dest = file.chomp('.erb')
 
                   @templates[dest] = src
                 end
