@@ -70,19 +70,19 @@ module Ore
     # @since 0.5.0
     #
     def self.defaults
-      @@defaults ||= {
-        :templates      => [],
-        :version        => '0.1.0',
-        :summary        => 'TODO: Summary',
-        :description    => 'TODO: Description',
-        :license        => 'MIT',
-        :authors        => [ENV['USER']],
-        :rubygems_tasks => true,
-        :rdoc           => true,
-        :rspec          => true,
-        :git            => true
-      }
+      @@defaults ||= {}
     end
+
+    defaults[:templates]      = []
+    defaults[:version]        = '0.1.0'
+    defaults[:summary]        = 'TODO: Summary'
+    defaults[:description]    = 'TODO: Description'
+    defaults[:license]        = 'MIT'
+    defaults[:authors]        = [ENV['USER']]
+    defaults[:rubygems_tasks] = true
+    defaults[:rdoc]           = true
+    defaults[:rspec]          = true
+    defaults[:git]            = true
 
     #
     # Defines a generator option.
