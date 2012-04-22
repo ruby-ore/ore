@@ -20,8 +20,8 @@ module Ore
       # The known markup languages and file extensions
       MARKUPS = {
         :markdown => %w[.md .markdown],
-        :textile => %w[.tt .textile],
-        :rdoc => %w[.rdoc]
+        :textile  => %w[.tt .textile],
+        :rdoc     => %w[.rdoc]
       }
 
       # The path of the template directory
@@ -64,15 +64,15 @@ module Ore
         @path = File.expand_path(path)
 
         @directories = []
-        @files = {}
-        @templates = {}
-        @includes = Hash.new { |hash,key| hash[key] = {} }
+        @files       = {}
+        @templates   = {}
+        @includes    = Hash.new { |hash,key| hash[key] = {} }
 
         @disable = []
-        @enable = []
+        @enable  = []
 
-        @variables = {}
-        @dependencies = {}
+        @variables                = {}
+        @dependencies             = {}
         @development_dependencies = {}
 
         load!
