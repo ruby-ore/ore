@@ -16,12 +16,7 @@ Gem::Specification.new do |gemspec|
             end
 
   filter_files = lambda { |paths|
-    case paths
-    when Array
-      (files & paths)
-    when String
-      (files & Dir[paths])
-    end
+    Array(paths).map { |path| files & Dir[path] }.flatten.uniq
   }
 
   version = {
