@@ -1,7 +1,7 @@
 # Ore
 
-* [Source](http://github.com/ruby-ore/ore)
-* [Issues](http://github.com/ruby-ore/ore/issues)
+* [Source](https://github.com/ruby-ore/ore)
+* [Issues](https://github.com/ruby-ore/ore/issues)
 * [Documentation](http://rubydoc.info/gems/ore/frames)
 * [Email](mailto:postmodern.mod3 at gmail.com)
 * IRC: irc.freenode.net #ruby-ore
