@@ -4,7 +4,6 @@
 * [Issues](https://github.com/ruby-ore/ore/issues)
 * [Documentation](http://rubydoc.info/gems/ore/frames)
 * [Email](mailto:postmodern.mod3 at gmail.com)
-* IRC: irc.freenode.net #ruby-ore
 
 ## Description
 
