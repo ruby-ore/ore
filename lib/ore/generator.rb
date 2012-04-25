@@ -354,7 +354,7 @@ module Ore
       @license     = options.license
       @email       = options.email
       @safe_email  = @email.sub('@',' at ') if @email
-      @homepage    = (options.homepage || "http://rubygems.org/gems/#{@name}")
+      @homepage    = (options.homepage || "https://rubygems.org/gems/#{@name}")
       @authors     = options.authors
       @author      = options.authors.first
 
