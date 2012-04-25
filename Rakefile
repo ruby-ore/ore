@@ -2,7 +2,7 @@ require 'rubygems'
 require 'rake'
 
 begin
-  gem 'rubygems-tasks', '~> 0.1.0.pre1'
+  gem 'rubygems-tasks', '~> 0.1'
   require 'rubygems/tasks'
 
   Gem::Tasks.new
