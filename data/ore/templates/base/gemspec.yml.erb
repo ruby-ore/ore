@@ -17,8 +17,8 @@ email: <%= @email %>
 <%- end -%>
 homepage: <%= @homepage %>
 <%= includes :gemspec, '' -%>
-
 <%- unless @dependencies.empty? -%>
+
 dependencies:
 <%-   @dependencies.each do |name,version| -%>
   <%= name %>: <%= version %>

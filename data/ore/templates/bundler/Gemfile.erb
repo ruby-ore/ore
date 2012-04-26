@@ -5,20 +5,24 @@ source :rubygems
 <%- end -%>
 
 gemspec
-
 <%- includes(:gemfile,'') do |gemfile| -%>
-<%= gemfile %>
 
+<%= gemfile %>
 <%- end -%>
-<%- @dependencies.each do |name,version| -%>
+<%- unless @dependencies.empty? -%>
+
+<%-   @dependencies.each do |name,version| -%>
   gem '<%= name %>',  '<%= version %>'
+<%-   end -%>
 <%- end -%>
 
 group :development do
   gem 'rake', '~> 0.8.7'
-<%= includes(:gemfile_development,'') %>
+<%= includes(:gemfile_development,'') -%>
+<%- unless @dependencies.empty? -%>
 
-<%- @development_dependencies.each do |name,version| -%>
+<%-   @development_dependencies.each do |name,version| -%>
   gem '<%= name %>',  '<%= version %>'
+<%-   end -%>
 <%- end -%>
 end
