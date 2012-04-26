@@ -1,6 +1,7 @@
 disable:
   - gem_package_task
   - jeweler_tasks
+  - bundler_tasks
 
 development_dependencies:
   rubygems-tasks: ~> 0.1
