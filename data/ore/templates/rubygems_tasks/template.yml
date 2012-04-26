@@ -3,4 +3,4 @@ disable:
   - jeweler_tasks
 
 development_dependencies:
-  rubygems-tasks: ~> 0.1.0
+  rubygems-tasks: ~> 0.1
