@@ -1,0 +1,5 @@
+enable:
+  - bundler
+
+disable:
+  - rubygems_tasks
