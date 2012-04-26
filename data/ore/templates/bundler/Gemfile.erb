@@ -18,7 +18,7 @@ gemspec
 
 group :development do
 <%= includes(:gemfile_development,'') -%>
-<%- unless @dependencies.empty? -%>
+<%- unless @development_dependencies.empty? -%>
 
 <%-   @development_dependencies.each do |name,version| -%>
   gem '<%= name %>',  '<%= version %>'
