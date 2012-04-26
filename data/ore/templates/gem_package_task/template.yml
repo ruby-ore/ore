@@ -1,3 +1,4 @@
 disables:
-  - jeweler
   - rubygems_tasks
+  - jeweler
+  - bundler_tasks
