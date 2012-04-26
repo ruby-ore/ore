@@ -1,21 +1,12 @@
 <%- if bundler? -%>
-require 'ore/specification'
 require 'jeweler'
-Jeweler::Tasks.new(Ore::Specification.new)
+Jeweler::Tasks.new(Gem::Specification.load)
 <%- else -%>
-begin
-  gem 'ore', '<%= @development_dependencies['ore-core'] %>'
-  require 'ore/specification'
-rescue LoadError
-  warn e.message
-  warn "Run `gem install ore` to install Ore."
-end
-
 begin
   gem 'jeweler', '<%= @development_dependencies['jeweler'] %>'
   require 'jeweler'
 
-  Jeweler::Tasks.new(Ore::Specification.new)
+  Jeweler::Tasks.new(Gem::Specification.load)
 rescue LoadError
   warn 'Jeweler (or a dependency) not available. Install it with: gem install jeweler'
 end
