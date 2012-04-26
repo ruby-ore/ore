@@ -1,5 +1,6 @@
 disable:
   - rubygems_tasks
+  - bundler_tasks
 
 development_dependencies:
   jeweler: ~> 1.5.0  
