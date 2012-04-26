@@ -1,2 +1,5 @@
 require 'rubygems/package_task'
-Gem::PackageTask.new(Gem::Specification.load('<%= @name %>.gemspec'))
+Gem::PackageTask.new(Gem::Specification.load('<%= @name %>.gemspec')) do |pkg|
+  pkg.need_tar = true
+  pkg.need_zip = false
+end
