@@ -46,18 +46,17 @@ templates to be installed from Git repositories.
 The `gemspec.yml` file used to build Ore:
 
     name: ore
-    version: 0.8.1
-    summary: Mine raw RubyGems from YAML.
+    version: 0.9.0
+    summary: Mine raw RubyGems from YAML
     description:
-      Ore is a simple RubyGem building solution. Ore handles the
-      creation of Gem::Specification objects as well as building '.gem'
-      files. Ore allows the developer to keep all of the project information
-      in a single YAML file.
+      Ore is a flexible Ruby project generator. Unlike other Ruby project
+      generators, Ore provides many builtin templates and allows custom
+      templates to be installed from Git repositories.
     
     license: MIT
     authors: Postmodern
     email: postmodern.mod3@gmail.com
-    homepage: http://github.com/ruby-ore/ore
+    homepage: https://github.com/ruby-ore/ore
     post_install_message: |
       **************************************************************************
       Generate a new Ruby library:
@@ -75,12 +74,10 @@ The `gemspec.yml` file used to build Ore:
       **************************************************************************
     
     dependencies:
-      ore-core: ~> 0.1, >= 0.1.4
-      env: ~> 0.1.2
       thor: ~> 0.14.3
     
     development_dependencies:
-      ore-tasks: ~> 0.4
+      rubygems-tasks: ~> 0.1
       rspec: ~> 2.4
       yard: ~> 0.7.0
 
