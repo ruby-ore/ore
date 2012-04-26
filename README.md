@@ -115,10 +115,10 @@ Generate a new project using previously installed templates:
 
 Add default generator options to `~/.ore/options.yml`:
 
-    ore_tasks: true
-    rspec: true
-    yard: true
-    markdown: true
+    rubygems_tasks: true
+    rspec:          true
+    yard:           true
+    markdown:       true
     authors:
       - Alice
     email: alice@example.com
