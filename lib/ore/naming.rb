@@ -5,6 +5,8 @@ module Ore
   # defined by the
   # [Ruby Packaging Standard (RPS)](http://chneukirchen.github.com/rps/).
   #
+  # @since 0.9.0
+  #
   module Naming
     # The directory which contains executables for a project
     BIN_DIR = 'bin'
