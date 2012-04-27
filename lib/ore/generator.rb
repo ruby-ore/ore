@@ -132,7 +132,9 @@ module Ore
 
       in_root do
         if options.git?
-          git_options = (options.quiet? && '-q')
+          git_options = if options.quiet?
+                          '-q'
+                        end
 
           run "git init #{git_options}"
           run "git add ."
