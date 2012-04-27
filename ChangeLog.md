@@ -10,6 +10,9 @@
 * Added {Ore::Template::Helpers#gem_package_task?}.
 * Added {Ore::Template::Directory#dependencies}.
 * Added {Ore::Template::Directory#development_dependencies}.
+* Moved `Ore::Generator.templates` to {Ore::Template.templates}.
+* Moved `Ore::Generator.template?` to {Ore::Template.template?}.
+* Moved `Ore::Generator.register_template` to {Ore::Template.register}.
 * Templates:
   * Added a `gem_package_task` template.
   * Added a `bundler_tasks` template.
@@ -45,7 +48,7 @@
 ### 0.7.2 / 2011-02-26
 
 * Require ore-core ~> 0.1, >= 0.1.4.
-* Added {Ore::Generator.template?}.
+* Added `Ore::Generator.template?`.
 * Added {Ore::Generator#enabled_templates}.
 * Added {Ore::Generator#disabled_templates}.
 * Added {Ore::Generator#templates}.
