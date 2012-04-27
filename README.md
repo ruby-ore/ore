@@ -82,7 +82,7 @@ The `gemspec.yml` file used to build Ore:
     development_dependencies:
       rubygems-tasks: ~> 0.1
       rspec: ~> 2.4
-      yard: ~> 0.7.0
+      yard: ~> 0.7
 
 For a complete refrence to the `gemspec.yml` file, please see the
 [GemspecYML Reference](http://rubydoc.info/gems/ore/file/GemspecYML.html).
