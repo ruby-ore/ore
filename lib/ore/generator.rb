@@ -352,11 +352,21 @@ module Ore
       @summary     = options.summary
       @description = options.description
       @license     = options.license
-      @email       = options.email
-      @safe_email  = @email.sub('@',' at ') if @email
-      @homepage    = (options.homepage || "https://rubygems.org/gems/#{@name}")
       @authors     = options.authors
       @author      = options.authors.first
+      @github_user = if options.git?
+                       `git config github.user`.chomp
+                     end
+
+      @email       = options.email
+      @safe_email  = @email.sub('@',' at ') if @email
+      @homepage    = if options.homepage
+                       options.homepage
+                     elsif !(@github_user.nil? || @github_user.empty?)
+                       "https://github.com/#{@github_user}/#{@name}"
+                     else
+                       "https://rubygems.org/gems/#{@name}"
+                     end
 
       @markup = if options.markdown?
                   :markdown
