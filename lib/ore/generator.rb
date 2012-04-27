@@ -1,8 +1,9 @@
 require 'ore/template/directory'
 require 'ore/template/interpolations'
 require 'ore/template/helpers'
-require 'ore/naming'
 require 'ore/config'
+require 'ore/actions'
+require 'ore/naming'
 
 require 'thor/group'
 require 'date'
@@ -11,7 +12,7 @@ require 'set'
 module Ore
   class Generator < Thor::Group
 
-    include Thor::Actions
+    include Actions
     include Naming
     include Template::Interpolations
     include Template::Helpers
@@ -132,13 +133,9 @@ module Ore
 
       in_root do
         if options.git?
-          git_options = if options.quiet?
-                          '-q'
-                        end
-
-          run "git init #{git_options}"
-          run "git add ."
-          run "git commit -m \"Initial commit.\" #{git_options}"
+          run 'git init'
+          run 'git add .'
+          run 'git commit -m "Initial commit."'
         end
       end
     end
@@ -183,64 +180,6 @@ module Ore
     generator_option :license, :aliases => '-L'
 
     argument :path, :required => true
-
-    #
-    # Generates an empty directory.
-    #
-    # @param [String] dest
-    #   The uninterpolated destination path.
-    #
-    # @return [String]
-    #   The destination path of the directory.
-    #
-    # @since 0.7.1
-    #
-    def generate_dir(dest)
-      return if @generated_dirs.has_key?(dest)
-
-      path = interpolate(dest)
-      empty_directory path
-
-      @generated_dirs[dest] = path
-      return path
-    end
-
-    #
-    # Generates a file.
-    #
-    # @param [String] dest
-    #   The uninterpolated destination path.
-    #
-    # @param [String] file
-    #   The source file or template.
-    #
-    # @param [Hash] options
-    #   Additional options.
-    #
-    # @option options [Boolean] :template
-    #   Specifies that the file is a template, and should be rendered.
-    #
-    # @return [String]
-    #   The destination path of the file.
-    #
-    # @since 0.7.1
-    #
-    def generate_file(dest,file,options={})
-      return if @generated_files.has_key?(dest)
-
-      path = interpolate(dest)
-
-      if options[:template]
-        @current_template_dir = File.dirname(dest)
-        template file, path
-        @current_template_dir = nil
-      else
-        copy_file file, path
-      end
-
-      @generated_files[dest] = path
-      return path
-    end
 
     #
     # Enables a template, adding it to the generator.
