@@ -399,7 +399,7 @@ describe Generator do
   end
 
   context "rubygems-tasks" do
-    let(:name) { 'ore_project' }
+    let(:name) { 'rubygems_tasks_project' }
 
     before(:all) do
       generate!(name, :rubygems_tasks => true)
