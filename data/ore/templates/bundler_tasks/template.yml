@@ -3,3 +3,4 @@ enable:
 
 disable:
   - rubygems_tasks
+  - jeweler_tasks
