@@ -49,9 +49,13 @@ module Ore
       attr_reader :variables
 
       # Runtime dependencies defined by the template
+      #
+      # @since 0.9.0
       attr_reader :dependencies
 
       # Development dependencies defined by the template
+      #
+      # @since 0.9.0
       attr_reader :development_dependencies
 
       #
