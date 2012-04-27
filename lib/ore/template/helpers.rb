@@ -151,6 +151,18 @@ module Ore
       end
 
       #
+      # Determines if the project is using `Gem::Tasks`.
+      #
+      # @return [Boolean]
+      #   Specifies whether the project is using `Gem::Tasks`.
+      #
+      # @since 0.9.0
+      #
+      def rubygems_tasks?
+        enabled?(:rubygems_tasks)
+      end
+
+      #
       # Determines if the project is using `Jeweler::Tasks`.
       #
       # @return [Boolean]
@@ -163,15 +175,15 @@ module Ore
       end
 
       #
-      # Determines if the project is using `Gem::Tasks`.
+      # Determines if the project is using `Gem::PackageTask`.
       #
       # @return [Boolean]
-      #   Specifies whether the project is using `Gem::Tasks`.
+      #   Specifies whether the project is using `Gem::PackageTask`.
       #
       # @since 0.9.0
       #
-      def rubygems_tasks?
-        enabled?(:rubygems_tasks)
+      def gem_package_task?
+        enabled?(:gem_package_task)
       end
 
       #
