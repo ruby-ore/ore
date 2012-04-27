@@ -132,7 +132,7 @@ module Ore
         if (options.git? && !File.directory?('.git'))
           run 'git init'
           run 'git add .'
-          run 'git commit -m "Initial commit."'
+          run 'git commit -q -m "Initial commit."'
         end
       end
     end
