@@ -63,7 +63,7 @@ module Ore
       # @since 0.7.0
       #
       def git?
-        options.git?
+        enabled?(:git)
       end
 
       #
