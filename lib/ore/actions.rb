@@ -1,5 +1,3 @@
-require 'thor/actions'
-
 module Ore
   #
   # Additional actions for the {Generator}.
@@ -9,8 +7,6 @@ module Ore
   # @since 0.9.0
   #
   module Actions
-    include Thor::Actions
-
     protected
 
     #

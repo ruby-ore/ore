@@ -12,6 +12,7 @@ require 'set'
 module Ore
   class Generator < Thor::Group
 
+    include Thor::Actions
     include Actions
     include Naming
     include Template::Interpolations
