@@ -1,13 +1,12 @@
 module Ore
-  #
-  # @api semipublic
-  #
   module Template
     #
     # The templates registered with the generator.
     #
     # @return [Hash{Symbol => String}]
     #   The template names and paths.
+    #  
+    # @api semipublic
     #
     # @since 0.9.0
     #
@@ -23,6 +22,8 @@ module Ore
     #
     # @return [Boolean]
     #   Specifies whether the template was registered.
+    #
+    # @api semipublic
     #
     # @since 0.9.0
     #
@@ -41,6 +42,8 @@ module Ore
     #
     # @raise [StandardError]
     #   The given path was not a directory.
+    #
+    # @api semipublic
     #
     # @since 0.9.0
     #
