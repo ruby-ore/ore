@@ -123,7 +123,9 @@ module Ore
       enable_templates!
       initialize_variables!
 
-      say "Generating #{self.destination_root}", :green
+      unless options.quiet?
+        say "Generating #{self.destination_root}", :green
+      end
 
       generate_directories!
       generate_files!
