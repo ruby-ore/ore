@@ -130,9 +130,11 @@ module Ore
 
       in_root do
         if options.git?
-          run 'git init'
-          run 'git add .'
-          run 'git commit -q -m "Initial commit."'
+          git_options = (options.quiet? && '-q')
+
+          run "git init #{git_options}"
+          run "git add ."
+          run "git commit -m \"Initial commit.\" #{git_options}"
         end
       end
     end
