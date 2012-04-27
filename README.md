@@ -18,11 +18,14 @@ templates to be installed from Git repositories.
   * [Git](http://git-scm.com/)
   * [Mercurial (Hg)](http://mercurial.selenic.com/)
   * [SubVersion (SVN)](http://subversion.tigris.org/)
-  * `gemspec.yml`
-  * `VERSION` or `version.rb` files
+  * Loads metadata from `gemspec.yml`
+  * Loads version from `version.rb`
 * Provides many builtin templates:
   * bundler
   * rvmrc
+  * gem_package_task
+  * rubygems_tasks
+  * bundler_tasks
   * jeweler
   * rdoc
   * yard
