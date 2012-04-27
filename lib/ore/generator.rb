@@ -1,7 +1,5 @@
-require 'ore/template/directory'
-require 'ore/template/interpolations'
-require 'ore/template/helpers'
 require 'ore/config'
+require 'ore/template'
 require 'ore/actions'
 require 'ore/naming'
 
@@ -17,51 +15,6 @@ module Ore
     include Naming
     include Template::Interpolations
     include Template::Helpers
-
-    #
-    # The templates registered with the generator.
-    #
-    def self.templates
-      @@templates ||= {}
-    end
-
-    #
-    # Determines whether a template was registered.
-    #
-    # @param [Symbol, String] name
-    #   The name of the template.
-    #
-    # @return [Boolean]
-    #   Specifies whether the template was registered.
-    #
-    # @since 0.7.2
-    #
-    def self.template?(name)
-      self.templates.has_key?(name.to_sym)
-    end
-
-    #
-    # Registers a template with the generator.
-    #
-    # @param [String] path
-    #   The path to the template.
-    #
-    # @return [Symbol]
-    #   The name of the registered template.
-    #
-    # @raise [StandardError]
-    #   The given path was not a directory.
-    #
-    def self.register_template(path)
-      unless File.directory?(path)
-        raise(StandardError,"#{path.dump} is must be a directory")
-      end
-
-      name = File.basename(path).to_sym
-
-      self.templates[name] = path
-      return name
-    end
 
     #
     # Default options for the generator.
@@ -147,12 +100,12 @@ module Ore
     defaults.merge!(Config.default_options)
 
     # register builtin templates
-    Config.builtin_templates { |path| register_template(path) }
+    Config.builtin_templates { |path| Template.register(path) }
     # register installed templates
-    Config.installed_templates { |path| register_template(path) }
+    Config.installed_templates { |path| Template.register(path) }
 
     # define options for all templates
-    templates.each_key do |name|
+    Template.templates.each_key do |name|
       # skip the `base` template
       next if name == :base
 
@@ -195,7 +148,7 @@ module Ore
 
       return false if @enabled_templates.include?(name)
 
-      unless (template_dir = self.class.templates[name])
+      unless (template_dir = Template.templates[name])
         say "Unknown template #{name}", :red
         exit -1
       end
@@ -232,7 +185,7 @@ module Ore
 
       return false if @disabled_templates.include?(name)
 
-      unless (template_dir = self.class.templates[name])
+      unless (template_dir = Template.templates[name])
         say "Unknown template #{name}", :red
         exit -1
       end
@@ -257,14 +210,14 @@ module Ore
 
       # enable the default templates first
       self.class.defaults.each_key do |name|
-        if (self.class.template?(name) && options[name])
+        if (Template.template?(name) && options[name])
           enable_template(name)
         end
       end
 
       # enable the templates specified by option
       options.each do |name,value|
-        if (self.class.template?(name) && value)
+        if (Template.template?(name) && value)
           enable_template(name)
         end
       end
