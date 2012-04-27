@@ -26,7 +26,7 @@ templates to be installed from Git repositories.
   * gem_package_task
   * rubygems_tasks
   * bundler_tasks
-  * jeweler
+  * jeweler_tasks
   * rdoc
   * yard
   * test_unit
