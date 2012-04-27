@@ -44,12 +44,12 @@ module Ore
     # Common project prefixes and namespaces
     COMMON_NAMESPACES = {
       'rubygems' => 'Gem',
-      'ar' => 'ActiveRecord',
-      'dm' => 'DataMapper',
-      'js' => 'JavaScript',
-      'msgpack' => 'MsgPack',
-      'github' => 'GitHub',
-      'rdoc' => 'RDoc'
+      'ar'       => 'ActiveRecord',
+      'dm'       => 'DataMapper',
+      'js'       => 'JavaScript',
+      'msgpack'  => 'MsgPack',
+      'github'   => 'GitHub',
+      'rdoc'     => 'RDoc'
     }
 
     #
