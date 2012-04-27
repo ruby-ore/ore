@@ -95,7 +95,7 @@ module Ore
       #   Specifies whether the project will contain RDoc documented.
       #
       def rdoc?
-        options.rdoc?
+        enabled?(:rdoc)
       end
 
       #
