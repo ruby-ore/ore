@@ -1,3 +1,28 @@
+### 0.9.0 / 2012-04-27
+
+* No longer depend on ore-core.
+* No longer depend on env.
+* Switched from ore-tasks to rubygems-tasks ~> 0.1.
+* Added {Ore::Naming} from `ore-core`.
+* Added {Ore::Actions}.
+* Added {Ore::Template::Helpers#rubygems_tasks?}.
+* Added {Ore::Template::Helpers#bundler_tasks?}.
+* Added {Ore::Template::Helpers#gem_package_task?}.
+* Added {Ore::Template::Directory#dependencies}.
+* Added {Ore::Template::Directory#development_dependencies}.
+* Templates:
+  * Added a `gem_package_task` template.
+  * Added a `bundler_tasks` template.
+  * Renamed `ore_tasks` to `rubygems_tasks`.
+  * Define dependencies in the `template.yml` files.
+  * Simplified the `[name].gemspec` file in the `base` template.
+  * Moved the `.gitignore` file into the `git` template.
+  * If `git` is enabled and `github.user` is set in `.gitconfig`, default
+    the `@homepage` variable to a `https://github.com/` URL.
+  * Require the newer `rdoc/task` file in the `rdoc` template.
+  * Relaxed the `rake` dependencey in the `bundler` template to `~> 0.8`.
+* Removed the `ore gem` and `ore gemspec` sub-commands.
+
 ### 0.8.1 / 2011-07-11
 
 * Generated `.gemspec` file:
@@ -145,7 +170,7 @@
   [ore-core](http://github.com/ruby-ore/ore-core).
 * {Ore::Generator}:
   * Added {Ore::Template::Helpers#jeweler_tasks?}.
-  * Added {Ore::Template::Helpers#ore_tasks?}.
+  * Added `Ore::Template::Helpers#ore_tasks?`.
   * Do not include `ore-core` as a development dependency if either
     `--bundler` or `--ore-tasks` is enabled.
 
