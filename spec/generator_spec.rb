@@ -377,6 +377,10 @@ describe Generator do
       @generator.disabled_templates.should include(:rubygems_tasks)
     end
 
+    it "should disable the bundler_tasks template" do
+      @generator.disabled_templates.should include(:bundler_tasks)
+    end
+
     it "should add 'jeweler' as a development dependency" do
       @gemspec['development_dependencies'].should have_key('jeweler')
     end
@@ -405,6 +409,10 @@ describe Generator do
       @generator.disabled_templates.should include(:jeweler_tasks)
     end
 
+    it "should disable the bundler_tasks template" do
+      @generator.disabled_templates.should include(:bundler_tasks)
+    end
+
     it "should add 'rubygems-tasks' as a development dependency" do
       @gemspec['development_dependencies'].should have_key('rubygems-tasks')
     end
@@ -419,6 +427,46 @@ describe Generator do
 
     it "should not add 'rubygems-tasks' as a development dependency" do
       @gemspec['development_dependencies'].should_not have_key('rubygems-tasks')
+    end
+  end
+
+  context "bundler_tasks" do
+    let(:name) { 'bundler_tasks_project' }
+
+    before(:all) do
+      generate!(name, :bundler_tasks => true)
+    end
+
+    it "should disable the jeweler_tasks template" do
+      @generator.disabled_templates.should include(:jeweler_tasks)
+    end
+
+    it "should disable the rubygems_tasks template" do
+      @generator.disabled_templates.should include(:rubygems_tasks)
+    end
+
+    it "should enable the bundler template" do
+      @generator.enabled_templates.should include(:bundler)
+    end
+  end
+
+  context "gem_package_task" do
+    let(:name) { 'gem_package_task_project' }
+
+    before(:all) do
+      generate!(name, :gem_package_task => true)
+    end
+
+    it "should disable the rubygems_tasks template" do
+      @generator.disabled_templates.should include(:rubygems_tasks)
+    end
+
+    it "should disable the jeweler_tasks template" do
+      @generator.disabled_templates.should include(:jeweler_tasks)
+    end
+
+    it "should disable the bundler_tasks template" do
+      @generator.disabled_templates.should include(:bundler_tasks)
     end
   end
 
