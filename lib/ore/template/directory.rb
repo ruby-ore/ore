@@ -214,7 +214,7 @@ module Ore
               case File.extname(name)
               when '.erb'
                 # erb template
-                if name[0,1] == '_'
+                if name.start_with?('_')
                   # partial template
                   template_dir  = File.dirname(file)
                   template_name = name[1..-1].chomp('.erb').to_sym
