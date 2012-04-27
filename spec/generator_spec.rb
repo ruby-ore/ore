@@ -106,8 +106,8 @@ describe Generator do
   end
 
   context "bin" do
-    let(:name) { 'script-project'      }
-    let(:path) { File.join('bin',name) }
+    let(:name)   { 'script-project'      }
+    let(:script) { File.join('bin',name) }
 
     before(:all) do
       generate!(name, :bin => true)
@@ -118,11 +118,11 @@ describe Generator do
     end
 
     it "should add a bin/script-project file" do
-      @path.join(path).should be_file
+      @path.join(script).should be_file
     end
 
     it "should make the bin/script-project file executable" do
-      @path.join(path).should be_executable
+      @path.join(script).should be_executable
     end
   end
 
