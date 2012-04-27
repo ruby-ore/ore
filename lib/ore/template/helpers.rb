@@ -139,6 +139,18 @@ module Ore
       end
 
       #
+      # Determines if the project is using `Bundler::GemHelper`.
+      #
+      # @return [Boolean]
+      #   Specifies whether the project is using `Bundler::GemHelper`.
+      #
+      # @since 0.9.0
+      #
+      def bundler_tasks?
+        enabled?(:bundler_tasks)
+      end
+
+      #
       # Determines if the project is using `Jeweler::Tasks`.
       #
       # @return [Boolean]
@@ -156,7 +168,7 @@ module Ore
       # @return [Boolean]
       #   Specifies whether the project is using `Gem::Tasks`.
       #
-      # @since 0.3.0
+      # @since 0.9.0
       #
       def rubygems_tasks?
         enabled?(:rubygems_tasks)
