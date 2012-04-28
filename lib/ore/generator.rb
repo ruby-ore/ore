@@ -242,11 +242,15 @@ module Ore
                   :rdoc
                 end
 
-      @scm = if @root.join('.svn').directory?
+      @scm = if File.directory?(File.join(@root,'.svn'))
                :svn
-             elsif (options.hg? || @root.join('.hg').directory?)
+             elsif File.directory?(File.join(@root,'.hg'))
                :hg
-             elsif (options.git? || @root.join('.git').directory?)
+             elsif File.directory?(File.join(@root,'.git'))
+               :git
+             elsif options.hg?
+               :hg
+             elsif options.git?
                :git
              end
 
