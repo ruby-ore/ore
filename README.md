@@ -21,19 +21,19 @@ templates to be installed from Git repositories.
   * Loads metadata from `gemspec.yml`
   * Loads version from `version.rb`
 * Provides many builtin templates:
-  * gemspec_yml
-  * pure_gemspec
-  * rvmrc
-  * bundler
-  * gem_package_task
-  * rubygems_tasks
-  * bundler_tasks
-  * jeweler_tasks
-  * rdoc
-  * yard
-  * test_unit
-  * rspec
-  * gem_test
+  * [gemspec_yml]
+  * [pure_gemspec]
+  * [rvmrc]
+  * [bundler]
+  * [gem\_package\_task]
+  * [rubygems_tasks]
+  * [bundler_tasks]
+  * [jeweler_tasks]
+  * [rdoc]
+  * [yard]
+  * [test_unit]
+  * [rspec]
+  * [gem_test]
 * Allows installing custom templates from Git repositories:
 
       $ ore install git://github.com/ruby-ore/cucumber.git
@@ -130,3 +130,20 @@ Add default generator options to `~/.ore/options.yml`:
 Copyright (c) 2010-2012 Hal Brodigan
 
 See {file:LICENSE.txt} for license information.
+
+[base]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/base
+[bin]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bin
+[bundler]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bundler
+[bundler_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bundler_tasks
+[gem\_package\_task]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem_package_task
+[gemspec_yml]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gemspec_yml
+[gem_test]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem_test
+[git]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/git
+[jeweler_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/jeweler_tasks
+[pure_gemspec]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/pure_gemspec
+[rdoc]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rdoc
+[rspec]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rspec
+[rubygems_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rubygems_tasks
+[rvmrc]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rvmrc
+[test_unit]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/test_unit
+[yard]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/yard
