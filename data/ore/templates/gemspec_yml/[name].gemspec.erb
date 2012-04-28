@@ -8,16 +8,24 @@ Gem::Specification.new do |gemspec|
 <%- if git? -%>
   files   = if File.directory?('.git')
               `git ls-files`.split($/)
-<%- elsif hg? -%>
-  files   = if File.directory?('.hg')
-              `hg manifest`.split($/)
-<%- elsif svn? -%>
-  files   = if File.directory?('.svn')
-              `svn ls -R`.split($/).select { |path| File.file?(path) }
-<%- end -%>
             else
               Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
             end
+<%- elsif hg? -%>
+  files   = if File.directory?('.hg')
+              `hg manifest`.split($/)
+            else
+              Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
+            end
+<%- elsif svn? -%>
+  files   = if File.directory?('.svn')
+              `svn ls -R`.split($/).select { |path| File.file?(path) }
+            else
+              Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
+            end
+<%- else -%>
+  files   = Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
+<%- end -%>
 
   filter_files = lambda { |paths|
     files & case paths
