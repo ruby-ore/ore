@@ -91,18 +91,6 @@ For a complete refrence to the `gemspec.yml` file, please see the
 
 ## Synopsis
 
-Install a custom template:
-
-    $ ore install git://github.com/ruby-ore/mini_test.git
-
-List installed templates:
-
-    $ ore list
-
-Remove a previously installed template:
-
-    $ ore remove mini_test
-
 Generate a new project:
 
     $ mine my_project
@@ -114,6 +102,18 @@ Generate a new customized project:
 Generate a new project using previously installed templates:
 
     $ mine my_project --bundler --rspec --yard --templates mini_test
+
+Install a custom template:
+
+    $ ore install git://github.com/ruby-ore/mini_test.git
+
+List installed templates:
+
+    $ ore list
+
+Remove a previously installed template:
+
+    $ ore remove mini_test
 
 Add default generator options to `~/.ore/options.yml`:
 
