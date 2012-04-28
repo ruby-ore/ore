@@ -2,7 +2,7 @@
 
 * No longer depend on ore-core.
 * No longer depend on env.
-* Switched from ore-tasks to rubygems-tasks ~> 0.1.
+* Switched from ore-tasks to rubygems-tasks ~> 0.2.
 * Added {Ore::Naming} from `ore-core`.
 * Added {Ore::Options}.
 * Added {Ore::Actions}.
@@ -13,13 +13,15 @@
 * Added {Ore::Template::Directory#development_dependencies}.
 * Renamed `Ore::Config.default_options` to {Ore::Config.options}.
 * Renamed `Ore::Generator.defaults` to {Ore::Options.defaults}.
+* Renamed `Ore::Generator.generator_option` to {Ore::Options::ClassMethods}.
 * Renamed `Ore::Generator.templates` to {Ore::Template.templates}.
 * Renamed `Ore::Generator.template?` to {Ore::Template.template?}.
 * Renamed `Ore::Generator.register_template` to {Ore::Template.register}.
 * Templates:
+  * Added a `rubygems_tasks` template.
   * Added a `gem_package_task` template.
   * Added a `bundler_tasks` template.
-  * Renamed `ore_tasks` to `rubygems_tasks`.
+  * Removed the `ore_tasks` template.
   * Define dependencies in the `template.yml` files.
   * Simplified the `[name].gemspec` file in the `base` template.
   * Moved the `.gitignore` file into the `git` template.
