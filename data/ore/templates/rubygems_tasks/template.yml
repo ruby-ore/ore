@@ -4,4 +4,4 @@ disable:
   - bundler_tasks
 
 development_dependencies:
-  rubygems-tasks: ~> 0.1
+  rubygems-tasks: ~> 0.2
