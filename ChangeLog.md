@@ -21,7 +21,7 @@
 #### Templates
 
 * Added a [rubygems_tasks] template.
-* Added a [gem_package_task] template.
+* Added a [gem\_package\_task] template.
 * Added a [bundler_tasks] template.
 * Removed the `ore_tasks` template.
 * Define dependencies in the `template.yml` files.
@@ -31,7 +31,7 @@
   the `@homepage` variable to a `https://github.com/` URL.
 * Require the newer `rdoc/task` file in the [rdoc] template.
 * Relaxed the `rake` dependency in the [bundler] template to `~> 0.8`.
-* Relaxed the `bundler` dependency in the [bundler] template to `~> 1.0`.
+* Relaxed the `bundler` dependency in the [bundler` template to `~> 1.0`.
 
 #### CLI
 
@@ -278,7 +278,7 @@
 [bin]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bin
 [bundler]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bundler
 [bundler_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bundler_tasks
-[gem_package_task]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem_package_task
+[gem\_package\_task]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem_package_task
 [gem_test]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem_test
 [git]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/git
 [jeweler_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/jeweler_tasks
