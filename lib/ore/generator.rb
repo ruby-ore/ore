@@ -237,7 +237,7 @@ module Ore
                      end
       @bug_tracker = case @homepage.host
                      when 'github.com'
-                       "https://#{@homepage.host}/#{@homepage.path}/issues"
+                       "https://#{@homepage.host}#{@homepage.path}/issues"
                      end
 
       @markup = if options.markdown?
