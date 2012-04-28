@@ -18,31 +18,31 @@ describe Generator do
     end
 
     it "should create the lib/ directory" do
-      @path.join('lib').should be_directory
+      @path.should have_directory('lib')
     end
 
     it "should create a file to load the project within lib/" do
-      @path.join('lib','my','project.rb').should be_file
+      @path.should have_file('lib','my','project.rb')
     end
 
     it "should create a namespace directory within lib/" do
-      @path.join('lib','my','project').should be_directory
+      @path.should have_directory('lib','my','project')
     end
 
     it "should create a version.rb file within the namespace directory" do
-      @path.join('lib','my','project','version.rb').should be_file
+      @path.should have_file('lib','my','project','version.rb')
     end
 
     it "should not create the bin/ directory by default" do
-      @path.join('bin').should_not be_directory
+      @path.should_not have_directory('bin')
     end
 
     it "should create a test/ directory by default" do
-      @path.join('test').should_not be_directory
+      @path.should_not have_directory('test')
     end
 
     it "should create a gemspec.yml file" do
-      @path.join('gemspec.yml').should be_file
+      @path.should have_file('gemspec.yml')
     end
 
     describe "gemspec.yml" do
@@ -96,23 +96,23 @@ describe Generator do
     end
 
     it "should add a .document file" do
-      @path.join('.document').should be_file
+      @path.should have_file('.document')
     end
 
     it "should add a Rakefile" do
-      @path.join('Rakefile').should be_file
+      @path.should have_file('Rakefile')
     end
 
     it "should add a README.rdoc file" do
-      @path.join('README.rdoc').should be_file
+      @path.should have_file('README.rdoc')
     end
 
     it "should add a ChangeLog.rdoc file" do
-      @path.join('ChangeLog.rdoc').should be_file
+      @path.should have_file('ChangeLog.rdoc')
     end
 
     it "should add a LICENSE.txt file" do
-      @path.join('LICENSE.txt').should be_file
+      @path.should have_file('LICENSE.txt')
     end
   end
 
@@ -128,7 +128,7 @@ describe Generator do
     end
 
     it "should add a *.gemspec file" do
-      @path.join("#{name}.gemspec").should be_file
+      @path.should have_file("#{name}.gemspec")
     end
 
     context "*.gemspec file" do
@@ -151,15 +151,15 @@ describe Generator do
     end
 
     it "should add a 'bin/' directory" do
-      @path.join('bin').should be_directory
+      @path.should have_directory('bin')
     end
 
     it "should add a bin/script-project file" do
-      @path.join(script).should be_file
+      @path.should have_file(script)
     end
 
     it "should make the bin/script-project file executable" do
-      @path.join(script).should be_executable
+      @path.should have_executable(script)
     end
   end
 
@@ -171,7 +171,7 @@ describe Generator do
     end
 
     it "should add a .gemtest file" do
-      @path.join('.gemtest').should be_file
+      @path.should have_file('.gemtest')
     end
   end
 
@@ -183,7 +183,7 @@ describe Generator do
     end
 
     it "should add a Gemfile" do
-      @path.join('Gemfile').should be_file
+      @path.should have_file('Gemfile')
     end
 
     it "should add 'bundler' as a development dependency" do
@@ -215,7 +215,7 @@ describe Generator do
     end
 
     it "should add a '.document' file" do
-      @path.join('.document').should be_file
+      @path.should have_file('.document')
     end
 
     context ".document" do
@@ -249,11 +249,11 @@ describe Generator do
     end
 
     it "should add a .yardopts file" do
-      @path.join('.yardopts').should be_file
+      @path.should have_file('.yardopts')
     end
 
     it "should add a '.document' file" do
-      @path.join('.document').should be_file
+      @path.should have_file('.document')
     end
 
     context ".document" do
@@ -287,11 +287,11 @@ describe Generator do
     end
 
     it "should add a README.md file" do
-      @path.join('README.md').should be_file
+      @path.should have_file('README.md')
     end
 
     it "should add a ChangeLog.md file" do
-      @path.join('ChangeLog.md').should be_file
+      @path.should have_file('ChangeLog.md')
     end
 
     it "should set --markup to markdown in .yardopts" do
@@ -307,11 +307,11 @@ describe Generator do
     end
 
     it "should add a README.tt file" do
-      @path.join('README.tt').should be_file
+      @path.should have_file('README.tt')
     end
 
     it "should add a ChangeLog.tt file" do
-      @path.join('ChangeLog.tt').should be_file
+      @path.should have_file('ChangeLog.tt')
     end
 
     it "should set --markup to textile in .yardopts" do
@@ -343,15 +343,15 @@ describe Generator do
     end
 
     it "should create the test/ directory" do
-      @path.join('test').should be_directory
+      @path.should have_directory('test')
     end
 
     it "should create the test/helper.rb file" do
-      @path.join('test','helper.rb').should be_file
+      @path.should have_file('test','helper.rb')
     end
 
     it "should add a single test_*.rb file" do
-      @path.join('test','test_test_unit_project.rb').should be_file
+      @path.should have_file('test','test_test_unit_project.rb')
     end
   end
 
@@ -367,23 +367,23 @@ describe Generator do
     end
 
     it "should not create the test/ directory" do
-      @path.join('test').should_not be_directory
+      @path.should_not have_directory('test')
     end
 
     it "should create the spec/ directory" do
-      @path.join('spec').should be_directory
+      @path.should have_directory('spec')
     end
 
     it "should add a spec_helper.rb file" do
-      @path.join('spec','spec_helper.rb').should be_file
+      @path.should have_file('spec','spec_helper.rb')
     end
 
     it "should add a single *_spec.rb file" do
-      @path.join('spec','rspec_project_spec.rb').should be_file
+      @path.should have_file('spec','rspec_project_spec.rb')
     end
 
     it "should add a .rspec file" do
-      @path.join('.rspec').should be_file
+      @path.should have_file('.rspec')
     end
 
     it "should add 'rspec' as a development dependency" do
