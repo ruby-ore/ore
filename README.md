@@ -29,6 +29,8 @@ templates to be installed from Git repositories.
   * [rubygems_tasks]
   * [bundler_tasks]
   * [jeweler_tasks]
+  * [git]
+  * [hg]
   * [rdoc]
   * [yard]
   * [test_unit]
@@ -139,6 +141,7 @@ See {file:LICENSE.txt} for license information.
 [gemspec_yml]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gemspec_yml
 [gem_test]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem_test
 [git]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/git
+[hg]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/hg
 [jeweler_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/jeweler_tasks
 [pure_gemspec]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/pure_gemspec
 [rdoc]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rdoc
