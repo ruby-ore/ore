@@ -3,6 +3,8 @@ require 'ore/template'
 
 module Ore
   #
+  # @api semipublic
+  #
   # @since 0.9.0
   #
   module Options
