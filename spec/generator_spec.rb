@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'gemspec_examples'
 require 'helpers/generator'
 require 'ore/generator'
 
@@ -87,33 +88,7 @@ describe Generator do
     context "*.gemspec file" do
       subject { @gemspec }
 
-      it "should have a name" do
-        subject.name.should == name
-      end
-
-      it "should not contain a version by default" do
-        subject.version.should_not be_nil
-      end
-
-      it "should a dummy summary" do
-        subject.summary.should_not be_empty
-      end
-
-      it "should a description summary" do
-        subject.description.should_not be_empty
-      end
-
-      it "should have a license" do
-        subject.license.should == 'MIT'
-      end
-
-      it "should have authors" do
-        subject.authors.should_not be_empty
-      end
-
-      it "should have a dummy homepage" do
-        subject.homepage.should_not be_empty
-      end
+      it_should_behave_like "a gemspec"
 
       it "should have 'rubygems-tasks' as a development dependency" do
         subject.development_dependencies.any? { |dep|
@@ -161,33 +136,7 @@ describe Generator do
     context "*.gemspec file" do
       subject { @gemspec }
 
-      it "should have a name" do
-        subject.name.should == name
-      end
-
-      it "should not contain a version by default" do
-        subject.version.should_not be_nil
-      end
-
-      it "should a dummy summary" do
-        subject.summary.should_not be_empty
-      end
-
-      it "should a description summary" do
-        subject.description.should_not be_empty
-      end
-
-      it "should have a license" do
-        subject.license.should == 'MIT'
-      end
-
-      it "should have authors" do
-        subject.authors.should_not be_empty
-      end
-
-      it "should have a dummy homepage" do
-        subject.homepage.should_not be_empty
-      end
+      it_should_behave_like "a gemspec"
 
       it "should have 'rubygems-tasks' as a development dependency" do
         subject.development_dependencies.any? { |dep|

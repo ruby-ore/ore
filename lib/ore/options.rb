@@ -8,20 +8,20 @@ module Ore
   # @since 0.9.0
   #
   module Options
-    # Defaults options
-    DEFAULTS = {
-      :templates      => [],
-      :version        => '0.1.0',
-      :summary        => 'TODO: Summary',
-      :description    => 'TODO: Description',
-      :license        => 'MIT',
-      :authors        => [ENV['USER']],
-      :gemspec_yml    => true,
-      :rubygems_tasks => true,
-      :rdoc           => true,
-      :rspec          => true,
-      :git            => true
-    }
+    # Default version
+    DEFAULT_VERSION = '0.1.0'
+
+    # Default summary
+    DEFAULT_SUMMARY = %q{TODO: Summary}
+
+    # Default description
+    DEFAULT_DESCRIPTION = %q{TODO: Description}
+
+    # Default License
+    DEFAULT_LICENSE = 'MIT'
+
+    # Default authors
+    DEFAULT_AUTHORS = [ENV['USER']]
 
     def self.included(base)
       base.extend ClassMethods
@@ -34,7 +34,19 @@ module Ore
     #   The option names and default values.
     #
     def self.defaults
-      @@defaults ||= DEFAULTS.merge(Config.options)
+      @@defaults ||= {
+        :templates      => [],
+        :version        => DEFAULT_VERSION,
+        :summary        => DEFAULT_SUMMARY,
+        :description    => DEFAULT_DESCRIPTION,
+        :license        => DEFAULT_LICENSE,
+        :authors        => DEFAULT_AUTHORS,
+        :gemspec_yml    => true,
+        :rubygems_tasks => true,
+        :rdoc           => true,
+        :rspec          => true,
+        :git            => true
+      }.merge(Config.options)
     end
 
     module ClassMethods
