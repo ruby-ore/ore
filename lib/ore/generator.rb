@@ -16,10 +16,10 @@ module Ore
     include Template::Interpolations
     include Template::Helpers
 
-    # Generator defaults
+    # Defaults options
     #
     # @since 0.9.0
-    DEFAULTS = {
+    OPTIONS = {
       :templates      => [],
       :version        => '0.1.0',
       :summary        => 'TODO: Summary',
@@ -40,8 +40,8 @@ module Ore
     #
     # @since 0.5.0
     #
-    def self.defaults
-      @@defaults ||= DEFAULTS.merge(Config.options)
+    def self.options
+      @@options ||= OPTIONS.merge(Config.options)
     end
 
     #
@@ -56,7 +56,7 @@ module Ore
     # @since 0.5.0
     #
     def self.generator_option(name,options={})
-      class_option(name,options.merge(:default => defaults[name]))
+      class_option(name,options.merge(:default => self.options[name]))
     end
 
     # The enabled templates.
@@ -107,7 +107,7 @@ module Ore
       next if name == :base
 
       class_option name, :type    => :boolean,
-                         :default => defaults.fetch(name,false)
+                         :default => options.fetch(name,false)
     end
 
     # disable the Thor namespace
@@ -206,7 +206,7 @@ module Ore
       enable_template :base
 
       # enable the default templates first
-      self.class.defaults.each_key do |name|
+      self.class.options.each_key do |name|
         if (Template.template?(name) && options[name])
           enable_template(name)
         end
