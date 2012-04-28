@@ -88,6 +88,13 @@ module Ore
           run 'hg init' unless File.directory?('.hg')
           run 'hg add .'
           run 'hg commit -m "Initial commit."'
+        when :svn
+          @ignore.each do |pattern|
+            run "svn propset svn:ignore #{pattern.dump}"
+          end
+
+          run 'svn add .'
+          run 'svn commit -m "Initial commit."'
         end
       end
     end
