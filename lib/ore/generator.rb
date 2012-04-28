@@ -16,6 +16,22 @@ module Ore
     include Template::Interpolations
     include Template::Helpers
 
+    # Generator defaults
+    #
+    # @since 0.9.0
+    DEFAULTS = {
+      :templates      => [],
+      :version        => '0.1.0',
+      :summary        => 'TODO: Summary',
+      :description    => 'TODO: Description',
+      :license        => 'MIT',
+      :authors        => [ENV['USER']],
+      :rubygems_tasks => true,
+      :rdoc           => true,
+      :rspec          => true,
+      :git            => true
+    }
+
     #
     # Default options for the generator.
     #
@@ -25,19 +41,8 @@ module Ore
     # @since 0.5.0
     #
     def self.defaults
-      @@defaults ||= {}
+      @@defaults ||= DEFAULTS.merge(Config.default_options)
     end
-
-    defaults[:templates]      = []
-    defaults[:version]        = '0.1.0'
-    defaults[:summary]        = 'TODO: Summary'
-    defaults[:description]    = 'TODO: Description'
-    defaults[:license]        = 'MIT'
-    defaults[:authors]        = [ENV['USER']]
-    defaults[:rubygems_tasks] = true
-    defaults[:rdoc]           = true
-    defaults[:rspec]          = true
-    defaults[:git]            = true
 
     #
     # Defines a generator option.
@@ -95,14 +100,6 @@ module Ore
     end
 
     protected
-
-    # merge default options
-    defaults.merge!(Config.default_options)
-
-    # register builtin templates
-    Config.builtin_templates { |path| Template.register(path) }
-    # register installed templates
-    Config.installed_templates { |path| Template.register(path) }
 
     # define options for all templates
     Template.templates.each_key do |name|
