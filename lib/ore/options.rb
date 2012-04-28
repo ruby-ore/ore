@@ -41,7 +41,7 @@ module Ore
         :description    => DEFAULT_DESCRIPTION,
         :license        => DEFAULT_LICENSE,
         :authors        => DEFAULT_AUTHORS,
-        :gemspec_yml    => true,
+        :gemspec        => true,
         :rubygems_tasks => true,
         :rdoc           => true,
         :rspec          => true,

@@ -41,10 +41,6 @@ describe Generator do
       @path.should_not have_directory('test')
     end
 
-    it "should create a gemspec.yml file" do
-      @path.should have_file('gemspec.yml')
-    end
-
     it "should add a *.gemspec file" do
       @path.join("#{name}.gemspec").should be_file
     end
