@@ -63,7 +63,7 @@ documentation.
 
 ### Testing
 
-Ore supports generating [RSpec][rspec] or `Test::Unit` tests.
+Ore supports generating [RSpec][rspec] or [Test::Unit][test_unit] tests.
 
     $ mine my-project [--test-unit | --rspec]
 
@@ -139,3 +139,4 @@ See {file:LICENSE.txt} for license information.
 [textile]: http://textile.sitemonks.com/
 [yard]: http://yardoc.org/
 [rspec]: http://rspec.info/
+[test_unit]: http://test-unit.rubyforge.org/
