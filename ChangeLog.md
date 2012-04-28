@@ -1,4 +1,4 @@
-### 0.9.0 / 2012-04-27
+### 0.9.0 / 2012-04-28
 
 * Removed the ore-core dependency.
 * Removed the env dependency.
