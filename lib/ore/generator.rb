@@ -202,7 +202,7 @@ module Ore
     #
     def initialize_variables!
       @root        = Pathname.new(destination_root)
-      @project_dir = @root.basename
+      @project_dir = @root.basename.to_s
       @name        = (options.name || @project_dir)
 
       @modules      = modules_of(@name)
