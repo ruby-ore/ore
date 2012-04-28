@@ -1,1 +1,3 @@
-<%= includes :ignore %>
+<%- @ignore.each do |pattern| -%>
+<%=   pattern %>
+<%- end -%>

@@ -48,6 +48,11 @@ module Ore
       # The variables to use when rendering the template files
       attr_reader :variables
 
+      # Files to ignore
+      #
+      # @since 0.9.0
+      attr_reader :ignore
+
       # Runtime dependencies defined by the template
       #
       # @since 0.9.0
@@ -76,6 +81,7 @@ module Ore
         @enable  = []
 
         @variables                = {}
+        @ignore                   = []
         @dependencies             = {}
         @development_dependencies = {}
 
@@ -153,13 +159,8 @@ module Ore
         config = YAML.load_file(config_path)
         return false unless config.kind_of?(Hash)
 
-        Array(config['disable']).each do |name|
-          @disable << name.to_sym
-        end
-
-        Array(config['enable']).each do |name|
-          @enable << name.to_sym
-        end
+        @disable = Array(config['disable']).map(&:to_sym)
+        @enable  = Array(config['enable']).map(&:to_sym)
 
         case (variables = config['variables'])
         when Hash
@@ -170,6 +171,8 @@ module Ore
         else
           raise(InvalidTemplate,"template variables must be a Hash: #{config_path.dump}")
         end
+
+        @ignore = Array(config['ignore'])
 
         case (dependencies = config['dependencies'])
         when Hash

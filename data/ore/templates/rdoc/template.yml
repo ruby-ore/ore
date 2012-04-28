@@ -1,5 +1,8 @@
 disable:
   - yard
 
+ignore:
+  - html/
+
 variables:
   markup: :rdoc

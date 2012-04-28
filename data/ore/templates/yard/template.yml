@@ -1,5 +1,8 @@
 disable:
   - rdoc
 
+ignore:
+  - doc/
+
 development_dependencies:
   yard: ~> 0.7

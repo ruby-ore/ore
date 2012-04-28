@@ -238,15 +238,15 @@ module Ore
       @month = @date.month
       @day   = @date.day
 
+      @ignore                   = SortedSet[]
       @dependencies             = {}
       @development_dependencies = {}
 
       @templates.each do |template|
+        @ignore.merge(template.ignore)
         @dependencies.merge!(template.dependencies)
         @development_dependencies.merge!(template.development_dependencies)
-      end
 
-      @templates.each do |template|
         template.variables.each do |name,value|
           instance_variable_set("@#{name}",value)
         end

@@ -1,3 +1,7 @@
+ignore:
+  - Gemfile.lock
+  - vendor/cache/*.gem
+
 development_dependencies:
   bundler: ~> 1.0
   rake: ~> 0.8
