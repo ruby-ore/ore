@@ -31,6 +31,7 @@
   the `@homepage` variable to a `https://github.com/` URL.
 * Require the newer `rdoc/task` file in the `rdoc` template.
 * Relaxed the `rake` dependency in the `bundler` template to `~> 0.8`.
+* Relaxed the `bundler` dependency in the `bundler` template to `~> 1.0`.
 
 #### CLI
 
