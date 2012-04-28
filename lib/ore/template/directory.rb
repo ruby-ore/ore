@@ -80,10 +80,10 @@ module Ore
         @disable = []
         @enable  = []
 
-        @variables                = {}
         @ignore                   = []
         @dependencies             = {}
         @development_dependencies = {}
+        @variables                = {}
 
         load!
         scan!
@@ -162,16 +162,6 @@ module Ore
         @disable = Array(config['disable']).map(&:to_sym)
         @enable  = Array(config['enable']).map(&:to_sym)
 
-        case (variables = config['variables'])
-        when Hash
-          variables.each do |name,value|
-            @variables[name.to_sym] = value
-          end
-        when nil
-        else
-          raise(InvalidTemplate,"template variables must be a Hash: #{config_path.dump}")
-        end
-
         @ignore = Array(config['ignore'])
 
         case (dependencies = config['dependencies'])
@@ -188,6 +178,16 @@ module Ore
         when nil
         else
           raise(InvalidTemplate,"template dependencies must be a Hash: #{config_path.dump}")
+        end
+
+        case (variables = config['variables'])
+        when Hash
+          variables.each do |name,value|
+            @variables[name.to_sym] = value
+          end
+        when nil
+        else
+          raise(InvalidTemplate,"template variables must be a Hash: #{config_path.dump}")
         end
 
         return true
