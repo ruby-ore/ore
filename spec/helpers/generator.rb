@@ -28,6 +28,12 @@ module Helpers
       @path.join('.yardopts').read
     end
 
+    def load_gemspec
+      file = Dir.glob(@path.join('*.gemspec')).first
+      puts File.read(file)
+      Gem::Specification.load(file)
+    end
+
     def document
       unless @document
         @document = []

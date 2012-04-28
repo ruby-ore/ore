@@ -48,7 +48,7 @@ describe Generator do
       subject { @gemspec }
 
       it "should have a name" do
-        subject['name'].should == 'my-project'
+        subject['name'].should == name
       end
 
       it "should not contain a version by default" do
@@ -82,6 +82,42 @@ describe Generator do
 
     it "should add a *.gemspec file" do
       @path.join('my-project.gemspec').should be_file
+    end
+
+    context "*.gemspec file" do
+      subject { load_gemspec }
+
+      it "should have a name" do
+        subject.name.should == name
+      end
+
+      it "should not contain a version by default" do
+        subject.version.should_not be_nil
+      end
+
+      it "should a dummy summary" do
+        subject.summary.should_not be_empty
+      end
+
+      it "should a description summary" do
+        subject.description.should_not be_empty
+      end
+
+      it "should have a license" do
+        subject.license.should == 'MIT'
+      end
+
+      it "should have authors" do
+        subject.authors.should_not be_empty
+      end
+
+      it "should have a dummy homepage" do
+        subject.homepage.should_not be_empty
+      end
+
+      it "should have 'rubygems-tasks' as a development dependency" do
+        subject.development_dependencies.should have_key('rubygems-tasks')
+      end
     end
 
     it "should add a .document file" do
