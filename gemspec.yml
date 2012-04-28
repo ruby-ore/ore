@@ -1,6 +1,6 @@
 name: ore
 version: 0.9.0
-summary: Mine raw RubyGems from YAML
+summary: Mine beautiful RubyGems from Ore
 description:
   Ore is a flexible Ruby project generator. Unlike other Ruby project
   generators, Ore provides many builtin templates and allows custom
