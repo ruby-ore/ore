@@ -24,4 +24,22 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
-end
+<%- unless @dependencies.empty? -%>
+
+<%-   @dependencies.each do |name,version| -%>
+  gem.add_dependency <%= name.inspect %>, <%= version.inspect %>
+<%-   end -%>
+<%- end -%>
+
+<%- if bundler? -%>
+  gem.add_development_dependency "bundler", <%= @development_dependencies['bundler'].inspect %>
+<%-   if yard? -%>
+  gem.add_development_dependency "yard", <%= @development_dependencies['yard'].inspect %>
+<%-   end -%>
+<%- else -%>
+<%-   unless @development_dependencies.empty? -%>
+<%-     @development_dependencies.each do |name,version| -%>
+  gem.add_development_dependency <%= name.inspect %>, <%= version.inspect %>
+<%-     end -%>
+<%-   end -%>
+<%- end -%>end
