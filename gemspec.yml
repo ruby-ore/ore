@@ -9,7 +9,7 @@ description:
 license: MIT
 authors: Postmodern
 email: postmodern.mod3@gmail.com
-homepage: https://github.com/ruby-ore/ore
+homepage: https://github.com/ruby-ore/ore#readme
 post_install_message: |
   **************************************************************************
   Generate a new Ruby library:
