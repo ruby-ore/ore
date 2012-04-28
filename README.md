@@ -133,6 +133,7 @@ See {file:LICENSE.txt} for license information.
 [bundler]: http://gembundler.com/
 [jeweler]: https://github.com/technicalpickles/jeweler#readme
 [gem_package_task]: http://rubygems.rubyforge.org/rubygems-update/Gem/PackageTask.html
+[.rvmrc]: https://rvm.io/workflow/rvmrc/#project
 [rdoc]: http://rdoc.rubyforge.org/
 [markdown]: http://daringfireball.net/projects/markdown/
 [textile]: http://textile.sitemonks.com/
