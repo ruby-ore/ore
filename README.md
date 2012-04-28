@@ -21,8 +21,10 @@ templates to be installed from Git repositories.
   * Loads metadata from `gemspec.yml`
   * Loads version from `version.rb`
 * Provides many builtin templates:
-  * bundler
+  * gemspec_yml
+  * pure_gemspec
   * rvmrc
+  * bundler
   * gem_package_task
   * rubygems_tasks
   * bundler_tasks
