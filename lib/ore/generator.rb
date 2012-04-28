@@ -1,7 +1,8 @@
 require 'ore/config'
-require 'ore/template'
+require 'ore/options'
 require 'ore/actions'
 require 'ore/naming'
+require 'ore/template'
 
 require 'thor/group'
 require 'date'
@@ -11,53 +12,11 @@ module Ore
   class Generator < Thor::Group
 
     include Thor::Actions
+    include Options
     include Actions
     include Naming
     include Template::Interpolations
     include Template::Helpers
-
-    # Defaults options
-    #
-    # @since 0.9.0
-    OPTIONS = {
-      :templates      => [],
-      :version        => '0.1.0',
-      :summary        => 'TODO: Summary',
-      :description    => 'TODO: Description',
-      :license        => 'MIT',
-      :authors        => [ENV['USER']],
-      :rubygems_tasks => true,
-      :rdoc           => true,
-      :rspec          => true,
-      :git            => true
-    }
-
-    #
-    # Default options for the generator.
-    #
-    # @return [Hash{Symbol => Object}]
-    #   The option names and default values.
-    #
-    # @since 0.5.0
-    #
-    def self.options
-      @@options ||= OPTIONS.merge(Config.options)
-    end
-
-    #
-    # Defines a generator option.
-    #
-    # @param [Symbol] name
-    #   The name of the option.
-    #
-    # @param [Hash{Symbol => Object}] options
-    #   The Thor options of the option.
-    #
-    # @since 0.5.0
-    #
-    def self.generator_option(name,options={})
-      class_option(name,options.merge(:default => self.options[name]))
-    end
 
     # The enabled templates.
     attr_reader :enabled_templates
@@ -101,17 +60,15 @@ module Ore
 
     protected
 
-    # define options for all templates
+    # disable the Thor namespace
+    namespace ''
+
     Template.templates.each_key do |name|
       # skip the `base` template
       next if name == :base
 
-      class_option name, :type    => :boolean,
-                         :default => options.fetch(name,false)
+      generator_option name, :type => :boolean
     end
-
-    # disable the Thor namespace
-    namespace ''
 
     # define the options
     generator_option :markdown, :type => :boolean
@@ -206,7 +163,7 @@ module Ore
       enable_template :base
 
       # enable the default templates first
-      self.class.options.each_key do |name|
+      Options.defaults.each_key do |name|
         if (Template.template?(name) && options[name])
           enable_template(name)
         end
