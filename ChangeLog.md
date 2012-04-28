@@ -9,6 +9,7 @@
 * Added {Ore::Template::Helpers#rubygems_tasks?}.
 * Added {Ore::Template::Helpers#bundler_tasks?}.
 * Added {Ore::Template::Helpers#gem_package_task?}.
+* Added {Ore::Template::Directory#ignore}.
 * Added {Ore::Template::Directory#dependencies}.
 * Added {Ore::Template::Directory#development_dependencies}.
 * Renamed `Ore::Config.default_options` to {Ore::Config.options}.
