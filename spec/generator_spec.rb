@@ -93,19 +93,19 @@ describe Generator do
       end
 
       it "should a dummy summary" do
-        subject['summary'].should_not be_empty
+        subject['summary'].should == Ore::Options::DEFAULT_SUMMARY
       end
 
-      it "should a description summary" do
-        subject['description'].should_not be_empty
+      it "should a dummy description" do
+        subject['description'].should == Ore::Options::DEFAULT_DESCRIPTION
       end
 
       it "should have a license" do
-        subject['license'].should == 'MIT'
+        subject['license'].should == Ore::Options::DEFAULT_LICENSE
       end
 
       it "should have authors" do
-        subject['authors'].should_not be_empty
+        subject['authors'].should == Ore::Options::DEFAULT_AUTHORS[0]
       end
 
       it "should have a dummy homepage" do
