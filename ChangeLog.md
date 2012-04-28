@@ -20,9 +20,11 @@
 
 #### Templates
 
-* Added a [rubygems_tasks] template.
-* Added a [gem\_package\_task] template.
-* Added a [bundler_tasks] template.
+* Added the [bundler_tasks] template.
+* Added the [gemspec_yml] template.
+* Added the [gem\_package\_task] template.
+* Added the [rubygems_tasks] template.
+* Added the [pure_gemspec] template.
 * Removed the `ore_tasks` template.
 * Define dependencies in the `template.yml` files.
 * Simplified the `[name].gemspec` file in the [base] template.
@@ -279,9 +281,11 @@
 [bundler]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bundler
 [bundler_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bundler_tasks
 [gem\_package\_task]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem_package_task
+[gemspec_yml]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gemspec_yml
 [gem_test]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem_test
 [git]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/git
 [jeweler_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/jeweler_tasks
+[pure_gemspec]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/pure_gemspec
 [rdoc]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rdoc
 [rspec]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rspec
 [rubygems_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rubygems_tasks

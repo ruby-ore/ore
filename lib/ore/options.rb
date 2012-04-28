@@ -16,6 +16,7 @@ module Ore
       :description    => 'TODO: Description',
       :license        => 'MIT',
       :authors        => [ENV['USER']],
+      :gemspec_yml    => true,
       :rubygems_tasks => true,
       :rdoc           => true,
       :rspec          => true,
