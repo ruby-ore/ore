@@ -6,23 +6,11 @@ Gem::Specification.new do |gemspec|
   root    = File.dirname(__FILE__)
   lib_dir = File.join(root,'lib')
 <%- if git? -%>
-  files   = if File.directory?('.git')
-              `git ls-files`.split($/)
-            else
-              Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
-            end
+  files   = `git ls-files`.split($/)
 <%- elsif hg? -%>
-  files   = if File.directory?('.hg')
-              `hg manifest`.split($/)
-            else
-              Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
-            end
+  files   = `hg manifest`.split($/)
 <%- elsif svn? -%>
-  files   = if File.directory?('.svn')
-              `svn ls -R`.split($/).select { |path| File.file?(path) }
-            else
-              Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
-            end
+  files   = `svn ls -R`.split($/).select { |path| File.file?(path) }
 <%- else -%>
   files   = Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
 <%- end -%>

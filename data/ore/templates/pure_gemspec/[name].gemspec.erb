@@ -13,23 +13,11 @@ Gem::Specification.new do |gem|
   gem.homepage      = <%= @homepage.inspect %>
 
 <%- if git? -%>
-  gem.files         = if File.directory?('.git')
-                        `git ls-files`.split($/)
-                      else
-                        Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
-                      end
+  gem.files         = `git ls-files`.split($/)
 <%- elsif hg? -%>
-  gem.files         = if File.directory?('.hg')
-                        `hg manifest`.split($/)
-                      else
-                        Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
-                      end
+  gem.files         = `hg manifest`.split($/)
 <%- elsif svn? -%>
-  gem.files         = if File.directory?('.svn')
-                        `svn ls -R`.split($/).select { |path| File.file?(path) }
-                      else
-                        Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
-                      end
+  gem.files         = `svn ls -R`.split($/).select { |path| File.file?(path) }
 <%- else -%>
   gem.files         = Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
 <%- end -%>
