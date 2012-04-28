@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-<%- if (bundler? && git?) -%>
+<%- if (bundler? && (git? || hg?)) -%>
 root_dir = File.expand_path(File.join(File.dirname(__FILE__),'..'))
 if File.directory?(File.join(root_dir,'.git'))
   Dir.chdir(root_dir) do |path|

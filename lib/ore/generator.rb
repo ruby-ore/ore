@@ -33,33 +33,6 @@ module Ore
     # The generated files.
     attr_reader :generated_files
 
-    #
-    # Generates a new project.
-    #
-    def generate
-      self.destination_root = path
-
-      enable_templates!
-      initialize_variables!
-
-      unless options.quiet?
-        say "Generating #{self.destination_root}", :green
-      end
-
-      generate_directories!
-      generate_files!
-
-      in_root do
-        if (options.git? && !File.directory?('.git'))
-          run 'git init'
-          run 'git add .'
-          run 'git commit -m "Initial commit."'
-        end
-      end
-    end
-
-    protected
-
     # disable the Thor namespace
     namespace ''
 
@@ -88,6 +61,37 @@ module Ore
     generator_option :license, :aliases => '-L'
 
     argument :path, :required => true
+
+    #
+    # Generates a new project.
+    #
+    def generate
+      self.destination_root = path
+
+      enable_templates!
+      initialize_variables!
+
+      unless options.quiet?
+        say "Generating #{self.destination_root}", :green
+      end
+
+      generate_directories!
+      generate_files!
+
+      in_root do
+        if hg?
+          run 'hg init' unless File.directory?('.hg')
+          run 'hg add .'
+          run 'hg commit -m "Initial commit."'
+        elsif git?
+          run 'git init' unless File.directory?('.git')
+          run 'git add .'
+          run 'git commit -m "Initial commit."'
+        end
+      end
+    end
+
+    protected
 
     #
     # Enables a template, adding it to the generator.

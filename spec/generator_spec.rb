@@ -154,6 +154,38 @@ describe Generator do
     end
   end
 
+  context "git" do
+    let(:name)   { 'git-project'      }
+
+    before(:all) do
+      generate!(name, :git => true)
+    end
+
+    it "should create a .git directory" do
+      @path.should have_directory('.git')
+    end
+
+    it "should create a .gitignore file" do
+      @path.should have_file('.gitignore')
+    end
+  end
+
+  context "hg" do
+    let(:name)   { 'hg-project'      }
+
+    before(:all) do
+      generate!(name, :hg => true)
+    end
+
+    it "should create a .hg directory" do
+      @path.should have_directory('.hg')
+    end
+
+    it "should create a .hgignore file" do
+      @path.should have_file('.hgignore')
+    end
+  end
+
   context "bin" do
     let(:name)   { 'script-project'      }
     let(:script) { File.join('bin',name) }

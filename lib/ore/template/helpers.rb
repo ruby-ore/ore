@@ -67,6 +67,18 @@ module Ore
       end
 
       #
+      # Determines if Hg is enabled.
+      #
+      # @return [Boolean]
+      #   Specifies whether Hg was enabled.
+      #
+      # @since 0.9.0
+      #
+      def hg?
+        enabled?(:hg)
+      end
+
+      #
       # Determines if a template was enabled.
       #
       # @return [Boolean]
