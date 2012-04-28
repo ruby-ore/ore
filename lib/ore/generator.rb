@@ -50,7 +50,7 @@ module Ore
       generate_files!
 
       in_root do
-        if options.git?
+        if (options.git? && !File.directory?('.git'))
           run 'git init'
           run 'git add .'
           run 'git commit -m "Initial commit."'
