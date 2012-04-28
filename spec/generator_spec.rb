@@ -45,7 +45,7 @@ describe Generator do
     end
 
     describe "gemspec.yml" do
-      subject { @gemspec }
+      subject { YAML.load_file(@path.join('gemspec.yml')) }
 
       it "should have a name" do
         subject['name'].should == name
@@ -81,11 +81,11 @@ describe Generator do
     end
 
     it "should add a *.gemspec file" do
-      @path.join('my-project.gemspec').should be_file
+      @path.join("#{name}.gemspec").should be_file
     end
 
     context "*.gemspec file" do
-      subject { load_gemspec }
+      subject { @gemspec }
 
       it "should have a name" do
         subject.name.should == name
@@ -116,7 +116,9 @@ describe Generator do
       end
 
       it "should have 'rubygems-tasks' as a development dependency" do
-        subject.development_dependencies.should have_key('rubygems-tasks')
+        subject.development_dependencies.any? { |dep|
+          dep.name == 'rubygems-tasks'
+        }.should be_true
       end
     end
 
@@ -138,6 +140,60 @@ describe Generator do
 
     it "should add a LICENSE.txt file" do
       @path.join('LICENSE.txt').should be_file
+    end
+  end
+
+  context "pure_gemspec" do
+    let(:name) { 'pure_gemspec_project' }
+
+    before(:all) do
+      generate!(name, :pure_gemspec => true)
+    end
+
+    it "should disable the gemspec_yml template" do
+      @generator.disabled_templates.should include(:gemspec_yml)
+    end
+
+    it "should add a *.gemspec file" do
+      @path.join("#{name}.gemspec").should be_file
+    end
+
+    context "*.gemspec file" do
+      subject { @gemspec }
+
+      it "should have a name" do
+        subject.name.should == name
+      end
+
+      it "should not contain a version by default" do
+        subject.version.should_not be_nil
+      end
+
+      it "should a dummy summary" do
+        subject.summary.should_not be_empty
+      end
+
+      it "should a description summary" do
+        subject.description.should_not be_empty
+      end
+
+      it "should have a license" do
+        subject.license.should == 'MIT'
+      end
+
+      it "should have authors" do
+        subject.authors.should_not be_empty
+      end
+
+      it "should have a dummy homepage" do
+        subject.homepage.should_not be_empty
+      end
+
+      it "should have 'rubygems-tasks' as a development dependency" do
+        subject.development_dependencies.any? { |dep|
+          dep.name == 'rubygems-tasks'
+        }.should be_true
+      end
     end
   end
 
@@ -186,7 +242,9 @@ describe Generator do
     end
 
     it "should add 'bundler' as a development dependency" do
-      @gemspec['development_dependencies'].should have_key('bundler')
+      @gemspec.development_dependencies.any? { |dep|
+        dep.name == 'bundler'
+      }.should be_true
     end
 
     it "should add 'Gemfile.lock' to the .gitignore file" do
@@ -326,7 +384,9 @@ describe Generator do
     end
 
     it "should still add 'yard' as a development dependency" do
-      @gemspec['development_dependencies'].should have_key('yard')
+      @gemspec.development_dependencies.any? { |dep|
+        dep.name == 'yard'
+      }.should be_true
     end
   end
 
@@ -386,7 +446,9 @@ describe Generator do
     end
 
     it "should add 'rspec' as a development dependency" do
-      @gemspec['development_dependencies'].should have_key('rspec')
+      @gemspec.development_dependencies.any? { |dep|
+        dep.name == 'rspec'
+      }.should be_true
     end
   end
 
@@ -398,7 +460,9 @@ describe Generator do
     end
 
     it "should not add 'rspec' as a development dependency" do
-      @gemspec['development_dependencies'].should_not have_key('rspec')
+      @gemspec.development_dependencies.any? { |dep|
+        dep.name == 'rspec'
+      }.should_not be_true
     end
   end
 
@@ -418,7 +482,9 @@ describe Generator do
     end
 
     it "should add 'jeweler' as a development dependency" do
-      @gemspec['development_dependencies'].should have_key('jeweler')
+      @gemspec.development_dependencies.any? { |dep|
+        dep.name == 'jeweler'
+      }.should be_true
     end
   end
 
@@ -430,7 +496,9 @@ describe Generator do
     end
 
     it "should not add 'jeweler' as a development dependency" do
-      @gemspec['development_dependencies'].should_not have_key('jeweler')
+      @gemspec.development_dependencies.any? { |dep|
+        dep.name == 'jeweler'
+      }.should_not be_true
     end
   end
 
@@ -450,7 +518,9 @@ describe Generator do
     end
 
     it "should add 'rubygems-tasks' as a development dependency" do
-      @gemspec['development_dependencies'].should have_key('rubygems-tasks')
+      @gemspec.development_dependencies.any? { |dep|
+        dep.name == 'rubygems-tasks'
+      }.should be_true
     end
   end
 
@@ -462,7 +532,9 @@ describe Generator do
     end
 
     it "should not add 'rubygems-tasks' as a development dependency" do
-      @gemspec['development_dependencies'].should_not have_key('rubygems-tasks')
+      @gemspec.development_dependencies.any? { |dep|
+        dep.name == 'rubygems-tasks'
+      }.should_not be_true
     end
   end
 

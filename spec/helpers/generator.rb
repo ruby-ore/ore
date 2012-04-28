@@ -16,8 +16,10 @@ module Helpers
       )
       @generator.invoke_all
 
-      @path = Pathname.new(path)
-      @gemspec = YAML.load_file(@path.join('gemspec.yml'))
+      @path    = Pathname.new(path)
+      @gemspec = Dir.chdir(@path) do
+        Gem::Specification.load(@generator.generated_files['[name].gemspec'])
+      end
     end
 
     def rspec_opts
@@ -26,12 +28,6 @@ module Helpers
 
     def yard_opts
       @path.join('.yardopts').read
-    end
-
-    def load_gemspec
-      Dir.chdir(@path) do
-        Gem::Specification.load(Dir['*.gemspec'].first)
-      end
     end
 
     def document
