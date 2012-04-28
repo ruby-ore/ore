@@ -1,2 +1,2 @@
 disable:
-  - pure_gemspec
+  - gemspec

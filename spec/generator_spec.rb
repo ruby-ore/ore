@@ -128,11 +128,11 @@ describe Generator do
     end
   end
 
-  context "pure_gemspec" do
-    let(:name) { 'pure_gemspec_project' }
+  context "gemspec" do
+    let(:name) { 'gemspec_project' }
 
     before(:all) do
-      generate!(name, :pure_gemspec => true)
+      generate!(name, :gemspec => true)
     end
 
     it "should disable the gemspec_yml template" do
