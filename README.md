@@ -13,32 +13,66 @@ templates to be installed from Git repositories.
 
 ## Features
 
-* Stores project metadata in **one YAML file** (`gemspec.yml`).
-* Generates a **pure Ruby** `.gemspec` supporting:
-  * [Git](http://git-scm.com/)
-  * [Mercurial (Hg)](http://mercurial.selenic.com/)
-  * [SubVersion (SVN)](http://subversion.tigris.org/)
-  * Loads metadata from `gemspec.yml`
-  * Loads version from `version.rb`
-* Provides many builtin templates:
-  * [gemspec]
-  * [gemspec_yml]
-  * [rvmrc]
-  * [bundler]
-  * [gem\_package\_task]
-  * [rubygems_tasks]
-  * [bundler_tasks]
-  * [jeweler_tasks]
-  * [git]
-  * [hg]
-  * [rdoc]
-  * [yard]
-  * [test_unit]
-  * [rspec]
-  * [gem_test]
-* Allows installing custom templates from Git repositories:
+### SCMs
 
-      $ ore install git://github.com/ruby-ore/cucumber.git
+Ore supports generating [Git][git], [Mercurial][hg] and [SubVersion][svn]
+enabled projects.
+
+    $ mine my-project [--git | --hg]
+
+### Gemspec
+
+Ore generates a pure-Ruby gemspec by default. Ore can also generate a
+[gemspec.yml] file.
+
+### Tasks
+
+Ore supports generating projects using [Gem::Tasks][rubygems_tasks],
+[Bundler::GemHelper][bundler], [Jeweler::Tasks][jeweler] and even
+[Gem::PackageTask][gem_package_task].
+
+    $ mine my-project [--rubygems-tasks |
+                       --bundler-tasks  |
+                       --jeweler-tasks  |
+                       --gem-package-task]
+
+### Bundler
+
+Ore can also generate a [Bundler][bundler] project.
+
+    $ mine my-project --bundler
+
+### RVM
+
+Ore also includes an [.rvmrc] template.
+
+    $ mine my-project --rvmrc
+
+### Markup
+
+Ore supports [RDoc][rdoc], [Markdown][markdown] and [Textile][textile] markup.
+
+    $ mine my-project [--rdoc | --markdown | --textile]
+
+### Documentation
+
+Ore supports generating projects with [RDoc][rdoc] or [YARD][yard]
+documentation.
+
+    $ mine my-project [--rdoc | --yard]
+
+### Testing
+
+Ore supports generating [RSpec][rspec] or `Test::Unit` tests.
+
+    $ mine my-project [--test-unit | --rspec]
+
+### Custom Templates
+
+Additional templates can also be installed from Git:
+
+    $ ore install git://github.com/ruby-ore/mini_test.git
+    $ mine my-project --mini-test
 
 ## Requirements
 
@@ -47,49 +81,6 @@ templates to be installed from Git repositories.
 ## Install
 
     $ gem install ore
-
-## Example gemspec.yml File
-
-The `gemspec.yml` file used to build Ore:
-
-    name: ore
-    version: 0.9.0
-    summary: Mine raw RubyGems from YAML
-    description:
-      Ore is a flexible Ruby project generator. Unlike other Ruby project
-      generators, Ore provides many builtin templates and allows custom
-      templates to be installed from Git repositories.
-    
-    license: MIT
-    authors: Postmodern
-    email: postmodern.mod3@gmail.com
-    homepage: https://github.com/ruby-ore/ore
-    post_install_message: |
-      **************************************************************************
-      Generate a new Ruby library:
-      
-          $ mine my_library --rspec --yard
-      
-      Build the library:
-      
-          $ rake build
-      
-      Release the library to rubygems.org:
-      
-          $ rake release
-      
-      **************************************************************************
-    
-    dependencies:
-      thor: ~> 0.14.3
-    
-    development_dependencies:
-      rubygems-tasks: ~> 0.1
-      rspec: ~> 2.4
-      yard: ~> 0.7
-
-For a complete refrence to the `gemspec.yml` file, please see the
-[GemspecYML Reference](http://rubydoc.info/gems/ore/file/GemspecYML.html).
 
 ## Synopsis
 
@@ -119,6 +110,7 @@ Remove a previously installed template:
 
 Add default generator options to `~/.ore/options.yml`:
 
+    gemspec_yml:    true
     rubygems_tasks: true
     rspec:          true
     yard:           true
@@ -133,20 +125,16 @@ Copyright (c) 2010-2012 Hal Brodigan
 
 See {file:LICENSE.txt} for license information.
 
-[base]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/base
-[bin]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bin
-[bundler]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bundler
-[bundler_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bundler_tasks
-[gemspec]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gemspec
-[gemspec_yml]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gemspec_yml
-[gem\_package\_task]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem_package_task
-[gem_test]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem_test
-[git]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/git
-[hg]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/hg
-[jeweler_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/jeweler_tasks
-[rdoc]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rdoc
-[rspec]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rspec
-[rubygems_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rubygems_tasks
-[rvmrc]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rvmrc
-[test_unit]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/test_unit
-[yard]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/yard
+[git]: http://git-scm.com/
+[hg]: http://mercurial.selenic.com/
+[svn]: http://subversion.tigris.org/
+[gemspec.yml]: https://github.com/ruby-ore/ore/blob/master/gemspec.yml
+[rubygems_tasks]: https://github.com/postmodern/rubygems-tasks#readme
+[bundler]: http://gembundler.com/
+[jeweler]: https://github.com/technicalpickles/jeweler#readme
+[gem_package_task]: http://rubygems.rubyforge.org/rubygems-update/Gem/PackageTask.html
+[rdoc]: http://rdoc.rubyforge.org/
+[markdown]: http://daringfireball.net/projects/markdown/
+[textile]: http://textile.sitemonks.com/
+[yard]: http://yardoc.org/
+[rspec]: http://rspec.info/
