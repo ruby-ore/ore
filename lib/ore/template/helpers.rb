@@ -63,7 +63,7 @@ module Ore
       # @since 0.7.0
       #
       def git?
-        enabled?(:git)
+        @scm == :git
       end
 
       #
@@ -75,7 +75,19 @@ module Ore
       # @since 0.9.0
       #
       def hg?
-        enabled?(:hg)
+        @scm == :hg
+      end
+
+      #
+      # Determines if SVN is enabled.
+      #
+      # @return [Boolean]
+      #   Specifies whether SVN was enabled.
+      #
+      # @since 0.9.0
+      #
+      def svn?
+        @scm == :svn
       end
 
       #

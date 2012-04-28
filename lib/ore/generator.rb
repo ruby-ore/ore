@@ -79,14 +79,15 @@ module Ore
       generate_files!
 
       in_root do
-        if hg?
-          run 'hg init' unless File.directory?('.hg')
-          run 'hg add .'
-          run 'hg commit -m "Initial commit."'
-        elsif git?
+        case @scm
+        when :git
           run 'git init' unless File.directory?('.git')
           run 'git add .'
           run 'git commit -m "Initial commit."'
+        when :hg
+          run 'hg init' unless File.directory?('.hg')
+          run 'hg add .'
+          run 'hg commit -m "Initial commit."'
         end
       end
     end
@@ -193,8 +194,9 @@ module Ore
     # Initializes variables for the templates.
     #
     def initialize_variables!
-      @project_dir = File.basename(destination_root)
-      @name = (options.name || @project_dir)
+      @root        = Pathname.new(destination_root)
+      @project_dir = @root.basename
+      @name        = (options.name || @project_dir)
 
       @modules      = modules_of(@name)
       @module_depth = @modules.length
@@ -232,6 +234,14 @@ module Ore
                 else
                   :rdoc
                 end
+
+      @scm = if @root.join('.svn').directory?
+               :svn
+             elsif (options.hg? || @root.join('.hg').directory?)
+               :hg
+             elsif (options.git? || @root.join('.git').directory?)
+               :git
+             end
 
       @date  = Date.today
       @year  = @date.year
