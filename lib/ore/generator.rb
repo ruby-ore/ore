@@ -201,8 +201,8 @@ module Ore
     # Initializes variables for the templates.
     #
     def initialize_variables!
-      @root        = Pathname.new(destination_root)
-      @project_dir = @root.basename.to_s
+      @root        = destination_root
+      @project_dir = File.basename(@root)
       @name        = (options.name || @project_dir)
 
       @modules      = modules_of(@name)
