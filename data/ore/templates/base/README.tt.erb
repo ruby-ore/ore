@@ -3,6 +3,9 @@ h1. <%= @name %>
 <%- if @homepage -%>
 * "Homepage":<%= @homepage %>
 <%- end -%>
+<%- if @bug_tracker -%>
+* "Issues":<%= @bug_tracker %>
+<%- end -%>
 * "Documentation":http://rubydoc.info/gems/<%= @name %>/frames
 <%- if @safe_email -%>
 * "Email":mailto:<%= @safe_email %>

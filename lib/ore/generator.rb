@@ -7,6 +7,7 @@ require 'ore/template'
 require 'thor/group'
 require 'date'
 require 'set'
+require 'uri'
 
 module Ore
   class Generator < Thor::Group
@@ -58,6 +59,7 @@ module Ore
                                :banner => 'NAME [...]'
     generator_option :email, :type => :string, :aliases => '-e'
     generator_option :homepage, :type => :string, :aliases => '-U'
+    generator_option :bug_tracker, :type => :string, :aliases => '-B'
     generator_option :license, :aliases => '-L'
 
     argument :path, :required => true
@@ -227,11 +229,15 @@ module Ore
       @email       = options.email
       @safe_email  = @email.sub('@',' at ') if @email
       @homepage    = if options.homepage
-                       options.homepage
+                       URI(options.homepage)
                      elsif !(@github_user.nil? || @github_user.empty?)
-                       "https://github.com/#{@github_user}/#{@name}"
+                       URI("https://github.com/#{@github_user}/#{@name}#readme")
                      else
-                       "https://rubygems.org/gems/#{@name}"
+                       URI("https://rubygems.org/gems/#{@name}")
+                     end
+      @bug_tracker = case @homepage.host
+                     when 'github.com'
+                       "https://#{@homepage.host}/#{@homepage.path}/issues"
                      end
 
       @markup = if options.markdown?

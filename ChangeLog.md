@@ -40,6 +40,7 @@
 #### CLI
 
 * Removed the `ore gem` and `ore gemspec` sub-commands.
+* Added the `--bug-tracker` option to `mine`.
 * `mine` now hides the output of all commands.
 * `mine` suppresses all output when `--quiet` is specified.
 
