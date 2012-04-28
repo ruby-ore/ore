@@ -5,12 +5,16 @@ require 'yaml'
 Gem::Specification.new do |gemspec|
   root    = File.dirname(__FILE__)
   lib_dir = File.join(root,'lib')
+<%- if git? -%>
   files   = if File.directory?('.git')
               `git ls-files`.split($/)
-            elsif File.directory?('.hg')
+<%- elsif hg? -%>
+  files   = if File.directory?('.hg')
               `hg manifest`.split($/)
-            elsif File.directory?('.svn')
+<%- elsif svn? -%>
+  files   = if File.directory?('.svn')
               `svn ls -R`.split($/).select { |path| File.file?(path) }
+<%- end -%>
             else
               Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
             end

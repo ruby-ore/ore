@@ -12,15 +12,19 @@ Gem::Specification.new do |gem|
   gem.email         = [<%= @email.inspect %>]
   gem.homepage      = <%= @homepage.inspect %>
 
-  gem.files         = if File.directory?('.git')
-                        `git ls-files`.split($/)
-                      elsif File.directory?('.hg')
-                        `hg manifest`.split($/)
-                      elsif File.directory?('.svn')
-                        `svn ls -R`.split($/).select { |path| File.file?(path) }
-                      else
-                        Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
-                      end
+<%- if git? -%>
+  gem.files   = if File.directory?('.git')
+                  `git ls-files`.split($/)
+<%- elsif hg? -%>
+  gem.files   = if File.directory?('.hg')
+                  `hg manifest`.split($/)
+<%- elsif svn? -%>
+  gem.files   = if File.directory?('.svn')
+                  `svn ls -R`.split($/).select { |path| File.file?(path) }
+<%- end -%>
+                else
+                  Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
+                end
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
