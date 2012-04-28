@@ -1,7 +1,7 @@
 ### 0.9.0 / 2012-04-27
 
-* No longer depend on ore-core.
-* No longer depend on env.
+* Removed the ore-core dependency.
+* Removed the env dependency.
 * Switched from ore-tasks to rubygems-tasks ~> 0.2.
 * Added {Ore::Naming} from `ore-core`.
 * Added {Ore::Options}.
@@ -28,7 +28,7 @@
   * If `git` is enabled and `github.user` is set in `.gitconfig`, default
     the `@homepage` variable to a `https://github.com/` URL.
   * Require the newer `rdoc/task` file in the `rdoc` template.
-  * Relaxed the `rake` dependencey in the `bundler` template to `~> 0.8`.
+  * Relaxed the `rake` dependency in the `bundler` template to `~> 0.8`.
 * Removed the `ore gem` and `ore gemspec` sub-commands.
 
 ### 0.8.1 / 2011-07-11
