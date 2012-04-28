@@ -17,19 +17,26 @@
 * Renamed `Ore::Generator.templates` to {Ore::Template.templates}.
 * Renamed `Ore::Generator.template?` to {Ore::Template.template?}.
 * Renamed `Ore::Generator.register_template` to {Ore::Template.register}.
-* Templates:
-  * Added a `rubygems_tasks` template.
-  * Added a `gem_package_task` template.
-  * Added a `bundler_tasks` template.
-  * Removed the `ore_tasks` template.
-  * Define dependencies in the `template.yml` files.
-  * Simplified the `[name].gemspec` file in the `base` template.
-  * Moved the `.gitignore` file into the `git` template.
-  * If `git` is enabled and `github.user` is set in `.gitconfig`, default
-    the `@homepage` variable to a `https://github.com/` URL.
-  * Require the newer `rdoc/task` file in the `rdoc` template.
-  * Relaxed the `rake` dependency in the `bundler` template to `~> 0.8`.
+
+#### Templates
+
+* Added a `rubygems_tasks` template.
+* Added a `gem_package_task` template.
+* Added a `bundler_tasks` template.
+* Removed the `ore_tasks` template.
+* Define dependencies in the `template.yml` files.
+* Simplified the `[name].gemspec` file in the `base` template.
+* Moved the `.gitignore` file into the `git` template.
+* If `git` is enabled and `github.user` is set in `.gitconfig`, default
+  the `@homepage` variable to a `https://github.com/` URL.
+* Require the newer `rdoc/task` file in the `rdoc` template.
+* Relaxed the `rake` dependency in the `bundler` template to `~> 0.8`.
+
+#### CLI
+
 * Removed the `ore gem` and `ore gemspec` sub-commands.
+* `mine` now hides the output of all commands.
+* `mine` suppresses all output when `--quiet` is specified.
 
 ### 0.8.1 / 2011-07-11
 
