@@ -10,9 +10,10 @@
 * Added {Ore::Template::Helpers#gem_package_task?}.
 * Added {Ore::Template::Directory#dependencies}.
 * Added {Ore::Template::Directory#development_dependencies}.
-* Moved `Ore::Generator.templates` to {Ore::Template.templates}.
-* Moved `Ore::Generator.template?` to {Ore::Template.template?}.
-* Moved `Ore::Generator.register_template` to {Ore::Template.register}.
+* Renamed `Ore::Config.default_options` to {Ore::Config.options}.
+* Renamed `Ore::Generator.templates` to {Ore::Template.templates}.
+* Renamed `Ore::Generator.template?` to {Ore::Template.template?}.
+* Renamed `Ore::Generator.register_template` to {Ore::Template.register}.
 * Templates:
   * Added a `gem_package_task` template.
   * Added a `bundler_tasks` template.
@@ -117,7 +118,7 @@
 * Added `lib/ore.rb`.
 * Added {Ore::Config.enable!}.
 * Added {Ore::Config.disable!}.
-* Added {Ore::Config.default_options}.
+* Added `Ore::Config.default_options`.
 * Added {Ore::Generator.defaults}.
 * Added {Ore::Generator.generator_option}.
 * Added `vendor/cache/*.gem` to `.gitignore` if `--bundler` is specified.

@@ -48,9 +48,9 @@ module Ore
     # @raise [RuntimeError]
     #   The `~/.ore/options.yml` did not contain a YAML encoded Hash.
     #
-    # @since 0.5.0
+    # @since 0.9.0
     #
-    def Config.default_options
+    def Config.options
       options = {}
 
       if (@@enabled && File.file?(OPTIONS_FILE))

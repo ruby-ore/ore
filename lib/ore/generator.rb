@@ -41,7 +41,7 @@ module Ore
     # @since 0.5.0
     #
     def self.defaults
-      @@defaults ||= DEFAULTS.merge(Config.default_options)
+      @@defaults ||= DEFAULTS.merge(Config.options)
     end
 
     #
