@@ -45,6 +45,42 @@ describe Generator do
       @path.should have_file('gemspec.yml')
     end
 
+    it "should add a *.gemspec file" do
+      @path.join("#{name}.gemspec").should be_file
+    end
+
+    it "should add a .document file" do
+      @path.should have_file('.document')
+    end
+
+    it "should add a Rakefile" do
+      @path.should have_file('Rakefile')
+    end
+
+    it "should add a README.rdoc file" do
+      @path.should have_file('README.rdoc')
+    end
+
+    it "should add a ChangeLog.rdoc file" do
+      @path.should have_file('ChangeLog.rdoc')
+    end
+
+    it "should add a LICENSE.txt file" do
+      @path.should have_file('LICENSE.txt')
+    end
+  end
+
+  context "gemspec_yml" do
+    let(:name) { 'gemspec_yml_project' }
+
+    before(:all) do
+      generate!(name, :gemspec_yml => true)
+    end
+
+    it "should add a gemspec.yml file" do
+      @path.should have_file('gemspec.yml')
+    end
+
     describe "gemspec.yml" do
       subject { YAML.load_file(@path.join('gemspec.yml')) }
 
@@ -82,37 +118,13 @@ describe Generator do
     end
 
     it "should add a *.gemspec file" do
-      @path.join("#{name}.gemspec").should be_file
+      @path.should have_file("#{name}.gemspec")
     end
 
-    context "*.gemspec file" do
+    describe "*.gemspec file" do
       subject { @gemspec }
 
       it_should_behave_like "a gemspec"
-
-      it "should have 'rubygems-tasks' as a development dependency" do
-        subject.should have_development_dependency('rubygems-tasks')
-      end
-    end
-
-    it "should add a .document file" do
-      @path.should have_file('.document')
-    end
-
-    it "should add a Rakefile" do
-      @path.should have_file('Rakefile')
-    end
-
-    it "should add a README.rdoc file" do
-      @path.should have_file('README.rdoc')
-    end
-
-    it "should add a ChangeLog.rdoc file" do
-      @path.should have_file('ChangeLog.rdoc')
-    end
-
-    it "should add a LICENSE.txt file" do
-      @path.should have_file('LICENSE.txt')
     end
   end
 
