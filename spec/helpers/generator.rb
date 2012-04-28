@@ -29,9 +29,9 @@ module Helpers
     end
 
     def load_gemspec
-      file = Dir.glob(@path.join('*.gemspec')).first
-      puts File.read(file)
-      Gem::Specification.load(file)
+      Dir.chdir(@path) do
+        Gem::Specification.load(Dir['*.gemspec'].first)
+      end
     end
 
     def document
