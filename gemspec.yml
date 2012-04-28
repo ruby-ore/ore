@@ -30,6 +30,6 @@ dependencies:
   thor: ~> 0.14.3
 
 development_dependencies:
-  rubygems-tasks: ~> 0.1
+  rubygems-tasks: ~> 0.2
   rspec: ~> 2.4
   yard: ~> 0.7
