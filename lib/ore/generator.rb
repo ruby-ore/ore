@@ -206,7 +206,7 @@ module Ore
       @description = options.description
       @license     = options.license
       @authors     = options.authors
-      @author      = options.authors.first
+      @author      = @authors.first
       @github_user = if options.git?
                        `git config github.user`.chomp
                      end
