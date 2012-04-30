@@ -1,5 +1,8 @@
 require 'rdoc/task'
 RDoc::Task.new do |rdoc|
   rdoc.title = <%= @name.dump %>
+<%- if @markdown == :markdown -%>
+  rdoc.markup = 'markdown'
+<%- end -%>
 end
 task :doc => :rdoc

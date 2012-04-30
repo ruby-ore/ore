@@ -3,6 +3,3 @@ disable:
 
 ignore:
   - html/
-
-variables:
-  markup: :rdoc
