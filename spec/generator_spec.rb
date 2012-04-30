@@ -258,6 +258,10 @@ describe Generator do
       @path.should have_file('.document')
     end
 
+    it "should add the rdoc development dependency" do
+      @gemspec.should have_development_dependency('rdoc')
+    end
+
     context ".document" do
       it "should include 'lib/**/*.rb'" do
         document.should include('lib/**/*.rb')

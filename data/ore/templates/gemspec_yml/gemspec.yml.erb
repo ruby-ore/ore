@@ -30,6 +30,8 @@ development_dependencies:
   bundler: <%= @development_dependencies['bundler'] %>
   <%- if yard? -%>
   yard: <%= @development_dependencies['yard'] %>
+  <%- elsif rdoc? -%>
+  rdoc: <%= @development_dependencies['rdoc'] %>
   <%- end -%>
 <%- else -%>
 <%-   unless @development_dependencies.empty? -%>

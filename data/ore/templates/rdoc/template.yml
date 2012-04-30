@@ -3,3 +3,6 @@ disable:
 
 ignore:
   - html/
+
+development_dependencies:
+  rdoc: ~> 4.0

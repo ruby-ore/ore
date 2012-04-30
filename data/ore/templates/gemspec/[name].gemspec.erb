@@ -35,6 +35,8 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "bundler", <%= @development_dependencies['bundler'].inspect %>
 <%-   if yard? -%>
   gem.add_development_dependency "yard", <%= @development_dependencies['yard'].inspect %>
+<%-   elsif rdoc? -%>
+  gem.add_development_dependency "rdoc", <%= @development_dependencies['rdoc'].inspect %>
 <%-   end -%>
 <%- else -%>
 <%-   unless @development_dependencies.empty? -%>
