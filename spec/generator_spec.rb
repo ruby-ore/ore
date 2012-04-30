@@ -296,6 +296,10 @@ describe Generator do
       @path.should have_file('.document')
     end
 
+    it "should add 'yard' as a development dependency" do
+      @gemspec.should have_development_dependency('yard')
+    end
+
     context ".document" do
       it "should not include 'lib/**/*.rb'" do
         document.should_not include('lib/**/*.rb')
