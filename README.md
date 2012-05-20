@@ -96,6 +96,11 @@ Generate a new project using previously installed templates:
 
     $ mine my_project --bundler --rspec --yard --templates mini_test
 
+Set your github username, so `mine` can generate `github.com` URLs:
+
+    $ git config github.user foobar
+    $ mine my_project
+
 Install a custom template:
 
     $ ore install git://github.com/ruby-ore/mini_test.git
