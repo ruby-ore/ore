@@ -1,3 +1,10 @@
+### 0.9.1 / 2012-05-20
+
+#### Templates
+
+* Use the newer `RDoc::Task` in the [rdoc] template.
+* Simplify the `.rvmrc` file in the [rvmrc] template.
+
 ### 0.9.0 / 2012-04-28
 
 * Removed the ore-core dependency.
