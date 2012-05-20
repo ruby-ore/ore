@@ -1,5 +1,7 @@
 ### 0.9.1 / 2012-05-20
 
+* Require thor ~> 0.14.
+
 #### Templates
 
 * Use the newer `RDoc::Task` in the [rdoc] template.
