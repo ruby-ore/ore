@@ -96,7 +96,7 @@ Generate a new project using previously installed templates:
 
     $ mine my_project --bundler --rspec --yard --templates mini_test
 
-Set your github username, so `mine` can generate `github.com` URLs:
+Set your github username, so `mine` can generate GitHub project URLs:
 
     $ git config github.user foobar
     $ mine my_project
