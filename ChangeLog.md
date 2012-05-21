@@ -2,6 +2,7 @@
 
 #### Templates
 
+* Test if `@email` is set, before emitting it in the [gemspec] template.
 * Convert the `@homepage` instance variable to a String in the [gemspec]
   template.
 * Specify the exact `ChangeLog` file in the `.document` file in the [yard]

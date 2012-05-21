@@ -9,7 +9,9 @@ Gem::Specification.new do |gem|
   gem.description   = %q{<%= @description %>}
   gem.license       = <%= @license.inspect %>
   gem.authors       = <%= @authors.inspect %>
-  gem.email         = [<%= @email.inspect %>]
+<%- if @email -%>
+  gem.email         = <%= @email.inspect %>
+<%- end -%>
   gem.homepage      = <%= @homepage.to_s.inspect %>
 
 <%- if git? -%>
