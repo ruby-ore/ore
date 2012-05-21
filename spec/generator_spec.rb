@@ -313,12 +313,12 @@ describe Generator do
         document.should include('-')
       end
 
-      it "should not include 'README.*'" do
-        document.grep(/^README\./).should be_empty
+      it "should not include 'README.rdoc'" do
+        document.should_not include('README.rdoc')
       end
 
-      it "should include 'ChangeLog.*'" do
-        document.should include('ChangeLog.*')
+      it "should include 'ChangeLog.rdoc'" do
+        document.should include('ChangeLog.rdoc')
       end
 
       it "should include 'LICENSE.txt'" do
