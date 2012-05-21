@@ -1,3 +1,12 @@
+### 0.9.2 / 2012-05-21
+
+#### Templates
+
+* Convert the `@homepage` instance variable to a String in the [gemspec]
+  template.
+* Specify the exact `ChangeLog` file in the `.document` file in the [yard]
+  template.
+
 ### 0.9.1 / 2012-05-20
 
 * Require thor ~> 0.14.
