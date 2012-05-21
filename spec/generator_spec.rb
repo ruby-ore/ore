@@ -246,6 +246,10 @@ describe Generator do
       @generator.disabled_templates.should include(:yard)
     end
 
+    it "should add 'rdoc' as a development dependency" do
+      @gemspec.should have_development_dependency('rdoc')
+    end
+
     it "should set @markup to :rdoc" do
       @generator.instance_variable_get('@markup').should == :rdoc
     end

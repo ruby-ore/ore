@@ -5,6 +5,7 @@
 #### Templates
 
 * Use the newer `RDoc::Task` in the [rdoc] template.
+  * Require rdoc ~> 3.0.
 * Simplify the `.rvmrc` file in the [rvmrc] template.
 
 ### 0.9.0 / 2012-04-28

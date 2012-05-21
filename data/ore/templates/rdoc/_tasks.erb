@@ -1,5 +1,19 @@
+<%- if bundler? -%>
 require 'rdoc/task'
 RDoc::Task.new do |rdoc|
   rdoc.title = <%= @name.dump %>
 end
+<%- else -%>
+begin
+  gem 'rdoc', '<%= @development_dependencies['rdoc'] %>'
+  require 'rdoc/task'
+
+  RDoc::Task.new do |rdoc|
+    rdoc.title = <%= @name.dump %>
+  end
+rescue LoadError => e
+  warn e.message
+  warn "Run `gem install rdoc` to install 'rdoc/task'."
+end
+<%- end -%>
 task :doc => :rdoc
