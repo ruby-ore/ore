@@ -1,4 +1,3 @@
 disable:
   - rubygems_tasks
-  - jeweler_tasks
   - bundler_tasks
