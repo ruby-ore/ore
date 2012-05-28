@@ -234,15 +234,16 @@ module Ore
       @email       = options.email
       @safe_email  = @email.sub('@',' at ') if @email
       @homepage    = if options.homepage
-                       URI(options.homepage)
+                       options.homepage
                      elsif !(@github_user.nil? || @github_user.empty?)
-                       URI("https://github.com/#{@github_user}/#{@name}#readme")
+                       "https://github.com/#{@github_user}/#{@name}#readme"
                      else
-                       URI("https://rubygems.org/gems/#{@name}")
+                       "https://rubygems.org/gems/#{@name}"
                      end
-      @bug_tracker = case @homepage.host
+      @uri         = URI(@homepage)
+      @bug_tracker = case @uri.host
                      when 'github.com'
-                       "https://#{@homepage.host}#{@homepage.path}/issues"
+                       "https://#{@uri.host}#{@uri.path}/issues"
                      end
 
       @markup = if options.markdown?
