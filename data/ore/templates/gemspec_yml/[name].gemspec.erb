@@ -65,12 +65,6 @@ Gem::Specification.new do |gem|
     end
   end
 
-  if gemspec['runtime_dependencies']
-    gemspec['runtime_dependencies'].each do |name,versions|
-      gem.add_runtime_dependency(name,split[versions])
-    end
-  end
-
   if gemspec['development_dependencies']
     gemspec['development_dependencies'].each do |name,versions|
       gem.add_development_dependency(name,split[versions])
