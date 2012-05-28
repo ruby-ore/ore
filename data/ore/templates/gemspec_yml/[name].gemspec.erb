@@ -14,8 +14,8 @@ Gem::Specification.new do |gem|
                   <%= @namespace %>::VERSION
                 end
 
-  gem.summary     = gemspec.fetch('summary',gemspec['description'])
-  gem.description = gemspec.fetch('description',gemspec['summary'])
+  gem.summary     = gemspec['summary']
+  gem.description = gemspec['description']
   gem.licenses    = Array(gemspec['license'])
   gem.authors     = Array(gemspec['authors'])
   gem.email       = gemspec['email']
