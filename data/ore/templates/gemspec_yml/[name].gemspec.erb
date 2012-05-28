@@ -16,12 +16,10 @@ Gem::Specification.new do |gem|
 
   gem.summary     = gemspec.fetch('summary',gemspec['description'])
   gem.description = gemspec.fetch('description',gemspec['summary'])
-
-  gem.licenses = Array(gemspec['license'])
-  gem.authors  = Array(gemspec['authors'])
-
-  gem.email    = gemspec['email']
-  gem.homepage = gemspec['homepage']
+  gem.licenses    = Array(gemspec['license'])
+  gem.authors     = Array(gemspec['authors'])
+  gem.email       = gemspec['email']
+  gem.homepage    = gemspec['homepage']
 
   glob = lambda { |patterns| gem.files & Dir[*patterns] }
 
@@ -54,11 +52,10 @@ Gem::Specification.new do |gem|
     Dir['ext/', 'lib/']
   })
 
-  gem.post_install_message = gemspec['post_install_message']
-  gem.requirements         = gemspec['requirements']
-
+  gem.requirements              = gemspec['requirements']
   gem.required_ruby_version     = gemspec['required_ruby_version']
   gem.required_rubygems_version = gemspec['required_rubygems_version']
+  gem.post_install_message      = gemspec['post_install_message']
 
   versions = lambda { |versions| versions.split(/,\s*/) }
 
