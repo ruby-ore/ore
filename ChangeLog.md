@@ -1,3 +1,22 @@
+### 0.9.3 / 2012-05-28
+
+* Added the following template variables to {Ore::Generator}:
+  * `@markup_ext` - The file-extension used by the markup.
+  * `@scm_user` - The username used by the SCM.
+  * `@scm_email` - The email address used by the SCM.
+* Support autodetecting the user name by invoking `git config user.name` or
+  `hg showconfig ui.username`.
+* Support autodetecting the email address by invoking `git config user.email` or
+  `hg showconfig ui.username`.
+
+#### Templates
+
+* Further simplified the `[name].gemspec` file in the [gemspec_yml]
+  template.
+  * Also fixed a small typo that set `gemspec.required_rubygems_version` to
+    the value of `required_ruby_version` from the `gemspec.yml` file.
+* Fixed the `ChangeLog` entry in the `.document` file, from the [yard] template.
+
 ### 0.9.2 / 2012-05-21
 
 #### Templates
