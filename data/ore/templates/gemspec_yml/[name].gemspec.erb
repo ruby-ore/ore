@@ -57,23 +57,23 @@ Gem::Specification.new do |gem|
   gem.required_rubygems_version = gemspec['required_rubygems_version']
   gem.post_install_message      = gemspec['post_install_message']
 
-  versions = lambda { |versions| versions.split(/,\s*/) }
+  split = lambda { |string| string.split(/,\s*/) }
 
   if gemspec['dependencies']
     gemspec['dependencies'].each do |name,versions|
-      gem.add_dependency(name,versions[versions])
+      gem.add_dependency(name,split[versions])
     end
   end
 
   if gemspec['runtime_dependencies']
     gemspec['runtime_dependencies'].each do |name,versions|
-      gem.add_runtime_dependency(name,versions[versions])
+      gem.add_runtime_dependency(name,split[versions])
     end
   end
 
   if gemspec['development_dependencies']
     gemspec['development_dependencies'].each do |name,versions|
-      gem.add_development_dependency(name,versions[versions])
+      gem.add_development_dependency(name,split[versions])
     end
   end
 end
