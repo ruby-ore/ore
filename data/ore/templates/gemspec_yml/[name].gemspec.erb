@@ -48,7 +48,7 @@ Gem::Specification.new do |gem|
   gem.extra_rdoc_files = glob[gemspec['extra_doc_files'] || '*.{txt,<%= @markup_ext %>}']
 
   gem.require_paths = Array(gemspec.fetch('require_paths') {
-    Dir['ext/', 'lib/']
+    %w[ext lib].select { |dir| File.directory?(dir) }
   })
 
   gem.requirements              = gemspec['requirements']
