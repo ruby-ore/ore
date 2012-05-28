@@ -222,9 +222,14 @@ module Ore
       @license     = options.license
       @authors     = options.authors
       @author      = @authors.first
-      @github_user = if options.git?
-                       `git config github.user`.chomp
-                     end
+
+      if options.git?
+        @author    ||= `git config user.name`.chomp
+        @email     ||= `git config user.email`.chomp
+        @github_user = `git config github.user`.chomp
+      else
+        @author    ||= ENV['USER'].capitalize
+      end
 
       @email       = options.email
       @safe_email  = @email.sub('@',' at ') if @email

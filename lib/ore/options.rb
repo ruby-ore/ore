@@ -21,7 +21,7 @@ module Ore
     DEFAULT_LICENSE = 'MIT'
 
     # Default authors
-    DEFAULT_AUTHORS = [ENV['USER']]
+    DEFAULT_AUTHORS = []
 
     def self.included(base)
       base.extend ClassMethods
