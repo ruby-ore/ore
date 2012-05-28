@@ -20,9 +20,6 @@ module Ore
     # Default License
     DEFAULT_LICENSE = 'MIT'
 
-    # Default authors
-    DEFAULT_AUTHORS = []
-
     def self.included(base)
       base.extend ClassMethods
     end
@@ -40,7 +37,6 @@ module Ore
         :summary        => DEFAULT_SUMMARY,
         :description    => DEFAULT_DESCRIPTION,
         :license        => DEFAULT_LICENSE,
-        :authors        => DEFAULT_AUTHORS,
         :gemspec        => true,
         :rubygems_tasks => true,
         :rdoc           => true,
