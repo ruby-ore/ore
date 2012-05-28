@@ -221,8 +221,8 @@ module Ore
 
         @github_user = `git config github.user`.chomp
       when :hg
-        username = `hg showconfig ui.username`.chomp
-        username.scan(/([^<]+)\s+<([^>]+)>/) do |(user,email)|
+        user_email = `hg showconfig ui.username`.chomp
+        user_email.scan(/([^<]+)\s+<([^>]+)>/) do |(user,email)|
           @scm_user, @scm_email = user, email
         end
       end
