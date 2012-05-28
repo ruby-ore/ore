@@ -345,6 +345,12 @@ describe Generator do
     it "should set --markup to markdown in .yardopts" do
       yard_opts.should include('--markup markdown')
     end
+
+    context ".document" do
+      it "should include 'ChangeLog.md'" do
+        document.should include('ChangeLog.md')
+      end
+    end
   end
 
   context "yard with textile" do
@@ -364,6 +370,12 @@ describe Generator do
 
     it "should set --markup to textile in .yardopts" do
       yard_opts.should include('--markup textile')
+    end
+
+    context ".document" do
+      it "should include 'ChangeLog.tt'" do
+        document.should include('ChangeLog.tt')
+      end
     end
   end
 
