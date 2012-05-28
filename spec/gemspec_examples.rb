@@ -24,7 +24,7 @@ shared_examples "a gemspec" do
   end
 
   it "should have authors" do
-    subject.authors.should == Ore::Options::DEFAULT_AUTHORS
+    subject.authors.should_not be_empty
   end
 
   it "should have a dummy homepage" do

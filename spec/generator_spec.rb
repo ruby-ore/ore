@@ -101,7 +101,7 @@ describe Generator do
       end
 
       it "should have authors" do
-        subject['authors'].should == Ore::Options::DEFAULT_AUTHORS[0]
+        subject['authors'].should_not be_empty
       end
 
       it "should have a dummy homepage" do
