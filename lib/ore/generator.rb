@@ -207,6 +207,21 @@ module Ore
       @project_dir = File.basename(@root)
       @name        = (options.name || @project_dir)
 
+      @scm = if File.directory?(File.join(@root,'.git'))    then :git
+             elsif File.directory?(File.join(@root,'.hg'))  then :hg
+             elsif File.directory?(File.join(@root,'.svn')) then :svn
+             elsif options.hg?  then :hg
+             elsif options.git? then :git
+             end
+
+      case @scm
+      when :git
+        @scm_user  = `git config user.name`.chomp
+        @scm_email = `git config user.email`.chomp
+
+        @github_user = `git config user.email`.chomp
+      end
+
       @modules      = modules_of(@name)
       @module_depth = @modules.length
       @module       = @modules.last
@@ -220,19 +235,13 @@ module Ore
       @summary     = options.summary
       @description = options.description
       @license     = options.license
-      @authors     = options.authors
+
+      @authors     = (options.authors || [@scm_user || ENV['USER']])
       @author      = @authors.first
 
-      if options.git?
-        @author    ||= `git config user.name`.chomp
-        @email     ||= `git config user.email`.chomp
-        @github_user = `git config github.user`.chomp
-      else
-        @author    ||= ENV['USER'].capitalize
-      end
-
-      @email       = options.email
+      @email       = (options.email || @scm_email)
       @safe_email  = @email.sub('@',' at ') if @email
+
       @homepage    = if options.homepage
                        options.homepage
                      elsif !(@github_user.nil? || @github_user.empty?)
@@ -246,30 +255,13 @@ module Ore
                        "https://#{@uri.host}#{@uri.path}/issues"
                      end
 
-      @markup = if options.markdown?
-                  :markdown
-                elsif options.textile?
-                  :textile
-                else
-                  :rdoc
-                end
-      @markup_ext = case @markup
-                    when :markdown then 'md'
-                    when :textile  then 'tt'
-                    when :rdoc     then 'rdoc'
-                    end
-
-      @scm = if File.directory?(File.join(@root,'.git'))
-               :git
-             elsif File.directory?(File.join(@root,'.hg'))
-               :hg
-             elsif File.directory?(File.join(@root,'.svn'))
-               :svn
-             elsif options.hg?
-               :hg
-             elsif options.git?
-               :git
-             end
+      @markup, @markup_ext = if options.markdown?
+                               [:markdown, 'md']
+                             elsif options.textile?
+                               [:textile, 'tt']
+                             else
+                               [:rdoc, 'rdoc']
+                             end
 
       @date  = Date.today
       @year  = @date.year
@@ -282,6 +274,7 @@ module Ore
 
       @templates.each do |template|
         @ignore.merge(template.ignore)
+
         @dependencies.merge!(template.dependencies)
         @development_dependencies.merge!(template.development_dependencies)
 
