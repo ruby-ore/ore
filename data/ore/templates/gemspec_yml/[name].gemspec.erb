@@ -5,7 +5,7 @@ require 'yaml'
 Gem::Specification.new do |gem|
   gemspec = YAML.load_file('gemspec.yml')
 
-  gem.name    = gemspec.fetch('name','<%= @name %>')
+  gem.name    = gemspec.fetch('name')
   gem.version = gemspec.fetch('version') do
                   lib_dir = File.join(File.dirname(__FILE__),'lib')
                   $LOAD_PATH << lib_dir unless $LOAD_PATH.include?(lib_dir)
