@@ -219,7 +219,7 @@ module Ore
         @scm_user  = `git config user.name`.chomp
         @scm_email = `git config user.email`.chomp
 
-        @github_user = `git config user.email`.chomp
+        @github_user = `git config github.user`.chomp
       end
 
       @modules      = modules_of(@name)
