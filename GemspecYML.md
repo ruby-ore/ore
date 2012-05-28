@@ -11,8 +11,7 @@ The name of the project can be listed like so:
 
     name: foo
 
-If the name is not listed, Ore will use the base-name of the project
-directory.
+The name of the project must be specified.
 
 ## version
 
