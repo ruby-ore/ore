@@ -1,9 +1,10 @@
 ### 0.9.3 / 2012-05-28
 
 * Added the following template variables to {Ore::Generator}:
-  * `@markup_ext` - The file-extension used by the markup.
   * `@scm_user` - The username used by the SCM.
   * `@scm_email` - The email address used by the SCM.
+  * `@uri` - The URI parsed from the `@homepage` variable.
+  * `@markup_ext` - The file-extension used by the markup.
 * Support autodetecting the user name by invoking `git config user.name` or
   `hg showconfig ui.username`.
 * Support autodetecting the email address by invoking `git config user.email` or
