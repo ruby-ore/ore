@@ -248,9 +248,9 @@ module Ore
                   :rdoc
                 end
       @markup_ext = case @markup
-                    when :markdown then '.md'
-                    when :textile  then '.tt'
-                    when :rdoc     then '.rdoc'
+                    when :markdown then 'md'
+                    when :textile  then 'tt'
+                    when :rdoc     then 'rdoc'
                     end
 
       @scm = if File.directory?(File.join(@root,'.git'))
