@@ -227,22 +227,6 @@ More than one version can be specified for each dependency:
        - 1.2.3
        - 1.3.1
 
-## runtime_dependencies
-
-The purely runtime-dependencies for a project can be specified like so:
-
-    runtime_dependencies:
-      foo: ~> 0.1.0
-      bar: 1.2.3
-
-More than one version can be specified for each dependency:
-
-    runtime_dependencies:
-      foo: ~> 0.1.0, >= 0.0.7
-      bar:
-       - 1.2.3
-       - 1.3.1
-
 ## development_dependencies
 
 The purely developmental-dependencies for a project can be specified
