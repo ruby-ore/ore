@@ -83,13 +83,17 @@ module Ore
       in_root do
         case @scm
         when :git
-          run 'git init' unless File.directory?('.git')
-          run 'git add .'
-          run 'git commit -m "Initial commit."'
+          unless File.directory?('.git')
+            run 'git init'
+            run 'git add .'
+            run 'git commit -m "Initial commit."'
+          end
         when :hg
-          run 'hg init' unless File.directory?('.hg')
-          run 'hg add .'
-          run 'hg commit -m "Initial commit."'
+          unless File.directory?('.hg')
+            run 'hg init'
+            run 'hg add .'
+            run 'hg commit -m "Initial commit."'
+          end
         when :svn
           @ignore.each do |pattern|
             run "svn propset svn:ignore #{pattern.dump}"
