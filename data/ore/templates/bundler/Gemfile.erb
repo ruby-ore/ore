@@ -21,6 +21,7 @@ group :development do
 <%- unless @development_dependencies.empty? -%>
 
 <%-   @development_dependencies.each do |name,version| -%>
+<%-     next if name == 'bundler' -%>
   gem '<%= name %>',  '<%= version %>'
 <%-   end -%>
 <%- end -%>
