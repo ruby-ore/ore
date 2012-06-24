@@ -5,4 +5,4 @@ ignore:
   - doc/
 
 development_dependencies:
-  yard: ~> 0.7
+  yard: ~> 0.8
