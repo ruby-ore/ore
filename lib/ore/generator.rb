@@ -277,6 +277,14 @@ module Ore
       @dependencies             = {}
       @development_dependencies = {}
 
+
+      # disable rdoc template if @markup is not rdoc;
+      # otherwise it will change the markup back to rdoc
+      # when it runs below.
+      if @markup != :rdoc
+        disable_template("rdoc")
+      end
+
       @templates.each do |template|
         @ignore.merge(template.ignore)
 

@@ -281,6 +281,30 @@ describe Generator do
     end
   end
 
+  context "markdown" do
+    let(:name) { 'markdown-project' }
+
+    before(:all) do
+      generate!(name, :markdown => true)
+    end
+
+    it "should set @markup to :markdown" do
+      @generator.instance_variable_get('@markup').should == :markdown
+    end
+  end
+
+  context "textile" do
+    let(:name) { 'textile-project' }
+
+    before(:all) do
+      generate!(name, :textile => true)
+    end
+
+    it "should set @markup to :textile" do
+      @generator.instance_variable_get('@markup').should == :textile
+    end
+  end
+
   context "yard" do
     let(:name) { 'yard-project' }
 
