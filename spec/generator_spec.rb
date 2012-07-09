@@ -230,6 +230,15 @@ describe Generator do
       @gemspec.should have_development_dependency('bundler')
     end
 
+    it "should not have any dependencies in the Gemfile" do
+      gemfile = (@path + 'Gemfile').read
+      gemfile.should eq(<<-GEMFILE)
+source :rubygems
+
+gemspec
+      GEMFILE
+    end
+
     it "should add 'Gemfile.lock' to the .gitignore file" do
       gitignore.should include('Gemfile.lock')
     end
