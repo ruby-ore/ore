@@ -38,10 +38,9 @@ Gem::Specification.new do |gem|
 <%-   if yard? -%>
   gem.add_development_dependency 'yard', '<%= @development_dependencies['yard'] %>'
 <%-   end -%>
-<%- else -%>
-<%-   unless @development_dependencies.empty? -%>
-<%-     @development_dependencies.each do |name,version| -%>
+<%- end -%>
+<%- unless @development_dependencies.empty? -%>
+<%-   @development_dependencies.each do |name,version| -%>
   gem.add_development_dependency '<%= name%>', '<%= version %>'
-<%-     end -%>
 <%-   end -%>
 <%- end -%>end
