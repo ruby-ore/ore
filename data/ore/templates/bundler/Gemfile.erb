@@ -9,20 +9,3 @@ gemspec
 
 <%= gemfile %>
 <%- end -%>
-<%- unless @dependencies.empty? -%>
-
-<%-   @dependencies.each do |name,version| -%>
-  gem '<%= name %>',  '<%= version %>'
-<%-   end -%>
-<%- end -%>
-
-group :development do
-<%= includes(:gemfile_development,'') -%>
-<%- unless @development_dependencies.empty? -%>
-
-<%-   @development_dependencies.each do |name,version| -%>
-<%-     next if name == 'bundler' -%>
-  gem '<%= name %>',  '<%= version %>'
-<%-   end -%>
-<%- end -%>
-end
