@@ -458,8 +458,8 @@ describe Generator do
       generate!(name, :bundler => true, :rspec => true)
     end
 
-    it "should not add 'rspec' as a development dependency" do
-      @gemspec.should_not have_development_dependency('rspec')
+    it "should add 'rspec' as a development dependency" do
+      @gemspec.should have_development_dependency('rspec')
     end
   end
 
@@ -490,8 +490,8 @@ describe Generator do
       generate!(name, :bundler => true, :jeweler_tasks => true)
     end
 
-    it "should not add 'jeweler' as a development dependency" do
-      @gemspec.should_not have_development_dependency('jeweler')
+    it "should add 'jeweler' as a development dependency" do
+      @gemspec.should have_development_dependency('jeweler')
     end
   end
 
@@ -522,8 +522,8 @@ describe Generator do
       generate!(name, :bundler => true, :rubygems_tasks => true)
     end
 
-    it "should not add 'rubygems-tasks' as a development dependency" do
-      @gemspec.should_not have_development_dependency('rubygems-tasks')
+    it "should add 'rubygems-tasks' as a development dependency" do
+      @gemspec.should have_development_dependency('rubygems-tasks')
     end
   end
 
