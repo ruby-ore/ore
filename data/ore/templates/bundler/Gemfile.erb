@@ -1,17 +1,17 @@
 source :rubygems
 <%- includes(:gemfile_prelude,'') do |prelude| -%>
 
-<%= prelude %>
+<%= prelude -%>
 <%- end -%>
 
 gemspec
 <%- includes(:gemfile,'') do |gemfile| -%>
 
-<%= gemfile %>
+<%= gemfile -%>
 <%- end -%>
 <%- includes(:gemfile_development,'') do |gemfile| -%>
 
 group :development do
-<%= gemfile %>
+<%= gemfile -%>
 end
 <%- end -%>
