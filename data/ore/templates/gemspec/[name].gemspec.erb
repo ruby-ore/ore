@@ -33,12 +33,6 @@ Gem::Specification.new do |gem|
 <%-   end -%>
 <%- end -%>
 
-<%- if bundler? -%>
-  gem.add_development_dependency 'bundler', '<%= @development_dependencies['bundler'] %>'
-<%-   if yard? -%>
-  gem.add_development_dependency 'yard', '<%= @development_dependencies['yard'] %>'
-<%-   end -%>
-<%- end -%>
 <%- unless @development_dependencies.empty? -%>
 <%-   @development_dependencies.each do |name,version| -%>
   gem.add_development_dependency '<%= name%>', '<%= version %>'
