@@ -230,6 +230,15 @@ describe Generator do
       @gemspec.should have_development_dependency('bundler')
     end
 
+    it "should not have any dependencies in the Gemfile" do
+      gemfile = (@path + 'Gemfile').read
+      gemfile.should eq(<<-GEMFILE)
+source :rubygems
+
+gemspec
+      GEMFILE
+    end
+
     it "should add 'Gemfile.lock' to the .gitignore file" do
       gitignore.should include('Gemfile.lock')
     end
@@ -458,8 +467,8 @@ describe Generator do
       generate!(name, :bundler => true, :rspec => true)
     end
 
-    it "should not add 'rspec' as a development dependency" do
-      @gemspec.should_not have_development_dependency('rspec')
+    it "should add 'rspec' as a development dependency" do
+      @gemspec.should have_development_dependency('rspec')
     end
   end
 
@@ -490,8 +499,8 @@ describe Generator do
       generate!(name, :bundler => true, :jeweler_tasks => true)
     end
 
-    it "should not add 'jeweler' as a development dependency" do
-      @gemspec.should_not have_development_dependency('jeweler')
+    it "should add 'jeweler' as a development dependency" do
+      @gemspec.should have_development_dependency('jeweler')
     end
   end
 
@@ -522,8 +531,8 @@ describe Generator do
       generate!(name, :bundler => true, :rubygems_tasks => true)
     end
 
-    it "should not add 'rubygems-tasks' as a development dependency" do
-      @gemspec.should_not have_development_dependency('rubygems-tasks')
+    it "should add 'rubygems-tasks' as a development dependency" do
+      @gemspec.should have_development_dependency('rubygems-tasks')
     end
   end
 

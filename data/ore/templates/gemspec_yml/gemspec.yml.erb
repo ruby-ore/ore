@@ -25,17 +25,9 @@ dependencies:
 <%-   end -%>
 <%- end -%>
 
-<%- if bundler? -%>
+<%- unless @development_dependencies.empty? -%>
 development_dependencies:
-  bundler: <%= @development_dependencies['bundler'] %>
-  <%- if yard? -%>
-  yard: <%= @development_dependencies['yard'] %>
-  <%- end -%>
-<%- else -%>
-<%-   unless @development_dependencies.empty? -%>
-development_dependencies:
-<%-     @development_dependencies.each do |name,version| -%>
+<%-   @development_dependencies.each do |name,version| -%>
   <%= name %>: <%= version %>
-<%-     end -%>
 <%-   end -%>
 <%- end -%>
