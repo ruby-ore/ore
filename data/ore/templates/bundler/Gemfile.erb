@@ -9,3 +9,9 @@ gemspec
 
 <%= gemfile %>
 <%- end -%>
+<%- includes(:gemfile_development,'') do |gemfile| -%>
+
+group :development do
+<%= gemfile %>
+end
+<%- end -%>
