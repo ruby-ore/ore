@@ -28,13 +28,13 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 <%- unless @dependencies.empty? -%>
 
-<%-   @dependencies.each do |name,version| -%>
+<%-   @dependencies.sort.each do |name,version| -%>
   gem.add_dependency '<%= name %>', '<%= version %>'
 <%-   end -%>
 <%- end -%>
 
 <%- unless @development_dependencies.empty? -%>
-<%-   @development_dependencies.each do |name,version| -%>
+<%-   @development_dependencies.sort.each do |name,version| -%>
   gem.add_development_dependency '<%= name%>', '<%= version %>'
 <%-   end -%>
 <%- end -%>end

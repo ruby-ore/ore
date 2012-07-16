@@ -20,14 +20,14 @@ homepage: <%= @homepage %>
 <%- unless @dependencies.empty? -%>
 
 dependencies:
-<%-   @dependencies.each do |name,version| -%>
+<%-   @dependencies.sort.each do |name,version| -%>
   <%= name %>: <%= version %>
 <%-   end -%>
 <%- end -%>
 
 <%- unless @development_dependencies.empty? -%>
 development_dependencies:
-<%-   @development_dependencies.each do |name,version| -%>
+<%-   @development_dependencies.sort.each do |name,version| -%>
   <%= name %>: <%= version %>
 <%-   end -%>
 <%- end -%>
