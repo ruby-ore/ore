@@ -1,3 +1,13 @@
+### 0.9.4 / 2012-07-23
+
+* Do not initialize the repository, if .git or .hg directories already exist.
+
+#### Templates
+
+* List all development dependencies in the [gemspec] and [gemspec_yml].
+  * Sort dependencies alphabetically.
+* Require `bundler/setup` at the top of the `Rakefile` in [bundler].
+
 ### 0.9.3 / 2012-05-28
 
 * Added the following template variables to {Ore::Generator}:
