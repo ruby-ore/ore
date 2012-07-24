@@ -1,5 +1,5 @@
 name: ore
-version: 0.9.4
+version: 0.9.5
 summary: Mine beautiful RubyGems from Ore
 description:
   Ore is a flexible Ruby project generator. Unlike other Ruby project
