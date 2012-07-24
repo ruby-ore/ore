@@ -4,9 +4,10 @@
 
 #### Templates
 
-* List all development dependencies in the [gemspec] and [gemspec_yml].
+* List all development dependencies in the [gemspec] and [gemspec_yml]
+  templates.
   * Sort dependencies alphabetically.
-* Require `bundler/setup` at the top of the `Rakefile` in [bundler].
+* Require `bundler/setup` at the top of the `Rakefile` in the [base] template.
 
 ### 0.9.3 / 2012-05-28
 
