@@ -61,6 +61,7 @@ module Ore
     generator_option :homepage, :type => :string, :aliases => '-U'
     generator_option :bug_tracker, :type => :string, :aliases => '-B'
     generator_option :license, :aliases => '-L'
+    generator_option :gitignore, :type => :array, :banner => 'GITIGNORE [...]'
 
     argument :path, :required => true
 
@@ -102,11 +103,37 @@ module Ore
           run 'svn add .'
           run 'svn commit -m "Initial commit."'
         end
+
+        unless @gitignore.empty?
+          if gitignore_installed?
+            gitignore = 'gitignore'            
+            @gitignore.each do |o|
+              gitignore << " #{o}"
+            end
+            
+            run gitignore
+          else
+            say "'gitignore' not installed.  'gem install gitignore' to use --gitignore option", :red
+          end
+        end
       end
     end
 
     protected
-
+    
+    #
+    # Tests if gitignore generation utility is installed
+    #
+    # @since 0.9.6
+    #
+    def gitignore_installed?
+      Gem::Specification.find_by_name('gitignore')
+    rescue Gem::LoadError
+      false
+    rescue
+      Gem.available?('gitignore')
+    end
+    
     #
     # Enables a template, adding it to the generator.
     #
@@ -230,7 +257,7 @@ module Ore
           @scm_user, @scm_email = user, email
         end
       end
-
+      
       @modules      = modules_of(@name)
       @module_depth = @modules.length
       @module       = @modules.last
@@ -277,7 +304,9 @@ module Ore
       @month = @date.month
       @day   = @date.day
 
-      @ignore                   = SortedSet[]
+      @ignore    = SortedSet[]
+      @gitignore = options.gitignore || []
+      
       @dependencies             = {}
       @development_dependencies = {}
 
@@ -294,6 +323,7 @@ module Ore
 
       @generated_dirs  = {}
       @generated_files = {}
+      
     end
 
     #
