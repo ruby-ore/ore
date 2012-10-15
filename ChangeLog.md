@@ -2,6 +2,8 @@
 
 * Require thor ~> 0.15.
 * Strip the `ore-` prefix from the template name in {Ore::Template.register}.
+* Allow {Ore::Generator#disable_template} to disable templates that are not
+  installed.
 
 #### Templates
 
@@ -9,6 +11,10 @@
 * Moved the `rvmrc` template out into the [rvm] template.
 * Moved the `jeweler_tasks` template out into the [jeweler] template.
 * Removed the `gem_test` template.
+
+#### CLI
+
+* Added a `--version` option to the `ore` command.
 
 ### 0.9.4 / 2012-07-23
 
