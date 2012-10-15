@@ -203,18 +203,6 @@ describe Generator do
     end
   end
 
-  context "gem test" do
-    let(:name) { 'gem_test_project' }
-
-    before(:all) do
-      generate!(name, :gem_test => true)
-    end
-
-    it "should add a .gemtest file" do
-      @path.should have_file('.gemtest')
-    end
-  end
-
   context "bundler" do
     let(:name) { 'bundled_project' }
 
@@ -469,38 +457,6 @@ gemspec
 
     it "should add 'rspec' as a development dependency" do
       @gemspec.should have_development_dependency('rspec')
-    end
-  end
-
-  context "jeweler tasks" do
-    let(:name) { 'jewelery_project' }
-
-    before(:all) do
-      generate!(name, :jeweler_tasks => true)
-    end
-
-    it "should disable the rubygems_tasks template" do
-      @generator.disabled_templates.should include(:rubygems_tasks)
-    end
-
-    it "should disable the bundler_tasks template" do
-      @generator.disabled_templates.should include(:bundler_tasks)
-    end
-
-    it "should add 'jeweler' as a development dependency" do
-      @gemspec.should have_development_dependency('jeweler')
-    end
-  end
-
-  context "jeweler tasks with bundler" do
-    let(:name) { 'bundled_jewelery_project' }
-
-    before(:all) do
-      generate!(name, :bundler => true, :jeweler_tasks => true)
-    end
-
-    it "should add 'jeweler' as a development dependency" do
-      @gemspec.should have_development_dependency('jeweler')
     end
   end
 
