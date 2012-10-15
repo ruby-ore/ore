@@ -1,4 +1,5 @@
 require 'ore/config'
+require 'ore/version'
 
 require 'thor'
 require 'fileutils'
@@ -10,6 +11,9 @@ module Ore
     map '-l' => :list
     map '-u' => :update
     map '-r' => :remove
+
+    # add a --version option
+    map '--version' => :version
 
     desc 'list', 'List installed Ore templates'
 
@@ -84,6 +88,15 @@ module Ore
       end
 
       FileUtils.rm_rf(path)
+    end
+
+    desc 'version', 'Prints the version'
+
+    #
+    # Prints {Ore::VERSION}.
+    #
+    def version
+      puts "ore #{Ore::VERSION}"
     end
 
   end
