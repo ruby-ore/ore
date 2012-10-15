@@ -67,7 +67,7 @@ Additional templates can also be installed from Git:
 
 ## Requirements
 
-* [thor](http://github.com/wycats/thor) ~> 0.14
+* [thor](https://github.com/wycats/thor) ~> 0.14
 
 ## Install
 
