@@ -1,2 +1,3 @@
-enable:
+disable:
   - test_unit
+  - rspec
