@@ -28,25 +28,15 @@ Ore generates a pure-Ruby gemspec by default. Ore can also generate a
 ### Tasks
 
 Ore supports generating projects using [Gem::Tasks][rubygems_tasks],
-[Bundler::GemHelper][bundler], [Jeweler::Tasks][jeweler] and even
-[Gem::PackageTask][gem_package_task].
+[Bundler::GemHelper][bundler] and even [Gem::PackageTask][gem_package_task].
 
-    $ mine my-project [--rubygems-tasks |
-                       --bundler-tasks  |
-                       --jeweler-tasks  |
-                       --gem-package-task]
+    $ mine my-project [--rubygems-tasks | --bundler-tasks  | --gem-package-task]
 
 ### Bundler
 
 Ore can also generate a [Bundler][bundler] project.
 
     $ mine my-project --bundler
-
-### RVM
-
-Ore also includes an [.rvmrc] template.
-
-    $ mine my-project --rvmrc
 
 ### Markup
 
@@ -63,9 +53,10 @@ documentation.
 
 ### Testing
 
-Ore supports generating [RSpec][rspec] or [Test::Unit][test_unit] tests.
+Ore supports generating [RSpec][rspec], [MiniTest][minitest] or
+[Test::Unit][test_unit] tests.
 
-    $ mine my-project [--test-unit | --rspec]
+    $ mine my-project [--test-unit | --mini-test | --rspec]
 
 ### Custom Templates
 
@@ -136,12 +127,11 @@ See {file:LICENSE.txt} for license information.
 [gemspec.yml]: https://github.com/ruby-ore/ore/blob/master/gemspec.yml
 [rubygems_tasks]: https://github.com/postmodern/rubygems-tasks#readme
 [bundler]: http://gembundler.com/
-[jeweler]: https://github.com/technicalpickles/jeweler#readme
 [gem_package_task]: http://rubygems.rubyforge.org/rubygems-update/Gem/PackageTask.html
-[.rvmrc]: https://rvm.io/workflow/rvmrc/#project
 [rdoc]: http://rdoc.rubyforge.org/
 [markdown]: http://daringfireball.net/projects/markdown/
 [textile]: http://textile.sitemonks.com/
 [yard]: http://yardoc.org/
 [rspec]: http://rspec.info/
 [test_unit]: http://test-unit.rubyforge.org/
+[minitest]: https://github.com/seattlerb/minitest#readme
