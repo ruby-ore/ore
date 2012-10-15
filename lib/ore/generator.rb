@@ -157,15 +157,13 @@ module Ore
 
       return false if @disabled_templates.include?(name)
 
-      unless (template_dir = Template.templates[name])
-        say "Unknown template #{name}", :red
-        exit -1
+      if (template_dir = Template.templates[name])
+        source_paths.delete(template_dir)
+
+        @templates.delete_if { |template| template.path == template_dir }
+        @enabled_templates.delete(name)
       end
 
-      source_paths.delete(template_dir)
-
-      @templates.delete_if { |template| template.path == template_dir }
-      @enabled_templates.delete(name)
       @disabled_templates << name
       return true
     end
