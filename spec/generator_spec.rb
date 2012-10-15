@@ -503,10 +503,6 @@ gemspec
       generate!(name, :rubygems_tasks => true)
     end
 
-    it "should disable the jeweler_tasks template" do
-      @generator.disabled_templates.should include(:jeweler_tasks)
-    end
-
     it "should disable the bundler_tasks template" do
       @generator.disabled_templates.should include(:bundler_tasks)
     end
@@ -535,10 +531,6 @@ gemspec
       generate!(name, :bundler_tasks => true)
     end
 
-    it "should disable the jeweler_tasks template" do
-      @generator.disabled_templates.should include(:jeweler_tasks)
-    end
-
     it "should disable the rubygems_tasks template" do
       @generator.disabled_templates.should include(:rubygems_tasks)
     end
@@ -557,10 +549,6 @@ gemspec
 
     it "should disable the rubygems_tasks template" do
       @generator.disabled_templates.should include(:rubygems_tasks)
-    end
-
-    it "should disable the jeweler_tasks template" do
-      @generator.disabled_templates.should include(:jeweler_tasks)
     end
 
     it "should disable the bundler_tasks template" do
