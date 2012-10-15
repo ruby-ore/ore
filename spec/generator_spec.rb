@@ -395,6 +395,10 @@ gemspec
       generate!(name, :test_unit => true)
     end
 
+    it "should disable the mini_test template" do
+      @generator.disabled_templates.should include(:mini_test)
+    end
+
     it "should disable the rspec template" do
       @generator.disabled_templates.should include(:rspec)
     end
@@ -449,6 +453,10 @@ gemspec
 
     it "should disable the test_unit template" do
       @generator.disabled_templates.should include(:test_unit)
+    end
+
+    it "should disable the mini_test template" do
+      @generator.disabled_templates.should include(:mini_test)
     end
 
     it "should not create the test/ directory" do
