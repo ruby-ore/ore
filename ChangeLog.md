@@ -1,5 +1,6 @@
 ### 0.10.0 / 2012-10-14
 
+* Require thor ~> 0.15.
 * Strip the `ore-` prefix from the template name in {Ore::Template.register}.
 
 #### Templates
