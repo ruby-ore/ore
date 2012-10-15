@@ -31,4 +31,4 @@ dependencies:
 development_dependencies:
   rubygems-tasks: ~> 0.2
   rspec: ~> 2.4
-  yard: ~> 0.7
+  yard: ~> 0.8

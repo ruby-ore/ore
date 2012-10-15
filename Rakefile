@@ -25,7 +25,7 @@ task :test => :spec
 task :default => :spec
 
 begin
-  gem 'yard', '~> 0.7'
+  gem 'yard', '~> 0.8'
   require 'yard'
   
   YARD::Rake::YardocTask.new
