@@ -52,7 +52,7 @@ module Ore
         raise(StandardError,"#{path.dump} is must be a directory")
       end
 
-      name = File.basename(path).to_sym
+      name = File.basename(path).sub(/^ore-/,'').to_sym
 
       self.templates[name] = path
       return name
