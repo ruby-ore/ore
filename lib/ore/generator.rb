@@ -209,11 +209,11 @@ module Ore
       @project_dir = File.basename(@root)
       @name        = (options.name || @project_dir)
 
-      @scm = if File.directory?(File.join(@root,'.git'))    then :git
+      @scm = if    File.directory?(File.join(@root,'.git')) then :git
              elsif File.directory?(File.join(@root,'.hg'))  then :hg
              elsif File.directory?(File.join(@root,'.svn')) then :svn
-             elsif options.hg?  then :hg
-             elsif options.git? then :git
+             elsif options.hg?                              then :hg
+             elsif options.git?                             then :git
              end
 
       case @scm
@@ -262,12 +262,9 @@ module Ore
                        "https://#{@uri.host}#{@uri.path}/issues"
                      end
 
-      @markup, @markup_ext = if options.markdown?
-                               [:markdown, 'md']
-                             elsif options.textile?
-                               [:textile, 'tt']
-                             else
-                               [:rdoc, 'rdoc']
+      @markup, @markup_ext = if    options.markdown? then [:markdown, 'md']
+                             elsif options.textile?  then [:textile, 'tt']
+                             else                         [:rdoc, 'rdoc']
                              end
 
       @date  = Date.today
