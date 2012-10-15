@@ -1,5 +1,7 @@
 ### 0.10.0 / 2012-10-14
 
+* Strip the `ore-` prefix from the template name in {Ore::Template.register}.
+
 #### Templates
 
 * Added the [mini_test] template.
