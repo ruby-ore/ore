@@ -62,8 +62,8 @@ Ore supports generating [RSpec][rspec], [MiniTest][mini_test] or
 
 Additional templates can also be installed from Git:
 
-    $ ore install git://github.com/ruby-ore/mini_test.git
-    $ mine my-project --mini-test
+    $ ore install git://github.com/ruby-ore/rbenv.git
+    $ mine my-project --rbenv
 
 ## Requirements
 
@@ -85,7 +85,7 @@ Generate a new customized project:
 
 Generate a new project using previously installed templates:
 
-    $ mine my_project --bundler --rspec --yard --templates mini_test
+    $ mine my_project --bundler --rspec --yard --templates rbenv
 
 Set your github username, so `mine` can generate GitHub project URLs:
 
@@ -94,7 +94,7 @@ Set your github username, so `mine` can generate GitHub project URLs:
 
 Install a custom template:
 
-    $ ore install git://github.com/ruby-ore/mini_test.git
+    $ ore install git://github.com/ruby-ore/rbenv.git
 
 List installed templates:
 
@@ -102,7 +102,7 @@ List installed templates:
 
 Remove a previously installed template:
 
-    $ ore remove mini_test
+    $ ore remove rbenv
 
 Add default generator options to `~/.ore/options.yml`:
 
