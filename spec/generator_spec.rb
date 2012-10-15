@@ -408,7 +408,35 @@ gemspec
     end
 
     it "should add a single test_*.rb file" do
-      @path.should have_file('test','test_test_unit_project.rb')
+      @path.should have_file('test',"test_#{name}.rb")
+    end
+  end
+
+  context "mini_test" do
+    let(:name) { 'mini_test_project' }
+
+    before(:all) do
+      generate!(name, :mini_test => true)
+    end
+
+    it "should disable the test_unit template" do
+      @generator.disabled_templates.should include(:test_unit)
+    end
+
+    it "should disable the rspec template" do
+      @generator.disabled_templates.should include(:rspec)
+    end
+
+    it "should create the test/ directory" do
+      @path.should have_directory('test')
+    end
+
+    it "should create the test/helper.rb file" do
+      @path.should have_file('test','helper.rb')
+    end
+
+    it "should add a single test_*.rb file" do
+      @path.should have_file('test',"test_#{name}.rb")
     end
   end
 
