@@ -5,8 +5,7 @@ require 'rubygems'
 begin
   require 'ore/cli'
 rescue LoadError => e
-  warn 'Could not load "ore/cli"'
-  exit -1
+  abort 'Could not load "ore/cli"'
 end
 
 Ore::CLI.start
