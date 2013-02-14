@@ -3,5 +3,5 @@ ignore:
   - vendor/cache/*.gem
 
 development_dependencies:
-  bundler: ~> 1.0
+  bundler: ~> 1.2
   rake: ~> 0.8
