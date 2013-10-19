@@ -221,7 +221,7 @@ describe Generator do
     it "should not have any dependencies in the Gemfile" do
       gemfile = (@path + 'Gemfile').read
       gemfile.should eq(<<-GEMFILE)
-source :rubygems
+source 'https://rubygems.org'
 
 gemspec
       GEMFILE
