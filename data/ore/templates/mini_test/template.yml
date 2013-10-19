@@ -1,3 +1,0 @@
-disable:
-  - test_unit
-  - rspec

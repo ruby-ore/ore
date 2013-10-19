@@ -53,10 +53,10 @@ documentation.
 
 ### Testing
 
-Ore supports generating [RSpec][rspec], [MiniTest][mini_test] or
+Ore supports generating [RSpec][rspec], [Minitest][minitest] or
 [Test::Unit][test_unit] tests.
 
-    $ mine my-project [--test-unit | --mini-test | --rspec]
+    $ mine my-project [--test-unit | --minitest | --rspec]
 
 ### Custom Templates
 
@@ -134,4 +134,4 @@ See {file:LICENSE.txt} for license information.
 [yard]: http://yardoc.org/
 [rspec]: http://rspec.info/
 [test_unit]: http://test-unit.rubyforge.org/
-[mini_test]: https://github.com/seattlerb/minitest#readme
+[minitest]: https://github.com/seattlerb/minitest#readme

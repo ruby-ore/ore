@@ -18,9 +18,5 @@ rescue Bundler::BundlerError => e
 end
 
 <%- end -%>
-require 'minitest/unit'
-
-class MiniTest::Unit::TestCase
-end
-
-MiniTest::Unit.autorun
+require 'minitest/autorun'
+require 'minitest/pride'
