@@ -221,7 +221,7 @@ describe Generator do
     it "should not have any dependencies in the Gemfile" do
       gemfile = (@path + 'Gemfile').read
       gemfile.should eq(<<-GEMFILE)
-source :rubygems
+source 'https://rubygems.org'
 
 gemspec
       GEMFILE
@@ -395,8 +395,8 @@ gemspec
       generate!(name, :test_unit => true)
     end
 
-    it "should disable the mini_test template" do
-      @generator.disabled_templates.should include(:mini_test)
+    it "should disable the minitest template" do
+      @generator.disabled_templates.should include(:minitest)
     end
 
     it "should disable the rspec template" do
@@ -416,11 +416,11 @@ gemspec
     end
   end
 
-  context "mini_test" do
-    let(:name) { 'mini_test_project' }
+  context "minitest" do
+    let(:name) { 'minitest_project' }
 
     before(:all) do
-      generate!(name, :mini_test => true)
+      generate!(name, :minitest => true)
     end
 
     it "should disable the test_unit template" do
@@ -455,8 +455,8 @@ gemspec
       @generator.disabled_templates.should include(:test_unit)
     end
 
-    it "should disable the mini_test template" do
-      @generator.disabled_templates.should include(:mini_test)
+    it "should disable the minitest template" do
+      @generator.disabled_templates.should include(:minitest)
     end
 
     it "should not create the test/ directory" do
