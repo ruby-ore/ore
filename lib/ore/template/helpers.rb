@@ -223,7 +223,11 @@ module Ore
       #   The indentation string.
       #
       def indent(n,spaces=2)
-        (' ' * spaces) * n
+        if Options.defaults[:tab_indent]
+          return "\t" * n
+        else
+          return (' ' * spaces) * n
+        end
       end
 
       #
