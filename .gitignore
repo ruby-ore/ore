@@ -1,8 +1,8 @@
-pkg
-doc
+/pkg
+/doc
 .DS_Store
 .bundle
-.yardoc
+/.yardoc
 *.gem
 *.swp
 *~
