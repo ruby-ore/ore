@@ -1,4 +1,5 @@
 ignore:
+  - .bundle
   - Gemfile.lock
   - vendor/cache/*.gem
 
