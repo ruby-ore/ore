@@ -1,7 +1,7 @@
 ignore:
-  - .bundle
-  - Gemfile.lock
-  - vendor/cache/*.gem
+  - /.bundle
+  - /Gemfile.lock
+  - /vendor/cache/*.gem
 
 development_dependencies:
   bundler: ~> 1.2

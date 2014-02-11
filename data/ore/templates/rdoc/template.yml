@@ -2,7 +2,7 @@ disable:
   - yard
 
 ignore:
-  - html/
+  - /html/
 
 variables:
   markup: :rdoc

@@ -2,8 +2,8 @@ disable:
   - rdoc
 
 ignore:
-  - doc/
-  - .yardoc
+  - /doc/
+  - /.yardoc/
 
 development_dependencies:
   yard: ~> 0.8
