@@ -1,7 +1,5 @@
 pkg
 doc
-web
-tmp
 .DS_Store
 .bundle
 .yardoc
