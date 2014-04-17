@@ -12,8 +12,9 @@ begin
     rdoc.title = <%= @name.dump %>
   end
 rescue LoadError => e
-  warn e.message
-  warn "Run `gem install rdoc` to install 'rdoc/task'."
+  task :rdoc do
+    abort e.message
+  end
 end
 <%- end -%>
 task :doc => :rdoc

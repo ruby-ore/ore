@@ -9,7 +9,7 @@ begin
   YARD::Rake::YardocTask.new  
 rescue LoadError => e
   task :yard do
-    abort "Please run `gem install yard` to install YARD."
+    warn e.message
   end
 end
 <%- end -%>
