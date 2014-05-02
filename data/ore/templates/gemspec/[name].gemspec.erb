@@ -3,38 +3,38 @@
 require File.expand_path('../lib/<%= @namespace_path %>/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.name          = <%= @name.inspect %>
-  gem.version       = <%= @namespace %>::VERSION
-  gem.summary       = %q{<%= @summary %>}
-  gem.description   = %q{<%= @description %>}
-  gem.license       = <%= @license.inspect %>
-  gem.authors       = <%= @authors.inspect %>
+<%= indent(1) %>gem.name          = <%= @name.inspect %>
+<%= indent(1) %>gem.version       = <%= @namespace %>::VERSION
+<%= indent(1) %>gem.summary       = %q{<%= @summary %>}
+<%= indent(1) %>gem.description   = %q{<%= @description %>}
+<%= indent(1) %>gem.license       = <%= @license.inspect %>
+<%= indent(1) %>gem.authors       = <%= @authors.inspect %>
 <%- if @email -%>
-  gem.email         = <%= @email.inspect %>
+<%= indent(1) %>gem.email         = <%= @email.inspect %>
 <%- end -%>
-  gem.homepage      = <%= @homepage.inspect %>
+<%= indent(1) %>gem.homepage      = <%= @homepage.inspect %>
 
 <%- if git? -%>
-  gem.files         = `git ls-files`.split($/)
+<%= indent(1) %>gem.files         = `git ls-files`.split($/)
 <%- elsif hg? -%>
-  gem.files         = `hg manifest`.split($/)
+<%= indent(1) %>gem.files         = `hg manifest`.split($/)
 <%- elsif svn? -%>
-  gem.files         = `svn ls -R`.split($/).select { |path| File.file?(path) }
+<%= indent(1) %>gem.files         = `svn ls -R`.split($/).select { |path| File.file?(path) }
 <%- else -%>
-  gem.files         = Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
+<%= indent(1) %>gem.files         = Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
 <%- end -%>
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.require_paths = ['lib']
+<%= indent(1) %>gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+<%= indent(1) %>gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+<%= indent(1) %>gem.require_paths = ['lib']
 <%- unless @dependencies.empty? -%>
 
 <%-   @dependencies.sort.each do |name,version| -%>
-  gem.add_dependency '<%= name %>', '<%= version %>'
+<%= indent(1) %>gem.add_dependency '<%= name %>', '<%= version %>'
 <%-   end -%>
 <%- end -%>
 
 <%- unless @development_dependencies.empty? -%>
 <%-   @development_dependencies.sort.each do |name,version| -%>
-  gem.add_development_dependency '<%= name%>', '<%= version %>'
+<%= indent(1) %>gem.add_development_dependency '<%= name%>', '<%= version %>'
 <%-   end -%>
 <%- end -%>end

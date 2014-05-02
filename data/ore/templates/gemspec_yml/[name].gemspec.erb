@@ -3,70 +3,70 @@
 require 'yaml'
 
 Gem::Specification.new do |gem|
-  gemspec = YAML.load_file('gemspec.yml')
+<%= indent(1) %>gemspec = YAML.load_file('gemspec.yml')
 
-  gem.name    = gemspec.fetch('name')
-  gem.version = gemspec.fetch('version') do
-                  lib_dir = File.join(File.dirname(__FILE__),'lib')
-                  $LOAD_PATH << lib_dir unless $LOAD_PATH.include?(lib_dir)
+<%= indent(1) %>gem.name    = gemspec.fetch('name')
+<%= indent(1) %>gem.version = gemspec.fetch('version') do
+<%= indent(2) %>lib_dir = File.join(File.dirname(__FILE__),'lib')
+<%= indent(2) %>$LOAD_PATH << lib_dir unless $LOAD_PATH.include?(lib_dir)
 
-                  require '<%= @namespace_path %>/version'
-                  <%= @namespace %>::VERSION
-                end
+<%= indent(2) %>require '<%= @namespace_path %>/version'
+<%= indent(2) %><%= @namespace %>::VERSION
+<%= indent(1) %>end
 
-  gem.summary     = gemspec['summary']
-  gem.description = gemspec['description']
-  gem.licenses    = Array(gemspec['license'])
-  gem.authors     = Array(gemspec['authors'])
-  gem.email       = gemspec['email']
-  gem.homepage    = gemspec['homepage']
+<%= indent(1) %>gem.summary     = gemspec['summary']
+<%= indent(1) %>gem.description = gemspec['description']
+<%= indent(1) %>gem.licenses    = Array(gemspec['license'])
+<%= indent(1) %>gem.authors     = Array(gemspec['authors'])
+<%= indent(1) %>gem.email       = gemspec['email']
+<%= indent(1) %>gem.homepage    = gemspec['homepage']
 
-  glob = lambda { |patterns| gem.files & Dir[*patterns] }
+<%= indent(1) %>glob = lambda { |patterns| gem.files & Dir[*patterns] }
 
 <%- if git? -%>
-  gem.files = `git ls-files`.split($/)
+<%= indent(1) %>gem.files = `git ls-files`.split($/)
 <%- elsif hg? -%>
-  gem.files = `hg manifest`.split($/)
+<%= indent(1) %>gem.files = `hg manifest`.split($/)
 <%- elsif svn? -%>
-  gem.files = `svn ls -R`.split($/).select { |path| File.file?(path) }
+<%= indent(1) %>gem.files = `svn ls -R`.split($/).select { |path| File.file?(path) }
 <%- else -%>
-  gem.files = Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
+<%= indent(1) %>gem.files = Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
 <%- end -%>
-  gem.files = glob[gemspec['files']] if gemspec['files']
+<%= indent(1) %>gem.files = glob[gemspec['files']] if gemspec['files']
 
-  gem.executables = gemspec.fetch('executables') do
-    glob['bin/*'].map { |path| File.basename(path) }
-  end
-  gem.default_executable = gem.executables.first if Gem::VERSION < '1.7.'
+<%= indent(1) %>gem.executables = gemspec.fetch('executables') do
+<%= indent(2) %>glob['bin/*'].map { |path| File.basename(path) }
+<%= indent(1) %>end
+<%= indent(1) %>gem.default_executable = gem.executables.first if Gem::VERSION < '1.7.'
 
-  gem.extensions       = glob[gemspec['extensions'] || 'ext/**/extconf.rb']
+<%= indent(1) %>gem.extensions       = glob[gemspec['extensions'] || 'ext/**/extconf.rb']
 <%- if rspec? -%>
-  gem.test_files       = glob[gemspec['test_files'] || '{test/{**/}*_test.rb']
+<%= indent(1) %>gem.test_files       = glob[gemspec['test_files'] || '{test/{**/}*_test.rb']
 <%- elsif test_unit? -%>
-  gem.test_files       = glob[gemspec['test_files'] || 'spec/{**/}*_spec.rb}']
+<%= indent(1) %>gem.test_files       = glob[gemspec['test_files'] || 'spec/{**/}*_spec.rb}']
 <%- end -%>
-  gem.extra_rdoc_files = glob[gemspec['extra_doc_files'] || '*.{txt,<%= @markup_ext %>}']
+<%= indent(1) %>gem.extra_rdoc_files = glob[gemspec['extra_doc_files'] || '*.{txt,<%= @markup_ext %>}']
 
-  gem.require_paths = Array(gemspec.fetch('require_paths') {
-    %w[ext lib].select { |dir| File.directory?(dir) }
-  })
+<%= indent(1) %>gem.require_paths = Array(gemspec.fetch('require_paths') {
+<%= indent(2) %>%w[ext lib].select { |dir| File.directory?(dir) }
+<%= indent(1) %>})
 
-  gem.requirements              = gemspec['requirements']
-  gem.required_ruby_version     = gemspec['required_ruby_version']
-  gem.required_rubygems_version = gemspec['required_rubygems_version']
-  gem.post_install_message      = gemspec['post_install_message']
+<%= indent(1) %>gem.requirements              = gemspec['requirements']
+<%= indent(1) %>gem.required_ruby_version     = gemspec['required_ruby_version']
+<%= indent(1) %>gem.required_rubygems_version = gemspec['required_rubygems_version']
+<%= indent(1) %>gem.post_install_message      = gemspec['post_install_message']
 
-  split = lambda { |string| string.split(/,\s*/) }
+<%= indent(1) %>split = lambda { |string| string.split(/,\s*/) }
 
-  if gemspec['dependencies']
-    gemspec['dependencies'].each do |name,versions|
-      gem.add_dependency(name,split[versions])
-    end
-  end
+<%= indent(1) %>if gemspec['dependencies']
+<%= indent(2) %>gemspec['dependencies'].each do |name,versions|
+<%= indent(3) %>gem.add_dependency(name,split[versions])
+<%= indent(2) %>end
+<%= indent(1) %>end
 
-  if gemspec['development_dependencies']
-    gemspec['development_dependencies'].each do |name,versions|
-      gem.add_development_dependency(name,split[versions])
-    end
-  end
+<%= indent(1) %>if gemspec['development_dependencies']
+<%= indent(2) %>gemspec['development_dependencies'].each do |name,versions|
+<%= indent(3) %>gem.add_development_dependency(name,split[versions])
+<%= indent(2) %>end
+<%= indent(1) %>end
 end
