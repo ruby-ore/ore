@@ -5,7 +5,6 @@ RDoc::Task.new do |rdoc|
 end
 <%- else -%>
 begin
-  gem 'rdoc', '<%= @development_dependencies['rdoc'] %>'
   require 'rdoc/task'
 
   RDoc::Task.new do |rdoc|

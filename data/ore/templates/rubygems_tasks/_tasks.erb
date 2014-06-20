@@ -3,7 +3,6 @@ require 'rubygems/tasks'
 Gem::Tasks.new
 <%- else -%>
 begin
-  gem 'rubygems-tasks', '<%= @development_dependencies['rubygems-tasks'] %>'
   require 'rubygems/tasks'
 
   Gem::Tasks.new

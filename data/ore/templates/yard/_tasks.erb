@@ -3,7 +3,6 @@ require 'yard'
 YARD::Rake::YardocTask.new  
 <%- else -%>
 begin
-  gem 'yard', '<%= @development_dependencies['yard'] %>'
   require 'yard'
 
   YARD::Rake::YardocTask.new  
