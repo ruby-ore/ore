@@ -51,7 +51,7 @@ Gem::Specification.new do |gem|
     %w[ext lib].select { |dir| File.directory?(dir) }
   })
 
-  gem.requirements              = gemspec['requirements']
+  gem.requirements              = Array(gemspec['requirements'])
   gem.required_ruby_version     = gemspec['required_ruby_version']
   gem.required_rubygems_version = gemspec['required_rubygems_version']
   gem.post_install_message      = gemspec['post_install_message']
