@@ -39,7 +39,7 @@ module Ore
 
     Template.templates.each_key do |name|
       # skip the `base` template
-      next if name == :base
+      next if name == :gem
 
       generator_option name, :type => :boolean
     end
@@ -176,7 +176,7 @@ module Ore
       @enabled_templates  = Set[]
       @disabled_templates = Set[]
       
-      enable_template :base
+      enable_template :gem
 
       # enable the default templates first
       Options.defaults.each_key do |name|
