@@ -6,3 +6,4 @@
 *.gem
 *.swp
 *~
+Gemfile.lock

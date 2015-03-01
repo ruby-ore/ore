@@ -29,6 +29,4 @@ dependencies:
   thor: ~> 0.15
 
 development_dependencies:
-  rubygems-tasks: ~> 0.2
-  rspec: ~> 2.4
-  yard: ~> 0.8
+  bundler: ~> 1.0
