@@ -7,114 +7,114 @@ describe Generator do
   include Helpers::Generator
 
   context "default" do
-    let(:name) { 'my-project' }
-
     before(:all) do
-      generate!(name)
+      @name = 'my-project'
+
+      generate!(@name)
     end
 
     it "should create the project root directory" do
-      @path.should be_directory
+      expect(@path).to be_directory
     end
 
     it "should create the lib/ directory" do
-      @path.should have_directory('lib')
+      expect(@path).to have_directory('lib')
     end
 
     it "should create a file to load the project within lib/" do
-      @path.should have_file('lib','my','project.rb')
+      expect(@path).to have_file('lib','my','project.rb')
     end
 
     it "should create a namespace directory within lib/" do
-      @path.should have_directory('lib','my','project')
+      expect(@path).to have_directory('lib','my','project')
     end
 
     it "should create a version.rb file within the namespace directory" do
-      @path.should have_file('lib','my','project','version.rb')
+      expect(@path).to have_file('lib','my','project','version.rb')
     end
 
     it "should not create the bin/ directory by default" do
-      @path.should_not have_directory('bin')
+      expect(@path).not_to have_directory('bin')
     end
 
     it "should create a test/ directory by default" do
-      @path.should_not have_directory('test')
+      expect(@path).not_to have_directory('test')
     end
 
     it "should add a *.gemspec file" do
-      @path.join("#{name}.gemspec").should be_file
+      expect(@path.join("#{@name}.gemspec")).to be_file
     end
 
     it "should add a .document file" do
-      @path.should have_file('.document')
+      expect(@path).to have_file('.document')
     end
 
     it "should add a Rakefile" do
-      @path.should have_file('Rakefile')
+      expect(@path).to have_file('Rakefile')
     end
 
     it "should add a README.rdoc file" do
-      @path.should have_file('README.rdoc')
+      expect(@path).to have_file('README.rdoc')
     end
 
     it "should add a ChangeLog.rdoc file" do
-      @path.should have_file('ChangeLog.rdoc')
+      expect(@path).to have_file('ChangeLog.rdoc')
     end
 
     it "should add a LICENSE.txt file" do
-      @path.should have_file('LICENSE.txt')
+      expect(@path).to have_file('LICENSE.txt')
     end
   end
 
   context "gemspec_yml" do
-    let(:name) { 'gemspec_yml_project' }
-
     before(:all) do
-      generate!(name, :gemspec_yml => true)
+      @name = 'gemspec_yml_project'
+
+      generate!(@name, :gemspec_yml => true)
     end
 
     it "should add a gemspec.yml file" do
-      @path.should have_file('gemspec.yml')
+      expect(@path).to have_file('gemspec.yml')
     end
 
     describe "gemspec.yml" do
       subject { YAML.load_file(@path.join('gemspec.yml')) }
 
       it "should have a name" do
-        subject['name'].should == name
+        expect(subject['name']).to eq(@name)
       end
 
       it "should not contain a version by default" do
-        subject.should_not have_key('version')
+        expect(subject).not_to have_key('version')
       end
 
       it "should a dummy summary" do
-        subject['summary'].should == Ore::Options::DEFAULT_SUMMARY
+        expect(subject['summary']).to eq(Ore::Options::DEFAULT_SUMMARY)
       end
 
       it "should a dummy description" do
-        subject['description'].should == Ore::Options::DEFAULT_DESCRIPTION
+        expect(subject['description']).to eq(Ore::Options::DEFAULT_DESCRIPTION)
       end
 
       it "should have a license" do
-        subject['license'].should == Ore::Options::DEFAULT_LICENSE
+        expect(subject['license']).to eq(Ore::Options::DEFAULT_LICENSE)
       end
 
       it "should have authors" do
-        subject['authors'].should_not be_empty
+        expect(subject['authors']).not_to be_empty
       end
 
       it "should have a dummy homepage" do
-        subject['homepage'].should_not be_empty
+        expect(subject['homepage']).not_to be_empty
       end
 
       it "should have 'rubygems-tasks' as a development dependency" do
-        subject['development_dependencies'].should have_key('rubygems-tasks')
+        expect(subject['development_dependencies']).to have_key('rubygems-tasks')
       end
     end
 
     it "should add a *.gemspec file" do
-      @path.should have_file("#{name}.gemspec")
+      expect(@path).to have_file("#{@name}.gemspec")
     end
 
     describe "*.gemspec file" do
@@ -125,18 +125,18 @@ describe Generator do
   end
 
   context "gemspec" do
-    let(:name) { 'gemspec_project' }
-
     before(:all) do
-      generate!(name, :gemspec => true)
+      @name = 'gemspec_project'
+
+      generate!(@name, :gemspec => true)
     end
 
     it "should disable the gemspec_yml template" do
-      @generator.disabled_templates.should include(:gemspec_yml)
+      expect(@generator.disabled_templates).to include(:gemspec_yml)
     end
 
     it "should add a *.gemspec file" do
-      @path.should have_file("#{name}.gemspec")
+      expect(@path).to have_file("#{@name}.gemspec")
     end
 
     context "*.gemspec file" do
@@ -145,82 +145,82 @@ describe Generator do
       it_should_behave_like "a gemspec"
 
       it "should have 'rubygems-tasks' as a development dependency" do
-        subject.should have_development_dependency('rubygems-tasks')
+        expect(subject).to have_development_dependency('rubygems-tasks')
       end
     end
   end
 
   context "git" do
-    let(:name)   { 'git-project'      }
-
     before(:all) do
-      generate!(name, :git => true)
+      @name = 'git-project'
+
+      generate!(@name, :git => true)
     end
 
     it "should create a .git directory" do
-      @path.should have_directory('.git')
+      expect(@path).to have_directory('.git')
     end
 
     it "should create a .gitignore file" do
-      @path.should have_file('.gitignore')
+      expect(@path).to have_file('.gitignore')
     end
   end
 
   context "hg" do
-    let(:name)   { 'hg-project'      }
-
     before(:all) do
-      generate!(name, :hg => true)
+      @name = 'hg-project'
+
+      generate!(@name, :hg => true)
     end
 
     it "should create a .hg directory" do
-      @path.should have_directory('.hg')
+      expect(@path).to have_directory('.hg')
     end
 
     it "should create a .hgignore file" do
-      @path.should have_file('.hgignore')
+      expect(@path).to have_file('.hgignore')
     end
   end
 
   context "bin" do
-    let(:name)   { 'script-project'      }
-    let(:script) { File.join('bin',name) }
-
     before(:all) do
-      generate!(name, :bin => true)
+      @name   = 'script-project'
+      @script = File.join('bin',@name)
+
+      generate!(@name, :bin => true)
     end
 
     it "should add a 'bin/' directory" do
-      @path.should have_directory('bin')
+      expect(@path).to have_directory('bin')
     end
 
     it "should add a bin/script-project file" do
-      @path.should have_file(script)
+      expect(@path).to have_file(@script)
     end
 
     it "should make the bin/script-project file executable" do
-      @path.should have_executable(script)
+      expect(@path).to have_executable(@script)
     end
   end
 
   context "bundler" do
-    let(:name) { 'bundled_project' }
-
     before(:all) do
-      generate!(name, :bundler => true)
+      @name = 'bundled_project'
+
+      generate!(@name, :bundler => true)
     end
 
     it "should add a Gemfile" do
-      @path.should have_file('Gemfile')
+      expect(@path).to have_file('Gemfile')
     end
 
     it "should add 'bundler' as a development dependency" do
-      @gemspec.should have_development_dependency('bundler')
+      expect(@gemspec).to have_development_dependency('bundler')
     end
 
     it "should not have any dependencies in the Gemfile" do
       gemfile = (@path + 'Gemfile').read
-      gemfile.should eq(<<-GEMFILE)
+      expect(gemfile).to eq(<<-GEMFILE)
 source 'https://rubygems.org'
 
 gemspec
@@ -228,331 +228,331 @@ gemspec
     end
 
     it "should add 'Gemfile.lock' to the .gitignore file" do
-      gitignore.should include('/Gemfile.lock')
+      expect(gitignore).to include('/Gemfile.lock')
     end
   end
 
   context "rdoc" do
-    let(:name) { 'rdoc-project' }
-
     before(:all) do
-      generate!(name, :rdoc => true)
+      @name = 'rdoc-project'
+
+      generate!(@name, :rdoc => true)
     end
 
     it "should disable the yard template" do
-      @generator.disabled_templates.should include(:yard)
+      expect(@generator.disabled_templates).to include(:yard)
     end
 
     it "should add 'rdoc' as a development dependency" do
-      @gemspec.should have_development_dependency('rdoc')
+      expect(@gemspec).to have_development_dependency('rdoc')
     end
 
     it "should set @markup to :rdoc" do
-      @generator.instance_variable_get('@markup').should == :rdoc
+      expect(@generator.instance_variable_get('@markup')).to eq(:rdoc)
     end
 
     it "should add 'html/' to the .gitignore file" do
-      gitignore.should include('/html/')
+      expect(gitignore).to include('/html/')
     end
 
     it "should add a '.document' file" do
-      @path.should have_file('.document')
+      expect(@path).to have_file('.document')
     end
 
     context ".document" do
       it "should include 'lib/**/*.rb'" do
-        document.should include('lib/**/*.rb')
+        expect(document).to include('lib/**/*.rb')
       end
 
       it "should include 'README.rdoc'" do
-        document.should include('README.rdoc')
+        expect(document).to include('README.rdoc')
       end
 
       it "should include 'ChangeLog.rdoc'" do
-        document.should include('ChangeLog.rdoc')
+        expect(document).to include('ChangeLog.rdoc')
       end
 
       it "should include 'LICENSE.txt'" do
-        document.should include('LICENSE.txt')
+        expect(document).to include('LICENSE.txt')
       end
     end
   end
 
   context "yard" do
-    let(:name) { 'yard-project' }
-
     before(:all) do
-      generate!(name, :yard => true)
+      @name = 'yard-project'
+
+      generate!(@name, :yard => true)
     end
 
     it "should disable the rdoc template" do
-      @generator.disabled_templates.should include(:rdoc)
+      expect(@generator.disabled_templates).to include(:rdoc)
     end
 
     it "should add a .yardopts file" do
-      @path.should have_file('.yardopts')
+      expect(@path).to have_file('.yardopts')
     end
 
     it "should add a '.document' file" do
-      @path.should have_file('.document')
+      expect(@path).to have_file('.document')
     end
 
     it "should add 'yard' as a development dependency" do
-      @gemspec.should have_development_dependency('yard')
+      expect(@gemspec).to have_development_dependency('yard')
     end
 
     context ".document" do
       it "should not include 'lib/**/*.rb'" do
-        document.should_not include('lib/**/*.rb')
+        expect(document).not_to include('lib/**/*.rb')
       end
 
       it "should include a '-' separator for non-code files" do
-        document.should include('-')
+        expect(document).to include('-')
       end
 
       it "should not include 'README.rdoc'" do
-        document.should_not include('README.rdoc')
+        expect(document).not_to include('README.rdoc')
       end
 
       it "should include 'ChangeLog.rdoc'" do
-        document.should include('ChangeLog.rdoc')
+        expect(document).to include('ChangeLog.rdoc')
       end
 
       it "should include 'LICENSE.txt'" do
-        document.should include('LICENSE.txt')
+        expect(document).to include('LICENSE.txt')
       end
     end
   end
 
   context "yard with markdown" do
-    let(:name) { 'yard_markdown-project' }
-
     before(:all) do
-      generate!(name, :yard => true, :markdown => true)
+      @name = 'yard_markdown-project'
+
+      generate!(@name, :yard => true, :markdown => true)
     end
 
     it "should add a README.md file" do
-      @path.should have_file('README.md')
+      expect(@path).to have_file('README.md')
     end
 
     it "should add a ChangeLog.md file" do
-      @path.should have_file('ChangeLog.md')
+      expect(@path).to have_file('ChangeLog.md')
     end
 
     it "should set --markup to markdown in .yardopts" do
-      yard_opts.should include('--markup markdown')
+      expect(yard_opts).to include('--markup markdown')
     end
 
     context ".document" do
       it "should include 'ChangeLog.md'" do
-        document.should include('ChangeLog.md')
+        expect(document).to include('ChangeLog.md')
       end
     end
   end
 
   context "yard with textile" do
-    let(:name) { 'yard_textile-project' }
-
     before(:all) do
-      generate!(name, :yard => true, :textile => true)
+      @name = 'yard_textile-project'
+
+      generate!(@name, :yard => true, :textile => true)
     end
 
     it "should add a README.tt file" do
-      @path.should have_file('README.tt')
+      expect(@path).to have_file('README.tt')
     end
 
     it "should add a ChangeLog.tt file" do
-      @path.should have_file('ChangeLog.tt')
+      expect(@path).to have_file('ChangeLog.tt')
     end
 
     it "should set --markup to textile in .yardopts" do
-      yard_opts.should include('--markup textile')
+      expect(yard_opts).to include('--markup textile')
     end
 
     context ".document" do
       it "should include 'ChangeLog.tt'" do
-        document.should include('ChangeLog.tt')
+        expect(document).to include('ChangeLog.tt')
       end
     end
   end
 
   context "yard with bundler" do
-    let(:name) { 'bundled_yard_project' }
-
     before(:all) do
-      generate!(name, :bundler => true, :yard => true)
+      @name = 'bundled_yard_project'
+
+      generate!(@name, :bundler => true, :yard => true)
     end
 
     it "should still add 'yard' as a development dependency" do
-      @gemspec.should have_development_dependency('yard')
+      expect(@gemspec).to have_development_dependency('yard')
     end
   end
 
   context "test_unit" do
-    let(:name) { 'test_unit_project' }
-
     before(:all) do
-      generate!(name, :test_unit => true)
+      @name = 'test_unit_project'
+
+      generate!(@name, :test_unit => true)
     end
 
     it "should disable the minitest template" do
-      @generator.disabled_templates.should include(:minitest)
+      expect(@generator.disabled_templates).to include(:minitest)
     end
 
     it "should disable the rspec template" do
-      @generator.disabled_templates.should include(:rspec)
+      expect(@generator.disabled_templates).to include(:rspec)
     end
 
     it "should create the test/ directory" do
-      @path.should have_directory('test')
+      expect(@path).to have_directory('test')
     end
 
     it "should create the test/helper.rb file" do
-      @path.should have_file('test','helper.rb')
+      expect(@path).to have_file('test','helper.rb')
     end
 
     it "should add a single test_*.rb file" do
-      @path.should have_file('test',"test_#{name}.rb")
+      expect(@path).to have_file('test',"test_#{@name}.rb")
     end
   end
 
   context "minitest" do
-    let(:name) { 'minitest_project' }
-
     before(:all) do
-      generate!(name, :minitest => true)
+      @name = 'minitest_project'
+
+      generate!(@name, :minitest => true)
     end
 
     it "should disable the test_unit template" do
-      @generator.disabled_templates.should include(:test_unit)
+      expect(@generator.disabled_templates).to include(:test_unit)
     end
 
     it "should disable the rspec template" do
-      @generator.disabled_templates.should include(:rspec)
+      expect(@generator.disabled_templates).to include(:rspec)
     end
 
     it "should create the test/ directory" do
-      @path.should have_directory('test')
+      expect(@path).to have_directory('test')
     end
 
     it "should create the test/helper.rb file" do
-      @path.should have_file('test','helper.rb')
+      expect(@path).to have_file('test','helper.rb')
     end
 
     it "should add a single test_*.rb file" do
-      @path.should have_file('test',"test_#{name}.rb")
+      expect(@path).to have_file('test',"test_#{@name}.rb")
     end
   end
 
   context "rspec" do
-    let(:name) { 'rspec_project' }
-
     before(:all) do
-      generate!(name, :rspec => true)
+      @name = 'rspec_project'
+
+      generate!(@name, :rspec => true)
     end
 
     it "should disable the test_unit template" do
-      @generator.disabled_templates.should include(:test_unit)
+      expect(@generator.disabled_templates).to include(:test_unit)
     end
 
     it "should disable the minitest template" do
-      @generator.disabled_templates.should include(:minitest)
+      expect(@generator.disabled_templates).to include(:minitest)
     end
 
     it "should not create the test/ directory" do
-      @path.should_not have_directory('test')
+      expect(@path).not_to have_directory('test')
     end
 
     it "should create the spec/ directory" do
-      @path.should have_directory('spec')
+      expect(@path).to have_directory('spec')
     end
 
     it "should add a spec_helper.rb file" do
-      @path.should have_file('spec','spec_helper.rb')
+      expect(@path).to have_file('spec','spec_helper.rb')
     end
 
     it "should add a single *_spec.rb file" do
-      @path.should have_file('spec','rspec_project_spec.rb')
+      expect(@path).to have_file('spec','rspec_project_spec.rb')
     end
 
     it "should add a .rspec file" do
-      @path.should have_file('.rspec')
+      expect(@path).to have_file('.rspec')
     end
 
     it "should add 'rspec' as a development dependency" do
-      @gemspec.should have_development_dependency('rspec')
+      expect(@gemspec).to have_development_dependency('rspec')
     end
   end
 
   context "rspec with bundler" do
-    let(:name) { 'bundled_rspec_project' }
-
     before(:all) do
-      generate!(name, :bundler => true, :rspec => true)
+      @name = 'bundled_rspec_project'
+
+      generate!(@name, :bundler => true, :rspec => true)
     end
 
     it "should add 'rspec' as a development dependency" do
-      @gemspec.should have_development_dependency('rspec')
+      expect(@gemspec).to have_development_dependency('rspec')
     end
   end
 
   context "rubygems-tasks" do
-    let(:name) { 'rubygems_tasks_project' }
-
     before(:all) do
-      generate!(name, :rubygems_tasks => true)
+      @name = 'rubygems_tasks_project'
+
+      generate!(@name, :rubygems_tasks => true)
     end
 
     it "should disable the bundler_tasks template" do
-      @generator.disabled_templates.should include(:bundler_tasks)
+      expect(@generator.disabled_templates).to include(:bundler_tasks)
     end
 
     it "should add 'rubygems-tasks' as a development dependency" do
-      @gemspec.should have_development_dependency('rubygems-tasks')
+      expect(@gemspec).to have_development_dependency('rubygems-tasks')
     end
   end
 
   context "rubygems-tasks with bundler" do
-    let(:name) { 'bundled_ore_project' }
-
     before(:all) do
-      generate!(name, :bundler => true, :rubygems_tasks => true)
+      @name = 'bundled_ore_project'
+
+      generate!(@name, :bundler => true, :rubygems_tasks => true)
     end
 
     it "should add 'rubygems-tasks' as a development dependency" do
-      @gemspec.should have_development_dependency('rubygems-tasks')
+      expect(@gemspec).to have_development_dependency('rubygems-tasks')
     end
   end
 
   context "bundler_tasks" do
-    let(:name) { 'bundler_tasks_project' }
-
     before(:all) do
-      generate!(name, :bundler_tasks => true)
+      @name = 'bundler_tasks_project'
+
+      generate!(@name, :bundler_tasks => true)
     end
 
     it "should disable the rubygems_tasks template" do
-      @generator.disabled_templates.should include(:rubygems_tasks)
+      expect(@generator.disabled_templates).to include(:rubygems_tasks)
     end
 
     it "should enable the bundler template" do
-      @generator.enabled_templates.should include(:bundler)
+      expect(@generator.enabled_templates).to include(:bundler)
     end
   end
 
   context "gem_package_task" do
-    let(:name) { 'gem_package_task_project' }
-
     before(:all) do
-      generate!(name, :gem_package_task => true)
+      @name = 'gem_package_task_project'
+
+      generate!(@name, :gem_package_task => true)
     end
 
     it "should disable the rubygems_tasks template" do
-      @generator.disabled_templates.should include(:rubygems_tasks)
+      expect(@generator.disabled_templates).to include(:rubygems_tasks)
     end
 
     it "should disable the bundler_tasks template" do
-      @generator.disabled_templates.should include(:bundler_tasks)
+      expect(@generator.disabled_templates).to include(:bundler_tasks)
     end
   end
 

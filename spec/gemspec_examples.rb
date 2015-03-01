@@ -4,30 +4,30 @@ require 'ore/options'
 
 shared_examples "a gemspec" do
   it "should have a name" do
-    subject.name.should == name
+    expect(subject.name).to eq(@name)
   end
 
   it "should not contain a version by default" do
-    subject.version.version.should == Ore::Options::DEFAULT_VERSION
+    expect(subject.version.version).to eq(Ore::Options::DEFAULT_VERSION)
   end
 
   it "should a dummy summary" do
-    subject.summary.should == Ore::Options::DEFAULT_SUMMARY
+    expect(subject.summary).to eq(Ore::Options::DEFAULT_SUMMARY)
   end
 
   it "should a dummy description" do
-    subject.description.should == Ore::Options::DEFAULT_DESCRIPTION
+    expect(subject.description).to eq(Ore::Options::DEFAULT_DESCRIPTION)
   end
 
   it "should have a license" do
-    subject.license.should == Ore::Options::DEFAULT_LICENSE
+    expect(subject.license).to eq(Ore::Options::DEFAULT_LICENSE)
   end
 
   it "should have authors" do
-    subject.authors.should_not be_empty
+    expect(subject.authors).not_to be_empty
   end
 
   it "should have a dummy homepage" do
-    subject.homepage.should_not be_empty
+    expect(subject.homepage).not_to be_empty
   end
 end
