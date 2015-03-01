@@ -228,7 +228,7 @@ gemspec
     end
 
     it "should add 'Gemfile.lock' to the .gitignore file" do
-      gitignore.should include('Gemfile.lock')
+      gitignore.should include('/Gemfile.lock')
     end
   end
 
@@ -252,7 +252,7 @@ gemspec
     end
 
     it "should add 'html/' to the .gitignore file" do
-      gitignore.should include('html/')
+      gitignore.should include('/html/')
     end
 
     it "should add a '.document' file" do
