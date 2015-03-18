@@ -29,12 +29,12 @@ Gem::Specification.new do |gem|
 <%- unless @dependencies.empty? -%>
 
 <%-   @dependencies.sort.each do |name,version| -%>
-  gem.add_dependency '<%= name %>', '<%= version %>'
+  gem.add_dependency '<%= name %>', <%= version.inspect %>
 <%-   end -%>
 <%- end -%>
 
 <%- unless @development_dependencies.empty? -%>
 <%-   @development_dependencies.sort.each do |name,version| -%>
-  gem.add_development_dependency '<%= name%>', '<%= version %>'
+  gem.add_development_dependency '<%= name%>', <%= version.inspect %>
 <%-   end -%>
 <%- end -%>end
