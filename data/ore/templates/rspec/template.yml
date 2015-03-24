@@ -3,4 +3,4 @@ disable:
   - minitest
 
 development_dependencies:
-  rspec: ~> 2.4
+  rspec: ~> 3.2
