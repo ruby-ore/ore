@@ -265,6 +265,8 @@ module Ore
                              else                         [:rdoc, 'rdoc']
                              end
 
+      extend Template::Helpers::MARKUP.fetch(@markup)
+
       @date  = Date.today
       @year  = @date.year
       @month = @date.month

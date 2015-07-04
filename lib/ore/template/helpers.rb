@@ -1,9 +1,20 @@
+require 'ore/template/helpers/markdown'
+require 'ore/template/helpers/textile'
+require 'ore/template/helpers/rdoc'
+
 module Ore
   module Template
     #
     # Helper methods that can be used within ERb templates.
     #
     module Helpers
+      # Markup helpers
+      MARKUP = {
+        :markdown => Markdown,
+        :textile  => TexTile,
+        :rdoc     => RDoc
+      }
+
       #
       # Renders all include files with the given name.
       #
