@@ -33,7 +33,7 @@ module Ore
     IGNORE_NAMESPACES = %w[core ruby rb java]
 
     # Common acronyms used in namespaces
-    NAMESPACE_ACRONYMS = %w[
+    NAMESPACE_ABBREVIATIONS = %w[
       ffi yard i18n
       http https ftp smtp imap pop3 ssh ssl tcp udp dns rpc
       url uri www css html xhtml xml xsl json yaml csv
@@ -81,7 +81,7 @@ module Ore
     def module_of(word)
       if COMMON_NAMESPACES.has_key?(word)
         COMMON_NAMESPACES[word]
-      elsif NAMESPACE_ACRONYMS.include?(word)
+      elsif NAMESPACE_ABBREVIATIONS.include?(word)
         word.upcase
       else
         word.capitalize
