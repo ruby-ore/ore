@@ -80,30 +80,7 @@ module Ore
 
       generate_directories!
       generate_files!
-
-      in_root do
-        case @scm
-        when :git
-          unless File.directory?('.git')
-            run 'git init'
-            run 'git add .'
-            run 'git commit -m "Initial commit."'
-          end
-        when :hg
-          unless File.directory?('.hg')
-            run 'hg init'
-            run 'hg add .'
-            run 'hg commit -m "Initial commit."'
-          end
-        when :svn
-          @ignore.each do |pattern|
-            run "svn propset svn:ignore #{pattern.dump}"
-          end
-
-          run 'svn add .'
-          run 'svn commit -m "Initial commit."'
-        end
-      end
+      initialize_scm!
     end
 
     protected
@@ -325,6 +302,37 @@ module Ore
 
         if dir == 'bin'
           chmod path, 0755
+        end
+      end
+    end
+
+    #
+    # Initializes the project repository and commits all files.
+    #
+    # @since 0.10.0
+    #
+    def initialize_scm!
+      in_root do
+        case @scm
+        when :git
+          unless File.directory?('.git')
+            run 'git init'
+            run 'git add .'
+            run 'git commit -m "Initial commit."'
+          end
+        when :hg
+          unless File.directory?('.hg')
+            run 'hg init'
+            run 'hg add .'
+            run 'hg commit -m "Initial commit."'
+          end
+        when :svn
+          @ignore.each do |pattern|
+            run "svn propset svn:ignore #{pattern.dump}"
+          end
+
+          run 'svn add .'
+          run 'svn commit -m "Initial commit."'
         end
       end
     end
