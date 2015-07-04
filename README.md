@@ -60,7 +60,7 @@ Ore supports generating [RSpec][rspec], [Minitest][minitest] or
 
 ### TravisCI
 
-Ore supports generating `.travis.yml` files for you.
+Ore supports generating [`.travis.yml`][travis.yml] files for you.
 
     $ mine my-project --travis
 
@@ -147,3 +147,4 @@ See {file:LICENSE.txt} for license information.
 [rspec]: http://rspec.info/
 [test_unit]: http://test-unit.rubyforge.org/
 [minitest]: https://github.com/seattlerb/minitest#readme
+[travis.yml]: http://docs.travis-ci.com/user/languages/ruby/
