@@ -18,6 +18,9 @@ module Ore
     # The `data/ore` directory for Ore
     DATA_DIR = File.expand_path(File.join('..','..','data','ore'),File.dirname(__FILE__))
 
+    # The `data/ore/templates` directory for Ore
+    BUILTIN_TEMPLATES_DIR = File.join(DATA_DIR,'templates')
+
     # Specifies whether user settings will be loaded
     @@enabled = true
 
@@ -79,10 +82,8 @@ module Ore
     #   The path of a Ore template directory.
     #
     def Config.builtin_templates
-      path = File.join(DATA_DIR,'templates')
-
-      if File.directory?(path)
-        Dir.glob("#{path}/*") do |template|
+      if File.directory?(BUILTIN_TEMPLATES_DIR)
+        Dir.glob("#{BUILTIN_TEMPLATES_DIR}/*") do |template|
           yield template if File.directory?(template)
         end
       end
