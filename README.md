@@ -58,6 +58,12 @@ Ore supports generating [RSpec][rspec], [Minitest][minitest] or
 
     $ mine my-project [--test-unit | --minitest | --rspec]
 
+### Licenses
+
+Ore supports generating MIT (default), BSD, GPL and LGPL licenses.
+
+    $ mine my-project [--mit | --bsd | --gpl | --lgpl]
+
 ### Custom Templates
 
 Additional templates can also be installed from Git:
