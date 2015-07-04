@@ -1,3 +1,5 @@
+require 'ore/config'
+
 module Ore
   #
   # Provides methods for guessing the namespaces and directories
@@ -42,15 +44,7 @@ module Ore
     ]
 
     # Common project prefixes and namespaces
-    COMMON_NAMESPACES = {
-      'rubygems' => 'Gem',
-      'ar'       => 'ActiveRecord',
-      'dm'       => 'DataMapper',
-      'js'       => 'JavaScript',
-      'msgpack'  => 'MsgPack',
-      'github'   => 'GitHub',
-      'rdoc'     => 'RDoc'
-    }
+    COMMON_NAMESPACES = YAML.load_file(File.join(Config::DATA_DIR,'namespaces.yml'))
 
     #
     # Splits the project name into individual names.
