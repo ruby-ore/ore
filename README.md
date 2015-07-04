@@ -7,9 +7,8 @@
 
 ## Description
 
-Ore is a flexible Ruby project generator. Unlike other Ruby project
-generators, Ore provides many builtin templates and allows custom
-templates to be installed from Git repositories.
+Ore is a fully configurable and extendable Ruby gem generator. With Ore you
+spend less time editing files, and more time writing code.
 
 ## Features
 
