@@ -58,6 +58,12 @@ Ore supports generating [RSpec][rspec], [Minitest][minitest] or
 
     $ mine my-project [--test-unit | --minitest | --rspec]
 
+### TravisCI
+
+Ore supports generating `.travis.yml` files for you.
+
+    $ mine my-project --travis
+
 ### Licenses
 
 Ore supports generating MIT (default), BSD, GPL and LGPL licenses.
