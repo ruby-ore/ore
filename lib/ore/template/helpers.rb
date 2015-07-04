@@ -4,8 +4,6 @@ module Ore
     # Helper methods that can be used within ERb templates.
     #
     module Helpers
-      protected
-
       #
       # Renders all include files with the given name.
       #
