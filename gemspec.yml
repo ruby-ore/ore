@@ -1,5 +1,5 @@
 name: ore
-summary: Mine beautiful RubyGems from Ore
+summary: Generate perfect Ruby gems
 description:
   Ore is a fully configurable and extendable Ruby gem generator. With Ore you
   spend less time editing files, and more time writing code.
