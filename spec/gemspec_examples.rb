@@ -20,7 +20,7 @@ shared_examples "a gemspec" do
   end
 
   it "should have a license" do
-    expect(subject.license).to eq(Ore::Options::DEFAULT_LICENSE)
+    expect(subject.license).to be == 'MIT'
   end
 
   it "should have authors" do

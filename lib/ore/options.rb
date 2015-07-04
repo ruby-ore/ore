@@ -17,9 +17,6 @@ module Ore
     # Default description
     DEFAULT_DESCRIPTION = %q{TODO: Description}
 
-    # Default License
-    DEFAULT_LICENSE = 'MIT'
-
     def self.included(base)
       base.extend ClassMethods
     end
@@ -36,7 +33,7 @@ module Ore
         :version        => DEFAULT_VERSION,
         :summary        => DEFAULT_SUMMARY,
         :description    => DEFAULT_DESCRIPTION,
-        :license        => DEFAULT_LICENSE,
+        :mit            => true,
         :gemspec        => true,
         :rubygems_tasks => true,
         :rdoc           => true,

@@ -1,2 +1,5 @@
 disable:
   - mit
+
+variables:
+  license: BSD

@@ -60,7 +60,6 @@ module Ore
     generator_option :email, :type => :string, :aliases => '-e'
     generator_option :homepage, :type => :string, :aliases => '-U'
     generator_option :bug_tracker, :type => :string, :aliases => '-B'
-    generator_option :license, :aliases => '-L'
 
     argument :path, :required => true
 
@@ -241,7 +240,6 @@ module Ore
       @version     = options.version
       @summary     = options.summary
       @description = options.description
-      @license     = options.license
 
       @authors     = (options.authors || [@scm_user || ENV['USER']])
       @author      = @authors.first
