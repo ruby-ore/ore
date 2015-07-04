@@ -72,6 +72,8 @@ module Ore
       enable_templates!
       initialize_variables!
 
+      extend Template::Helpers::MARKUP.fetch(@markup)
+
       unless options.quiet?
         say "Generating #{self.destination_root}", :green
       end
@@ -264,8 +266,6 @@ module Ore
                              elsif options.textile?  then [:textile, 'tt']
                              else                         [:rdoc, 'rdoc']
                              end
-
-      extend Template::Helpers::MARKUP.fetch(@markup)
 
       @date  = Date.today
       @year  = @date.year
