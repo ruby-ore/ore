@@ -31,3 +31,6 @@
 [submodule "data/ore/templates/gpl"]
 	path = data/ore/templates/gpl
 	url = https://github.com/ruby-ore/gpl.git
+[submodule "data/ore/templates/lgpl"]
+	path = data/ore/templates/lgpl
+	url = https://github.com/ruby-ore/lgpl.git

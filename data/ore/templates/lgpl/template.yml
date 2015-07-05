@@ -1,5 +1,0 @@
-disable:
-  - mit
-
-variables:
-  license: LGPL
