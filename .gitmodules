@@ -13,3 +13,6 @@
 [submodule "data/ore/templates/yard"]
 	path = data/ore/templates/yard
 	url = https://github.com/ruby-ore/yard.git
+[submodule "data/ore/templates/rdoc"]
+	path = data/ore/templates/rdoc
+	url = https://github.com/ruby-ore/rdoc.git
