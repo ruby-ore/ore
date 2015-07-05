@@ -1,3 +1,6 @@
 [submodule "data/ore/templates/gemspec_yml"]
 	path = data/ore/templates/gemspec_yml
 	url = https://github.com/ruby-ore/gemspec_yml.git
+[submodule "data/ore/templates/bundler"]
+	path = data/ore/templates/bundler
+	url = https://github.com/ruby-ore/bundler.git
