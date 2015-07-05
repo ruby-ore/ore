@@ -16,3 +16,6 @@
 [submodule "data/ore/templates/rdoc"]
 	path = data/ore/templates/rdoc
 	url = https://github.com/ruby-ore/rdoc.git
+[submodule "data/ore/templates/rubygems_tasks"]
+	path = data/ore/templates/rubygems_tasks
+	url = https://github.com/ruby-ore/rubygems-tasks.git
