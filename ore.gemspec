@@ -24,6 +24,17 @@ Gem::Specification.new do |gem|
   glob = lambda { |patterns| gem.files & Dir[*patterns] }
 
   gem.files = `git ls-files`.split($/)
+
+  `git submodule status --recursive`.each_line do |line|
+    submodule = line.strip.split[1..-2].join(' ')
+
+    Dir.chdir(submodule) do
+      gem.files += `git ls-files`.split($/).map { |subpath|
+        File.join(submodule,subpath)
+      }
+    end
+  end
+
   gem.files = glob[gemspec['files']] if gemspec['files']
 
   gem.executables = gemspec.fetch('executables') do
