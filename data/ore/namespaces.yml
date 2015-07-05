@@ -1,0 +1,12 @@
+---
+rubygems:     Gem
+ar:           ActiveRecord
+activerecord: ActiveRecord
+dm:           DataMapper
+ffi:          FFI
+js:           JavaScript
+msgpack:      MsgPack
+github:       GitHub
+rdoc:         RDoc
+rspec:        RSpec
+yard:         YARD
