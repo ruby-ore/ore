@@ -44,7 +44,7 @@ module Ore
     ]
 
     # Common project prefixes and namespaces
-    COMMON_NAMESPACES = YAML.load_file(File.join(Config::DATA_DIR,'namespaces.yml'))
+    COMMON_NAMESPACES = YAML.load_file(File.join(Config::DATA_DIR,'common_namespaces.yml'))
 
     #
     # Splits the project name into individual names.
