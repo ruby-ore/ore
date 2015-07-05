@@ -10,3 +10,6 @@
 [submodule "data/ore/templates/minitest"]
 	path = data/ore/templates/minitest
 	url = https://github.com/ruby-ore/minitest.git
+[submodule "data/ore/templates/yard"]
+	path = data/ore/templates/yard
+	url = https://github.com/ruby-ore/yard.git
