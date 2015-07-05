@@ -7,3 +7,6 @@
 [submodule "data/ore/templates/rspec"]
 	path = data/ore/templates/rspec
 	url = https://github.com/ruby-ore/rspec.git
+[submodule "data/ore/templates/minitest"]
+	path = data/ore/templates/minitest
+	url = https://github.com/ruby-ore/minitest.git
