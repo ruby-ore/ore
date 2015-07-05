@@ -29,9 +29,9 @@ Gem::Specification.new do |gem|
     submodule = line.strip.split[1..-2].join(' ')
 
     Dir.chdir(submodule) do
-      gem.files += `git ls-files`.split($/).map { |subpath|
-        File.join(submodule,subpath)
-      }
+      `git ls-files`.split($/).each do |subpath|
+        gem.files << File.join(submodule,subpath)
+      end
     end
   end
 
