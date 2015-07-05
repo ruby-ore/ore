@@ -232,7 +232,7 @@ module Ore
       #   The indentation string.
       #
       def indent(n,spaces=2)
-        (' ' * spaces) * n
+        ' ' * (spaces * n)
       end
 
       #
