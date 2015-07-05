@@ -28,3 +28,6 @@
 [submodule "data/ore/templates/bsd"]
 	path = data/ore/templates/bsd
 	url = https://github.com/ruby-ore/bsd.git
+[submodule "data/ore/templates/gpl"]
+	path = data/ore/templates/gpl
+	url = https://github.com/ruby-ore/gpl.git
