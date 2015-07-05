@@ -131,10 +131,6 @@ describe Generator do
       generate!(@name, :gemspec => true)
     end
 
-    it "should disable the gemspec_yml template" do
-      expect(@generator.disabled_templates).to include(:gemspec_yml)
-    end
-
     it "should add a *.gemspec file" do
       expect(@path).to have_file("#{@name}.gemspec")
     end

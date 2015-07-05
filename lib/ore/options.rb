@@ -34,7 +34,6 @@ module Ore
         :summary        => DEFAULT_SUMMARY,
         :description    => DEFAULT_DESCRIPTION,
         :mit            => true,
-        :gemspec        => true,
         :rubygems_tasks => true,
         :rdoc           => true,
         :rspec          => true,
