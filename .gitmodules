@@ -22,3 +22,6 @@
 [submodule "data/ore/templates/test_unit"]
 	path = data/ore/templates/test_unit
 	url = https://github.com/ruby-ore/test_unit.git
+[submodule "data/ore/templates/travis"]
+	path = data/ore/templates/travis
+	url = https://github.com/ruby-ore/travis.git
