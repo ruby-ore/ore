@@ -4,3 +4,6 @@
 [submodule "data/ore/templates/bundler"]
 	path = data/ore/templates/bundler
 	url = https://github.com/ruby-ore/bundler.git
+[submodule "data/ore/templates/rspec"]
+	path = data/ore/templates/rspec
+	url = https://github.com/ruby-ore/rspec.git

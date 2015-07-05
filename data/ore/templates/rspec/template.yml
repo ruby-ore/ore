@@ -1,6 +1,0 @@
-disable:
-  - test_unit
-  - minitest
-
-development_dependencies:
-  rspec: ~> 2.4
