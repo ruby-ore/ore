@@ -25,3 +25,6 @@
 [submodule "data/ore/templates/travis"]
 	path = data/ore/templates/travis
 	url = https://github.com/ruby-ore/travis.git
+[submodule "data/ore/templates/bsd"]
+	path = data/ore/templates/bsd
+	url = https://github.com/ruby-ore/bsd.git
