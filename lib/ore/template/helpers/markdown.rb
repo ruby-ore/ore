@@ -86,7 +86,7 @@ module Ore
         # @return [String]
         #
         def pre
-          yield.each_line.map { |line| "    #{line}" }.join($/)
+          yield.each_line.map { |line| "    #{line}" }.join
         end
       end
     end
