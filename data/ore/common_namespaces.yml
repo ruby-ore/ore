@@ -2,6 +2,7 @@
 activerecord: ActiveRecord
 ar:           ActiveRecord
 dm:           DataMapper
+em:           EM
 ffi:          FFI
 github:       GitHub
 js:           JavaScript
