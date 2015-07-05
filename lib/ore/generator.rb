@@ -51,6 +51,7 @@ module Ore
                                  :aliases => '-T',
                                  :banner => 'TEMPLATE [...]'
     generator_option :name, :type => :string, :aliases => '-n'
+    generator_option :namespace, :type => :string, :aliases => '-N'
     generator_option :version, :type => :string, :aliases => '-V'
     generator_option :summary, :aliases => '-s'
     generator_option :description, :aliases => '-D'
@@ -211,7 +212,7 @@ module Ore
       @module_depth = @modules.length
       @module       = @modules.last
 
-      @namespace      = namespace_of(@name)
+      @namespace      = options.namespace || namespace_of(@name)
       @namespace_dirs = namespace_dirs_of(@name)
       @namespace_path = namespace_path_of(@name)
       @namespace_dir  = @namespace_dirs.last
