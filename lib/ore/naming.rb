@@ -35,13 +35,10 @@ module Ore
     IGNORE_NAMESPACES = %w[core ruby rb java]
 
     # Common abbrevations used in namespaces
-    NAMESPACE_ABBREVIATIONS = %w[
-      ffi yard i18n
-      http https ftp smtp imap pop3 ssh ssl tcp udp dns rpc
-      url uri www css html xhtml xml xsl json yaml csv
-      posix unix bsd
-      cpp asm
-    ]
+    COMMON_ABBREVIATIONS = Hash[File.readlines(File.join(Config::DATA_DIR,'abbreviations.txt')).map { |abbrev|
+      abbrev.chomp!
+      [abbrev.downcase, abbrev]
+    }]
 
     # Common project prefixes and namespaces
     COMMON_NAMESPACES = YAML.load_file(File.join(Config::DATA_DIR,'common_namespaces.yml'))
@@ -75,8 +72,8 @@ module Ore
     def module_of(word)
       if COMMON_NAMESPACES.has_key?(word)
         COMMON_NAMESPACES[word]
-      elsif NAMESPACE_ABBREVIATIONS.include?(word)
-        word.upcase
+      elsif COMMON_ABBREVIATIONS.has_key?(word)
+        COMMON_ABBREVIATIONS[word]
       else
         word.capitalize
       end
