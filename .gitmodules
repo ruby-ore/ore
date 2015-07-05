@@ -37,3 +37,6 @@
 [submodule "data/ore/templates/hg"]
 	path = data/ore/templates/hg
 	url = https://github.com/ruby-ore/hg.git
+[submodule "data/ore/templates/git"]
+	path = data/ore/templates/git
+	url = https://github.com/ruby-ore/git.git
