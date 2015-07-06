@@ -24,6 +24,8 @@ post_install_message: |
   
   **************************************************************************
 
+required_ruby_version: ">= 1.9.1"
+
 dependencies:
   thor: ~> 0.15
 

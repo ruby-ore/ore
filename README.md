@@ -78,7 +78,8 @@ Additional templates can also be installed from Git:
 
 ## Requirements
 
-* [thor](https://github.com/wycats/thor#readme) ~> 0.15
+* [ruby] >= 1.9.1
+* [thor] ~> 0.15
 
 ## Install
 
@@ -147,3 +148,6 @@ See {file:LICENSE.txt} for license information.
 [test_unit]: http://test-unit.rubyforge.org/
 [minitest]: https://github.com/seattlerb/minitest#readme
 [travis.yml]: http://docs.travis-ci.com/user/languages/ruby/
+
+[ruby]: https://www.ruby-lang.org/
+[thor]: https://github.com/wycats/thor#readme
