@@ -10,6 +10,10 @@ h1. <%= @name %>
 <%- if @safe_email -%>
 * "Email":mailto:<%= @safe_email %>
 <%- end -%>
+<%- includes(:badges,'') do |badges| -%>
+
+<%= badges -%>
+<%- end -%>
 
 h2. Description
 
