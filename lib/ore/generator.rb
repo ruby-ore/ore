@@ -59,7 +59,7 @@ module Ore
                                :aliases => '-a',
                                :banner => 'NAME [...]'
     generator_option :email, :type => :string, :aliases => '-e'
-    generator_option :homepage, :type => :string, :aliases => '-U'
+    generator_option :homepage, :type => :string, :aliases => %w[-U --website]
     generator_option :bug_tracker, :type => :string, :aliases => '-B'
 
     argument :path, :required => true
