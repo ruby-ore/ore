@@ -43,3 +43,6 @@
 [submodule "data/ore/templates/apache"]
 	path = data/ore/templates/apache
 	url = https://github.com/ruby-ore/apache.git
+[submodule "data/ore/templates/gem_package_task"]
+	path = data/ore/templates/gem_package_task
+	url = https://github.com/ruby-ore/gem_package_task.git
