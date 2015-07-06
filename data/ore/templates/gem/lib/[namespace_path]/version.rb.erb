@@ -1,3 +1,7 @@
+<%- includes(:copyright,'') do |copyright| -%>
+<%= copyright -%>
+
+<%- end -%>
 <%- @modules.each_with_index do |namespace,n| -%>
 <%= indent(n) %>module <%= namespace %>
 <%- end -%>
