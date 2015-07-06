@@ -252,7 +252,7 @@ module Ore
       @authors     = if options.author || options.author
                        [*options.author, *options.authors]
                      else
-                       [@scm_user]
+                       [@scm_user.capitalize]
                      end
       @author      = @authors.first
 
