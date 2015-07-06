@@ -80,13 +80,15 @@ module Ore
         #
         # Emits a markdown code block.
         #
+        # @param [String] code
+        #
         # @yield []
         #   The return value of the given block will be used as the code.
         #
         # @return [String]
         #
-        def pre
-          yield.each_line.map { |line| "    #{line}" }.join
+        def pre(code)
+          code.each_line.map { |line| "    #{line}" }.join
         end
       end
     end

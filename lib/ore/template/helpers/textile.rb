@@ -84,18 +84,18 @@ module Ore
         #
         # Emits a TexTile code block.
         #
+        # @param [String] code
+        #
         # @yield []
         #   The return value of the given block will be used as the code.
         #
         # @return [String]
         #
-        def pre
-          text = yield
-
-          if text =~ /#{$/}\s*#{$/}/
-            "bc.. #{text}"
+        def pre(code)
+          if code =~ /#{$/}\s*#{$/}/
+            "bc.. #{code}"
           else
-            "bc. #{text}"
+            "bc. #{code}"
           end
         end
       end
