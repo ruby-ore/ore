@@ -22,6 +22,10 @@ module Helpers
       end
     end
 
+    def rakefile
+      @path.join('Rakefile').read
+    end
+
     def rspec_opts
       @path.join('.rspec').read
     end

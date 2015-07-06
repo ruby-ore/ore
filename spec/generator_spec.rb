@@ -528,8 +528,6 @@ gemspec
     end
 
     it "should add \"require 'bundler/gem_tasks'\" to the Rakefile" do
-      rakefile = File.read(@path.join('Rakefile'))
-
       expect(rakefile).to include("require 'bundler/gem_tasks'")
     end
   end
