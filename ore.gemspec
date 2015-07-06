@@ -25,11 +25,11 @@ Gem::Specification.new do |gem|
 
   gem.files = `git ls-files`.split($/)
 
-  `git submodule status --recursive`.each_line do |line|
-    submodule = line.strip.split[1..-2].join(' ')
+  `git submodule --quiet foreach --recursive pwd`.split($/).each do |submodule|
+    submodule.sub!("#{Dir.pwd}/",'')
 
     Dir.chdir(submodule) do
-      `git ls-files`.split($/).each do |subpath|
+      `git ls-files`.split($/).map do |subpath|
         gem.files << File.join(submodule,subpath)
       end
     end
