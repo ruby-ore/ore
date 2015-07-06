@@ -40,3 +40,6 @@
 [submodule "data/ore/templates/git"]
 	path = data/ore/templates/git
 	url = https://github.com/ruby-ore/git.git
+[submodule "data/ore/templates/apache"]
+	path = data/ore/templates/apache
+	url = https://github.com/ruby-ore/apache.git
