@@ -1,5 +1,4 @@
 require 'ore/config'
-require 'ore/options'
 require 'ore/actions'
 require 'ore/naming'
 require 'ore/template'
@@ -12,8 +11,24 @@ require 'uri'
 module Ore
   class Generator < Thor::Group
 
+    DEFAULT_TEMPLATES = [
+      :git,
+      :mit,
+      :rubygems_tasks,
+      :rdoc,
+      :rspec
+    ]
+
+    # Default version
+    DEFAULT_VERSION = '0.1.0'
+
+    # Default summary
+    DEFAULT_SUMMARY = %q{TODO: Summary}
+
+    # Default description
+    DEFAULT_DESCRIPTION = %q{TODO: Description}
+
     include Thor::Actions
-    include Options
     include Actions
     include Naming
     include Template::Interpolations
@@ -41,29 +56,37 @@ module Ore
       # skip the `base` template
       next if name == :gem
 
-      generator_option name, type: :boolean
+      class_option name, type:    :boolean,
+                         default: DEFAULT_TEMPLATES.include?(name)
     end
 
     # define the options
-    generator_option :markdown, type: :boolean
-    generator_option :textile, type: :boolean
-    generator_option :templates, type:    :array,
-                                 aliases: '-T',
-                                 banner:  'TEMPLATE [...]'
-    generator_option :name, type: :string, aliases: '-n'
-    generator_option :namespace, type: :string, aliases: '-N'
-    generator_option :version, type: :string, aliases: '-V'
-    generator_option :summary, aliases: '-s'
-    generator_option :description, aliases: '-D'
-    generator_option :author,  type: :string,
+    class_option :markdown, type: :boolean
+    class_option :textile, type: :boolean
+    class_option :templates, type:    :array,
+                             default: [],
+                             aliases: '-T',
+                             banner:  'TEMPLATE [...]'
+    class_option :name, type: :string, aliases: '-n'
+    class_option :namespace, type: :string, aliases: '-N'
+    class_option :version, type:    :string,
+                           default: DEFAULT_VERSION,
+                           aliases: '-V'
+    class_option :summary, type:    :string,
+                           default: DEFAULT_SUMMARY,
+                           aliases: '-s'
+    class_option :description, type:    :string,
+                               default: DEFAULT_DESCRIPTION,
+                               aliases: '-D'
+    class_option :author,  type: :string,
                                aliases: '-A',
                                banner: 'NAME'
-    generator_option :authors, type: :array,
+    class_option :authors, type: :array,
                                aliases: '-a',
                                banner: 'NAME [...]'
-    generator_option :email, type: :string, aliases: '-e'
-    generator_option :homepage, type: :string, aliases: %w[-U --website]
-    generator_option :bug_tracker, type: :string, aliases: '-B'
+    class_option :email, type: :string, aliases: '-e'
+    class_option :homepage, type: :string, aliases: %w[-U --website]
+    class_option :bug_tracker, type: :string, aliases: '-B'
 
     argument :path, required: true
 
@@ -161,7 +184,7 @@ module Ore
       enable_template :gem
 
       # enable the default templates first
-      Options.defaults.each_key do |name|
+      DEFAULT_TEMPLATES.each do |name|
         if (Template.template?(name) && options[name])
           enable_template(name)
         end

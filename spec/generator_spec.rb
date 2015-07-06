@@ -89,11 +89,11 @@ describe Generator do
       end
 
       it "should a dummy summary" do
-        expect(subject['summary']).to eq(Ore::Options::DEFAULT_SUMMARY)
+        expect(subject['summary']).to eq(described_class::DEFAULT_SUMMARY)
       end
 
       it "should a dummy description" do
-        expect(subject['description']).to eq(Ore::Options::DEFAULT_DESCRIPTION)
+        expect(subject['description']).to eq(described_class::DEFAULT_DESCRIPTION)
       end
 
       it "should have a license" do
