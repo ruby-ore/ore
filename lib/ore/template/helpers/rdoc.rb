@@ -30,7 +30,7 @@ module Ore
         # @return [String]
         #
         def image(url,alt=nil)
-          "{#{text}}[rdoc-image:#{url}]"
+          "{#{alt}}[rdoc-image:#{url}]"
         end
 
         #
