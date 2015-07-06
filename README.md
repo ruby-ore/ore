@@ -65,9 +65,10 @@ Ore supports generating [`.travis.yml`][travis.yml] files for you.
 
 ### Licenses
 
-Ore supports generating MIT (default), BSD, GPL and LGPL licenses.
+Ore supports generating MIT (default), BSD, Apache 2.0, GPLv3 and LGPLv3
+licenses.
 
-    $ mine my-project [--mit | --bsd | --gpl | --lgpl]
+    $ mine my-project [--mit | --bsd | --apache | --gpl | --lgpl]
 
 ### Custom Templates
 
