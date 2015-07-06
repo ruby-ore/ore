@@ -55,6 +55,9 @@ module Ore
     generator_option :version, :type => :string, :aliases => '-V'
     generator_option :summary, :aliases => '-s'
     generator_option :description, :aliases => '-D'
+    generator_option :author,  :type => :string,
+                               :aliases => '-A',
+                               :banner => 'NAME'
     generator_option :authors, :type => :array,
                                :aliases => '-a',
                                :banner => 'NAME [...]'
@@ -221,7 +224,11 @@ module Ore
       @summary     = options.summary
       @description = options.description
 
-      @authors     = (options.authors || [@scm_user || ENV['USER']])
+      @authors     = if options.author || options.author
+                       [*options.author, *options.authors]
+                     else
+                       [@scm_user || ENV['USER']]
+                     end
       @author      = @authors.first
 
       @email       = (options.email || @scm_email)
