@@ -41,31 +41,31 @@ module Ore
       # skip the `base` template
       next if name == :gem
 
-      generator_option name, :type => :boolean
+      generator_option name, type: :boolean
     end
 
     # define the options
-    generator_option :markdown, :type => :boolean
-    generator_option :textile, :type => :boolean
-    generator_option :templates, :type => :array,
-                                 :aliases => '-T',
-                                 :banner => 'TEMPLATE [...]'
-    generator_option :name, :type => :string, :aliases => '-n'
-    generator_option :namespace, :type => :string, :aliases => '-N'
-    generator_option :version, :type => :string, :aliases => '-V'
-    generator_option :summary, :aliases => '-s'
-    generator_option :description, :aliases => '-D'
-    generator_option :author,  :type => :string,
-                               :aliases => '-A',
-                               :banner => 'NAME'
-    generator_option :authors, :type => :array,
-                               :aliases => '-a',
-                               :banner => 'NAME [...]'
-    generator_option :email, :type => :string, :aliases => '-e'
-    generator_option :homepage, :type => :string, :aliases => %w[-U --website]
-    generator_option :bug_tracker, :type => :string, :aliases => '-B'
+    generator_option :markdown, type: :boolean
+    generator_option :textile, type: :boolean
+    generator_option :templates, type:    :array,
+                                 aliases: '-T',
+                                 banner:  'TEMPLATE [...]'
+    generator_option :name, type: :string, aliases: '-n'
+    generator_option :namespace, type: :string, aliases: '-N'
+    generator_option :version, type: :string, aliases: '-V'
+    generator_option :summary, aliases: '-s'
+    generator_option :description, aliases: '-D'
+    generator_option :author,  type: :string,
+                               aliases: '-A',
+                               banner: 'NAME'
+    generator_option :authors, type: :array,
+                               aliases: '-a',
+                               banner: 'NAME [...]'
+    generator_option :email, type: :string, aliases: '-e'
+    generator_option :homepage, type: :string, aliases: %w[-U --website]
+    generator_option :bug_tracker, type: :string, aliases: '-B'
 
-    argument :path, :required => true
+    argument :path, required: true
 
     #
     # Generates a new project.
@@ -301,7 +301,7 @@ module Ore
 
         # then render the templates
         template.each_template(@markup) do |dest,file|
-          generate_file dest, file, :template => true
+          generate_file dest, file, template: true
         end
       end
 

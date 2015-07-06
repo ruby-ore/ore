@@ -19,9 +19,9 @@ module Ore
 
       # The known markup languages and file extensions
       MARKUPS = {
-        :markdown => %w[.md .markdown],
-        :textile  => %w[.tt .textile],
-        :rdoc     => %w[.rdoc]
+        markdown: %w[.md .markdown],
+        textile:  %w[.tt .textile],
+        rdoc:     %w[.rdoc]
       }
 
       # The path of the template directory

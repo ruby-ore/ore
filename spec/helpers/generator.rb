@@ -12,7 +12,7 @@ module Helpers
 
       @generator = Ore::Generator.new(
         [path],
-        options.merge(:quiet => true)
+        options.merge(quiet: true)
       )
       @generator.invoke_all
 

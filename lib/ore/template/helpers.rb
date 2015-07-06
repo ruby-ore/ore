@@ -10,9 +10,9 @@ module Ore
     module Helpers
       # Markup helpers
       MARKUP = {
-        :markdown => Markdown,
-        :textile  => TexTile,
-        :rdoc     => RDoc
+        markdown: Markdown,
+        textile:  TexTile,
+        rdoc:     RDoc
       }
 
       #

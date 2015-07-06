@@ -70,7 +70,7 @@ describe Generator do
     before(:all) do
       @name = 'gemspec_yml_project'
 
-      generate!(@name, :gemspec_yml => true)
+      generate!(@name, gemspec_yml: true)
     end
 
     it "should add a gemspec.yml file" do
@@ -128,7 +128,7 @@ describe Generator do
     before(:all) do
       @name = 'gemspec_project'
 
-      generate!(@name, :gemspec => true)
+      generate!(@name, gemspec: true)
     end
 
     it "should add a *.gemspec file" do
@@ -150,7 +150,7 @@ describe Generator do
     before(:all) do
       @name = 'git-project'
 
-      generate!(@name, :git => true)
+      generate!(@name, git: true)
     end
 
     it "should create a .git directory" do
@@ -166,7 +166,7 @@ describe Generator do
     before(:all) do
       @name = 'hg-project'
 
-      generate!(@name, :hg => true)
+      generate!(@name, hg: true)
     end
 
     it "should create a .hg directory" do
@@ -183,7 +183,7 @@ describe Generator do
       @name   = 'script-project'
       @script = File.join('bin',@name)
 
-      generate!(@name, :bin => true)
+      generate!(@name, bin: true)
     end
 
     it "should add a 'bin/' directory" do
@@ -203,7 +203,7 @@ describe Generator do
     before(:all) do
       @name = 'bundled_project'
 
-      generate!(@name, :bundler => true)
+      generate!(@name, bundler: true)
     end
 
     it "should add a Gemfile" do
@@ -232,7 +232,7 @@ gemspec
     before(:all) do
       @name = 'rdoc-project'
 
-      generate!(@name, :rdoc => true)
+      generate!(@name, rdoc: true)
     end
 
     it "should disable the yard template" do
@@ -278,7 +278,7 @@ gemspec
     before(:all) do
       @name = 'yard-project'
 
-      generate!(@name, :yard => true)
+      generate!(@name, yard: true)
     end
 
     it "should disable the rdoc template" do
@@ -324,7 +324,7 @@ gemspec
     before(:all) do
       @name = 'yard_markdown-project'
 
-      generate!(@name, :yard => true, :markdown => true)
+      generate!(@name, yard: true, markdown: true)
     end
 
     it "should add a README.md file" do
@@ -350,7 +350,7 @@ gemspec
     before(:all) do
       @name = 'yard_textile-project'
 
-      generate!(@name, :yard => true, :textile => true)
+      generate!(@name, yard: true, textile: true)
     end
 
     it "should add a README.tt file" do
@@ -376,7 +376,7 @@ gemspec
     before(:all) do
       @name = 'bundled_yard_project'
 
-      generate!(@name, :bundler => true, :yard => true)
+      generate!(@name, bundler: true, yard: true)
     end
 
     it "should still add 'yard' as a development dependency" do
@@ -388,7 +388,7 @@ gemspec
     before(:all) do
       @name = 'test_unit_project'
 
-      generate!(@name, :test_unit => true)
+      generate!(@name, test_unit: true)
     end
 
     it "should disable the minitest template" do
@@ -416,7 +416,7 @@ gemspec
     before(:all) do
       @name = 'minitest_project'
 
-      generate!(@name, :minitest => true)
+      generate!(@name, minitest: true)
     end
 
     it "should disable the test_unit template" do
@@ -444,7 +444,7 @@ gemspec
     before(:all) do
       @name = 'rspec_project'
 
-      generate!(@name, :rspec => true)
+      generate!(@name, rspec: true)
     end
 
     it "should disable the test_unit template" do
@@ -484,7 +484,7 @@ gemspec
     before(:all) do
       @name = 'bundled_rspec_project'
 
-      generate!(@name, :bundler => true, :rspec => true)
+      generate!(@name, bundler: true, rspec: true)
     end
 
     it "should add 'rspec' as a development dependency" do
@@ -496,7 +496,7 @@ gemspec
     before(:all) do
       @name = 'rubygems_tasks_project'
 
-      generate!(@name, :rubygems_tasks => true)
+      generate!(@name, rubygems_tasks: true)
     end
 
     it "should disable the bundler_tasks template" do
@@ -512,7 +512,7 @@ gemspec
     before(:all) do
       @name = 'bundled_ore_project'
 
-      generate!(@name, :bundler => true, :rubygems_tasks => true)
+      generate!(@name, bundler: true, rubygems_tasks: true)
     end
 
     it "should add 'rubygems-tasks' as a development dependency" do
@@ -524,7 +524,7 @@ gemspec
     before(:all) do
       @name = 'bundler_tasks_project'
 
-      generate!(@name, :bundler_tasks => true)
+      generate!(@name, bundler_tasks: true)
     end
 
     it "should disable the rubygems_tasks template" do
@@ -540,7 +540,7 @@ gemspec
     before(:all) do
       @name = 'gem_package_task_project'
 
-      generate!(@name, :gem_package_task => true)
+      generate!(@name, gem_package_task: true)
     end
 
     it "should disable the rubygems_tasks template" do

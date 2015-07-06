@@ -29,15 +29,15 @@ module Ore
     #
     def self.defaults
       @@defaults ||= {
-        :templates      => [],
-        :version        => DEFAULT_VERSION,
-        :summary        => DEFAULT_SUMMARY,
-        :description    => DEFAULT_DESCRIPTION,
-        :mit            => true,
-        :rubygems_tasks => true,
-        :rdoc           => true,
-        :rspec          => true,
-        :git            => true
+        templates:      [],
+        version:        DEFAULT_VERSION,
+        summary:        DEFAULT_SUMMARY,
+        description:    DEFAULT_DESCRIPTION,
+        mit:            true,
+        rubygems_tasks: true,
+        rdoc:           true,
+        rspec:          true,
+        git:            true
       }.merge(Config.options)
     end
 
@@ -52,7 +52,7 @@ module Ore
       #   The Thor options of the option.
       #
       def generator_option(name,options={})
-        class_option(name,options.merge(:default => Options.defaults[name]))
+        class_option(name,options.merge(default: Options.defaults[name]))
       end
     end
   end
