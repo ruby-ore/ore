@@ -1,6 +1,0 @@
-enable:
-  - bundler
-
-disable:
-  - rubygems_tasks
-  - jeweler_tasks
