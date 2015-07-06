@@ -520,19 +520,17 @@ gemspec
     end
   end
 
-  context "bundler_tasks" do
+  context "bundler without rubygems-tasks" do
     before(:all) do
-      @name = 'bundler_tasks_project'
+      @name = 'bundler_without_rubygems_tasks_project'
 
-      generate!(@name, bundler_tasks: true)
+      generate!(@name, bundler: true, rubygems_tasks: false)
     end
 
-    it "should disable the rubygems_tasks template" do
-      expect(@generator.disabled_templates).to include(:rubygems_tasks)
-    end
+    it "should add \"require 'bundler/gem_tasks'\" to the Rakefile" do
+      rakefile = File.read(@path.join('Rakefile'))
 
-    it "should enable the bundler template" do
-      expect(@generator.enabled_templates).to include(:bundler)
+      expect(rakefile).to include("require 'bundler/gem_tasks'")
     end
   end
 
