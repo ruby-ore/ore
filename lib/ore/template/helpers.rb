@@ -11,7 +11,7 @@ module Ore
       # Markup helpers
       MARKUP = {
         markdown: Markdown,
-        textile:  TexTile,
+        textile:  Textile,
         rdoc:     RDoc
       }
 

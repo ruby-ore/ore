@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'ore/template/helpers/textile'
 
-describe Ore::Template::Helpers::TexTile do
+describe Ore::Template::Helpers::Textile do
   subject do
     Object.new.extend described_class
   end

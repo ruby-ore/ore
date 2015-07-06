@@ -6,9 +6,9 @@ module Ore
       #
       # @since 0.10.0
       #
-      module TexTile
+      module Textile
         #
-        # Emits a TexTile link.
+        # Emits a Textile link.
         #
         # @param [String, nil] text
         #
@@ -25,7 +25,7 @@ module Ore
         end
 
         #
-        # Emits a TexTile image tag.
+        # Emits a Textile image tag.
         #
         # @param [String] url
         #
@@ -40,7 +40,7 @@ module Ore
         end
 
         #
-        # Emits a TexTile h1 heading.
+        # Emits a Textile h1 heading.
         #
         # @param [String] title
         #
@@ -51,7 +51,7 @@ module Ore
         end
 
         #
-        # Emits a TexTile h2 heading.
+        # Emits a Textile h2 heading.
         #
         # @param [String] title
         #
@@ -62,7 +62,7 @@ module Ore
         end
 
         #
-        # Emits a TexTile h3 heading.
+        # Emits a Textile h3 heading.
         #
         # @param [String] title
         #
@@ -73,7 +73,7 @@ module Ore
         end
 
         #
-        # Emits a TexTile h4 heading.
+        # Emits a Textile h4 heading.
         #
         # @param [String] title
         #
@@ -84,7 +84,7 @@ module Ore
         end
 
         #
-        # Emits a TexTile code block.
+        # Emits a Textile code block.
         #
         # @param [String] code
         #
