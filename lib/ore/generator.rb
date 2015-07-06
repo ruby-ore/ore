@@ -11,6 +11,12 @@ require 'uri'
 module Ore
   class Generator < Thor::Group
 
+    include Thor::Actions
+    include Actions
+    include Naming
+    include Template::Interpolations
+    include Template::Helpers
+
     DEFAULT_TEMPLATES = [
       :git,
       :mit,
@@ -27,12 +33,6 @@ module Ore
 
     # Default description
     DEFAULT_DESCRIPTION = %q{TODO: Description}
-
-    include Thor::Actions
-    include Actions
-    include Naming
-    include Template::Interpolations
-    include Template::Helpers
 
     # The enabled templates.
     attr_reader :enabled_templates
