@@ -232,6 +232,8 @@ module Ore
         user_email.scan(/([^<]+)\s+<([^>]+)>/) do |(user,email)|
           @scm_user, @scm_email = user, email
         end
+      else
+        @scm_user = ENV['USER']
       end
 
       @modules      = modules_of(@name)
@@ -250,7 +252,7 @@ module Ore
       @authors     = if options.author || options.author
                        [*options.author, *options.authors]
                      else
-                       [@scm_user || ENV['USER']]
+                       [@scm_user]
                      end
       @author      = @authors.first
 
