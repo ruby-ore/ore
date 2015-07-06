@@ -250,7 +250,7 @@ module Ore
       @authors     = if options.author || options.author
                        [*options.author, *options.authors]
                      else
-                       [ENV['USER'].capitalize]
+                       [ENV['USERNAME'] || ENV['USER'].capitalize]
                      end
       @author      = @authors.first
 
