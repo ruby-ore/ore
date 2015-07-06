@@ -7,68 +7,77 @@
 
 ## Description
 
-Ore is a fully configurable and extendable Ruby gem generator. With Ore you
-spend less time editing files, and more time writing code.
+Ore is a fully configurable and customisable Ruby gem generator. With Ore, you
+spend less time editing files and more time writing code.
 
 ## Features
 
 ### SCMs
 
-Ore supports generating [Git][git], [Mercurial][hg] and [SubVersion][svn]
-enabled projects.
+Ore supports generating [Git][git], [Mercurial][hg] and using [SubVersion][svn]
+repositories:
 
     $ mine my-project [--git | --hg]
 
-### Gemspec
+### Licenses
 
-Ore generates a pure-Ruby gemspec by default. Ore can also generate a
-[gemspec.yml] file.
+Ore supports generating MIT (default), BSD, Apache 2.0, GPLv3 or LGPLv3
+licenses:
 
-### Tasks
-
-Ore supports generating projects using [Gem::Tasks][rubygems_tasks],
-[Bundler::GemHelper][bundler] and even [Gem::PackageTask][gem_package_task].
-
-    $ mine my-project [--rubygems-tasks | --bundler-tasks  | --gem-package-task]
-
-### Bundler
-
-Ore can also generate a [Bundler][bundler] project.
-
-    $ mine my-project --bundler
-
-### Markup
-
-Ore supports [RDoc][rdoc], [Markdown][markdown] and [Textile][textile] markup.
-
-    $ mine my-project [--rdoc | --markdown | --textile]
-
-### Documentation
-
-Ore supports generating projects with [RDoc][rdoc] or [YARD][yard]
-documentation.
-
-    $ mine my-project [--rdoc | --yard]
+    $ mine my-project [--mit | --bsd | --apache | --gpl | --lgpl]
 
 ### Testing
 
 Ore supports generating [RSpec][rspec], [Minitest][minitest] or
-[Test::Unit][test_unit] tests.
+[Test::Unit][test_unit] tests:
 
     $ mine my-project [--test-unit | --minitest | --rspec]
 
 ### TravisCI
 
-Ore supports generating [`.travis.yml`][travis.yml] files for you.
+Ore also supports generating a [`.travis.yml`][travis.yml] file and README
+badge:
 
     $ mine my-project --travis
 
-### Licenses
+### Documentation
 
-Ore supports generating MIT (default), BSD, Apache 2.0, GPLv3 and LGPLv3
-licenses.
+Ore supports generating projects with [RDoc][rdoc] or [YARD][yard]
+documentation:
 
-    $ mine my-project [--mit | --bsd | --apache | --gpl | --lgpl]
+    $ mine my-project [--rdoc | --yard]
+
+Ore also supports [RDoc][rdoc], [Markdown][markdown] and [Textile][textile]
+markup:
+
+    $ mine my-project --yard [--rdoc | --markdown | --textile]
+
+### Bundler
+
+Ore also supports [Bundler][bundler]:
+
+    $ mine my-project --bundler
+
+### Gem Tasks
+
+Ore supports generating `Rakefile`s using [rubygems/tasks][rubygems_tasks],
+[bundler/gem_tasks][bundler] and even [Gem::PackageTask][gem_package_task]:
+
+    $ mine my-project [--rubygems-tasks | --bundler-tasks  | --gem-package-task]
+
+### Gemspecs
+
+Ore generates a pure-Ruby gemspec by default:
+
+    $ mine my-project
+
+Ore can also generate a [gemspec.yml] file:
+
+    $ mine my-project --gemspec-yml
+
+The gemspecs support listing files from Git, Hg and SubVersion. If the project
+uses Git submodules, the gemspecs will automatically include files from the
+submodules.
 
 ### Custom Templates
 
