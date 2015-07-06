@@ -46,3 +46,6 @@
 [submodule "data/ore/templates/gem_package_task"]
 	path = data/ore/templates/gem_package_task
 	url = https://github.com/ruby-ore/gem_package_task.git
+[submodule "data/ore/templates/mit"]
+	path = data/ore/templates/mit
+	url = https://github.com/ruby-ore/mit.git

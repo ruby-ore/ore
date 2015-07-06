@@ -1,7 +1,0 @@
-disable:
-  - bsd
-  - gpl
-  - lgpl
-
-variables:
-  license: MIT
