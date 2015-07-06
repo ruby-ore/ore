@@ -34,7 +34,9 @@ module Ore
         # @return [String]
         #
         def image(url,alt=nil)
-          "!#{url}(#{alt})!"
+          if alt then "!#{url}(#{alt})!"
+          else        "!#{url}!"
+          end
         end
 
         #
