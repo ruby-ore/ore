@@ -40,9 +40,11 @@ Copyright (c) <%= @year %> <%= @author %>
 <%- else -%>
 Copyright (c) <%= @year %>
 <%- end -%>
+<%- if @license_file -%>
 
-<%- if yard? -%>
-See {file:LICENSE.txt} for details.
-<%- else -%>
-See LICENSE.txt for details.
+<%-   if yard? -%>
+See {file:<%= @license_file %>} for details.
+<%-   else -%>
+See <%= @license_file %> for details.
+<%-   end -%>
 <%- end -%>
