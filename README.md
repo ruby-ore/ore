@@ -14,8 +14,8 @@ spend less time editing files and more time writing code.
 
 ### SCMs
 
-Ore supports generating [Git][git], [Mercurial][hg] and using [SubVersion][svn]
-repositories:
+Ore supports generating [Git][git] (default), [Mercurial][hg] and using
+[SubVersion][svn] repositories:
 
     $ mine my-project [--git | --hg]
 
@@ -28,7 +28,7 @@ licenses:
 
 ### Testing
 
-Ore supports generating [RSpec][rspec], [Minitest][minitest] or
+Ore supports generating [RSpec][rspec] (default), [Minitest][minitest] or
 [Test::Unit][test_unit] tests:
 
     $ mine my-project [--test-unit | --minitest | --rspec]
@@ -42,40 +42,42 @@ badge:
 
 ### Documentation
 
-Ore supports generating projects with [RDoc][rdoc] or [YARD][yard]
+Ore supports generating projects with [RDoc][rdoc] (default) or [YARD][yard]
 documentation:
 
     $ mine my-project [--rdoc | --yard]
 
-Ore also supports [RDoc][rdoc], [Markdown][markdown] and [Textile][textile]
-markup:
+Ore also supports [RDoc][rdoc] (default), [Markdown][markdown] and
+[Textile][textile] markup:
 
     $ mine my-project --yard [--rdoc | --markdown | --textile]
 
 ### Bundler
 
-Ore also supports [Bundler][bundler]:
+Ore supports [Bundler][bundler] by default. If you do not need bundler, you can
+disable it:
 
-    $ mine my-project --bundler
+    $ mine my-project --no-bundler
 
 ### Gem Tasks
 
-Ore supports generating `Rakefile`s using [rubygems/tasks][rubygems_tasks],
-[bundler/gem_tasks][bundler] and even [Gem::PackageTask][gem_package_task]:
+Ore supports generating `Rakefile`s using [rubygems/tasks][rubygems_tasks]
+(default), [bundler/gem_tasks][bundler] or even
+[Gem::PackageTask][gem_package_task]:
 
     $ mine my-project [--rubygems-tasks | --bundler-tasks  | --gem-package-task]
 
 ### Gemspecs
 
-Ore generates a pure-Ruby gemspec by default:
+Ore generates a minimal pure-Ruby gemspec by default:
 
     $ mine my-project
 
-Ore can also generate a [gemspec.yml] file:
+Ore also supports generating a [gemspec.yml] file:
 
     $ mine my-project --gemspec-yml
 
-The gemspecs support listing files from Git, Hg and SubVersion. If the project
+Gemspec files support listing files from Git, Hg and SubVersion. If the project
 uses Git submodules, the gemspecs will automatically include files from the
 submodules.
 
