@@ -1,5 +1,7 @@
 require 'ore/config'
 
+require 'yaml'
+
 module Ore
   #
   # Provides methods for guessing the namespaces and directories
