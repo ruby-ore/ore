@@ -61,7 +61,7 @@ module Ore
     end
 
     # define the options
-    class_option :markdown, type: :boolean
+    class_option :markdown, type: :boolean, default: true
     class_option :textile, type: :boolean
     class_option :templates, type:    :array,
                              default: [],
@@ -271,8 +271,8 @@ module Ore
                      end
 
       @markup, @markup_ext = if    options.markdown? then [:markdown, 'md']
-                             elsif options.textile?  then [:textile, 'tt']
-                             else                         [:rdoc, 'rdoc']
+                             elsif options.textile?  then [:textile,  'tt']
+                             else                         [:rdoc,   'rdoc']
                              end
 
       @date  = Date.today
