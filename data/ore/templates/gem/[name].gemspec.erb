@@ -41,12 +41,20 @@ Gem::Specification.new do |gem|
 <%- unless @dependencies.empty? -%>
 
 <%-   @dependencies.sort.each do |name,version| -%>
+<%-     if (version && !version.empty?) -%>
   gem.add_dependency '<%= name %>', '<%= version %>'
+<%-     else -%>
+  gem.add_dependency '<%= name %>'
+<%-     end -%>
 <%-   end -%>
 <%- end -%>
 
 <%- unless @development_dependencies.empty? -%>
 <%-   @development_dependencies.sort.each do |name,version| -%>
+<%-     if (version && !version.empty?) -%>
   gem.add_development_dependency '<%= name%>', '<%= version %>'
+<%-     else -%>
+  gem.add_development_dependency '<%= name%>'
+<%-     end -%>
 <%-   end -%>
 <%- end -%>end
