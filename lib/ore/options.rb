@@ -4,6 +4,8 @@ module Ore
   #
   # Value object to contain `~/.ore/options.yml` data.
   #
+  # @since 0.11.0
+  #
   class Options
 
     # Default markup
@@ -74,6 +76,15 @@ module Ore
       return new(options)
     end
 
+    #
+    # Accesses an option.
+    #
+    # @param [Symbol] key
+    #   The option name.
+    #
+    # @return [Object]
+    #   The option value.
+    #
     def [](key)
       @options[key]
     end
