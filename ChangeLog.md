@@ -1,4 +1,4 @@
-### 0.11.0 / 2015-07-10
+### 0.11.0 / 2015-07-11
 
 * Added {Ore::Template::Helpers::Markdown}.
 * Added {Ore::Template::Helpers::Textile}.
@@ -11,6 +11,9 @@
 
 * Added the `--namespace` option for overriding the gem namespace.
 * Added `--author`.
+* Added `--markup`.
+* Default `--markup` to `markdown`.
+* Enable `--bundler` by default.
 * Alias `--homepage` to `--website`.
 * Removed `--license` in favor of `[--mit | --bsd | --apache | --lgpl | --gpl]`.
 * Removed `--bundler-tasks` in favor of `--bundler --no-rubygems-tasks`.
@@ -46,6 +49,10 @@
 ##### minitest
 
 * Updated to Minitest 5 (@elskwid).
+
+##### rdoc
+
+* No longer override markup to always be `:rdoc`.
 
 ##### yard
 
