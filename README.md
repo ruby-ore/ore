@@ -40,6 +40,12 @@ badge:
 
     $ mine my-project --travis
 
+### Code Climate
+
+Ore also supports adds Code Climate GPA badges:
+
+    $ mine my-project --code-climate
+
 ### Documentation
 
 Ore supports generating projects with [RDoc][rdoc] (default) or [YARD][yard]

@@ -24,6 +24,7 @@
 * Added templates for [MIT][mit], [BSD][bsd], [GPLv3][gpl], [LGPLv3][lgpl] and
   [Apache 2.0][apache] licenses.
 * Added a [Travis][travis] template.
+* Added a [CodeClimate][code_climate] template.
 
 ##### bundler
 
@@ -412,6 +413,7 @@
 [bin]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bin
 [bundler]: https://github.com/ruby-ore/bundler
 [bundler_tasks]: https://github.com/ruby-ore/bundler/blob/master/_tasks.erb
+[code_climate]: https://github.com/ruby-ore/code_climate
 [gemspec]: https://github.com/ruby-ore/ore/blob/master/data/ore/templates/gem/%5Bname%5D.gemspec.erb
 [gemspec_yml]: https://github.com/ruby-ore/gemspec_yml
 [gem\_package\_task]: https://github.com/ruby-ore/gem_package_task
