@@ -270,8 +270,8 @@ module Ore
                        "https://#{@uri.host}#{@uri.path}/issues"
                      end
 
-      @markup, @markup_ext = if    options.markdown? then [:markdown, 'md']
-                             elsif options.textile?  then [:textile,  'tt']
+      @markup, @markup_ext = if    options.textile?  then [:textile,  'tt']
+                             elsif options.markdown? then [:markdown, 'md']
                              else                         [:rdoc,   'rdoc']
                              end
 
