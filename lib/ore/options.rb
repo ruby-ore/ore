@@ -24,6 +24,7 @@ module Ore
     DEFAULT_TEMPLATES = [
       :git,
       :mit,
+      :bundler,
       :rubygems_tasks,
       :rdoc,
       :rspec

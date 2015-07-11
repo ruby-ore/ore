@@ -64,6 +64,27 @@ describe Generator do
     it "should add a LICENSE.txt file" do
       expect(@path).to have_file('LICENSE.txt')
     end
+
+    it "should add a Gemfile" do
+      expect(@path).to have_file('Gemfile')
+    end
+
+    it "should add 'bundler' as a development dependency" do
+      expect(@gemspec).to have_development_dependency('bundler')
+    end
+
+    it "should not have any dependencies in the Gemfile" do
+      gemfile = (@path + 'Gemfile').read
+      expect(gemfile).to eq(<<-GEMFILE)
+source 'https://rubygems.org'
+
+gemspec
+      GEMFILE
+    end
+
+    it "should add 'Gemfile.lock' to the .gitignore file" do
+      expect(gitignore).to include('/Gemfile.lock')
+    end
   end
 
   context "gemspec_yml" do
@@ -199,32 +220,23 @@ describe Generator do
     end
   end
 
-  context "bundler" do
+  context "without bundler" do
     before(:all) do
       @name = 'bundled_project'
 
-      generate!(@name, bundler: true)
+      generate!(@name, bundler: false)
     end
 
-    it "should add a Gemfile" do
-      expect(@path).to have_file('Gemfile')
+    it "should not add a Gemfile" do
+      expect(@path).to_not have_file('Gemfile')
     end
 
-    it "should add 'bundler' as a development dependency" do
-      expect(@gemspec).to have_development_dependency('bundler')
+    it "should not add 'bundler' as a development dependency" do
+      expect(@gemspec).to_not have_development_dependency('bundler')
     end
 
-    it "should not have any dependencies in the Gemfile" do
-      gemfile = (@path + 'Gemfile').read
-      expect(gemfile).to eq(<<-GEMFILE)
-source 'https://rubygems.org'
-
-gemspec
-      GEMFILE
-    end
-
-    it "should add 'Gemfile.lock' to the .gitignore file" do
-      expect(gitignore).to include('/Gemfile.lock')
+    it "should not add 'Gemfile.lock' to the .gitignore file" do
+      expect(gitignore).to_not include('/Gemfile.lock')
     end
   end
 
