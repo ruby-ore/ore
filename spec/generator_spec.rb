@@ -89,11 +89,11 @@ describe Generator do
       end
 
       it "should a dummy summary" do
-        expect(subject['summary']).to eq(described_class::DEFAULT_SUMMARY)
+        expect(subject['summary']).to eq(Ore::Options::DEFAULT_SUMMARY)
       end
 
       it "should a dummy description" do
-        expect(subject['description']).to eq(described_class::DEFAULT_DESCRIPTION)
+        expect(subject['description']).to eq(Ore::Options::DEFAULT_DESCRIPTION)
       end
 
       it "should have a license" do
@@ -243,7 +243,7 @@ gemspec
       expect(@gemspec).to have_development_dependency('rdoc')
     end
 
-    it "should set @markup to :markdown" do
+    it "should default @markup to :markdown" do
       expect(@generator.instance_variable_get('@markup')).to eq(:markdown)
     end
 
@@ -260,12 +260,58 @@ gemspec
         expect(document).to include('lib/**/*.rb')
       end
 
-      it "should include 'README.md'" do
+      it "should include 'README.rdoc'" do
         expect(document).to include('README.md')
       end
 
-      it "should include 'ChangeLog.md'" do
+      it "should include 'ChangeLog.rdoc'" do
         expect(document).to include('ChangeLog.md')
+      end
+
+      it "should include 'LICENSE.txt'" do
+        expect(document).to include('LICENSE.txt')
+      end
+    end
+  end
+
+  context "rdoc with rdoc markup" do
+    before(:all) do
+      @name = 'rdoc_rdoc-project'
+
+      generate!(@name, rdoc: true, markup: 'rdoc')
+    end
+
+    it "should disable the yard template" do
+      expect(@generator.disabled_templates).to include(:yard)
+    end
+
+    it "should add 'rdoc' as a development dependency" do
+      expect(@gemspec).to have_development_dependency('rdoc')
+    end
+
+    it "should set @markup to :rdoc" do
+      expect(@generator.instance_variable_get('@markup')).to eq(:rdoc)
+    end
+
+    it "should add 'html/' to the .gitignore file" do
+      expect(gitignore).to include('/html/')
+    end
+
+    it "should add a '.document' file" do
+      expect(@path).to have_file('.document')
+    end
+
+    context ".document" do
+      it "should include 'lib/**/*.rb'" do
+        expect(document).to include('lib/**/*.rb')
+      end
+
+      it "should include 'README.md'" do
+        expect(document).to include('README.rdoc')
+      end
+
+      it "should include 'ChangeLog.md'" do
+        expect(document).to include('ChangeLog.rdoc')
       end
 
       it "should include 'LICENSE.txt'" do
@@ -320,37 +366,37 @@ gemspec
     end
   end
 
-  context "yard with markdown" do
+  context "yard with rdoc markup" do
     before(:all) do
-      @name = 'yard_markdown-project'
+      @name = 'yard_rdoc-project'
 
-      generate!(@name, yard: true, markdown: true)
+      generate!(@name, yard: true, markup: 'rdoc')
     end
 
-    it "should add a README.md file" do
-      expect(@path).to have_file('README.md')
+    it "should add a README.rdoc file" do
+      expect(@path).to have_file('README.rdoc')
     end
 
-    it "should add a ChangeLog.md file" do
-      expect(@path).to have_file('ChangeLog.md')
+    it "should add a ChangeLog.rdoc file" do
+      expect(@path).to have_file('ChangeLog.rdoc')
     end
 
-    it "should set --markup to markdown in .yardopts" do
-      expect(yard_opts).to include('--markup markdown')
+    it "should set --markup to rdoc in .yardopts" do
+      expect(yard_opts).to include('--markup rdoc')
     end
 
     context ".document" do
-      it "should include 'ChangeLog.md'" do
-        expect(document).to include('ChangeLog.md')
+      it "should include 'ChangeLog.rdoc'" do
+        expect(document).to include('ChangeLog.rdoc')
       end
     end
   end
 
-  context "yard with textile" do
+  context "yard with textile markup" do
     before(:all) do
       @name = 'yard_textile-project'
 
-      generate!(@name, yard: true, textile: true)
+      generate!(@name, yard: true, markup: 'textile')
     end
 
     it "should add a README.tt file" do

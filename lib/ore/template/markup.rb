@@ -3,9 +3,9 @@ module Ore
     module Markup
       # Official file extensions for various markups
       EXT = {
-        markdown: '.md',
-        textile:  '.tt',
-        rdoc:     '.rdoc'
+        markdown: 'md',
+        textile:  'tt',
+        rdoc:     'rdoc'
       }
 
       # Other common file extensions for various markups

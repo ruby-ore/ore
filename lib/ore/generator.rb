@@ -17,22 +17,57 @@ module Ore
     include Template::Interpolations
     include Template::Helpers
 
-    DEFAULT_TEMPLATES = [
-      :git,
-      :mit,
-      :rubygems_tasks,
-      :rdoc,
-      :rspec
-    ]
+    #
+    # Defines a generator option.
+    #
+    # @param [Symbol] name
+    #
+    # @param [Hash] options
+    #
+    def self.generator_option(name,options={})
+      default = options.fetch(:default,Config.options[name])
 
-    # Default version
-    DEFAULT_VERSION = '0.1.0'
+      class_option(name,options.merge(default: default))
+    end
 
-    # Default summary
-    DEFAULT_SUMMARY = %q{TODO: Summary}
+    Template.templates.each_key do |name|
+      # skip the `base` template
+      next if name == :gem
 
-    # Default description
-    DEFAULT_DESCRIPTION = %q{TODO: Description}
+      generator_option name, type: :boolean
+    end
+
+    # disable the Thor namespace
+    namespace ''
+
+    # define the options
+    generator_option :markup, type:   :string,
+                              banner: 'markdown|textile|rdoc'
+    generator_option :markdown, type: :boolean
+    generator_option :textile, type: :boolean
+    generator_option :templates, type:    :array,
+                                 default: [],
+                                 aliases: '-T',
+                                 banner:  'TEMPLATE [...]'
+    generator_option :name, type: :string, aliases: '-n'
+    generator_option :namespace, type: :string, aliases: '-N'
+    generator_option :version, type:    :string,
+                               aliases: '-V'
+    generator_option :summary, type:    :string,
+                               aliases: '-s'
+    generator_option :description, type:    :string,
+                                   aliases: '-D'
+    generator_option :author,  type: :string,
+                               aliases: '-A',
+                               banner: 'NAME'
+    generator_option :authors, type: :array,
+                               aliases: '-a',
+                               banner: 'NAME [...]'
+    generator_option :email, type: :string, aliases: '-e'
+    generator_option :homepage, type: :string, aliases: %w[-U --website]
+    generator_option :bug_tracker, type: :string, aliases: '-B'
+
+    argument :path, required: true
 
     # The enabled templates.
     attr_reader :enabled_templates
@@ -48,47 +83,6 @@ module Ore
 
     # The generated files.
     attr_reader :generated_files
-
-    # disable the Thor namespace
-    namespace ''
-
-    Template.templates.each_key do |name|
-      # skip the `base` template
-      next if name == :gem
-
-      class_option name, type:    :boolean,
-                         default: DEFAULT_TEMPLATES.include?(name)
-    end
-
-    # define the options
-    class_option :markdown, type: :boolean, default: true
-    class_option :textile, type: :boolean
-    class_option :templates, type:    :array,
-                             default: [],
-                             aliases: '-T',
-                             banner:  'TEMPLATE [...]'
-    class_option :name, type: :string, aliases: '-n'
-    class_option :namespace, type: :string, aliases: '-N'
-    class_option :version, type:    :string,
-                           default: DEFAULT_VERSION,
-                           aliases: '-V'
-    class_option :summary, type:    :string,
-                           default: DEFAULT_SUMMARY,
-                           aliases: '-s'
-    class_option :description, type:    :string,
-                               default: DEFAULT_DESCRIPTION,
-                               aliases: '-D'
-    class_option :author,  type: :string,
-                               aliases: '-A',
-                               banner: 'NAME'
-    class_option :authors, type: :array,
-                               aliases: '-a',
-                               banner: 'NAME [...]'
-    class_option :email, type: :string, aliases: '-e'
-    class_option :homepage, type: :string, aliases: %w[-U --website]
-    class_option :bug_tracker, type: :string, aliases: '-B'
-
-    argument :path, required: true
 
     #
     # Generates a new project.
@@ -184,7 +178,7 @@ module Ore
       enable_template :gem
 
       # enable the default templates first
-      DEFAULT_TEMPLATES.each do |name|
+      Options::DEFAULT_TEMPLATES.each do |name|
         if (Template.template?(name) && options[name])
           enable_template(name)
         end
@@ -270,10 +264,15 @@ module Ore
                        "https://#{@uri.host}#{@uri.path}/issues"
                      end
 
-      @markup, @markup_ext = if    options.textile?  then [:textile,  'tt']
-                             elsif options.markdown? then [:markdown, 'md']
-                             else                         [:rdoc,   'rdoc']
-                             end
+      @markup = if    options.markdown? then :markdown
+                elsif options.textile?  then :textile
+                elsif options.markup?   then options.markup.to_sym
+                end
+
+      @markup_ext = Template::Markup::EXT.fetch(@markup) do
+        say "Unknown markup: #{@markup}", :red
+        exit -1
+      end
 
       @date  = Date.today
       @year  = @date.year

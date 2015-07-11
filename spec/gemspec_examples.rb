@@ -8,15 +8,15 @@ shared_examples "a gemspec" do
   end
 
   it "should not contain a version by default" do
-    expect(subject.version.version).to eq(Ore::Generator::DEFAULT_VERSION)
+    expect(subject.version.version).to eq(Ore::Options::DEFAULT_VERSION)
   end
 
   it "should a dummy summary" do
-    expect(subject.summary).to eq(Ore::Generator::DEFAULT_SUMMARY)
+    expect(subject.summary).to eq(Ore::Options::DEFAULT_SUMMARY)
   end
 
   it "should a dummy description" do
-    expect(subject.description).to eq(Ore::Generator::DEFAULT_DESCRIPTION)
+    expect(subject.description).to eq(Ore::Options::DEFAULT_DESCRIPTION)
   end
 
   it "should have a license" do
