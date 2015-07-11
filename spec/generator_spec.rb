@@ -53,12 +53,12 @@ describe Generator do
       expect(@path).to have_file('Rakefile')
     end
 
-    it "should add a README.rdoc file" do
-      expect(@path).to have_file('README.rdoc')
+    it "should add a README.md file" do
+      expect(@path).to have_file('README.md')
     end
 
-    it "should add a ChangeLog.rdoc file" do
-      expect(@path).to have_file('ChangeLog.rdoc')
+    it "should add a ChangeLog.md file" do
+      expect(@path).to have_file('ChangeLog.md')
     end
 
     it "should add a LICENSE.txt file" do
@@ -243,8 +243,8 @@ gemspec
       expect(@gemspec).to have_development_dependency('rdoc')
     end
 
-    it "should set @markup to :rdoc" do
-      expect(@generator.instance_variable_get('@markup')).to eq(:rdoc)
+    it "should set @markup to :markdown" do
+      expect(@generator.instance_variable_get('@markup')).to eq(:markdown)
     end
 
     it "should add 'html/' to the .gitignore file" do
@@ -260,12 +260,12 @@ gemspec
         expect(document).to include('lib/**/*.rb')
       end
 
-      it "should include 'README.rdoc'" do
-        expect(document).to include('README.rdoc')
+      it "should include 'README.md'" do
+        expect(document).to include('README.md')
       end
 
-      it "should include 'ChangeLog.rdoc'" do
-        expect(document).to include('ChangeLog.rdoc')
+      it "should include 'ChangeLog.md'" do
+        expect(document).to include('ChangeLog.md')
       end
 
       it "should include 'LICENSE.txt'" do
@@ -306,12 +306,12 @@ gemspec
         expect(document).to include('-')
       end
 
-      it "should not include 'README.rdoc'" do
-        expect(document).not_to include('README.rdoc')
+      it "should not include 'README.md'" do
+        expect(document).not_to include('README.md')
       end
 
-      it "should include 'ChangeLog.rdoc'" do
-        expect(document).to include('ChangeLog.rdoc')
+      it "should include 'ChangeLog.md'" do
+        expect(document).to include('ChangeLog.md')
       end
 
       it "should include 'LICENSE.txt'" do
