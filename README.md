@@ -47,14 +47,14 @@ documentation:
 
     $ mine my-project [--rdoc | --yard]
 
-Ore also supports [RDoc][rdoc] (default), [Markdown][markdown] and
-[Textile][textile] markup:
+Ore also supports [Markdown][markdown] (default), [Textile][textile] and
+[RDoc][rdoc] markups:
 
     $ mine my-project --yard [--rdoc | --markdown | --textile]
 
 ### Bundler
 
-Ore supports [Bundler][bundler] by default. If you do not need bundler, you can
+Ore supports [Bundler][bundler] by default. If you do not need bundler, you may
 disable it:
 
     $ mine my-project --no-bundler
