@@ -49,3 +49,6 @@
 [submodule "data/ore/templates/mit"]
 	path = data/ore/templates/mit
 	url = https://github.com/ruby-ore/mit.git
+[submodule "data/ore/templates/codeclimate"]
+	path = data/ore/templates/codeclimate
+	url = https://github.com/ruby-ore/codeclimate.git
