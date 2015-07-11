@@ -34,7 +34,7 @@ module Ore
       # skip the `base` template
       next if name == :gem
 
-      generator_option name, type: :boolean
+      generator_option name, type: :boolean, group: :template
     end
 
     # disable the Thor namespace
