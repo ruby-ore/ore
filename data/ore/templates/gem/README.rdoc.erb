@@ -8,7 +8,7 @@
 <%- end -%>
 * {Documentation}[http://rubydoc.info/gems/<%= @name %>/frames]
 <%- if @safe_email -%>
-* {Email}[mailto:<%= @safe_email %>]
+* {Email}[mailto:<%= @safe_email.gsub(' ','%20') %>]
 <%- end -%>
 <%- includes(:badges,'') do |badges| -%>
 
