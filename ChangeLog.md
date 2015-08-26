@@ -412,7 +412,9 @@
   * Added {Ore::Generator}.
 
 [gem]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem
+[apache]: https://github.com/ruby-ore/apache
 [bin]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bin
+[bsd]: https://github.com/ruby-ore/bsd
 [bundler]: https://github.com/ruby-ore/bundler
 [bundler_tasks]: https://github.com/ruby-ore/bundler/blob/master/_tasks.erb
 [code_climate]: https://github.com/ruby-ore/code_climate
@@ -420,12 +422,16 @@
 [gemspec_yml]: https://github.com/ruby-ore/gemspec_yml
 [gem\_package\_task]: https://github.com/ruby-ore/gem_package_task
 [git]: https://github.com/ruby-ore/git
+[gpl]: https://github.com/ruby-ore/gpl
 [hg]: https://github.com/ruby-ore/hg
 [jeweler_tasks]: https://github.com/ruby-ore/jeweler_tasks
+[lgpl]: https://github.com/ruby-ore/lgpl
+[mit]: https://github.com/ruby-ore/mit
 [rdoc]: https://github.com/ruby-ore/rdoc
 [rspec]: https://github.com/ruby-ore/rspec
 [rubygems_tasks]: https://github.com/ruby-ore/rubygems_tasks
 [rvm]: https://github.com/ruby-ore/rvm
 [test_unit]: https://github.com/ruby-ore/test_unit
+[travis]: https://github.com/ruby-ore/travis
 [mini_test]: https://github.com/ruby-ore/mini_test
 [yard]: https://github.com/ruby-ore/yard
