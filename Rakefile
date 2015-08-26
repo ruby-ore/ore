@@ -19,3 +19,17 @@ task :default => :spec
 
 require 'yard'
 YARD::Rake::YardocTask.new
+
+namespace :update do
+  Dir['data/ore/templates/*'].each do |template|
+    name = File.basename(template)
+
+    if File.exist?(File.join(template,'.git'))
+      desc "Updates the #{name} template"
+      task name do
+        Dir.chdir(template) { sh 'git pull' }
+        sh 'git', 'commit', template
+      end
+    end
+  end
+end
