@@ -1,4 +1,4 @@
-### 0.11.0 / 2015-07-11
+### 0.11.0 / 2015-08-25
 
 * Added {Ore::Template::Helpers::Markdown}.
 * Added {Ore::Template::Helpers::Textile}.
@@ -53,7 +53,9 @@
 
 ##### rdoc
 
-* No longer override markup to always be `:rdoc`.
+* Require rdoc ~> 4.0.
+* Generate a `.rdoc_options` file.
+* Allow markdown or textile markup with rdoc.
 
 ##### yard
 
