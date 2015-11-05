@@ -149,7 +149,7 @@ Add default generator options to `~/.ore/options.yml`:
 
 Copyright (c) 2010-2015 Hal Brodigan
 
-See {file:LICENSE.txt} for license information.
+See [LICENSE.txt](LICENSE.txt) for license information.
 
 [git]: http://git-scm.com/
 [hg]: http://mercurial.selenic.com/
