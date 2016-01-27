@@ -1,10 +1,19 @@
+require 'ore/template/helpers/markdown'
+require 'ore/template/helpers/textile'
+require 'ore/template/helpers/rdoc'
+
 module Ore
   module Template
     #
     # Helper methods that can be used within ERb templates.
     #
     module Helpers
-      protected
+      # Markup helpers
+      MARKUP = {
+        markdown: Markdown,
+        textile:  Textile,
+        rdoc:     RDoc
+      }
 
       #
       # Renders all include files with the given name.
@@ -219,11 +228,26 @@ module Ore
       # @param [Integer] spaces
       #   The number of spaces to indent by.
       #
+      # @yield []
+      #   The given block will be used as the text.
+      #
       # @return [String]
       #   The indentation string.
       #
       def indent(n,spaces=2)
-        (' ' * spaces) * n
+        @indent ||= 0
+        @indent += (spaces * n)
+
+        margin = ' ' * @indent
+
+        text = if block_given?
+                 yield.each_line.map { |line| margin + line }.join
+               else
+                 margin
+               end
+
+        @indent -= (spaces * n)
+        return text
       end
 
       #

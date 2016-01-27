@@ -1,0 +1,54 @@
+= <%= @name %>
+
+<%- if @homepage -%>
+* {Homepage}[<%= @homepage %>]
+<%- end -%>
+<%- if @bug_tracker -%>
+* {Issues}[<%= @bug_tracker %>]
+<%- end -%>
+* {Documentation}[http://rubydoc.info/gems/<%= @name %>/frames]
+<%- if @safe_email -%>
+* {Email}[mailto:<%= @safe_email.gsub(' ','%20') %>]
+<%- end -%>
+<%- includes(:badges,'') do |badges| -%>
+
+<%= badges -%>
+<%- end -%>
+
+== Description
+
+<%= @description %>
+
+== Features
+
+== Examples
+
+  require '<%= @namespace_path -%>'
+
+== Requirements
+
+== Install
+
+  $ gem install <%= @name %>
+
+<%- if bin? -%>
+== Synopsis
+
+  $ <%= @name %>
+
+<%- end -%>
+== Copyright
+
+<%- if @author -%>
+Copyright (c) <%= @year %> <%= @author %>
+<%- else -%>
+Copyright (c) <%= @year %>
+<%- end -%>
+<%- if @license_file -%>
+
+<%-   if yard? -%>
+See {file:<%= @license_file %>} for details.
+<%-   else -%>
+See <%= @license_file %> for details.
+<%-   end -%>
+<%- end -%>

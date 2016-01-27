@@ -1,0 +1,12 @@
+<%- includes(:copyright,'') do |copyright| -%>
+<%= copyright -%>
+
+<%- end -%>
+<%- @modules.each_with_index do |namespace,n| -%>
+<%= indent(n) %>module <%= namespace %>
+<%- end -%>
+<%= indent(@module_depth) %># <%= @name %> version
+<%= indent(@module_depth) %>VERSION = <%= @version.dump %>
+<%- (@module_depth - 1).downto(0) do |n| -%>
+<%= indent(n) %>end
+<%- end -%>

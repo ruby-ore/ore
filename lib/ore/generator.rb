@@ -1,5 +1,4 @@
 require 'ore/config'
-require 'ore/options'
 require 'ore/actions'
 require 'ore/naming'
 require 'ore/template'
@@ -13,11 +12,62 @@ module Ore
   class Generator < Thor::Group
 
     include Thor::Actions
-    include Options
     include Actions
     include Naming
     include Template::Interpolations
     include Template::Helpers
+
+    #
+    # Defines a generator option.
+    #
+    # @param [Symbol] name
+    #
+    # @param [Hash] options
+    #
+    def self.generator_option(name,options={})
+      default = options.fetch(:default,Config.options[name])
+
+      class_option(name,options.merge(default: default))
+    end
+
+    Template.templates.each_key do |name|
+      # skip the `base` template
+      next if name == :gem
+
+      generator_option name, type: :boolean, group: :template
+    end
+
+    # disable the Thor namespace
+    namespace ''
+
+    # define the options
+    generator_option :markup, type:   :string,
+                              banner: 'markdown|textile|rdoc'
+    generator_option :markdown, type: :boolean
+    generator_option :textile, type: :boolean
+    generator_option :templates, type:    :array,
+                                 default: [],
+                                 aliases: '-T',
+                                 banner:  'TEMPLATE [...]'
+    generator_option :name, type: :string, aliases: '-n'
+    generator_option :namespace, type: :string, aliases: '-N'
+    generator_option :version, type:    :string,
+                               aliases: '-V'
+    generator_option :summary, type:    :string,
+                               aliases: '-s'
+    generator_option :description, type:    :string,
+                                   aliases: '-D'
+    generator_option :author,  type: :string,
+                               aliases: '-A',
+                               banner: 'NAME'
+    generator_option :authors, type: :array,
+                               aliases: '-a',
+                               banner: 'NAME [...]'
+    generator_option :email, type: :string, aliases: '-e'
+    generator_option :homepage, type: :string, aliases: %w[-U --website]
+    generator_option :bug_tracker, type: :string, aliases: '-B'
+
+    argument :path, required: true
 
     # The enabled templates.
     attr_reader :enabled_templates
@@ -34,36 +84,6 @@ module Ore
     # The generated files.
     attr_reader :generated_files
 
-    # disable the Thor namespace
-    namespace ''
-
-    Template.templates.each_key do |name|
-      # skip the `base` template
-      next if name == :base
-
-      generator_option name, :type => :boolean
-    end
-
-    # define the options
-    generator_option :markdown, :type => :boolean
-    generator_option :textile, :type => :boolean
-    generator_option :templates, :type => :array,
-                                 :aliases => '-T',
-                                 :banner => 'TEMPLATE [...]'
-    generator_option :name, :type => :string, :aliases => '-n'
-    generator_option :version, :type => :string, :aliases => '-V'
-    generator_option :summary, :aliases => '-s'
-    generator_option :description, :aliases => '-D'
-    generator_option :authors, :type => :array,
-                               :aliases => '-a',
-                               :banner => 'NAME [...]'
-    generator_option :email, :type => :string, :aliases => '-e'
-    generator_option :homepage, :type => :string, :aliases => '-U'
-    generator_option :bug_tracker, :type => :string, :aliases => '-B'
-    generator_option :license, :aliases => '-L'
-
-    argument :path, :required => true
-
     #
     # Generates a new project.
     #
@@ -73,36 +93,15 @@ module Ore
       enable_templates!
       initialize_variables!
 
+      extend Template::Helpers::MARKUP.fetch(@markup)
+
       unless options.quiet?
         say "Generating #{self.destination_root}", :green
       end
 
       generate_directories!
       generate_files!
-
-      in_root do
-        case @scm
-        when :git
-          unless File.directory?('.git')
-            run 'git init'
-            run 'git add .'
-            run 'git commit -m "Initial commit."'
-          end
-        when :hg
-          unless File.directory?('.hg')
-            run 'hg init'
-            run 'hg add .'
-            run 'hg commit -m "Initial commit."'
-          end
-        when :svn
-          @ignore.each do |pattern|
-            run "svn propset svn:ignore #{pattern.dump}"
-          end
-
-          run 'svn add .'
-          run 'svn commit -m "Initial commit."'
-        end
-      end
+      initialize_scm!
     end
 
     protected
@@ -176,10 +175,10 @@ module Ore
       @enabled_templates  = Set[]
       @disabled_templates = Set[]
       
-      enable_template :base
+      enable_template :gem
 
       # enable the default templates first
-      Options.defaults.each_key do |name|
+      Options::DEFAULT_TEMPLATES.each do |name|
         if (Template.template?(name) && options[name])
           enable_template(name)
         end
@@ -233,7 +232,7 @@ module Ore
       @module_depth = @modules.length
       @module       = @modules.last
 
-      @namespace      = namespace_of(@name)
+      @namespace      = options.namespace || namespace_of(@name)
       @namespace_dirs = namespace_dirs_of(@name)
       @namespace_path = namespace_path_of(@name)
       @namespace_dir  = @namespace_dirs.last
@@ -241,9 +240,12 @@ module Ore
       @version     = options.version
       @summary     = options.summary
       @description = options.description
-      @license     = options.license
 
-      @authors     = (options.authors || [@scm_user || ENV['USER']])
+      @authors     = if options.author || options.author
+                       [*options.author, *options.authors]
+                     else
+                       [@scm_user || ENV['USERNAME'] || ENV['USER'].capitalize]
+                     end
       @author      = @authors.first
 
       @email       = (options.email || @scm_email)
@@ -262,10 +264,15 @@ module Ore
                        "https://#{@uri.host}#{@uri.path}/issues"
                      end
 
-      @markup, @markup_ext = if    options.markdown? then [:markdown, 'md']
-                             elsif options.textile?  then [:textile, 'tt']
-                             else                         [:rdoc, 'rdoc']
-                             end
+      @markup = if    options.markdown? then :markdown
+                elsif options.textile?  then :textile
+                elsif options.markup?   then options.markup.to_sym
+                end
+
+      @markup_ext = Template::Markup::EXT.fetch(@markup) do
+        say "Unknown markup: #{@markup}", :red
+        exit -1
+      end
 
       @date  = Date.today
       @year  = @date.year
@@ -316,7 +323,7 @@ module Ore
 
         # then render the templates
         template.each_template(@markup) do |dest,file|
-          generate_file dest, file, :template => true
+          generate_file dest, file, template: true
         end
       end
 
@@ -325,6 +332,37 @@ module Ore
 
         if dir == 'bin'
           chmod path, 0755
+        end
+      end
+    end
+
+    #
+    # Initializes the project repository and commits all files.
+    #
+    # @since 0.10.0
+    #
+    def initialize_scm!
+      in_root do
+        case @scm
+        when :git
+          unless File.directory?('.git')
+            run 'git init'
+            run 'git add .'
+            run 'git commit -m "Initial commit."'
+          end
+        when :hg
+          unless File.directory?('.hg')
+            run 'hg init'
+            run 'hg add .'
+            run 'hg commit -m "Initial commit."'
+          end
+        when :svn
+          @ignore.each do |pattern|
+            run "svn propset svn:ignore #{pattern.dump}"
+          end
+
+          run 'svn add .'
+          run 'svn commit -m "Initial commit."'
         end
       end
     end

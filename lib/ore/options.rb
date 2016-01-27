@@ -1,13 +1,16 @@
-require 'ore/config'
-require 'ore/template'
+require 'yaml'
 
 module Ore
   #
-  # @api semipublic
+  # Value object to contain `~/.ore/options.yml` data.
   #
-  # @since 0.9.0
+  # @since 0.11.0
   #
-  module Options
+  class Options
+
+    # Default markup
+    DEFAULT_MARKUP = 'markdown'
+
     # Default version
     DEFAULT_VERSION = '0.1.0'
 
@@ -17,47 +20,75 @@ module Ore
     # Default description
     DEFAULT_DESCRIPTION = %q{TODO: Description}
 
-    # Default License
-    DEFAULT_LICENSE = 'MIT'
+    # Default templates
+    DEFAULT_TEMPLATES = [
+      :git,
+      :mit,
+      :bundler,
+      :rubygems_tasks,
+      :rdoc,
+      :rspec
+    ]
 
-    def self.included(base)
-      base.extend ClassMethods
+    # Default options
+    DEFAULTS = {
+      markup:      DEFAULT_MARKUP,
+      version:     DEFAULT_VERSION,
+      summary:     DEFAULT_SUMMARY,
+      description: DEFAULT_DESCRIPTION
+    }
+    DEFAULT_TEMPLATES.each { |name| DEFAULTS[name] = true }
+
+    #
+    # Initializes the options.
+    #
+    # @param [Hash{Symbol => Object}] options
+    #   The options hash.
+    #
+    def initialize(options={})
+      @options = DEFAULTS.merge(options)
     end
 
     #
-    # Default options for the generator.
+    # Loads the options from a YAML file.
     #
-    # @return [Hash{Symbol => Object}]
-    #   The option names and default values.
+    # @param [String] path
+    #   Path to the options file.
     #
-    def self.defaults
-      @@defaults ||= {
-        :templates      => [],
-        :version        => DEFAULT_VERSION,
-        :summary        => DEFAULT_SUMMARY,
-        :description    => DEFAULT_DESCRIPTION,
-        :license        => DEFAULT_LICENSE,
-        :gemspec        => true,
-        :rubygems_tasks => true,
-        :rdoc           => true,
-        :rspec          => true,
-        :git            => true
-      }.merge(Config.options)
-    end
+    # @return [Options]
+    #   The loaded options.
+    #
+    # @raise [RuntimeError]
+    #   The file contained malformed YAML.
+    #
+    def self.load(path)
+      data = YAML.load_file(path)
 
-    module ClassMethods
-      #
-      # Defines a generator option.
-      #
-      # @param [Symbol] name
-      #   The name of the option.
-      #
-      # @param [Hash{Symbol => Object}] options
-      #   The Thor options of the option.
-      #
-      def generator_option(name,options={})
-        class_option(name,options.merge(:default => Options.defaults[name]))
+      unless data.kind_of?(Hash)
+        raise("#{path} must contain a YAML encoded Hash")
       end
+
+      options = {}
+
+      data.each do |key,value|
+        options[key.to_sym] = value
+      end
+
+      return new(options)
     end
+
+    #
+    # Accesses an option.
+    #
+    # @param [Symbol] key
+    #   The option name.
+    #
+    # @return [Object]
+    #   The option value.
+    #
+    def [](key)
+      @options[key]
+    end
+
   end
 end

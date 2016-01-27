@@ -1,0 +1,60 @@
+# -*- encoding: utf-8 -*-
+
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require '<%= @namespace_path %>/version'
+
+Gem::Specification.new do |gem|
+  gem.name          = <%= @name.inspect %>
+  gem.version       = <%= @namespace %>::VERSION
+  gem.summary       = %q{<%= @summary %>}
+  gem.description   = %q{<%= @description %>}
+  gem.license       = <%= @license.inspect %>
+  gem.authors       = <%= @authors.inspect %>
+<%- if @email -%>
+  gem.email         = <%= @email.inspect %>
+<%- end -%>
+  gem.homepage      = <%= @homepage.inspect %>
+
+<%- if git? -%>
+  gem.files         = `git ls-files`.split($/)
+
+  `git submodule --quiet foreach --recursive pwd`.split($/).each do |submodule|
+    submodule.sub!("#{Dir.pwd}/",'')
+
+    Dir.chdir(submodule) do
+      `git ls-files`.split($/).map do |subpath|
+        gem.files << File.join(submodule,subpath)
+      end
+    end
+  end
+<%- elsif hg? -%>
+  gem.files         = `hg manifest`.split($/)
+<%- elsif svn? -%>
+  gem.files         = `svn ls -R`.split($/).select { |path| File.file?(path) }
+<%- else -%>
+  gem.files         = Dir['{**/}{.*,*}'].select { |path| File.file?(path) }
+<%- end -%>
+  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.require_paths = ['lib']
+<%- unless @dependencies.empty? -%>
+
+<%-   @dependencies.sort.each do |name,version| -%>
+<%-     if (version && !version.empty?) -%>
+  gem.add_dependency '<%= name %>', '<%= version %>'
+<%-     else -%>
+  gem.add_dependency '<%= name %>'
+<%-     end -%>
+<%-   end -%>
+<%- end -%>
+
+<%- unless @development_dependencies.empty? -%>
+<%-   @development_dependencies.sort.each do |name,version| -%>
+<%-     if (version && !version.empty?) -%>
+  gem.add_development_dependency '<%= name%>', '<%= version %>'
+<%-     else -%>
+  gem.add_development_dependency '<%= name%>'
+<%-     end -%>
+<%-   end -%>
+<%- end -%>end

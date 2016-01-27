@@ -12,7 +12,7 @@ module Helpers
 
       @generator = Ore::Generator.new(
         [path],
-        options.merge(:quiet => true)
+        options.merge(quiet: true)
       )
       @generator.invoke_all
 
@@ -20,6 +20,10 @@ module Helpers
       @gemspec = Dir.chdir(@path) do
         Gem::Specification.load(@generator.generated_files['[name].gemspec'])
       end
+    end
+
+    def rakefile
+      @path.join('Rakefile').read
     end
 
     def rspec_opts

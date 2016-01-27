@@ -1,3 +1,66 @@
+### 0.11.0 / 2015-08-25
+
+* Added {Ore::Template::Helpers::Markdown}.
+* Added {Ore::Template::Helpers::Textile}.
+* Added {Ore::Template::Helpers::RDoc}.
+* Merged `Ore::Options` into {Ore::Generator}.
+* Moved SCM initialization code into {Ore::Generator#initialize_scm!}.
+* Moved data out of {Ore::Naming} and into `data/ore/` files.
+
+#### CLI
+
+* Added the `--namespace` option for overriding the gem namespace.
+* Added `--author`.
+* Added `--markup`.
+* Default `--markup` to `markdown`.
+* Enable `--bundler` by default.
+* Alias `--homepage` to `--website`.
+* Removed `--license` in favor of `[--mit | --bsd | --apache | --lgpl | --gpl]`.
+* Removed `--bundler-tasks` in favor of `--bundler --no-rubygems-tasks`.
+
+#### Templates
+
+* Moved all templates out into git submodules.
+* Added templates for [MIT][mit], [BSD][bsd], [GPLv3][gpl], [LGPLv3][lgpl] and
+  [Apache 2.0][apache] licenses.
+* Added a [Travis][travis] template.
+* Added a [CodeClimate][code_climate] template.
+
+##### bundler
+
+* Require bundler ~> 1.10.
+* Require rake ~> 10.0.
+* Use `https://rubygems.org/` as the `Gemfile` source.
+* Add `.bundle` to any SCM ignore files.
+* Merged in the [bundler_tasks] template.
+
+##### gem
+
+* Renamed `base` to `gem`.
+* Merged in the [gemspec] template.
+* Simply require `bundler/setup` to activate bundler.
+* If a rake task gem cannot be loaded, define a dummy task that prints the error
+  message.
+* Added support for listing files from git submodules.
+
+##### gemspec_yml
+
+* Added support for automatically listing files from git submodules.
+
+##### minitest
+
+* Updated to Minitest 5 (@elskwid).
+
+##### rdoc
+
+* Require rdoc ~> 4.0.
+* Generate a `.rdoc_options` file.
+* Allow markdown or textile markup with rdoc.
+
+##### yard
+
+* Add `.yardoc` to any SCM ignore files.
+
 ### 0.10.0 / 2012-10-14
 
 * Require thor ~> 0.15.
@@ -73,7 +136,7 @@
 * Removed the env dependency.
 * Switched from ore-tasks to rubygems-tasks ~> 0.2.
 * Added {Ore::Naming} from `ore-core`.
-* Added {Ore::Options}.
+* Added `Ore::Options`.
 * Added {Ore::Actions}.
 * Added {Ore::Template::Helpers#rubygems_tasks?}.
 * Added {Ore::Template::Helpers#bundler_tasks?}.
@@ -82,8 +145,8 @@
 * Added {Ore::Template::Directory#dependencies}.
 * Added {Ore::Template::Directory#development_dependencies}.
 * Renamed `Ore::Config.default_options` to {Ore::Config.options}.
-* Renamed `Ore::Generator.defaults` to {Ore::Options.defaults}.
-* Renamed `Ore::Generator.generator_option` to {Ore::Options::ClassMethods}.
+* Renamed `Ore::Generator.defaults` to `Ore::Options.defaults`.
+* Renamed `Ore::Generator.generator_option` to `Ore::Options::ClassMethods`.
 * Renamed `Ore::Generator.templates` to {Ore::Template.templates}.
 * Renamed `Ore::Generator.template?` to {Ore::Template.template?}.
 * Renamed `Ore::Generator.register_template` to {Ore::Template.register}.
@@ -98,7 +161,7 @@
 * Added the [rubygems_tasks] template.
 * Removed the `ore_tasks` template.
 * Define dependencies in the `template.yml` files.
-* Simplified the `[name].gemspec` file in the [base] template.
+* Simplified the `[name].gemspec` file in the [gem] template.
 * Moved the `.gitignore` file into the [git] template.
 * If [git] is enabled and `github.user` is set in `~/.gitconfig`, default
   the `@homepage` variable to a `https://github.com/` URL.
@@ -220,7 +283,7 @@
   is used.
 * Use `platforms :jruby` and `platforms :ruby` to separate JRuby and
   non-JRuby dependencies when generating the `Gemfile`.
-* Fixed the link syntax in the TexTile README template.
+* Fixed the link syntax in the Textile README template.
 
 ### 0.4.0 / 2010-11-24
 
@@ -348,21 +411,27 @@
     * Added {Ore::Template::Helpers}.
   * Added {Ore::Generator}.
 
-[base]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/base
+[gem]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem
+[apache]: https://github.com/ruby-ore/apache
 [bin]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bin
-[bundler]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bundler
-[bundler_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/bundler_tasks
-[gemspec]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gemspec
-[gemspec_yml]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gemspec_yml
-[gem\_package\_task]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/gem_package_task
-[git]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/git
-[hg]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/hg
-[rdoc]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rdoc
-[rspec]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rspec
-[rubygems_tasks]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/rubygems_tasks
-[test_unit]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/test_unit
-[mini_test]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/mini_test
-[yard]: https://github.com/ruby-ore/ore/tree/master/data/ore/templates/yard
-
-[rvm]: https://github.com/ruby-ore/rvm
+[bsd]: https://github.com/ruby-ore/bsd
+[bundler]: https://github.com/ruby-ore/bundler
+[bundler_tasks]: https://github.com/ruby-ore/bundler/blob/master/_tasks.erb
+[code_climate]: https://github.com/ruby-ore/code_climate
+[gemspec]: https://github.com/ruby-ore/ore/blob/master/data/ore/templates/gem/%5Bname%5D.gemspec.erb
+[gemspec_yml]: https://github.com/ruby-ore/gemspec_yml
+[gem\_package\_task]: https://github.com/ruby-ore/gem_package_task
+[git]: https://github.com/ruby-ore/git
+[gpl]: https://github.com/ruby-ore/gpl
+[hg]: https://github.com/ruby-ore/hg
 [jeweler_tasks]: https://github.com/ruby-ore/jeweler_tasks
+[lgpl]: https://github.com/ruby-ore/lgpl
+[mit]: https://github.com/ruby-ore/mit
+[rdoc]: https://github.com/ruby-ore/rdoc
+[rspec]: https://github.com/ruby-ore/rspec
+[rubygems_tasks]: https://github.com/ruby-ore/rubygems_tasks
+[rvm]: https://github.com/ruby-ore/rvm
+[test_unit]: https://github.com/ruby-ore/test_unit
+[travis]: https://github.com/ruby-ore/travis
+[mini_test]: https://github.com/ruby-ore/mini_test
+[yard]: https://github.com/ruby-ore/yard

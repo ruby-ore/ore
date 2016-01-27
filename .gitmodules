@@ -1,0 +1,21 @@
+[submodule "data/ore/templates/travis"]
+	path = data/ore/templates/travis
+	url = https://github.com/ruby-ore/travis.git
+[submodule "data/ore/templates/bsd"]
+	path = data/ore/templates/bsd
+	url = https://github.com/ruby-ore/bsd.git
+[submodule "data/ore/templates/gpl"]
+	path = data/ore/templates/gpl
+	url = https://github.com/ruby-ore/gpl.git
+[submodule "data/ore/templates/lgpl"]
+	path = data/ore/templates/lgpl
+	url = https://github.com/ruby-ore/lgpl.git
+[submodule "data/ore/templates/apache"]
+	path = data/ore/templates/apache
+	url = https://github.com/ruby-ore/apache.git
+[submodule "data/ore/templates/mit"]
+	path = data/ore/templates/mit
+	url = https://github.com/ruby-ore/mit.git
+[submodule "data/ore/templates/code_climate"]
+	path = data/ore/templates/code_climate
+	url = https://github.com/ruby-ore/code_climate.git

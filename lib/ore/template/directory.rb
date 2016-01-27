@@ -1,4 +1,5 @@
 require 'ore/template/exceptions/invalid_template'
+require 'ore/template/markup'
 
 require 'yaml'
 require 'find'
@@ -16,13 +17,6 @@ module Ore
 
       # Files or directory names to ignore
       IGNORE = ['.git', CONFIG_FILE]
-
-      # The known markup languages and file extensions
-      MARKUPS = {
-        :markdown => %w[.md .markdown],
-        :textile  => %w[.tt .textile],
-        :rdoc     => %w[.rdoc]
-      }
 
       # The path of the template directory
       attr_reader :path
@@ -247,7 +241,7 @@ module Ore
       #   Specifies whether the file is formatting.
       #
       def formatted?(path)
-        MARKUPS.values.any? { |exts| exts.include?(File.extname(path)) }
+        Markup::EXTS.values.any? { |exts| exts.include?(File.extname(path)) }
       end
 
       #
@@ -263,7 +257,7 @@ module Ore
       #   Specifies whether the file contains the given formatting.
       #
       def formatted_like?(path,markup)
-        MARKUPS[markup].include?(File.extname(path))
+        Markup::EXTS[markup].include?(File.extname(path))
       end
 
       def ignore?(path)

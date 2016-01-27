@@ -21,7 +21,7 @@ module Ore
     # @see http://rubydoc.info/gems/thor/Thor/Actions#run-instance_method
     #
     def run(command,config={})
-      super(command,config.merge(:capture => true))
+      super(command,config.merge(capture: true))
     end
 
     #

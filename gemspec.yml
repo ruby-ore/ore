@@ -1,9 +1,8 @@
 name: ore
-summary: Mine beautiful RubyGems from Ore
+summary: Generate perfect Ruby gems
 description:
-  Ore is a flexible Ruby project generator. Unlike other Ruby project
-  generators, Ore provides many builtin templates and allows custom
-  templates to be installed from Git repositories.
+  Ore is a fully configurable and extendable Ruby gem generator. With Ore you
+  spend less time editing files, and more time writing code.
 
 license: MIT
 authors: Postmodern
@@ -25,10 +24,10 @@ post_install_message: |
   
   **************************************************************************
 
+required_ruby_version: ">= 1.9.1"
+
 dependencies:
   thor: ~> 0.15
 
 development_dependencies:
-  rubygems-tasks: ~> 0.2
-  rspec: ~> 2.4
-  yard: ~> 0.8
+  bundler: ~> 1.0

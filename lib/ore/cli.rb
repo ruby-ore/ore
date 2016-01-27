@@ -1,4 +1,5 @@
 require 'ore/config'
+require 'ore/generator'
 require 'ore/version'
 
 require 'thor'

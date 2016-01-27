@@ -1,3 +1,7 @@
+require 'ore/config'
+
+require 'yaml'
+
 module Ore
   #
   # Provides methods for guessing the namespaces and directories
@@ -32,25 +36,14 @@ module Ore
     # Words used in project names, but never in directory names
     IGNORE_NAMESPACES = %w[core ruby rb java]
 
-    # Common acronyms used in namespaces
-    NAMESPACE_ACRONYMS = %w[
-      ffi yard i18n
-      http https ftp smtp imap pop3 ssh ssl tcp udp dns rpc
-      url uri www css html xhtml xml xsl json yaml csv
-      posix unix bsd
-      cpp asm
-    ]
+    # Common abbrevations used in namespaces
+    COMMON_ABBREVIATIONS = Hash[File.readlines(File.join(Config::DATA_DIR,'abbreviations.txt')).map { |abbrev|
+      abbrev.chomp!
+      [abbrev.downcase, abbrev]
+    }]
 
     # Common project prefixes and namespaces
-    COMMON_NAMESPACES = {
-      'rubygems' => 'Gem',
-      'ar'       => 'ActiveRecord',
-      'dm'       => 'DataMapper',
-      'js'       => 'JavaScript',
-      'msgpack'  => 'MsgPack',
-      'github'   => 'GitHub',
-      'rdoc'     => 'RDoc'
-    }
+    COMMON_NAMESPACES = YAML.load_file(File.join(Config::DATA_DIR,'common_namespaces.yml'))
 
     #
     # Splits the project name into individual names.
@@ -81,8 +74,8 @@ module Ore
     def module_of(word)
       if COMMON_NAMESPACES.has_key?(word)
         COMMON_NAMESPACES[word]
-      elsif NAMESPACE_ACRONYMS.include?(word)
-        word.upcase
+      elsif COMMON_ABBREVIATIONS.has_key?(word)
+        COMMON_ABBREVIATIONS[word]
       else
         word.capitalize
       end
