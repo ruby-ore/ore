@@ -1,27 +1,3 @@
-[submodule "data/ore/templates/gemspec_yml"]
-	path = data/ore/templates/gemspec_yml
-	url = https://github.com/ruby-ore/gemspec_yml.git
-[submodule "data/ore/templates/bundler"]
-	path = data/ore/templates/bundler
-	url = https://github.com/ruby-ore/bundler.git
-[submodule "data/ore/templates/rspec"]
-	path = data/ore/templates/rspec
-	url = https://github.com/ruby-ore/rspec.git
-[submodule "data/ore/templates/minitest"]
-	path = data/ore/templates/minitest
-	url = https://github.com/ruby-ore/minitest.git
-[submodule "data/ore/templates/yard"]
-	path = data/ore/templates/yard
-	url = https://github.com/ruby-ore/yard.git
-[submodule "data/ore/templates/rdoc"]
-	path = data/ore/templates/rdoc
-	url = https://github.com/ruby-ore/rdoc.git
-[submodule "data/ore/templates/rubygems_tasks"]
-	path = data/ore/templates/rubygems_tasks
-	url = https://github.com/ruby-ore/rubygems_tasks.git
-[submodule "data/ore/templates/test_unit"]
-	path = data/ore/templates/test_unit
-	url = https://github.com/ruby-ore/test_unit.git
 [submodule "data/ore/templates/travis"]
 	path = data/ore/templates/travis
 	url = https://github.com/ruby-ore/travis.git
@@ -34,18 +10,9 @@
 [submodule "data/ore/templates/lgpl"]
 	path = data/ore/templates/lgpl
 	url = https://github.com/ruby-ore/lgpl.git
-[submodule "data/ore/templates/hg"]
-	path = data/ore/templates/hg
-	url = https://github.com/ruby-ore/hg.git
-[submodule "data/ore/templates/git"]
-	path = data/ore/templates/git
-	url = https://github.com/ruby-ore/git.git
 [submodule "data/ore/templates/apache"]
 	path = data/ore/templates/apache
 	url = https://github.com/ruby-ore/apache.git
-[submodule "data/ore/templates/gem_package_task"]
-	path = data/ore/templates/gem_package_task
-	url = https://github.com/ruby-ore/gem_package_task.git
 [submodule "data/ore/templates/mit"]
 	path = data/ore/templates/mit
 	url = https://github.com/ruby-ore/mit.git

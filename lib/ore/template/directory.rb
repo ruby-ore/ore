@@ -111,7 +111,7 @@ module Ore
       def each_file(markup)
         @files.each do |dest,file|
           if (formatted_like?(dest,markup) || !formatted?(dest))
-            yield dest, file
+            yield dest, file unless ignore?(file)
           end
         end
       end
@@ -258,6 +258,11 @@ module Ore
       #
       def formatted_like?(path,markup)
         Markup::EXTS[markup].include?(File.extname(path))
+      end
+
+      def ignore?(path)
+        basename = File.basename(path)
+        @ignore.include?(basename) || @ignore.select{|pat| basename.match(%r/#{pat}/)}
       end
 
     end
