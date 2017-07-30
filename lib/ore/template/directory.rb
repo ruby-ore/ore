@@ -201,7 +201,7 @@ module Ore
             name = File.basename(file)
 
             # ignore certain files/directories
-            Find.prune if IGNORE.include?(name)
+            Find.prune if ignored?(name)
 
             if File.directory?(file)
               @directories << file
@@ -260,6 +260,10 @@ module Ore
         Markup::EXTS[markup].include?(File.extname(path))
       end
 
+      private
+      def ignored?(filename)
+        IGNORE.include?(filename) || @ignore.include?(filename)
+      end
     end
   end
 end
