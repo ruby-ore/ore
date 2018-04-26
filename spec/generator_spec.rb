@@ -606,6 +606,32 @@ gemspec
     end
   end
 
+  context "custom templates" do
+    let(:name) { 'custom_template_project' }
+
+    before do
+      @custom_template_dir = Dir.tmpdir
+      executable = File.join(@custom_template_dir, 'executable.sh')
+      File.open(executable, 'w') { |f| f.write "#!/usr/bin/bash\necho HI" }
+      FileUtils.chmod 0755, executable
+
+      @custom_template = Ore::Template.register(@custom_template_dir)
+
+      generate!(name, @custom_template => true)
+    end
+
+    it "preserves the permissions on files in templates" do
+      Dir.chdir(@path) do
+        File.executable?('executable.sh').should == true
+      end
+    end
+
+    after do
+      Ore::Template.templates.delete(@custom_template)
+      FileUtils.rm_rf(@custom_template_dir)
+    end
+  end
+
   after(:all) do
     cleanup!
   end

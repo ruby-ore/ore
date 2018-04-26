@@ -75,7 +75,7 @@ module Ore
         template file, path
         @current_template_dir = nil
       else
-        copy_file file, path
+        copy_file file, path, mode: :preserve
       end
 
       @generated_files[dest] = path
