@@ -1,22 +1,20 @@
-require 'tempfile'
 require 'pathname'
 require 'yaml'
-require 'fileutils'
+require 'helpers/common'
 
 module Helpers
   module Generator
-    ROOT = File.join(Dir.tmpdir,'ore')
+    include Helpers::Common
 
     def generate!(path,options={})
-      path = File.join(ROOT,path)
+      @path = from_root_path(path)
 
       @generator = Ore::Generator.new(
-        [path],
+        [@path.to_s],
         options.merge(quiet: true)
       )
       @generator.invoke_all
 
-      @path    = Pathname.new(path)
       @gemspec = Dir.chdir(@path) do
         Gem::Specification.load(@generator.generated_files['[name].gemspec'])
       end
@@ -64,10 +62,6 @@ module Helpers
       end
 
       return @gitignore
-    end
-
-    def cleanup!
-      FileUtils.rm_r(ROOT)
     end
   end
 end
