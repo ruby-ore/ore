@@ -33,7 +33,7 @@ module Ore
       Config.installed_templates(&print_template)
     end
 
-    desc 'install URI', 'Installs an Ore template'
+    desc 'install URI [TEMPLATE_NAME]', 'Installs an Ore template'
 
     #
     # Installs a template into `~/.ore/templates`.
@@ -41,11 +41,18 @@ module Ore
     # @param [String] uri
     #   The Git URI to install the template from.
     #
-    def install(uri)
+    # @param [String,nil] checkout_path
+    #   The subdirectory of '~/.ore/templates' into which the template will be
+    #   checked out.  Defaults to the path component of uri.
+    #
+    def install(uri, checkout_path = nil)
       url = URI(uri)
 
-      name = File.basename(url.path)
-      name.gsub!(/\.git$/,'')
+      name = File.basename(checkout_path || url.path).gsub(/\.git$/,'')
+
+      if !checkout_path.nil? && checkout_path.include?(File::SEPARATOR)
+         say "Truncating template name from #{checkout_path} to #{name}", :yellow
+      end
 
       path = File.join(Config::TEMPLATES_DIR,name)
 
